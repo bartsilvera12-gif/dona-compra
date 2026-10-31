@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Doña Compra — Tu mercadería hoy, pagás después</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,400;0,500;0,600;1,6..72,300;1,400&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #FAF6EC; color: #22291F; font-family: Karla, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #0E3A2B; text-decoration: none; }
+  a:hover { color: #B5603F; }
+  button { font: inherit; color: inherit; }
+  input, textarea, select { font: inherit; }
+  @keyframes dcRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#FAF6EC">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(250,246,236,0.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(14,58,43,0.12)">
+    <div style="max-width:1180px;margin:0 auto;padding:12px clamp(16px,4vw,32px);display:flex;align-items:center;gap:clamp(12px,3vw,28px);flex-wrap:wrap">
+      <button onClick="{{ goInicio }}" style="display:flex;align-items:center;gap:11px;background:none;border:0;padding:0;cursor:pointer;margin-right:auto">
+        <span style="display:block;width:46px;height:46px;border-radius:50%;overflow:hidden;border:1.5px solid #D9A528;flex:none;background:#0E3A2B">
+          <img src="assets/dona-compra-logo.jpg" alt="Doña Compra" style="width:100%;height:100%;object-fit:cover;object-position:50% 42%;transform:scale(1.28)" />
+        </span>
+        <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1">
+          <span style="font-family:Newsreader,serif;font-size:21px;letter-spacing:0.01em;color:#0E3A2B">Doña Compra</span>
+          <span style="font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:#8A8470;margin-top:4px">Asunción · Paraguay</span>
+        </span>
+      </button>
+
+      <nav style="display:flex;align-items:center;gap:2px;flex-wrap:wrap">
+        <button onClick="{{ goInicio }}" style="position:relative;background:none;border:0;cursor:pointer;padding:8px 11px;font-size:13.5px;letter-spacing:0.02em;color:#2D3A2C" style-hover="color:#B5603F">Inicio<sc-if value="{{ atInicio }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:11px;right:11px;bottom:1px;height:1.5px;background:#D9A528"></span></sc-if></button>
+        <button onClick="{{ goCatalogo }}" style="position:relative;background:none;border:0;cursor:pointer;padding:8px 11px;font-size:13.5px;letter-spacing:0.02em;color:#2D3A2C" style-hover="color:#B5603F">Catálogo<sc-if value="{{ atCatalogo }}"><span style="position:absolute;left:11px;right:11px;bottom:1px;height:1.5px;background:#D9A528"></span></sc-if></button>
+        <button onClick="{{ goComo }}" style="position:relative;background:none;border:0;cursor:pointer;padding:8px 11px;font-size:13.5px;letter-spacing:0.02em;color:#2D3A2C" style-hover="color:#B5603F">Cómo funciona<sc-if value="{{ atComo }}"><span style="position:absolute;left:11px;right:11px;bottom:1px;height:1.5px;background:#D9A528"></span></sc-if></button>
+        <button onClick="{{ goNiveles }}" style="position:relative;background:none;border:0;cursor:pointer;padding:8px 11px;font-size:13.5px;letter-spacing:0.02em;color:#2D3A2C" style-hover="color:#B5603F">Niveles y tarifas<sc-if value="{{ atNiveles }}"><span style="position:absolute;left:11px;right:11px;bottom:1px;height:1.5px;background:#D9A528"></span></sc-if></button>
+        <button onClick="{{ goEncargos }}" style="position:relative;background:none;border:0;cursor:pointer;padding:8px 11px;font-size:13.5px;letter-spacing:0.02em;color:#2D3A2C" style-hover="color:#B5603F">Encargos<sc-if value="{{ atEncargos }}"><span style="position:absolute;left:11px;right:11px;bottom:1px;height:1.5px;background:#D9A528"></span></sc-if></button>
+        <button onClick="{{ goContacto }}" style="position:relative;background:none;border:0;cursor:pointer;padding:8px 11px;font-size:13.5px;letter-spacing:0.02em;color:#2D3A2C" style-hover="color:#B5603F">Contacto<sc-if value="{{ atContacto }}"><span style="position:absolute;left:11px;right:11px;bottom:1px;height:1.5px;background:#D9A528"></span></sc-if></button>
+      </nav>
+
+      <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#0E3A2B;color:#FAF6EC;padding:11px 18px;border-radius:999px;font-size:13px;letter-spacing:0.04em;border:1px solid #0E3A2B" style-hover="background:#D9A528;color:#0E3A2B;border-color:#D9A528">
+        <span style="display:block;width:6px;height:6px;border-radius:50%;background:#D9A528"></span>Escribile a Doña
+      </a>
+    </div>
+  </header>
+
+  <main style="flex:1">
+
+  <!-- ══════════ INICIO ══════════ -->
+  <sc-if value="{{ atInicio }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <section style="position:relative;background:#0E3A2B;overflow:hidden">
+      <div style="position:absolute;inset:0;opacity:0.5;background-image:radial-gradient(circle,rgba(217,165,40,0.42) 1.1px,transparent 1.2px),radial-gradient(circle,rgba(192,140,132,0.3) 1px,transparent 1.1px);background-size:26px 26px,26px 26px;background-position:0 0,13px 13px"></div>
+      <div style="position:absolute;inset:14px;border:1px solid rgba(217,165,40,0.3);pointer-events:none"></div>
+      <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(40px,7vw,86px) clamp(22px,5vw,46px) clamp(32px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(28px,5vw,56px);align-items:center">
+
+        <div style="animation:dcRise 0.7s ease both">
+          <span style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(217,165,40,0.5);color:#E8C87A;font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;padding:7px 14px;border-radius:999px">Para comerciantes que venden</span>
+          <h1 style="font-family:Newsreader,serif;font-weight:400;color:#FAF6EC;font-size:clamp(38px,6.4vw,70px);line-height:1.02;letter-spacing:-0.015em;margin:20px 0 0;text-wrap:balance">Doña paga hoy<br />tu mercadería.</h1>
+          <p style="font-family:Newsreader,serif;font-style:italic;color:#D9A528;font-size:clamp(20px,2.6vw,30px);line-height:1.25;margin:14px 0 0">Vos vendés. Pagás en 30 días.</p>
+          <p style="color:rgba(250,246,236,0.78);font-size:clamp(15px,1.6vw,17px);line-height:1.65;max-width:46ch;margin:18px 0 0">Elegís el producto y el proveedor que ya conocés. Doña le paga al contado, vos retirás con un código y recién después pagás. Sin multas: tu palabra es tu garantía.</p>
+
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:30px">
+            <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#D9A528;color:#0E3A2B;padding:15px 26px;border-radius:999px;font-size:14.5px;font-weight:600;letter-spacing:0.02em" style-hover="background:#FAF6EC">Escribile a Doña por WhatsApp</a>
+            <button onClick="{{ goComo }}" style="display:inline-flex;align-items:center;gap:10px;background:none;border:1px solid rgba(250,246,236,0.42);color:#FAF6EC;padding:15px 26px;border-radius:999px;font-size:14.5px;letter-spacing:0.02em;cursor:pointer" style-hover="border-color:#D9A528;color:#D9A528">Ver cómo funciona</button>
+          </div>
+
+          <div style="display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:30px;padding-top:24px;border-top:1px solid rgba(217,165,40,0.25)">
+            <span style="color:rgba(250,246,236,0.7);font-size:12.5px;letter-spacing:0.05em">Visita en tu negocio en 24 h</span>
+            <span style="color:rgba(250,246,236,0.7);font-size:12.5px;letter-spacing:0.05em">Factura legal con RUC</span>
+            <span style="color:rgba(250,246,236,0.7);font-size:12.5px;letter-spacing:0.05em">Desde 500.000 Gs</span>
+          </div>
+        </div>
+
+        <div style="position:relative;display:flex;justify-content:center;animation:dcRise 0.9s ease both">
+          <div style="position:relative;width:min(100%,420px)">
+            <div style="position:absolute;inset:-18px;border:1px solid rgba(217,165,40,0.35);border-radius:50% 50% 50% 50%/48% 48% 52% 52%"></div>
+            <div style="position:relative;background:#FAF6EC;border:2px solid #D9A528;border-radius:50% 50% 50% 50%/48% 48% 52% 52%;padding:14px;box-shadow:0 30px 70px -30px rgba(0,0,0,0.6)">
+              <img src="assets/dona-compra-logo.jpg" alt="Doña Compra, tu asistente de compras de confianza" style="display:block;width:100%;border-radius:50% 50% 50% 50%/48% 48% 52% 52%" />
+            </div>
+            <div style="position:absolute;top:6%;left:-6%;background:#FAF6EC;border:1px solid rgba(217,165,40,0.55);border-radius:7px;padding:10px 14px;box-shadow:0 14px 30px -14px rgba(0,0,0,0.5)">
+              <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#8A8470">Al contado</div>
+              <div style="font-family:Newsreader,serif;font-size:17px;color:#0E3A2B;margin-top:3px">Paga al proveedor</div>
+            </div>
+            <div style="position:absolute;bottom:12%;right:-5%;background:#0E3A2B;border:1px solid #D9A528;border-radius:7px;padding:10px 14px;box-shadow:0 14px 30px -14px rgba(0,0,0,0.6)">
+              <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E8C87A">Retiro seguro</div>
+              <div style="font-family:Newsreader,serif;font-size:17px;color:#FAF6EC;margin-top:3px">Con código único</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:relative;border-top:1px solid rgba(217,165,40,0.25);background:rgba(10,42,31,0.5)">
+        <div style="max-width:1180px;margin:0 auto;padding:0 clamp(22px,5vw,46px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr))">
+          <div style="padding:26px 22px 26px 0">
+            <div style="font-family:Newsreader,serif;font-size:19px;color:#D9A528">Productos seleccionados</div>
+            <p style="color:rgba(250,246,236,0.72);font-size:13.5px;line-height:1.6;margin:7px 0 0">Perfumería, cosmética, accesorios y regalería de alta rotación.</p>
+          </div>
+          <div style="padding:26px 22px;border-left:1px solid rgba(217,165,40,0.22)">
+            <div style="font-family:Newsreader,serif;font-size:19px;color:#D9A528">Atención personalizada</div>
+            <p style="color:rgba(250,246,236,0.72);font-size:13.5px;line-height:1.6;margin:7px 0 0">Doña te visita en tu negocio, cuando a vos te queda bien.</p>
+          </div>
+          <div style="padding:26px 0 26px 22px;border-left:1px solid rgba(217,165,40,0.22)">
+            <div style="font-family:Newsreader,serif;font-size:19px;color:#D9A528">Comprá con confianza</div>
+            <p style="color:rgba(250,246,236,0.72);font-size:13.5px;line-height:1.6;margin:7px 0 0">Mismo precio en todos los niveles y sin multas por atraso.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1180px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(22px,5vw,46px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(28px,5vw,64px);align-items:start">
+        <div>
+          <span style="font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:#B5603F">Quién es Doña</span>
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.12;color:#0E3A2B;margin:14px 0 0;text-wrap:balance">No es un préstamo.<br />Es una señora que te conoce.</h2>
+        </div>
+        <div>
+          <p style="font-size:16.5px;line-height:1.7;color:#3A4337;margin:0">Doña Compra nació de una costumbre vieja del barrio: fiarle a quien cumple. Compramos la mercadería que vos elegís, le pagamos al proveedor al contado y te damos treinta días para vender tranquila.</p>
+          <p style="font-size:16.5px;line-height:1.7;color:#3A4337;margin:16px 0 0">Antes de abrir tu ficha, Doña te visita. Mira tu negocio, charla con vos, entiende cómo vendés. Por eso no hay multas automáticas ni letras chicas: hay un trato, un día de pago en la factura y una palabra que vale.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px">
+            <span style="border:1px solid rgba(14,58,43,0.2);border-radius:999px;padding:7px 14px;font-size:12.5px;color:#0E3A2B">Mba'éichapa</span>
+            <span style="border:1px solid rgba(14,58,43,0.2);border-radius:999px;padding:7px 14px;font-size:12.5px;color:#0E3A2B">Sin inventario propio</span>
+            <span style="border:1px solid rgba(14,58,43,0.2);border-radius:999px;padding:7px 14px;font-size:12.5px;color:#0E3A2B">Tu proveedor de siempre</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#EADFC8;border-top:1px solid rgba(217,165,40,0.4);border-bottom:1px solid rgba(217,165,40,0.4)">
+      <div style="max-width:1180px;margin:0 auto;padding:clamp(48px,7vw,86px) clamp(22px,5vw,46px)">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap">
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.12;color:#0E3A2B;margin:0">Así funciona, en tres pasos</h2>
+          <button onClick="{{ goComo }}" style="background:none;border:0;border-bottom:1px solid #B5603F;color:#B5603F;padding:0 0 3px;font-size:13.5px;letter-spacing:0.04em;cursor:pointer" style-hover="color:#0E3A2B;border-color:#0E3A2B">Ver el proceso completo</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:18px;margin-top:38px">
+          <div style="background:#FAF6EC;border:1px solid rgba(217,165,40,0.45);border-radius:8px;padding:26px 24px 28px">
+            <div style="font-family:Newsreader,serif;font-size:42px;line-height:1;color:#D9A528">01</div>
+            <div style="font-family:Newsreader,serif;font-size:23px;color:#0E3A2B;margin-top:12px">Vos elegís</div>
+            <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">El producto y el proveedor que ya conocés. Nos pasás el pedido por WhatsApp.</p>
+          </div>
+          <div style="background:#FAF6EC;border:1px solid rgba(217,165,40,0.45);border-radius:8px;padding:26px 24px 28px">
+            <div style="font-family:Newsreader,serif;font-size:42px;line-height:1;color:#D9A528">02</div>
+            <div style="font-family:Newsreader,serif;font-size:23px;color:#0E3A2B;margin-top:12px">Doña paga</div>
+            <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">Le paga al proveedor al contado. Vos retirás tu mercadería con un código único.</p>
+          </div>
+          <div style="background:#FAF6EC;border:1px solid rgba(217,165,40,0.45);border-radius:8px;padding:26px 24px 28px">
+            <div style="font-family:Newsreader,serif;font-size:42px;line-height:1;color:#D9A528">03</div>
+            <div style="font-family:Newsreader,serif;font-size:23px;color:#0E3A2B;margin-top:12px">Pagás en 30 días</div>
+            <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">El día figura en tu factura: transferencia, Tigo Money, Mango o alias.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1180px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(22px,5vw,46px)">
+      <span style="font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:#B5603F">Rubros que trabajamos</span>
+      <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.12;color:#0E3A2B;margin:14px 0 0">Lo que más se vende, cuando se vende</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(232px,100%),1fr));gap:16px;margin-top:36px">
+        <button onClick="{{ goCatalogo }}" style="text-align:left;background:#FAF6EC;border:1px solid rgba(14,58,43,0.14);border-radius:8px;padding:0;overflow:hidden;cursor:pointer" style-hover="border-color:#D9A528">
+          <span style="display:block;height:150px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center">
+            <span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · perfumes</span>
+          </span>
+          <span style="display:block;padding:18px 20px 20px">
+            <span style="display:block;font-family:Newsreader,serif;font-size:22px;color:#0E3A2B">Perfumería</span>
+            <span style="display:block;font-size:13.5px;line-height:1.6;color:#4A5245;margin-top:5px">Importados y réplicas de alta rotación.</span>
+          </span>
+        </button>
+        <button onClick="{{ goCatalogo }}" style="text-align:left;background:#FAF6EC;border:1px solid rgba(14,58,43,0.14);border-radius:8px;padding:0;overflow:hidden;cursor:pointer" style-hover="border-color:#D9A528">
+          <span style="display:block;height:150px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center">
+            <span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · cosmética</span>
+          </span>
+          <span style="display:block;padding:18px 20px 20px">
+            <span style="display:block;font-family:Newsreader,serif;font-size:22px;color:#0E3A2B">Cosmética</span>
+            <span style="display:block;font-size:13.5px;line-height:1.6;color:#4A5245;margin-top:5px">Maquillaje, uñas y cuidado de la piel.</span>
+          </span>
+        </button>
+        <button onClick="{{ goCatalogo }}" style="text-align:left;background:#FAF6EC;border:1px solid rgba(14,58,43,0.14);border-radius:8px;padding:0;overflow:hidden;cursor:pointer" style-hover="border-color:#D9A528">
+          <span style="display:block;height:150px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center">
+            <span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · accesorios</span>
+          </span>
+          <span style="display:block;padding:18px 20px 20px">
+            <span style="display:block;font-family:Newsreader,serif;font-size:22px;color:#0E3A2B">Accesorios</span>
+            <span style="display:block;font-size:13.5px;line-height:1.6;color:#4A5245;margin-top:5px">Bijouterie, relojes y marroquinería.</span>
+          </span>
+        </button>
+        <button onClick="{{ goEncargos }}" style="text-align:left;background:#0E3A2B;border:1px solid #D9A528;border-radius:8px;padding:0;overflow:hidden;cursor:pointer" style-hover="background:#0A2A1F">
+          <span style="display:block;height:150px;background-image:radial-gradient(circle,rgba(217,165,40,0.4) 1.1px,transparent 1.2px);background-size:22px 22px;display:flex;align-items:center;justify-content:center">
+            <span style="font-family:Newsreader,serif;font-style:italic;font-size:26px;color:#D9A528">a pedido</span>
+          </span>
+          <span style="display:block;padding:18px 20px 20px">
+            <span style="display:block;font-family:Newsreader,serif;font-size:22px;color:#FAF6EC">Encargos especiales</span>
+            <span style="display:block;font-size:13.5px;line-height:1.6;color:rgba(250,246,236,0.75);margin-top:5px">¿No está en el catálogo? Doña lo consigue.</span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <section style="background:#0E3A2B;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;opacity:0.4;background-image:radial-gradient(circle,rgba(217,165,40,0.4) 1.1px,transparent 1.2px);background-size:26px 26px"></div>
+      <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(48px,7vw,90px) clamp(22px,5vw,46px)">
+        <span style="font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:#E8C87A">Tu confianza crece</span>
+        <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.12;color:#FAF6EC;margin:14px 0 0">Siete niveles. El mismo precio en todos.</h2>
+        <p style="color:rgba(250,246,236,0.75);font-size:15.5px;line-height:1.65;max-width:58ch;margin:14px 0 0">Cada pedido pagado a tiempo suma. Cuando tus pedidos pagados alcanzan el tope de tu nivel, Doña evalúa y pasás al siguiente.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(132px,45%),1fr));gap:10px;margin-top:38px">
+          <div style="border:1px solid rgba(217,165,40,0.3);border-radius:7px;padding:18px 14px 20px;background:rgba(250,246,236,0.03)">
+            <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E8C87A">Hierro</div>
+            <div style="font-family:Newsreader,serif;font-size:27px;color:#FAF6EC;margin-top:8px">250k</div>
+          </div>
+          <div style="border:1px solid rgba(217,165,40,0.3);border-radius:7px;padding:18px 14px 20px;background:rgba(250,246,236,0.03)">
+            <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E8C87A">Cobre</div>
+            <div style="font-family:Newsreader,serif;font-size:27px;color:#FAF6EC;margin-top:8px">500k</div>
+          </div>
+          <div style="border:1px solid rgba(217,165,40,0.3);border-radius:7px;padding:18px 14px 20px;background:rgba(250,246,236,0.03)">
+            <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E8C87A">Bronce</div>
+            <div style="font-family:Newsreader,serif;font-size:27px;color:#FAF6EC;margin-top:8px">1M</div>
+          </div>
+          <div style="border:1px solid rgba(217,165,40,0.3);border-radius:7px;padding:18px 14px 20px;background:rgba(250,246,236,0.03)">
+            <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E8C87A">Plata</div>
+            <div style="font-family:Newsreader,serif;font-size:27px;color:#FAF6EC;margin-top:8px">3M</div>
+          </div>
+          <div style="border:1px solid rgba(217,165,40,0.3);border-radius:7px;padding:18px 14px 20px;background:rgba(250,246,236,0.03)">
+            <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E8C87A">Oro</div>
+            <div style="font-family:Newsreader,serif;font-size:27px;color:#FAF6EC;margin-top:8px">5M</div>
+          </div>
+          <div style="border:1px solid rgba(217,165,40,0.3);border-radius:7px;padding:18px 14px 20px;background:rgba(250,246,236,0.03)">
+            <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E8C87A">Rubis</div>
+            <div style="font-family:Newsreader,serif;font-size:27px;color:#FAF6EC;margin-top:8px">8M</div>
+          </div>
+          <div style="border:1px solid #D9A528;border-radius:7px;padding:18px 14px 20px;background:rgba(217,165,40,0.14)">
+            <div style="font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:#D9A528">Diamante</div>
+            <div style="font-family:Newsreader,serif;font-size:27px;color:#FAF6EC;margin-top:8px">10M</div>
+          </div>
+        </div>
+        <button onClick="{{ goNiveles }}" style="margin-top:28px;background:none;border:1px solid rgba(250,246,236,0.4);color:#FAF6EC;border-radius:999px;padding:13px 24px;font-size:14px;cursor:pointer" style-hover="border-color:#D9A528;color:#D9A528">Ver niveles y tarifas en detalle</button>
+      </div>
+    </section>
+
+    <section style="max-width:1180px;margin:0 auto;padding:clamp(56px,8vw,100px) clamp(22px,5vw,46px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:clamp(24px,4vw,48px)">
+        <div>
+          <span style="font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:#B5603F">Por qué Doña</span>
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.12;color:#0E3A2B;margin:14px 0 24px">Con Doña, sos el cliente que todo proveedor quiere</h2>
+          <p style="font-size:15.5px;line-height:1.7;color:#4A5245;margin:0">Porque pagás al contado sin descapitalizarte. Porque tu pedido llega completo. Porque cuando cumplís, crecés.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(14,58,43,0.14)">
+            <span style="font-family:Newsreader,serif;font-size:15px;color:#D9A528;flex:none;width:28px">01</span>
+            <div><div style="font-family:Newsreader,serif;font-size:20px;color:#0E3A2B">Atención personalizada</div><p style="font-size:14px;line-height:1.6;color:#4A5245;margin:5px 0 0">Doña te visita en tu negocio en 24 horas, en el horario que a vos te sirve.</p></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(14,58,43,0.14)">
+            <span style="font-family:Newsreader,serif;font-size:15px;color:#D9A528;flex:none;width:28px">02</span>
+            <div><div style="font-family:Newsreader,serif;font-size:20px;color:#0E3A2B">Sin multas ni intereses sorpresa</div><p style="font-size:14px;line-height:1.6;color:#4A5245;margin:5px 0 0">Si te atrasás, hablamos. No hay penalidades automáticas.</p></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(14,58,43,0.14)">
+            <span style="font-family:Newsreader,serif;font-size:15px;color:#D9A528;flex:none;width:28px">03</span>
+            <div><div style="font-family:Newsreader,serif;font-size:20px;color:#0E3A2B">Retiro con código único</div><p style="font-size:14px;line-height:1.6;color:#4A5245;margin:5px 0 0">Nadie más puede retirar tu mercadería. Un código, un retiro.</p></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(14,58,43,0.14);border-bottom:1px solid rgba(14,58,43,0.14)">
+            <span style="font-family:Newsreader,serif;font-size:15px;color:#D9A528;flex:none;width:28px">04</span>
+            <div><div style="font-family:Newsreader,serif;font-size:20px;color:#0E3A2B">Factura legal con RUC</div><p style="font-size:14px;line-height:1.6;color:#4A5245;margin:5px 0 0">Cada pedido con factura electrónica y su día de pago escrito.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#EADFC8;border-top:1px solid rgba(217,165,40,0.4)">
+      <div style="max-width:1180px;margin:0 auto;padding:clamp(48px,7vw,90px) clamp(22px,5vw,46px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(26px,4vw,52px);align-items:center">
+        <div>
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(30px,4.4vw,50px);line-height:1.1;color:#0E3A2B;margin:0;text-wrap:balance">¿Arrancamos con tu primer pedido?</h2>
+          <p style="font-size:16px;line-height:1.7;color:#3A4337;margin:16px 0 0;max-width:46ch">Contanos qué vendés y qué necesitás. Doña te responde y coordina la visita. ¡Mba'éichapa! Doña te espera.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#0E3A2B;color:#FAF6EC;padding:16px 28px;border-radius:999px;font-size:15px;font-weight:600" style-hover="background:#D9A528;color:#0E3A2B">WhatsApp {{ phone }}</a>
+          <button onClick="{{ goContacto }}" style="background:none;border:0;border-bottom:1px solid #B5603F;color:#B5603F;padding:0 0 3px;font-size:14px;cursor:pointer" style-hover="color:#0E3A2B;border-color:#0E3A2B">o dejá tus datos en el formulario</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ══════════ CATÁLOGO ══════════ -->
+  <sc-if value="{{ atCatalogo }}">
+  <div>
+    <section style="background:#0E3A2B;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;opacity:0.4;background-image:radial-gradient(circle,rgba(217,165,40,0.4) 1.1px,transparent 1.2px);background-size:26px 26px"></div>
+      <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(44px,6vw,76px) clamp(22px,5vw,46px)">
+        <span style="font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:#E8C87A">Catálogo</span>
+        <h1 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(34px,5vw,58px);line-height:1.06;color:#FAF6EC;margin:14px 0 0">Mercadería que rota</h1>
+        <p style="color:rgba(250,246,236,0.75);font-size:16px;line-height:1.65;max-width:56ch;margin:14px 0 0">Perfumería, cosmética, accesorios, regalería y cuidado personal. Consultá disponibilidad y precio del día: el stock se mueve rápido.</p>
+      </div>
+    </section>
+
+    <div style="position:sticky;top:71px;z-index:20;background:rgba(250,246,236,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(14,58,43,0.12)">
+      <div style="max-width:1180px;margin:0 auto;padding:14px clamp(22px,5vw,46px);display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <span style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#8A8470;margin-right:6px">Filtrar</span>
+        <button onClick="{{ filtTodos }}" style="border:1px solid {{ cTodos }};background:{{ bTodos }};color:{{ tTodos }};border-radius:999px;padding:8px 16px;font-size:13px;cursor:pointer">Todos</button>
+        <button onClick="{{ filtPerf }}" style="border:1px solid {{ cPerf }};background:{{ bPerf }};color:{{ tPerf }};border-radius:999px;padding:8px 16px;font-size:13px;cursor:pointer">Perfumería</button>
+        <button onClick="{{ filtCosm }}" style="border:1px solid {{ cCosm }};background:{{ bCosm }};color:{{ tCosm }};border-radius:999px;padding:8px 16px;font-size:13px;cursor:pointer">Cosmética</button>
+        <button onClick="{{ filtAcc }}" style="border:1px solid {{ cAcc }};background:{{ bAcc }};color:{{ tAcc }};border-radius:999px;padding:8px 16px;font-size:13px;cursor:pointer">Accesorios</button>
+        <button onClick="{{ filtReg }}" style="border:1px solid {{ cReg }};background:{{ bReg }};color:{{ tReg }};border-radius:999px;padding:8px 16px;font-size:13px;cursor:pointer">Regalería</button>
+        <button onClick="{{ filtCuid }}" style="border:1px solid {{ cCuid }};background:{{ bCuid }};color:{{ tCuid }};border-radius:999px;padding:8px 16px;font-size:13px;cursor:pointer">Cuidado personal</button>
+      </div>
+    </div>
+
+    <section style="max-width:1180px;margin:0 auto;padding:clamp(34px,5vw,56px) clamp(22px,5vw,46px) clamp(50px,7vw,88px);display:flex;flex-direction:column;gap:clamp(38px,5vw,60px)">
+
+      <sc-if value="{{ showPerf }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(217,165,40,0.5);padding-bottom:12px">
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3vw,34px);color:#0E3A2B;margin:0">Perfumería</h2>
+          <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#8A8470">alta rotación</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(238px,100%),1fr));gap:16px;margin-top:22px">
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · frasco 100ml</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Perfumería</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Eau de parfum importado</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Frascos de 100 ml, línea femenina y masculina. Caja por 6 unidades.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · set de 3</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Perfumería</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Set de bolsillo 30 ml</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Tríos surtidos para reventa rápida en mostrador y ferias.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · body splash</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Perfumería</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Body splash y colonias</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Línea juvenil, precio accesible. El producto que no falla en verano.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ showCosm }}">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(217,165,40,0.5);padding-bottom:12px">
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3vw,34px);color:#0E3A2B;margin:0">Cosmética</h2>
+          <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#8A8470">maquillaje y uñas</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(238px,100%),1fr));gap:16px;margin-top:22px">
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · paleta</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Cosmética</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Paletas de sombras</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Surtido de tonos nude y festivos. Display de 12 para mostrador.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · esmaltes</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Cosmética</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Esmaltes y semipermanentes</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Para peluquerías y servicios de uñas. Repone todas las semanas.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · skincare</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Cosmética</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Cuidado facial</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Serums, protectores y mascarillas. Ticket alto, buena ganancia.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ showAcc }}">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(217,165,40,0.5);padding-bottom:12px">
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3vw,34px);color:#0E3A2B;margin:0">Accesorios</h2>
+          <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#8A8470">bijouterie y más</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(238px,100%),1fr));gap:16px;margin-top:22px">
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · bijouterie</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Accesorios</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Bijouterie dorada</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Aros, cadenitas y anillos. Blísteres surtidos por docena.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · relojes</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Accesorios</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Relojes y billeteras</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Clásicos de regalería. Se venden solos para el Día del Padre.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · carteras</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Accesorios</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Carteras y mochilas</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Temporada escolar y uso diario. Consultá modelos disponibles.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ showReg }}">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(217,165,40,0.5);padding-bottom:12px">
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3vw,34px);color:#0E3A2B;margin:0">Regalería</h2>
+          <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#8A8470">fechas fuertes</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(238px,100%),1fr));gap:16px;margin-top:22px">
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · cajas regalo</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Regalería</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Cajas y sets de regalo</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Armados listos para vender en Día de la Madre y Navidad.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · termos</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Regalería</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Termos y equipos de mate</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Lo que nunca falta en una despensa o regalería paraguaya.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ showCuid }}">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:14px;border-bottom:1px solid rgba(217,165,40,0.5);padding-bottom:12px">
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3vw,34px);color:#0E3A2B;margin:0">Cuidado personal</h2>
+          <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#8A8470">reposición semanal</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(238px,100%),1fr));gap:16px;margin-top:22px">
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · línea capilar</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Cuidado personal</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Línea capilar profesional</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Shampoo, tratamientos y tinturas para peluquerías.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+          <article style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.12);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
+            <div style="height:190px;background-image:repeating-linear-gradient(135deg,#EADFC8 0 9px,#F2E8D4 9px 18px);display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#8A8470;text-transform:uppercase">foto · higiene</span></div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+              <span style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#B5603F">Cuidado personal</span>
+              <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:21px;color:#0E3A2B;margin:7px 0 0">Higiene y cuidado diario</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:7px 0 16px;flex:1">Desodorantes, cremas y jabones. Rotación constante en despensas.</p>
+              <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:11px 18px;font-size:13px;letter-spacing:0.03em" style-hover="background:#0E3A2B;color:#FAF6EC">Consultar disponibilidad</a>
+            </div>
+          </article>
+        </div>
+      </div>
+      </sc-if>
+
+      <div style="background:#EADFC8;border:1px solid rgba(217,165,40,0.5);border-radius:9px;padding:clamp(26px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:24px;align-items:center">
+        <div>
+          <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3vw,32px);color:#0E3A2B;margin:0">¿Buscás algo que no está acá?</h3>
+          <p style="font-size:15px;line-height:1.65;color:#3A4337;margin:10px 0 0;max-width:44ch">Decinos marca, modelo y cantidad. Doña lo busca con tu proveedor o con el de ella.</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button onClick="{{ goEncargos }}" style="background:#0E3A2B;color:#FAF6EC;border:1px solid #0E3A2B;border-radius:999px;padding:14px 24px;font-size:14px;cursor:pointer" style-hover="background:#D9A528;color:#0E3A2B;border-color:#D9A528">Encargos especiales</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ══════════ CÓMO FUNCIONA ══════════ -->
+  <sc-if value="{{ atComo }}">
+  <div>
+    <section style="background:#0E3A2B;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;opacity:0.4;background-image:radial-gradient(circle,rgba(217,165,40,0.4) 1.1px,transparent 1.2px);background-size:26px 26px"></div>
+      <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(44px,6vw,76px) clamp(22px,5vw,46px)">
+        <span style="font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:#E8C87A">Cómo funciona</span>
+        <h1 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(34px,5vw,58px);line-height:1.06;color:#FAF6EC;margin:14px 0 0">Del pedido al pago, sin vueltas</h1>
+        <p style="color:rgba(250,246,236,0.75);font-size:16px;line-height:1.65;max-width:56ch;margin:14px 0 0">Cinco momentos. Todos quedan escritos: en tu ficha, en tu factura y en tu WhatsApp.</p>
+      </div>
+    </section>
+
+    <section style="max-width:1180px;margin:0 auto;padding:clamp(48px,7vw,86px) clamp(22px,5vw,46px)">
+      <div style="display:flex;flex-direction:column">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),2fr));gap:clamp(16px,3vw,40px);padding:28px 0;border-top:1px solid rgba(217,165,40,0.5)">
+          <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:Newsreader,serif;font-size:34px;color:#D9A528;line-height:1">01</span><h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(23px,3vw,30px);color:#0E3A2B;margin:0">Alta y visita</h2></div>
+          <p style="font-size:15.5px;line-height:1.7;color:#4A5245;margin:0">Nos escribís por WhatsApp y Doña te visita en tu negocio dentro de las 24 horas. Abrimos tu ficha con RUC, documentos y contactos, y definimos tu nivel inicial.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),2fr));gap:clamp(16px,3vw,40px);padding:28px 0;border-top:1px solid rgba(217,165,40,0.5)">
+          <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:Newsreader,serif;font-size:34px;color:#D9A528;line-height:1">02</span><h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(23px,3vw,30px);color:#0E3A2B;margin:0">Tu pedido</h2></div>
+          <p style="font-size:15.5px;line-height:1.7;color:#4A5245;margin:0">Elegís el proveedor y la mercadería. Nos pasás el detalle y Doña confirma el precio del pedido: costo de la mercadería + 12 % + los servicios fijos de tu nivel.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),2fr));gap:clamp(16px,3vw,40px);padding:28px 0;border-top:1px solid rgba(217,165,40,0.5)">
+          <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:Newsreader,serif;font-size:34px;color:#D9A528;line-height:1">03</span><h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(23px,3vw,30px);color:#0E3A2B;margin:0">Doña paga y facturamos</h2></div>
+          <p style="font-size:15.5px;line-height:1.7;color:#4A5245;margin:0">Le pagamos al proveedor al contado y emitimos tu factura electrónica con RUC de Doña Compra. En esa factura figura tu día de pago: el Día J.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),2fr));gap:clamp(16px,3vw,40px);padding:28px 0;border-top:1px solid rgba(217,165,40,0.5)">
+          <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:Newsreader,serif;font-size:34px;color:#D9A528;line-height:1">04</span><h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(23px,3vw,30px);color:#0E3A2B;margin:0">Retiro con código</h2></div>
+          <p style="font-size:15.5px;line-height:1.7;color:#4A5245;margin:0">Recibís un código único para ese pedido. Lo presentás al proveedor y retirás tu mercadería. El código sirve una sola vez y queda registrado con fecha, hora y responsable.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),2fr));gap:clamp(16px,3vw,40px);padding:28px 0;border-top:1px solid rgba(217,165,40,0.5);border-bottom:1px solid rgba(217,165,40,0.5)">
+          <div style="display:flex;gap:16px;align-items:baseline"><span style="font-family:Newsreader,serif;font-size:34px;color:#D9A528;line-height:1">05</span><h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(23px,3vw,30px);color:#0E3A2B;margin:0">Pagás hasta 30 días</h2></div>
+          <p style="font-size:15.5px;line-height:1.7;color:#4A5245;margin:0">Podés abonar en partes o todo junto, antes o en el Día J. Te avisamos por WhatsApp una semana antes y los días previos. Cuando cobramos, se libera tu cupo para el próximo pedido.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#EADFC8;border-top:1px solid rgba(217,165,40,0.4);border-bottom:1px solid rgba(217,165,40,0.4)">
+      <div style="max-width:1180px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(22px,5vw,46px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(24px,4vw,48px)">
+        <div>
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(26px,3.6vw,38px);color:#0E3A2B;margin:0 0 6px">Cómo pagás</h2>
+          <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:0 0 18px">El medio lo elegís vos. El día lo dice tu factura.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="background:#FAF6EC;border:1px solid rgba(14,58,43,0.18);border-radius:6px;padding:11px 16px;font-size:13.5px;color:#0E3A2B">Transferencia bancaria</span>
+            <span style="background:#FAF6EC;border:1px solid rgba(14,58,43,0.18);border-radius:6px;padding:11px 16px;font-size:13.5px;color:#0E3A2B">Tigo Money</span>
+            <span style="background:#FAF6EC;border:1px solid rgba(14,58,43,0.18);border-radius:6px;padding:11px 16px;font-size:13.5px;color:#0E3A2B">Mango</span>
+            <span style="background:#FAF6EC;border:1px solid rgba(14,58,43,0.18);border-radius:6px;padding:11px 16px;font-size:13.5px;color:#0E3A2B">Alias / billetera</span>
+          </div>
+        </div>
+        <div>
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(26px,3.6vw,38px);color:#0E3A2B;margin:0 0 6px">Cuándo te escribimos</h2>
+          <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:0 0 18px">Avisos por WhatsApp antes y después del Día J, en horario comercial: lunes a viernes de 08 a 18 y sábados de 08 a 12.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px">
+            <span style="border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:7px 13px;font-size:12.5px">7 días antes</span>
+            <span style="border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:7px 13px;font-size:12.5px">3 días antes</span>
+            <span style="border:1px solid #0E3A2B;color:#0E3A2B;border-radius:999px;padding:7px 13px;font-size:12.5px">1 día antes</span>
+            <span style="background:#0E3A2B;color:#FAF6EC;border:1px solid #0E3A2B;border-radius:999px;padding:7px 13px;font-size:12.5px">Día J</span>
+            <span style="border:1px solid #B5603F;color:#B5603F;border-radius:999px;padding:7px 13px;font-size:12.5px">Después, si hace falta</span>
+          </div>
+          <p style="font-size:13.5px;line-height:1.6;color:#8A8470;margin:16px 0 0">Apenas pagás, los avisos se cortan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1180px;margin:0 auto;padding:clamp(48px,7vw,86px) clamp(22px,5vw,46px)">
+      <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(26px,3.6vw,38px);color:#0E3A2B;margin:0 0 26px">Preguntas que siempre nos hacen</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px">
+        <div style="border-left:2px solid #D9A528;padding:4px 0 4px 18px">
+          <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:20px;color:#0E3A2B;margin:0">¿Esto es un préstamo?</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:7px 0 0">No. Doña Compra compra la mercadería y te la revende con factura. No te damos plata: te damos mercadería.</p>
+        </div>
+        <div style="border-left:2px solid #D9A528;padding:4px 0 4px 18px">
+          <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:20px;color:#0E3A2B;margin:0">¿Cuánto puedo pedir?</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:7px 0 0">Arrancás con un pedido mínimo bajo y tu tope crece con tu nivel, hasta 10 millones de guaraníes, sujeto a evaluación.</p>
+        </div>
+        <div style="border-left:2px solid #D9A528;padding:4px 0 4px 18px">
+          <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:20px;color:#0E3A2B;margin:0">¿Y si me atraso?</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:7px 0 0">No hay multas ni intereses automáticos. Doña te llama, charlan y acomodan. Lo que sí: tu cupo queda tomado hasta que pagues.</p>
+        </div>
+        <div style="border-left:2px solid #D9A528;padding:4px 0 4px 18px">
+          <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:20px;color:#0E3A2B;margin:0">¿Puedo tener dos pedidos abiertos?</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:7px 0 0">Lo conversamos según tu nivel y tu cupo disponible. Lo habitual es cerrar uno antes de abrir el siguiente.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ══════════ NIVELES Y TARIFAS ══════════ -->
+  <sc-if value="{{ atNiveles }}">
+  <div>
+    <section style="background:#0E3A2B;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;opacity:0.4;background-image:radial-gradient(circle,rgba(217,165,40,0.4) 1.1px,transparent 1.2px);background-size:26px 26px"></div>
+      <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(44px,6vw,76px) clamp(22px,5vw,46px)">
+        <span style="font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:#E8C87A">Niveles y tarifas</span>
+        <h1 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(34px,5vw,58px);line-height:1.06;color:#FAF6EC;margin:14px 0 0">Todo a la vista, sin letra chica</h1>
+        <p style="color:rgba(250,246,236,0.75);font-size:16px;line-height:1.65;max-width:58ch;margin:14px 0 0">El margen es el mismo en los siete niveles: 12 % sobre el precio de compra. Lo único que cambia con tu nivel es el Pack Doña Compra y cuánto podés pedir.</p>
+      </div>
+    </section>
+
+    <section style="max-width:1180px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(22px,5vw,46px)">
+      <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(26px,3.6vw,38px);color:#0E3A2B;margin:0 0 6px">Servicios por pedido</h2>
+      <p style="font-size:15px;line-height:1.65;color:#4A5245;margin:0 0 22px;max-width:60ch">Montos fijos por pedido en guaraníes, no porcentajes sobre la mercadería. Seguridad y Análisis cuestan igual para todos.</p>
+      <div style="overflow-x:auto;border:1px solid rgba(217,165,40,0.5);border-radius:9px;background:#FFFFFF">
+        <table style="width:100%;border-collapse:collapse;min-width:640px;font-size:14px">
+          <thead>
+            <tr style="background:#0E3A2B">
+              <th style="text-align:left;padding:14px 16px;color:#E8C87A;font-weight:500;font-size:11px;letter-spacing:0.14em;text-transform:uppercase">Servicio</th>
+              <th style="text-align:right;padding:14px 12px;color:#E8C87A;font-weight:500;font-size:11px;letter-spacing:0.1em;text-transform:uppercase">Hierro</th>
+              <th style="text-align:right;padding:14px 12px;color:#E8C87A;font-weight:500;font-size:11px;letter-spacing:0.1em;text-transform:uppercase">Cobre</th>
+              <th style="text-align:right;padding:14px 12px;color:#E8C87A;font-weight:500;font-size:11px;letter-spacing:0.1em;text-transform:uppercase">Bronce</th>
+              <th style="text-align:right;padding:14px 12px;color:#E8C87A;font-weight:500;font-size:11px;letter-spacing:0.1em;text-transform:uppercase">Plata</th>
+              <th style="text-align:right;padding:14px 12px;color:#E8C87A;font-weight:500;font-size:11px;letter-spacing:0.1em;text-transform:uppercase">Oro</th>
+              <th style="text-align:right;padding:14px 12px;color:#E8C87A;font-weight:500;font-size:11px;letter-spacing:0.1em;text-transform:uppercase">Rubis</th>
+              <th style="text-align:right;padding:14px 16px;color:#D9A528;font-weight:500;font-size:11px;letter-spacing:0.1em;text-transform:uppercase">Diamante</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-top:1px solid rgba(14,58,43,0.1)">
+              <td style="padding:13px 16px;color:#22291F">Seguridad de compras</td>
+              <td style="padding:13px 12px;text-align:right;color:#4A5245">4.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">4.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">4.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">4.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">4.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">4.000</td><td style="padding:13px 16px;text-align:right;color:#4A5245">4.000</td>
+            </tr>
+            <tr style="border-top:1px solid rgba(14,58,43,0.1);background:#FBF8F0">
+              <td style="padding:13px 16px;color:#22291F">Análisis de compras</td>
+              <td style="padding:13px 12px;text-align:right;color:#4A5245">3.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">3.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">3.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">3.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">3.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">3.000</td><td style="padding:13px 16px;text-align:right;color:#4A5245">3.000</td>
+            </tr>
+            <tr style="border-top:1px solid rgba(14,58,43,0.1)">
+              <td style="padding:13px 16px;color:#22291F">Pack Doña Compra</td>
+              <td style="padding:13px 12px;text-align:right;color:#4A5245">3.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">4.500</td><td style="padding:13px 12px;text-align:right;color:#4A5245">8.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">30.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">40.000</td><td style="padding:13px 12px;text-align:right;color:#4A5245">70.000</td><td style="padding:13px 16px;text-align:right;color:#4A5245">75.000</td>
+            </tr>
+            <tr style="border-top:1.5px solid rgba(217,165,40,0.6);background:#F6F0E0">
+              <td style="padding:14px 16px;color:#0E3A2B;font-weight:600">Total servicios</td>
+              <td style="padding:14px 12px;text-align:right;color:#0E3A2B;font-weight:600">10.000</td><td style="padding:14px 12px;text-align:right;color:#0E3A2B;font-weight:600">11.500</td><td style="padding:14px 12px;text-align:right;color:#0E3A2B;font-weight:600">15.000</td><td style="padding:14px 12px;text-align:right;color:#0E3A2B;font-weight:600">37.000</td><td style="padding:14px 12px;text-align:right;color:#0E3A2B;font-weight:600">47.000</td><td style="padding:14px 12px;text-align:right;color:#0E3A2B;font-weight:600">77.000</td><td style="padding:14px 16px;text-align:right;color:#0E3A2B;font-weight:600">82.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-family:ui-monospace,monospace;font-size:11.5px;line-height:1.7;color:#8A8470;margin:14px 0 0">Valores de referencia al 28/10/2026, en guaraníes. El IVA se aplica según la configuración fiscal vigente. Consultá el detalle de tu pedido antes de confirmar.</p>
+    </section>
+
+    <section style="background:#EADFC8;border-top:1px solid rgba(217,165,40,0.4);border-bottom:1px solid rgba(217,165,40,0.4)">
+      <div style="max-width:1180px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(22px,5vw,46px)">
+        <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(26px,3.6vw,38px);color:#0E3A2B;margin:0 0 6px">Cómo se calcula tu pedido</h2>
+        <p style="font-size:15px;line-height:1.65;color:#4A5245;margin:0 0 24px;max-width:60ch">Costo de la mercadería + 12 % + los servicios de tu nivel. Nada más.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:14px">
+          <div style="background:#FAF6EC;border:1px solid rgba(14,58,43,0.14);border-radius:8px;padding:22px">
+            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#B5603F">Hierro</div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#4A5245;margin-top:14px"><span>Mercadería</span><span>125.000</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#4A5245;margin-top:6px"><span>Margen 12 %</span><span>15.000</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#4A5245;margin-top:6px"><span>Servicios</span><span>10.000</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:12px;border-top:1px solid rgba(217,165,40,0.55)"><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#0E3A2B">Total</span><span style="font-family:Newsreader,serif;font-size:25px;color:#0E3A2B">150.000</span></div>
+          </div>
+          <div style="background:#FAF6EC;border:1px solid rgba(14,58,43,0.14);border-radius:8px;padding:22px">
+            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#B5603F">Bronce</div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#4A5245;margin-top:14px"><span>Mercadería</span><span>500.000</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#4A5245;margin-top:6px"><span>Margen 12 %</span><span>60.000</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#4A5245;margin-top:6px"><span>Servicios</span><span>15.000</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:12px;border-top:1px solid rgba(217,165,40,0.55)"><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#0E3A2B">Total</span><span style="font-family:Newsreader,serif;font-size:25px;color:#0E3A2B">575.000</span></div>
+          </div>
+          <div style="background:#FAF6EC;border:1px solid rgba(14,58,43,0.14);border-radius:8px;padding:22px">
+            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#B5603F">Plata</div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#4A5245;margin-top:14px"><span>Mercadería</span><span>1.500.000</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#4A5245;margin-top:6px"><span>Margen 12 %</span><span>180.000</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#4A5245;margin-top:6px"><span>Servicios</span><span>37.000</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:12px;border-top:1px solid rgba(217,165,40,0.55)"><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#0E3A2B">Total</span><span style="font-family:Newsreader,serif;font-size:25px;color:#0E3A2B">1.717.000</span></div>
+          </div>
+          <div style="background:#0E3A2B;border:1px solid #D9A528;border-radius:8px;padding:22px">
+            <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#D9A528">Diamante</div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:rgba(250,246,236,0.8);margin-top:14px"><span>Mercadería</span><span>5.000.000</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:rgba(250,246,236,0.8);margin-top:6px"><span>Margen 12 %</span><span>600.000</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;color:rgba(250,246,236,0.8);margin-top:6px"><span>Servicios</span><span>82.000</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:12px;border-top:1px solid rgba(217,165,40,0.55)"><span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#D9A528">Total</span><span style="font-family:Newsreader,serif;font-size:25px;color:#FAF6EC">5.682.000</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1180px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(22px,5vw,46px)">
+      <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(26px,3.6vw,38px);color:#0E3A2B;margin:0 0 6px">Cuánto hay que acumular para subir</h2>
+      <p style="font-size:15px;line-height:1.65;color:#4A5245;margin:0 0 24px;max-width:62ch">Cuando entrás a un nivel, tu contador arranca de cero. Al superar el tope, Doña evalúa tu caso: se sube un nivel por vez y la tarifa nueva rige desde el pedido siguiente.</p>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span style="width:92px;flex:none;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#0E3A2B">Hierro</span><span style="flex:1;min-width:120px;height:26px;background:linear-gradient(90deg,#D9A528 2.5%,rgba(217,165,40,0.12) 2.5%);border-radius:3px"></span><span style="width:110px;flex:none;text-align:right;font-family:Newsreader,serif;font-size:19px;color:#0E3A2B">250.000</span></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span style="width:92px;flex:none;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#0E3A2B">Cobre</span><span style="flex:1;min-width:120px;height:26px;background:linear-gradient(90deg,#D9A528 5%,rgba(217,165,40,0.12) 5%);border-radius:3px"></span><span style="width:110px;flex:none;text-align:right;font-family:Newsreader,serif;font-size:19px;color:#0E3A2B">500.000</span></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span style="width:92px;flex:none;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#0E3A2B">Bronce</span><span style="flex:1;min-width:120px;height:26px;background:linear-gradient(90deg,#D9A528 10%,rgba(217,165,40,0.12) 10%);border-radius:3px"></span><span style="width:110px;flex:none;text-align:right;font-family:Newsreader,serif;font-size:19px;color:#0E3A2B">1.000.000</span></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span style="width:92px;flex:none;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#0E3A2B">Plata</span><span style="flex:1;min-width:120px;height:26px;background:linear-gradient(90deg,#D9A528 30%,rgba(217,165,40,0.12) 30%);border-radius:3px"></span><span style="width:110px;flex:none;text-align:right;font-family:Newsreader,serif;font-size:19px;color:#0E3A2B">3.000.000</span></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span style="width:92px;flex:none;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#0E3A2B">Oro</span><span style="flex:1;min-width:120px;height:26px;background:linear-gradient(90deg,#D9A528 50%,rgba(217,165,40,0.12) 50%);border-radius:3px"></span><span style="width:110px;flex:none;text-align:right;font-family:Newsreader,serif;font-size:19px;color:#0E3A2B">5.000.000</span></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span style="width:92px;flex:none;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#0E3A2B">Rubis</span><span style="flex:1;min-width:120px;height:26px;background:linear-gradient(90deg,#D9A528 80%,rgba(217,165,40,0.12) 80%);border-radius:3px"></span><span style="width:110px;flex:none;text-align:right;font-family:Newsreader,serif;font-size:19px;color:#0E3A2B">8.000.000</span></div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span style="width:92px;flex:none;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#B5603F">Diamante</span><span style="flex:1;min-width:120px;height:26px;background:#D9A528;border-radius:3px"></span><span style="width:110px;flex:none;text-align:right;font-family:Newsreader,serif;font-size:19px;color:#0E3A2B">10.000.000</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:16px;margin-top:34px">
+        <div style="border:1px solid rgba(14,58,43,0.16);border-radius:8px;padding:20px">
+          <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:19px;color:#0E3A2B;margin:0">Tope de nivel ≠ cupo disponible</h3>
+          <p style="font-size:14px;line-height:1.6;color:#4A5245;margin:7px 0 0">Una cosa es cuánto acumulaste para ascender y otra cuánto tenés libre para pedir hoy.</p>
+        </div>
+        <div style="border:1px solid rgba(14,58,43,0.16);border-radius:8px;padding:20px">
+          <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:19px;color:#0E3A2B;margin:0">Tu tarifa queda congelada</h3>
+          <p style="font-size:14px;line-height:1.6;color:#4A5245;margin:7px 0 0">El pedido que confirmaste conserva la tarifa de tu nivel de ese momento, aunque te haga subir.</p>
+        </div>
+        <div style="border:1px solid rgba(14,58,43,0.16);border-radius:8px;padding:20px">
+          <h3 style="font-family:Newsreader,serif;font-weight:400;font-size:19px;color:#0E3A2B;margin:0">Legajo de buena gestión</h3>
+          <p style="font-size:14px;line-height:1.6;color:#4A5245;margin:7px 0 0">A pedido, referencia 300.000 Gs. Es tu historial de cumplimiento, independiente del monto del pedido.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ══════════ ENCARGOS ══════════ -->
+  <sc-if value="{{ atEncargos }}">
+  <div>
+    <section style="position:relative;background:#0E3A2B;overflow:hidden">
+      <div style="position:absolute;inset:0;opacity:0.45;background-image:radial-gradient(circle,rgba(217,165,40,0.42) 1.1px,transparent 1.2px),radial-gradient(circle,rgba(192,140,132,0.3) 1px,transparent 1.1px);background-size:26px 26px,26px 26px;background-position:0 0,13px 13px"></div>
+      <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(44px,6vw,86px) clamp(22px,5vw,46px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(26px,4vw,52px);align-items:center">
+        <div>
+          <span style="font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:#E8C87A">Encargos especiales</span>
+          <h1 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(34px,5vw,58px);line-height:1.06;color:#FAF6EC;margin:14px 0 0;text-wrap:balance">Si existe, Doña lo consigue</h1>
+          <p style="color:rgba(250,246,236,0.78);font-size:16.5px;line-height:1.65;max-width:48ch;margin:16px 0 0">Esa marca que te piden y no conseguís. El pedido grande para una fecha especial. El proveedor nuevo con el que todavía no trabajaste. Decinos qué necesitás y lo buscamos.</p>
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#D9A528;color:#0E3A2B;padding:15px 26px;border-radius:999px;font-size:14.5px;font-weight:600;margin-top:28px" style-hover="background:#FAF6EC">Contale tu encargo a Doña</a>
+        </div>
+        <div style="display:flex;justify-content:center">
+          <div style="width:min(100%,330px);border:1px solid rgba(217,165,40,0.5);border-radius:8px;padding:12px;background:rgba(250,246,236,0.04)">
+            <div style="height:260px;background-image:repeating-linear-gradient(135deg,rgba(250,246,236,0.07) 0 9px,rgba(250,246,236,0.14) 9px 18px);border-radius:4px;display:flex;align-items:center;justify-content:center"><span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;color:#E8C87A;text-transform:uppercase">foto · pedido preparado</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1180px;margin:0 auto;padding:clamp(48px,7vw,86px) clamp(22px,5vw,46px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:16px">
+        <div style="background:#FAF6EC;border:1px solid rgba(217,165,40,0.45);border-radius:8px;padding:26px">
+          <div style="font-family:Newsreader,serif;font-style:italic;font-size:26px;color:#B5603F">Marca puntual</div>
+          <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:10px 0 0">Tu clienta pide una marca que no manejás. Pasanos nombre, presentación y cantidad.</p>
+        </div>
+        <div style="background:#FAF6EC;border:1px solid rgba(217,165,40,0.45);border-radius:8px;padding:26px">
+          <div style="font-family:Newsreader,serif;font-style:italic;font-size:26px;color:#B5603F">Pedido de temporada</div>
+          <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:10px 0 0">Navidad, Día de la Madre, vuelta a clases. Lo armamos con anticipación para que llegue a tiempo.</p>
+        </div>
+        <div style="background:#FAF6EC;border:1px solid rgba(217,165,40,0.45);border-radius:8px;padding:26px">
+          <div style="font-family:Newsreader,serif;font-style:italic;font-size:26px;color:#B5603F">Proveedor nuevo</div>
+          <p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:10px 0 0">Si todavía no le comprás a alguien, Doña coordina la compra y el retiro por vos.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:clamp(40px,6vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:clamp(26px,4vw,52px)">
+        <div>
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(26px,3.6vw,38px);color:#0E3A2B;margin:0 0 18px">Qué necesitamos saber</h2>
+          <div style="display:flex;flex-direction:column">
+            <div style="display:flex;gap:14px;padding:15px 0;border-top:1px solid rgba(14,58,43,0.14)"><span style="color:#D9A528;font-family:Newsreader,serif">01</span><span style="font-size:15px;line-height:1.6;color:#3A4337">Qué producto es: marca, modelo, presentación.</span></div>
+            <div style="display:flex;gap:14px;padding:15px 0;border-top:1px solid rgba(14,58,43,0.14)"><span style="color:#D9A528;font-family:Newsreader,serif">02</span><span style="font-size:15px;line-height:1.6;color:#3A4337">Cuánto querés y para cuándo lo necesitás.</span></div>
+            <div style="display:flex;gap:14px;padding:15px 0;border-top:1px solid rgba(14,58,43,0.14)"><span style="color:#D9A528;font-family:Newsreader,serif">03</span><span style="font-size:15px;line-height:1.6;color:#3A4337">Si ya tenés proveedor o querés que lo busquemos.</span></div>
+            <div style="display:flex;gap:14px;padding:15px 0;border-top:1px solid rgba(14,58,43,0.14);border-bottom:1px solid rgba(14,58,43,0.14)"><span style="color:#D9A528;font-family:Newsreader,serif">04</span><span style="font-size:15px;line-height:1.6;color:#3A4337">Tu presupuesto aproximado, para ver tu cupo.</span></div>
+          </div>
+        </div>
+        <div style="background:#0E3A2B;border-radius:9px;padding:clamp(24px,4vw,34px);align-self:start">
+          <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.2vw,32px);color:#FAF6EC;margin:0">También sos proveedor</h2>
+          <p style="color:rgba(250,246,236,0.78);font-size:15px;line-height:1.65;margin:12px 0 0">Si vendés al por mayor y querés que tus clientes compren con Doña, escribinos. Vos cobrás al contado; el plazo lo ponemos nosotros.</p>
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;border:1px solid #D9A528;color:#D9A528;padding:13px 22px;border-radius:999px;font-size:14px;margin-top:22px" style-hover="background:#D9A528;color:#0E3A2B">Quiero ser proveedor</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ══════════ CONTACTO ══════════ -->
+  <sc-if value="{{ atContacto }}">
+  <div>
+    <section style="background:#0E3A2B;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;opacity:0.4;background-image:radial-gradient(circle,rgba(217,165,40,0.4) 1.1px,transparent 1.2px);background-size:26px 26px"></div>
+      <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(44px,6vw,76px) clamp(22px,5vw,46px)">
+        <span style="font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:#E8C87A">Contacto</span>
+        <h1 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(34px,5vw,58px);line-height:1.06;color:#FAF6EC;margin:14px 0 0">¡Mba'éichapa! Doña te espera</h1>
+        <p style="color:rgba(250,246,236,0.75);font-size:16px;line-height:1.65;max-width:52ch;margin:14px 0 0">Escribile directo por WhatsApp o dejá tus datos y te llamamos para coordinar la visita.</p>
+      </div>
+    </section>
+
+    <section style="max-width:1180px;margin:0 auto;padding:clamp(44px,6vw,80px) clamp(22px,5vw,46px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(28px,4vw,56px);align-items:start">
+
+      <div>
+        <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:clamp(24px,3.2vw,32px);color:#0E3A2B;margin:0 0 20px">Dejanos tus datos</h2>
+        <sc-if value="{{ sent }}">
+          <div style="background:#0E3A2B;border:1px solid #D9A528;border-radius:9px;padding:30px">
+            <div style="font-family:Newsreader,serif;font-size:27px;color:#D9A528">¡Gracias!</div>
+            <p style="color:rgba(250,246,236,0.82);font-size:15px;line-height:1.65;margin:10px 0 0">Doña recibió tus datos y te escribe dentro de las próximas 24 horas hábiles.</p>
+            <button onClick="{{ resetForm }}" style="margin-top:18px;background:none;border:0;border-bottom:1px solid #D9A528;color:#D9A528;padding:0 0 3px;font-size:13.5px;cursor:pointer">Enviar otra consulta</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submitForm }}" style="display:flex;flex-direction:column;gap:16px">
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8470">Nombre y apellido</span>
+            <input type="text" required="required" placeholder="Rosa Giménez" style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.2);border-radius:6px;padding:13px 14px;font-size:15px;color:#22291F;width:100%" style-focus="outline:none;border-color:#D9A528" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8470">Tu negocio</span>
+            <input type="text" placeholder="Perfumería Rosita, Mercado 4" style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.2);border-radius:6px;padding:13px 14px;font-size:15px;color:#22291F;width:100%" style-focus="outline:none;border-color:#D9A528" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8470">WhatsApp</span>
+            <input type="tel" required="required" placeholder="09xx xxx xxx" style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.2);border-radius:6px;padding:13px 14px;font-size:15px;color:#22291F;width:100%" style-focus="outline:none;border-color:#D9A528" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8470">¿Qué vendés?</span>
+            <select style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.2);border-radius:6px;padding:13px 14px;font-size:15px;color:#22291F;width:100%" style-focus="outline:none;border-color:#D9A528">
+              <option>Perfumería</option>
+              <option>Cosmética</option>
+              <option>Accesorios y bijouterie</option>
+              <option>Regalería</option>
+              <option>Peluquería</option>
+              <option>Despensa o comedor</option>
+              <option>Revendedora</option>
+              <option>Otro rubro</option>
+            </select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8470">Contanos qué necesitás</span>
+            <textarea rows="4" placeholder="Qué querés pedir, cantidad y para cuándo." style="background:#FFFFFF;border:1px solid rgba(14,58,43,0.2);border-radius:6px;padding:13px 14px;font-size:15px;color:#22291F;width:100%;resize:vertical;font-family:Karla,sans-serif" style-focus="outline:none;border-color:#D9A528"></textarea>
+          </label>
+          <button type="submit" style="background:#0E3A2B;color:#FAF6EC;border:1px solid #0E3A2B;border-radius:999px;padding:15px 26px;font-size:15px;font-weight:600;cursor:pointer;align-self:flex-start" style-hover="background:#D9A528;color:#0E3A2B;border-color:#D9A528">Enviar y coordinar la visita</button>
+          <p style="font-family:ui-monospace,monospace;font-size:11px;line-height:1.6;color:#8A8470;margin:0">Toda alta está sujeta a evaluación previa y visita al negocio.</p>
+        </form>
+        </sc-if>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:block;background:#0E3A2B;border:1px solid #D9A528;border-radius:9px;padding:26px" style-hover="background:#0A2A1F">
+          <span style="display:block;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E8C87A">WhatsApp</span>
+          <span style="display:block;font-family:Newsreader,serif;font-size:clamp(26px,3.6vw,36px);color:#FAF6EC;margin-top:8px">{{ phone }}</span>
+          <span style="display:block;font-size:14px;color:rgba(250,246,236,0.72);margin-top:6px">La forma más rápida de llegar a Doña.</span>
+        </a>
+        <div style="background:#FAF6EC;border:1px solid rgba(217,165,40,0.45);border-radius:9px;padding:24px">
+          <span style="display:block;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#8A8470">Correo</span>
+          <a href="mailto:donacompra@gmail.com" style="display:block;font-family:Newsreader,serif;font-size:22px;color:#0E3A2B;margin-top:7px">donacompra@gmail.com</a>
+        </div>
+        <div style="background:#FAF6EC;border:1px solid rgba(217,165,40,0.45);border-radius:9px;padding:24px">
+          <span style="display:block;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#8A8470">Horarios de atención</span>
+          <div style="display:flex;justify-content:space-between;font-size:15px;color:#22291F;margin-top:12px"><span>Lunes a viernes</span><span>08:00 – 18:00</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:15px;color:#22291F;margin-top:7px"><span>Sábados</span><span>08:00 – 12:00</span></div>
+          <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:14px 0 0">Te visitamos en tu negocio en 24 horas, cuando a vos te queda bien.</p>
+        </div>
+        <div style="background:#EADFC8;border:1px solid rgba(217,165,40,0.45);border-radius:9px;padding:24px">
+          <span style="display:block;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#8A8470">Dónde estamos</span>
+          <div style="font-family:Newsreader,serif;font-size:22px;color:#0E3A2B;margin-top:7px">Asunción, Paraguay</div>
+          <p style="font-size:13.5px;line-height:1.6;color:#4A5245;margin:8px 0 0">Trabajamos con comerciantes de Asunción y Gran Asunción. Doña va hasta tu negocio.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  </main>
+
+  <footer style="background:#0A2A1F;border-top:1px solid rgba(217,165,40,0.4)">
+    <div style="max-width:1180px;margin:0 auto;padding:clamp(36px,5vw,58px) clamp(22px,5vw,46px) 26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:clamp(24px,4vw,46px)">
+      <div>
+        <div style="display:flex;align-items:center;gap:11px">
+          <span style="display:block;width:44px;height:44px;border-radius:50%;overflow:hidden;border:1.5px solid #D9A528;flex:none;background:#0E3A2B"><img src="assets/dona-compra-logo.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 42%;transform:scale(1.28)" /></span>
+          <span style="font-family:Newsreader,serif;font-size:20px;color:#FAF6EC">Doña Compra</span>
+        </div>
+        <p style="color:rgba(250,246,236,0.6);font-size:13.5px;line-height:1.65;margin:16px 0 0;max-width:34ch">Compra de mercadería para comerciantes, sujeta a evaluación previa y visita. Factura legal con el RUC de Doña Compra.</p>
+      </div>
+      <div>
+        <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#D9A528">Navegación</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin-top:14px">
+          <button onClick="{{ goInicio }}" style="background:none;border:0;padding:0;color:rgba(250,246,236,0.78);font-size:14px;cursor:pointer" style-hover="color:#D9A528">Inicio</button>
+          <button onClick="{{ goCatalogo }}" style="background:none;border:0;padding:0;color:rgba(250,246,236,0.78);font-size:14px;cursor:pointer" style-hover="color:#D9A528">Catálogo</button>
+          <button onClick="{{ goComo }}" style="background:none;border:0;padding:0;color:rgba(250,246,236,0.78);font-size:14px;cursor:pointer" style-hover="color:#D9A528">Cómo funciona</button>
+          <button onClick="{{ goNiveles }}" style="background:none;border:0;padding:0;color:rgba(250,246,236,0.78);font-size:14px;cursor:pointer" style-hover="color:#D9A528">Niveles y tarifas</button>
+          <button onClick="{{ goEncargos }}" style="background:none;border:0;padding:0;color:rgba(250,246,236,0.78);font-size:14px;cursor:pointer" style-hover="color:#D9A528">Encargos especiales</button>
+          <button onClick="{{ goContacto }}" style="background:none;border:0;padding:0;color:rgba(250,246,236,0.78);font-size:14px;cursor:pointer" style-hover="color:#D9A528">Contacto</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#D9A528">Escribile a Doña</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin-top:14px">
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="color:rgba(250,246,236,0.78);font-size:14px">WhatsApp {{ phone }}</a>
+          <a href="mailto:donacompra@gmail.com" style="color:rgba(250,246,236,0.78);font-size:14px">donacompra@gmail.com</a>
+          <span style="color:rgba(250,246,236,0.6);font-size:14px">Asunción · Paraguay</span>
+          <span style="color:rgba(250,246,236,0.6);font-size:14px">Lu–Vi 08–18 · Sá 08–12</span>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1180px;margin:0 auto;padding:18px clamp(22px,5vw,46px) 30px;border-top:1px solid rgba(250,246,236,0.1);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap">
+      <span style="color:rgba(250,246,236,0.45);font-size:12.5px">© 2026 Doña Compra</span>
+      <span style="color:rgba(250,246,236,0.45);font-size:12.5px">Tu mercadería hoy, pagás después.</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;0994 876 333&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;},&quot;waMessage&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;¡Mba’éichapa, Doña! Quiero hacer un pedido.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'inicio', filter: 'todos', sent: false };
+
+  go(page) {
+    return () => {
+      this.setState({ page });
+      if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'auto' });
+    };
+  }
+
+  renderVals() {
+    const p = this.state.page;
+    const f = this.state.filter;
+    const phone = this.props.phone ?? "0994 876 333";
+    const digits = String(phone).replace(/\D/g, '');
+    const waNum = '595' + digits.replace(/^0/, '');
+    const msg = encodeURIComponent(this.props.waMessage ?? '¡Mba\u2019éichapa, Doña! Quiero hacer un pedido.');
+    const on = (k) => f === 'todos' || f === k;
+    const sel = (k) => f === k;
+    const chip = (k) => ({
+      c: sel(k) ? '#0E3A2B' : 'rgba(14,58,43,0.22)',
+      b: sel(k) ? '#0E3A2B' : 'transparent',
+      t: sel(k) ? '#FAF6EC' : '#2D3A2C'
+    });
+    const t = chip('todos'), pe = chip('perf'), co = chip('cosm'), ac = chip('acc'), re = chip('reg'), cu = chip('cuid');
+
+    return {
+      phone,
+      waLink: 'https://wa.me/' + waNum + '?text=' + msg,
+      atInicio: p === 'inicio', atCatalogo: p === 'catalogo', atComo: p === 'como',
+      atNiveles: p === 'niveles', atEncargos: p === 'encargos', atContacto: p === 'contacto',
+      goInicio: this.go('inicio'), goCatalogo: this.go('catalogo'), goComo: this.go('como'),
+      goNiveles: this.go('niveles'), goEncargos: this.go('encargos'), goContacto: this.go('contacto'),
+      showPerf: on('perf'), showCosm: on('cosm'), showAcc: on('acc'), showReg: on('reg'), showCuid: on('cuid'),
+      filtTodos: () => this.setState({ filter: 'todos' }),
+      filtPerf: () => this.setState({ filter: 'perf' }),
+      filtCosm: () => this.setState({ filter: 'cosm' }),
+      filtAcc: () => this.setState({ filter: 'acc' }),
+      filtReg: () => this.setState({ filter: 'reg' }),
+      filtCuid: () => this.setState({ filter: 'cuid' }),
+      cTodos: t.c, bTodos: t.b, tTodos: t.t,
+      cPerf: pe.c, bPerf: pe.b, tPerf: pe.t,
+      cCosm: co.c, bCosm: co.b, tCosm: co.t,
+      cAcc: ac.c, bAcc: ac.b, tAcc: ac.t,
+      cReg: re.c, bReg: re.b, tReg: re.t,
+      cCuid: cu.c, bCuid: cu.b, tCuid: cu.t,
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      submitForm: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      resetForm: () => this.setState({ sent: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

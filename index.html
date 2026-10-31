@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Doña Compra | Comprá mercadería para tu negocio y pagá después</title>
+<meta name="description" content="Elegí la mercadería y el proveedor que ya conocés. Doña Compra paga al contado y vos pagás en hasta 30 días, según las condiciones acordadas. Gran Asunción, Paraguay." />
+<script src="./image-slot.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #F7F2E9; color: #202820; font-family: Poppins, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #173B2A; text-decoration: none; }
+  a:hover { color: #C99B39; }
+  button { font: inherit; color: inherit; }
+  input, textarea, select { font: inherit; }
+  ::selection { background: #C99B39; color: #FFFDF8; }
+  [data-mobile-only] { display: none !important; }
+  @media (max-width: 1150px) {
+    [data-mobile-only] { display: flex !important; }
+    [data-desktop-only] { display: none !important; }
+  }
+  [data-nav-link] { white-space: nowrap; }
+  [data-cta] { white-space: nowrap; }
+  [data-journey] { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); }
+  [data-journey] > div { display: grid; grid-row: span 4; grid-template-rows: subgrid; }
+  @media (max-width: 820px) { [data-journey] { grid-template-columns: 1fr; } }
+  @keyframes dcRule { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (max-width: 640px) {
+    [data-compare] { height: clamp(420px, 62vh, 560px) !important; }
+    [data-compare-text] { padding: 18px !important; padding-bottom: 20px !important; }
+  }
+  @media (max-width: 760px) {
+    [data-tarifas-head] { display: none !important; }
+    [data-tarifas] > div { grid-template-columns: 1fr 1fr !important; row-gap: 6px; }
+    [data-tarifas] > div > span:first-child { grid-column: 1 / -1; }
+    [data-tarifas] > div > span[data-cell] { text-align: left !important; }
+    [data-tarifas] > div > span[data-cell]::before { content: attr(data-cell) " · "; letter-spacing: 0.1em; text-transform: uppercase; font-size: 9px; color: rgba(227,201,138,0.7); }
+    [data-tarifas] > div > span:last-child { grid-column: 1 / -1; text-align: left !important; }
+  }
+  @keyframes dcShine { 0% { background-position: 100% 0; } 55%, 100% { background-position: 0% 0; } }
+  @keyframes dcDraw { to { stroke-dashoffset: 0; } }
+  @keyframes dcWipeIn { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes dcReveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes dcClip { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+  a, button { transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease; }
+  main section img { transition: transform 0.6s cubic-bezier(0.2,0.7,0.2,1); }
+  @keyframes dcCurtain { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+  @keyframes dcCurtainY { from { transform: scaleY(1); } to { transform: scaleY(0); } }
+  @keyframes dcFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  @keyframes dcLift { from { transform: translateY(16px); } to { transform: none; } }
+  @keyframes dcSweep { 0% { transform: translateX(-130%); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateX(240%); opacity: 0; } }
+  @keyframes dcZoom { from { transform: scale(1.07); } to { transform: scale(1); } }
+  [data-mosaic] { column-count: 4; column-gap: clamp(8px,1.4vw,14px); }
+  @media (max-width: 1040px) { [data-mosaic] { column-count: 3; } }
+  @media (max-width: 720px) { [data-mosaic] { column-count: 2; } }
+  [data-mosaic] > div { break-inside: avoid; margin-bottom: clamp(8px,1.4vw,14px); transition: transform 0.4s ease; }
+  [data-mosaic] > div:hover { transform: translateY(-7px); }
+  [data-parallax] { will-change: transform; }
+  @keyframes dcBand { from { opacity: 0; transform: rotate(-1.6deg) translateX(-3%); } to { opacity: 1; transform: rotate(-1.6deg) translateX(0); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#F7F2E9">
+
+  <div style="background:#173B2A">
+    <div style="max-width:1280px;margin:0 auto;padding:7px clamp(18px,4vw,40px);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <span style="color:#E3C98A;font-size:11px;letter-spacing:0.18em;text-transform:uppercase">Para comerciantes y emprendedores de Gran Asunción</span>
+      <span style="color:rgba(255,253,248,0.6);font-size:11px;letter-spacing:0.14em;text-transform:uppercase">WhatsApp {{ phone }}</span>
+    </div>
+  </div>
+
+  <header style="position:sticky;top:0;z-index:60">
+    <sc-if value="{{ scrolled }}"><div style="position:absolute;inset:0;background:#FFFDF8;border-bottom:1px solid rgba(23,59,42,0.14)"></div></sc-if>
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:14px clamp(18px,4vw,40px);display:flex;align-items:center;gap:20px">
+      <a href="#/" style="display:flex;align-items:center;gap:10px;flex:none">
+        <span style="display:block;width:42px;height:42px;border-radius:50%;overflow:hidden;border:1.5px solid #C99B39;background:#173B2A;flex:none"><img src="assets/dona-compra-logo-400.jpg" alt="Doña Compra" style="width:100%;height:100%;object-fit:cover;object-position:50% 42%;transform:scale(1.3)" /></span>
+        <span style="display:flex;flex-direction:column;line-height:1">
+          <span style="font-family:Sreda,Vollkorn,serif;font-size:19px;font-weight:600;letter-spacing:0.02em;color:#173B2A">DOÑA COMPRA</span>
+          <span style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#635E4D;margin-top:4px">Compra de mercadería</span>
+        </span>
+      </a>
+
+      <nav data-desktop-only="true" style="display:flex;align-items:center;gap:4px;margin:0 auto">
+        <a href="#/" data-nav-link="true" style="position:relative;padding:7px 12px;font-size:14px;color:#202820" style-hover="color:#C99B39">Inicio<sc-if value="{{ atHome }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:12px;right:12px;bottom:-1px;height:1.5px;background:#C99B39"></span></sc-if></a>
+        <a href="#/como-funciona" data-nav-link="true" style="position:relative;padding:7px 12px;font-size:14px;color:#202820" style-hover="color:#C99B39">Cómo funciona<sc-if value="{{ atComo }}"><span style="position:absolute;left:12px;right:12px;bottom:-1px;height:1.5px;background:#C99B39"></span></sc-if></a>
+        <a href="#/para-tu-negocio" data-nav-link="true" style="position:relative;padding:7px 12px;font-size:14px;color:#202820" style-hover="color:#C99B39">Para tu negocio<sc-if value="{{ atNegocio }}"><span style="position:absolute;left:12px;right:12px;bottom:-1px;height:1.5px;background:#C99B39"></span></sc-if></a>
+        <a href="#/niveles-y-tarifas" data-nav-link="true" style="position:relative;padding:7px 12px;font-size:14px;color:#202820" style-hover="color:#C99B39">Niveles y tarifas<sc-if value="{{ atNiveles }}"><span style="position:absolute;left:12px;right:12px;bottom:-1px;height:1.5px;background:#C99B39"></span></sc-if></a>
+        <a href="#/servicios" data-nav-link="true" style="position:relative;padding:7px 12px;font-size:14px;color:#202820" style-hover="color:#C99B39">Servicios<sc-if value="{{ atServicios }}"><span style="position:absolute;left:12px;right:12px;bottom:-1px;height:1.5px;background:#C99B39"></span></sc-if></a>
+        <a href="#/nosotros" data-nav-link="true" style="position:relative;padding:7px 12px;font-size:14px;color:#202820" style-hover="color:#C99B39">Nosotros<sc-if value="{{ atNosotros }}"><span style="position:absolute;left:12px;right:12px;bottom:-1px;height:1.5px;background:#C99B39"></span></sc-if></a>
+      </nav>
+
+      <a data-desktop-only="true" href="#/contacto" style="display:flex;align-items:center;gap:9px;background:#173B2A;color:#FFFDF8;padding:12px 22px;font-size:13.5px;letter-spacing:0.06em;text-transform:uppercase;flex:none" style-hover="background:#C99B39;color:#10291E">Hablemos</a>
+
+      <button data-mobile-only="true" onClick="{{ openMenu }}" aria-label="Abrir menú" style="margin-left:auto;align-items:center;gap:10px;background:none;border:1px solid rgba(23,59,42,0.3);padding:11px 16px;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#173B2A;cursor:pointer">Menú</button>
+    </div>
+  </header>
+
+  <sc-if value="{{ menuOpen }}">
+    <div style="position:fixed;inset:0;z-index:90;display:grid;grid-template-rows:auto 1fr auto;background:#10291E">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,5vw,34px);border-bottom:1px solid rgba(201,155,57,0.3)">
+        <span style="display:flex;align-items:center;gap:10px">
+          <span style="display:block;width:42px;height:42px;border-radius:50%;overflow:hidden;border:1.5px solid #C99B39;background:#173B2A"><img src="assets/dona-compra-logo-400.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 42%;transform:scale(1.3)" /></span>
+          <span style="font-family:Sreda,Vollkorn,serif;font-size:18px;font-weight:600;color:#F7F2E9;letter-spacing:0.02em">DOÑA COMPRA</span>
+        </span>
+        <button onClick="{{ closeMenu }}" aria-label="Cerrar menú" style="background:none;border:1px solid rgba(247,242,233,0.35);color:#F7F2E9;padding:10px 15px;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer">Cerrar</button>
+      </div>
+      <nav style="display:flex;flex-direction:column;justify-content:safe center;gap:2px;padding:24px clamp(18px,5vw,34px);overflow-y:auto">
+        <a href="#/" onClick="{{ closeMenu }}" style="font-family:Sreda,Vollkorn,serif;font-size:clamp(30px,8vw,46px);font-weight:400;color:#F7F2E9;padding:9px 0;border-bottom:1px solid rgba(247,242,233,0.12)">Inicio</a>
+        <a href="#/como-funciona" onClick="{{ closeMenu }}" style="font-family:Sreda,Vollkorn,serif;font-size:clamp(30px,8vw,46px);font-weight:400;color:#F7F2E9;padding:9px 0;border-bottom:1px solid rgba(247,242,233,0.12)">Cómo funciona</a>
+        <a href="#/para-tu-negocio" onClick="{{ closeMenu }}" style="font-family:Sreda,Vollkorn,serif;font-size:clamp(30px,8vw,46px);font-weight:400;color:#F7F2E9;padding:9px 0;border-bottom:1px solid rgba(247,242,233,0.12)">Para tu negocio</a>
+        <a href="#/niveles-y-tarifas" onClick="{{ closeMenu }}" style="font-family:Sreda,Vollkorn,serif;font-size:clamp(30px,8vw,46px);font-weight:400;color:#F7F2E9;padding:9px 0;border-bottom:1px solid rgba(247,242,233,0.12)">Niveles y tarifas</a>
+        <a href="#/servicios" onClick="{{ closeMenu }}" style="font-family:Sreda,Vollkorn,serif;font-size:clamp(30px,8vw,46px);font-weight:400;color:#F7F2E9;padding:9px 0;border-bottom:1px solid rgba(247,242,233,0.12)">Servicios</a>
+        <a href="#/nosotros" onClick="{{ closeMenu }}" style="font-family:Sreda,Vollkorn,serif;font-size:clamp(30px,8vw,46px);font-weight:400;color:#F7F2E9;padding:9px 0;border-bottom:1px solid rgba(247,242,233,0.12)">Nosotros</a>
+        <a href="#/preguntas-frecuentes" onClick="{{ closeMenu }}" style="font-size:15px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(247,242,233,0.7);padding:16px 0 0">Preguntas frecuentes</a>
+      </nav>
+      <div style="background:#F7F2E9;padding:20px clamp(18px,5vw,34px);display:flex;flex-direction:column;gap:12px">
+        <a href="#/contacto" onClick="{{ closeMenu }}" style="display:block;text-align:center;background:#173B2A;color:#FFFDF8;padding:16px;font-size:14px;letter-spacing:0.08em;text-transform:uppercase">Solicitá una visita</a>
+        <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:block;text-align:center;border:1px solid #173B2A;color:#173B2A;padding:16px;font-size:14px;letter-spacing:0.08em;text-transform:uppercase">Escribile a Doña</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <main style="flex:1">
+
+  <!-- ─────────── INICIO ─────────── -->
+  <sc-if value="{{ atHome }}" hint-placeholder-val="{{ true }}">
+  <div>
+
+    <section style="position:relative;background:#F7F2E9;overflow:hidden;padding:clamp(14px,2vw,24px) 0 clamp(60px,9vw,120px)">
+      <div style="position:absolute;inset:0;pointer-events:none;opacity:0.55;background-image:repeating-linear-gradient(0deg,rgba(23,59,42,0.05) 0 1px,transparent 1px 4px),radial-gradient(circle,rgba(201,155,57,0.18) 0.8px,transparent 0.9px);background-size:auto,22px 22px"></div>
+      <div data-desktop-only="true" style="position:absolute;top:0;bottom:0;left:clamp(18px,4vw,40px);width:1px;background:linear-gradient(180deg,transparent,rgba(201,155,57,0.5) 18%,rgba(201,155,57,0.5) 82%,transparent);pointer-events:none"></div>
+      <div style="position:relative;margin-top:0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,46%),1fr));gap:clamp(10px,1.6vw,20px);align-items:end">
+          <div style="overflow:hidden;border:1px solid rgba(201,155,57,0.55);animation:dcZoom 0.95s cubic-bezier(0.2,0.7,0.2,1) 0.3s both">
+            <div style="position:relative;overflow:hidden;height:clamp(170px,22vw,290px);transition:transform 0.55s cubic-bezier(0.2,0.7,0.2,1)" style-hover="transform:scale(1.06)"><img src="assets/hero-1-640.jpg" alt="Despensa de barrio con mercadería en góndolas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%" /></div>
+          </div>
+          <div style="overflow:hidden;border:1px solid rgba(201,155,57,0.55);animation:dcZoom 0.95s cubic-bezier(0.2,0.7,0.2,1) 0.42s both">
+            <div style="position:relative;overflow:hidden;height:clamp(230px,30vw,400px);transition:transform 0.55s cubic-bezier(0.2,0.7,0.2,1)" style-hover="transform:scale(1.06)"><img src="assets/hero-4-640.jpg" alt="Pasillo de supermercado con estanterías llenas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%" /></div>
+          </div>
+          <div style="overflow:hidden;border:1px solid rgba(201,155,57,0.55);animation:dcZoom 0.95s cubic-bezier(0.2,0.7,0.2,1) 0.54s both">
+            <div style="position:relative;overflow:hidden;height:clamp(150px,19vw,240px);transition:transform 0.55s cubic-bezier(0.2,0.7,0.2,1)" style-hover="transform:scale(1.06)"><img src="assets/hero-3-640.jpg" alt="Caja de cartón con productos preparados para entregar" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%" /></div>
+          </div>
+          <div style="overflow:hidden;border:1px solid rgba(201,155,57,0.55);animation:dcZoom 0.95s cubic-bezier(0.2,0.7,0.2,1) 0.66s both">
+            <div style="position:relative;overflow:hidden;height:clamp(200px,26vw,330px);transition:transform 0.55s cubic-bezier(0.2,0.7,0.2,1)" style-hover="transform:scale(1.06)"><img src="assets/hero-2-640.jpg" alt="Comerciante reponiendo mercadería en su local" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:45% 50%" /></div>
+          </div>
+        </div>
+
+        <h2 aria-label="Vendé más y pagá después." style="position:relative;z-index:3;margin:clamp(-26px,-3vw,-14px) auto 0;padding:0 clamp(18px,4vw,40px);max-width:1280px">
+          <svg viewBox="0 0 1400 190" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style="display:block;width:100%;height:auto;overflow:visible">
+            <defs>
+              <clipPath id="dcWipe" clipPathUnits="userSpaceOnUse">
+                <rect x="-40" y="-40" width="1480" height="270" style="transform:scaleX(0);transform-origin:-40px 0;animation:dcWipeIn 0.65s cubic-bezier(0.65,0,0.35,1) 1.05s both"></rect>
+              </clipPath>
+            </defs>
+            <text x="0" y="140" textLength="1400" lengthAdjust="spacingAndGlyphs" fill="none" stroke="#C99B39" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" style="font-family:Sreda,Vollkorn,serif;font-style:italic;font-weight:300;font-size:150px;stroke-dasharray:12000;stroke-dashoffset:12000;animation:dcDraw 1.1s cubic-bezier(0.25,0.6,0.35,1) 0.15s forwards">Vendé más y pagá después.</text>
+            <g clip-path="url(#dcWipe)">
+              <text x="0" y="140" textLength="1400" lengthAdjust="spacingAndGlyphs" fill="#C99B39" transform="translate(5,6)" style="font-family:Sreda,Vollkorn,serif;font-style:italic;font-weight:300;font-size:150px">Vendé más y pagá después.</text>
+              <text x="0" y="140" textLength="1400" lengthAdjust="spacingAndGlyphs" fill="#173B2A" style="font-family:Sreda,Vollkorn,serif;font-style:italic;font-weight:300;font-size:150px">Vendé más y pagá después.</text>
+            </g>
+          </svg>
+        </h2>
+      </div>
+
+      <div style="position:relative;margin-top:clamp(30px,4vw,54px);animation:dcBand 0.8s ease 0.95s both">
+        <div style="position:relative;overflow:hidden;background:#FFFDF8;border-top:1px dashed rgba(201,155,57,0.75);border-bottom:1px dashed rgba(201,155,57,0.75);box-shadow:0 14px 34px -26px rgba(32,40,32,0.6)">
+          <div style="position:absolute;top:0;bottom:0;left:0;width:34%;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(201,155,57,0.18),transparent);animation:dcSweep 1.8s cubic-bezier(0.4,0,0.2,1) 1.5s both"></div>
+          <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,45%),1fr))">
+            <button onClick="{{ pickElegis }}" onMouseEnter="{{ pickElegis }}" style="position:relative;text-align:left;background:none;border:0;border-right:1px dashed rgba(201,155,57,0.5);padding:20px 16px 22px;cursor:pointer">
+              <span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,2vw,24px);font-weight:500;letter-spacing:0.04em;color:#173B2A">ELEGÍS</span>
+              <sc-if value="{{ isElegis }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:16px;bottom:10px;width:26px;height:2px;background:#C99B39"></span></sc-if>
+            </button>
+            <button onClick="{{ pickCompra }}" onMouseEnter="{{ pickCompra }}" style="position:relative;text-align:left;background:none;border:0;border-right:1px dashed rgba(201,155,57,0.5);padding:20px 16px 22px;cursor:pointer">
+              <span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,2vw,24px);font-weight:500;letter-spacing:0.04em;color:#173B2A">DOÑA COMPRA</span>
+              <sc-if value="{{ isCompra }}"><span style="position:absolute;left:16px;bottom:10px;width:26px;height:2px;background:#C99B39"></span></sc-if>
+            </button>
+            <button onClick="{{ pickRetiras }}" onMouseEnter="{{ pickRetiras }}" style="position:relative;text-align:left;background:none;border:0;border-right:1px dashed rgba(201,155,57,0.5);padding:20px 16px 22px;cursor:pointer">
+              <span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,2vw,24px);font-weight:500;letter-spacing:0.04em;color:#173B2A">RETIRÁS</span>
+              <sc-if value="{{ isRetiras }}"><span style="position:absolute;left:16px;bottom:10px;width:26px;height:2px;background:#C99B39"></span></sc-if>
+            </button>
+            <button onClick="{{ pickPagas }}" onMouseEnter="{{ pickPagas }}" style="position:relative;text-align:left;background:none;border:0;padding:20px 16px 22px;cursor:pointer">
+              <span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,2vw,24px);font-weight:500;letter-spacing:0.04em;color:#173B2A">PAGÁS DESPUÉS</span>
+              <sc-if value="{{ isPagas }}"><span style="position:absolute;left:16px;bottom:10px;width:26px;height:2px;background:#C99B39"></span></sc-if>
+            </button>
+          </div>
+        </div>
+        <div style="max-width:1280px;margin:0 auto;padding:18px clamp(18px,4vw,40px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:clamp(18px,3vw,44px);align-items:start">
+          <p style="font-size:clamp(15px,1.7vw,19px);line-height:1.55;color:#173B2A;margin:0;max-width:34ch;font-family:Sreda,Vollkorn,serif;font-weight:400">{{ stepText }}</p>
+          <div style="background:#FFFDF8;border:1px solid rgba(23,59,42,0.16);padding:18px 18px 0">
+            <div style="display:flex;justify-content:space-between;gap:10px;font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:#635E4D;padding-bottom:12px;border-bottom:1px dashed rgba(23,59,42,0.25)">
+              <span>Comprobante de ejemplo</span><span>Nivel Hierro</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:10px;padding:11px 0;font-size:13.5px;color:#4A5245"><span>Mercadería elegida por vos</span><span style="font-family:Sreda,Vollkorn,serif;font-size:16px;color:#202820">125.000</span></div>
+            <div style="display:flex;justify-content:space-between;gap:10px;padding:11px 0;font-size:13.5px;color:#4A5245;border-top:1px dotted rgba(23,59,42,0.22)"><span>Margen comercial 12 %</span><span style="font-family:Sreda,Vollkorn,serif;font-size:16px;color:#202820">15.000</span></div>
+            <div style="display:flex;justify-content:space-between;gap:10px;padding:11px 0;font-size:13.5px;color:#4A5245;border-top:1px dotted rgba(23,59,42,0.22)"><span>Servicios del nivel</span><span style="font-family:Sreda,Vollkorn,serif;font-size:16px;color:#202820">10.000</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:13px 0;border-top:1px solid rgba(23,59,42,0.3)"><span style="font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#173B2A">Total a pagar</span><span style="font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:27px;color:#173B2A">Gs. 150.000</span></div>
+            <div style="height:10px;margin:0 -18px;background-image:radial-gradient(circle at 6px 10px,#F7F2E9 5px,transparent 5.5px);background-size:12px 10px;background-repeat:repeat-x"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#FFFDF8;border-top:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,110px) clamp(18px,4vw,40px)">
+        <div>
+          <h2 data-shiny="true" style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(30px,4.4vw,58px);line-height:1.08;margin:0;max-width:32ch;text-wrap:pretty;background-image:linear-gradient(118deg,#173B2A 0%,#173B2A 40%,#6E7A46 46%,#A98B45 50%,#6E7A46 54%,#173B2A 60%,#173B2A 100%);background-size:280% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;animation:dcShine 7s ease-in-out 1.6s infinite">Vos conocés a tu proveedor. Doña te ayuda con la compra.</h2>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(26px,4vw,64px);align-items:center;margin-top:clamp(40px,6vw,78px)">
+          <div style="display:flex;flex-direction:column;gap:clamp(18px,2.4vw,30px)">
+            <button type="button" onClick="{{ jGo0 }}" style="display:flex;align-items:flex-start;gap:18px;text-align:left;background:none;border:0;padding:0;cursor:pointer;opacity:{{ jOp0 }};transition:opacity 0.5s ease">
+              <span style="flex:none;width:42px;height:42px;border-radius:50%;border:1.5px solid #C99B39;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;background:{{ jBg0 }};color:{{ jFg0 }};transform:scale({{ jSc0 }});transition:all 0.45s ease">1</span>
+              <span style="flex:1">
+                <span style="display:block;font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,26px);color:#173B2A">Elegís la mercadería</span>
+                <span style="display:block;font-size:14.5px;line-height:1.6;color:#4A5245;margin-top:5px">Armás tu pedido con el proveedor de siempre y nos pasás el detalle.</span>
+                <span style="display:block;height:2px;margin-top:12px;background:rgba(23,59,42,0.1)"><span style="display:block;height:2px;background:#C99B39;width:{{ jW0 }};transition:{{ jT0 }}"></span></span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ jGo1 }}" style="display:flex;align-items:flex-start;gap:18px;text-align:left;background:none;border:0;padding:0;cursor:pointer;opacity:{{ jOp1 }};transition:opacity 0.5s ease">
+              <span style="flex:none;width:42px;height:42px;border-radius:50%;border:1.5px solid #C99B39;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;background:{{ jBg1 }};color:{{ jFg1 }};transform:scale({{ jSc1 }});transition:all 0.45s ease">2</span>
+              <span style="flex:1">
+                <span style="display:block;font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,26px);color:#173B2A">Doña compra al contado</span>
+                <span style="display:block;font-size:14.5px;line-height:1.6;color:#4A5245;margin-top:5px">Paga al proveedor, adquiere la mercadería y te la revende con factura.</span>
+                <span style="display:block;height:2px;margin-top:12px;background:rgba(23,59,42,0.1)"><span style="display:block;height:2px;background:#C99B39;width:{{ jW1 }};transition:{{ jT1 }}"></span></span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ jGo2 }}" style="display:flex;align-items:flex-start;gap:18px;text-align:left;background:none;border:0;padding:0;cursor:pointer;opacity:{{ jOp2 }};transition:opacity 0.5s ease">
+              <span style="flex:none;width:42px;height:42px;border-radius:50%;border:1.5px solid #C99B39;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;background:{{ jBg2 }};color:{{ jFg2 }};transform:scale({{ jSc2 }});transition:all 0.45s ease">3</span>
+              <span style="flex:1">
+                <span style="display:block;font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,26px);color:#173B2A">Retirás con tu código</span>
+                <span style="display:block;font-size:14.5px;line-height:1.6;color:#4A5245;margin-top:5px">Un código por pedido, de un solo uso, con responsable y hora registrados.</span>
+                <span style="display:block;height:2px;margin-top:12px;background:rgba(23,59,42,0.1)"><span style="display:block;height:2px;background:#C99B39;width:{{ jW2 }};transition:{{ jT2 }}"></span></span>
+              </span>
+            </button>
+            <button type="button" onClick="{{ jGo3 }}" style="display:flex;align-items:flex-start;gap:18px;text-align:left;background:none;border:0;padding:0;cursor:pointer;opacity:{{ jOp3 }};transition:opacity 0.5s ease">
+              <span style="flex:none;width:42px;height:42px;border-radius:50%;border:1.5px solid #C99B39;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;background:{{ jBg3 }};color:{{ jFg3 }};transform:scale({{ jSc3 }});transition:all 0.45s ease">4</span>
+              <span style="flex:1">
+                <span style="display:block;font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,26px);color:#173B2A">Pagás después</span>
+                <span style="display:block;font-size:14.5px;line-height:1.6;color:#4A5245;margin-top:5px">El vencimiento figura en tu factura, con un plazo máximo de 30 días.</span>
+                <span style="display:block;height:2px;margin-top:12px;background:rgba(23,59,42,0.1)"><span style="display:block;height:2px;background:#C99B39;width:{{ jW3 }};transition:{{ jT3 }}"></span></span>
+              </span>
+            </button>
+          </div>
+
+          <div style="position:relative;height:clamp(260px,34vw,420px);overflow:hidden;border:1px solid rgba(201,155,57,0.4);perspective:1000px">
+            <div style="position:absolute;inset:0;opacity:{{ jOn0 }};transform:translateY({{ jY0 }});transition:opacity 0.5s ease,transform 0.5s ease"><img src="assets/paso-3.jpg" alt="Armando la lista del pedido" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+            <div style="position:absolute;inset:0;opacity:{{ jOn1 }};transform:translateY({{ jY1 }});transition:opacity 0.5s ease,transform 0.5s ease"><img src="assets/paso-2.jpg" alt="Pago al proveedor" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+            <div style="position:absolute;inset:0;opacity:{{ jOn2 }};transform:translateY({{ jY2 }});transition:opacity 0.5s ease,transform 0.5s ease"><img src="assets/paso-1.jpg" alt="Entrega de la mercadería en caja" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+            <div style="position:absolute;inset:0;opacity:{{ jOn3 }};transform:translateY({{ jY3 }});transition:opacity 0.5s ease,transform 0.5s ease"><img src="assets/paso-4.jpg" alt="Control de facturas y vencimientos" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+          </div>
+        </div>
+
+        <a href="#/como-funciona" style="display:inline-flex;align-items:center;gap:10px;margin-top:clamp(30px,4vw,48px);border-bottom:1px solid #C99B39;padding-bottom:4px;font-size:14.5px;letter-spacing:0.06em;text-transform:uppercase;color:#173B2A" style-hover="color:#C99B39">Entendé el proceso completo</a>
+      </div>
+    </section>
+
+    <section style="background:#F7F2E9;border-top:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,110px) clamp(18px,4vw,40px)">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(28px,4.4vw,56px);line-height:1.08;margin:0;max-width:32ch;text-wrap:pretty;background-image:linear-gradient(118deg,#173B2A 0%,#173B2A 40%,#6E7A46 46%,#A98B45 50%,#6E7A46 54%,#173B2A 60%,#173B2A 100%);background-size:280% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;animation:dcShine 7s ease-in-out 1.6s infinite">Para quienes hacen que el comercio se mueva.</h2>
+          <p style="font-size:15.5px;line-height:1.65;color:#4A5245;margin:0;max-width:44ch">Trabajamos con comercios que ya tienen clientela, proveedor y oficio. Estos son los rubros mencionados en nuestro material comercial.</p>
+        </div>
+
+        <div data-mosaic="true" style="margin-top:clamp(32px,5vw,60px)">
+          <div style="min-height:clamp(200px,26vw,330px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-ropa.jpg" alt="Tienda de ropa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(22px,3vw,34px);font-weight:500">Ropa</span></div>
+          <div style="min-height:clamp(190px,23vw,280px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-calzado.jpg" alt="Zapatería" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2.2vw,26px);font-weight:500">Calzado</span></div>
+          <div style="min-height:clamp(170px,21vw,250px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-bijouterie.jpg" alt="Local de bijouterie" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2.2vw,26px);font-weight:500">Bijouterie</span></div>
+          <div style="min-height:clamp(140px,17vw,210px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-cosmeticos.jpg" alt="Góndola de cosmética" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2.2vw,26px);font-weight:500">Cosméticos</span></div>
+          <div style="min-height:clamp(230px,28vw,330px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-perfumes.jpg" alt="Exhibidor de perfumería" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2.2vw,26px);font-weight:500">Perfumes</span></div>
+          <div style="min-height:clamp(140px,17vw,210px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-peluquerias.jpg" alt="Salón de peluquería" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2.2vw,26px);font-weight:500">Peluquerías</span></div>
+          <div style="min-height:clamp(170px,22vw,280px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-regaleria.jpg" alt="Local de regalos y artesanías" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(22px,3vw,34px);font-weight:500">Regalería</span></div>
+          <div style="min-height:clamp(140px,17vw,210px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-libreria.jpg" alt="Librería escolar" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,2vw,24px);font-weight:500">Librería y útiles</span></div>
+          <div style="min-height:clamp(150px,18vw,220px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-revendedoras.jpg" alt="Revendedora preparando un pedido" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,2vw,24px);font-weight:500">Revendedoras</span></div>
+          <div style="min-height:clamp(140px,17vw,210px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-despensas.jpg" alt="Despensa de barrio" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2.2vw,26px);font-weight:500">Despensas</span></div>
+          <div style="min-height:clamp(160px,20vw,240px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-comedores.jpg" alt="Mostrador de comedor" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2.2vw,26px);font-weight:500">Comedores</span></div>
+          <div style="min-height:clamp(210px,25vw,300px);position:relative;overflow:hidden"><div style="position:absolute;inset:0"><img src="assets/rubro-restaurantes.jpg" alt="Cocina de restaurante" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div><span style="position:absolute;left:0;right:0;bottom:0;height:58%;background:linear-gradient(to top,rgba(16,41,30,0.88),rgba(16,41,30,0.45) 45%,transparent);pointer-events:none"></span><span style="position:absolute;left:16px;right:16px;bottom:13px;color:#FFFDF8;text-shadow:0 2px 12px rgba(16,41,30,0.85);font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2.2vw,26px);font-weight:500">Restaurantes</span></div>
+        </div>
+        <p style="font-family:ui-monospace,monospace;font-size:11px;letter-spacing:0.08em;color:#635E4D;margin:14px 0 0">Las imágenes de esta grilla son recursos ilustrativos del rubro, no instalaciones de Doña Compra.</p>
+
+        <a href="#/para-tu-negocio" style="display:inline-flex;align-items:center;gap:10px;margin-top:clamp(26px,3vw,40px);border-bottom:1px solid #C99B39;padding-bottom:4px;font-size:14.5px;letter-spacing:0.06em;text-transform:uppercase;color:#173B2A" style-hover="color:#C99B39">Descubrí si Doña es para tu negocio</a>
+      </div>
+    </section>
+
+    <section style="position:relative;background:#173B2A;color:#F7F2E9;overflow:hidden">
+      <div style="position:absolute;inset:0;pointer-events:none;opacity:0.6;background-image:repeating-linear-gradient(90deg,rgba(227,201,138,0.14) 0 1px,transparent 1px 120px),repeating-linear-gradient(0deg,rgba(227,201,138,0.1) 0 1px,transparent 1px 120px)"></div>
+      <div style="position:relative">
+        <div data-compare="true" style="position:relative;height:clamp(520px,86vh,900px);overflow:hidden;user-select:none">
+          <div style="position:absolute;inset:0;background:#10291E;pointer-events:none;overflow:hidden">
+            <div style="position:absolute;inset:0;background-image:url('assets/30-dias-pago-1400.jpg');background-size:cover;background-position:52% 45%"></div>
+            <div style="position:absolute;inset:0;background:rgba(16,41,30,0.38)"></div>
+            <div style="position:absolute;inset:0;opacity:0.5;background-image:repeating-linear-gradient(90deg,rgba(227,201,138,0.16) 0 1px,transparent 1px 96px)"></div>
+            <span style="position:absolute;right:-2%;bottom:-16%;font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(280px,46vw,640px);line-height:0.7;color:rgba(227,201,138,0.07);letter-spacing:-0.04em">30</span>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;text-align:right;padding:clamp(22px,4vw,60px);padding-bottom:clamp(26px,3.4vw,48px)" data-compare-text="true">
+              <span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#E3C98A;text-shadow:0 2px 12px rgba(5,18,12,0.9)">Vencimiento · día 30</span>
+              <span style="display:block;font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(66px,13vw,180px);line-height:0.76;letter-spacing:-0.03em;color:#FFFDF8;margin-top:12px;text-shadow:1px 1px 0 #C99B39,2px 2px 0 #B98C2E,3px 3px 0 #A87E27,4px 4px 0 #8E6A20,5px 5px 0 #6E5218,6px 6px 0 #4A3810,7px 8px 2px rgba(5,18,12,0.5),0 18px 50px rgba(5,18,12,0.8)">30</span>
+              <span style="display:block;font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(17px,2.4vw,34px);line-height:1;letter-spacing:0.08em;color:#E3C98A;margin-top:10px;text-shadow:0 4px 20px rgba(5,18,12,0.85)">DÍAS DESPUÉS</span>
+              <span style="display:block;width:64px;height:1px;background:rgba(227,201,138,0.7);margin:18px 0"></span>
+              <span style="display:block;font-family:Sreda,Vollkorn,serif;font-style:italic;font-weight:300;font-size:clamp(20px,2.7vw,34px);line-height:1.15;color:#FFFDF8;max-width:16ch;text-shadow:0 4px 22px rgba(5,18,12,0.9)">Vos pagás tu factura.</span>
+            </div>
+          </div>
+          <div style="position:absolute;inset:0;background:#F7F2E9;pointer-events:none;overflow:hidden;clip-path:polygon(0% 0%,61% 0%,49% 100%,0% 100%)" data-slider-panel="true">
+            <div style="position:absolute;inset:0;background-image:url('assets/hoy-entrega-1400.jpg');background-size:cover;background-position:60% 40%"></div>
+            <div style="position:absolute;inset:0;background:rgba(247,242,233,0.34)"></div>
+            <div style="position:absolute;inset:0;opacity:0.7;background-image:repeating-linear-gradient(0deg,rgba(23,59,42,0.06) 0 1px,transparent 1px 4px)"></div>
+            <span style="position:absolute;left:-2%;bottom:-18%;font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(280px,46vw,640px);line-height:0.7;color:rgba(23,59,42,0.06);letter-spacing:-0.04em">0</span>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(22px,4vw,60px);padding-bottom:clamp(26px,3.4vw,48px)" data-compare-text="true">
+              <span style="align-self:flex-start;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#143524;background:#F7F2E9;padding:5px 9px">Fecha de factura · día 0</span>
+              <span style="display:block;font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(48px,8.6vw,118px);line-height:0.8;letter-spacing:-0.03em;color:#143524;margin-top:12px;text-shadow:1px 1px 0 #C99B39,2px 2px 0 #BE9033,3px 3px 0 #B0842C,4px 4px 0 #9C7425,5px 5px 0 #7E5C1C,6px 6px 0 #5C4314,7px 8px 2px rgba(23,59,42,0.4),0 16px 44px rgba(255,253,248,0.9)">HOY</span>
+              <span style="display:block;width:64px;height:1px;background:#C99B39;margin:18px 0"></span>
+              <span style="display:block;font-family:Sreda,Vollkorn,serif;font-style:italic;font-weight:300;font-size:clamp(20px,2.7vw,34px);line-height:1.15;color:#143524;max-width:17ch;text-shadow:0 4px 22px rgba(255,253,248,0.95)">Doña Compra paga hoy al proveedor.</span>
+            </div>
+          </div>
+          <div data-slider-edge="true" style="position:absolute;inset:0;pointer-events:none;background:#C99B39;clip-path:polygon(61% 0%,61.35% 0%,49.35% 100%,49% 100%)"></div>
+          <div data-slider-handle="true" style="position:absolute;top:50%;pointer-events:none;left:55%">
+            <span style="position:absolute;top:0;left:0;transform:translate(-50%,-50%);width:66px;height:66px;border-radius:50%;background:#C99B39;border:1px solid #F7F2E9;display:flex;align-items:center;justify-content:center;gap:7px;box-shadow:0 14px 34px -14px rgba(0,0,0,0.85)">
+              <span style="display:block;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-right:7px solid #10291E"></span>
+              <span style="display:block;width:1px;height:16px;background:rgba(16,41,30,0.5)"></span>
+              <span style="display:block;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid #10291E"></span>
+            </span>
+            <span style="position:absolute;top:46px;left:0;transform:translateX(-50%);background:#10291E;color:#E3C98A;padding:5px 10px;font-family:ui-monospace,monospace;font-size:9px;letter-spacing:0.24em;text-transform:uppercase;white-space:nowrap">Arrastrá</span>
+          </div>
+          <input type="range" min="0" max="100" step="0.5" value="{{ slider }}" onInput="{{ onSlider }}" aria-label="Deslizá para comparar hoy y el pago a 30 días" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0" />
+        </div>
+
+      </div>
+    </section>
+
+    <section style="background:#FFFDF8">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,110px) clamp(18px,4vw,40px)">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(28px,4.4vw,56px);line-height:1.08;margin:0;max-width:32ch;text-wrap:pretty;background-image:linear-gradient(118deg,#173B2A 0%,#173B2A 40%,#6E7A46 46%,#A98B45 50%,#6E7A46 54%,#173B2A 60%,#173B2A 100%);background-size:280% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;animation:dcShine 7s ease-in-out 1.6s infinite">La confianza se construye con cada pedido.</h2>
+          <p style="font-size:15.5px;line-height:1.65;color:#4A5245;margin:0;max-width:46ch">Siete niveles con topes de compras acumuladas. Tocá cada uno para ver qué significa.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(22px,3vw,44px);margin-top:clamp(32px,5vw,58px);align-items:start">
+          <div style="display:flex;flex-direction:column;border-top:1px solid rgba(201,155,57,0.45)">
+            <button onClick="{{ lvl0 }}" style="position:relative;display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:{{ lvlBg0 }};border:0;border-bottom:1px solid rgba(201,155,57,0.45);color:{{ lvlFg0 }};padding:15px 16px;cursor:pointer;transition:background 0.3s ease,padding-left 0.3s ease" style-hover="paddingLeft:24px">
+              <span style="position:absolute;left:0;top:0;bottom:0;width:8%;background:rgba(201,155,57,0.16)"></span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:10px;opacity:0.6;width:18px">01</span>
+              <span style="position:relative;flex:1;font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2vw,23px);font-weight:500">Hierro</span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:12.5px;letter-spacing:0.06em">250k</span>
+            </button>
+            <button onClick="{{ lvl1 }}" style="position:relative;display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:{{ lvlBg1 }};border:0;border-bottom:1px solid rgba(201,155,57,0.45);color:{{ lvlFg1 }};padding:15px 16px;cursor:pointer;transition:background 0.3s ease,padding-left 0.3s ease" style-hover="paddingLeft:24px">
+              <span style="position:absolute;left:0;top:0;bottom:0;width:14%;background:rgba(201,155,57,0.16)"></span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:10px;opacity:0.6;width:18px">02</span>
+              <span style="position:relative;flex:1;font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2vw,23px);font-weight:500">Cobre</span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:12.5px;letter-spacing:0.06em">500k</span>
+            </button>
+            <button onClick="{{ lvl2 }}" style="position:relative;display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:{{ lvlBg2 }};border:0;border-bottom:1px solid rgba(201,155,57,0.45);color:{{ lvlFg2 }};padding:15px 16px;cursor:pointer;transition:background 0.3s ease,padding-left 0.3s ease" style-hover="paddingLeft:24px">
+              <span style="position:absolute;left:0;top:0;bottom:0;width:24%;background:rgba(201,155,57,0.16)"></span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:10px;opacity:0.6;width:18px">03</span>
+              <span style="position:relative;flex:1;font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2vw,23px);font-weight:500">Bronce</span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:12.5px;letter-spacing:0.06em">1M</span>
+            </button>
+            <button onClick="{{ lvl3 }}" style="position:relative;display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:{{ lvlBg3 }};border:0;border-bottom:1px solid rgba(201,155,57,0.45);color:{{ lvlFg3 }};padding:15px 16px;cursor:pointer;transition:background 0.3s ease,padding-left 0.3s ease" style-hover="paddingLeft:24px">
+              <span style="position:absolute;left:0;top:0;bottom:0;width:42%;background:rgba(201,155,57,0.16)"></span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:10px;opacity:0.6;width:18px">04</span>
+              <span style="position:relative;flex:1;font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2vw,23px);font-weight:500">Plata</span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:12.5px;letter-spacing:0.06em">3M</span>
+            </button>
+            <button onClick="{{ lvl4 }}" style="position:relative;display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:{{ lvlBg4 }};border:0;border-bottom:1px solid rgba(201,155,57,0.45);color:{{ lvlFg4 }};padding:15px 16px;cursor:pointer;transition:background 0.3s ease,padding-left 0.3s ease" style-hover="paddingLeft:24px">
+              <span style="position:absolute;left:0;top:0;bottom:0;width:60%;background:rgba(201,155,57,0.16)"></span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:10px;opacity:0.6;width:18px">05</span>
+              <span style="position:relative;flex:1;font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2vw,23px);font-weight:500">Oro</span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:12.5px;letter-spacing:0.06em">5M</span>
+            </button>
+            <button onClick="{{ lvl5 }}" style="position:relative;display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:{{ lvlBg5 }};border:0;border-bottom:1px solid rgba(201,155,57,0.45);color:{{ lvlFg5 }};padding:15px 16px;cursor:pointer;transition:background 0.3s ease,padding-left 0.3s ease" style-hover="paddingLeft:24px">
+              <span style="position:absolute;left:0;top:0;bottom:0;width:80%;background:rgba(201,155,57,0.16)"></span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:10px;opacity:0.6;width:18px">06</span>
+              <span style="position:relative;flex:1;font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2vw,23px);font-weight:500">Rubís</span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:12.5px;letter-spacing:0.06em">8M</span>
+            </button>
+            <button onClick="{{ lvl6 }}" style="position:relative;display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:{{ lvlBg6 }};border:0;border-bottom:1px solid rgba(201,155,57,0.45);color:{{ lvlFg6 }};padding:15px 16px;cursor:pointer;transition:background 0.3s ease,padding-left 0.3s ease" style-hover="paddingLeft:24px">
+              <span style="position:absolute;left:0;top:0;bottom:0;width:100%;background:rgba(201,155,57,0.16)"></span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:10px;opacity:0.6;width:18px">07</span>
+              <span style="position:relative;flex:1;font-family:Sreda,Vollkorn,serif;font-size:clamp(18px,2vw,23px);font-weight:500">Diamante</span>
+              <span style="position:relative;font-family:ui-monospace,monospace;font-size:12.5px;letter-spacing:0.06em">10M</span>
+            </button>
+          </div>
+
+          <div style="position:relative;background:#173B2A;color:#FFFDF8;padding:clamp(24px,3vw,40px);overflow:hidden">
+            <span style="position:absolute;right:-6%;bottom:-24%;font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(170px,22vw,280px);line-height:0.7;color:rgba(227,201,138,0.09)">{{ lvlInitial }}</span>
+            <span style="position:relative;display:block;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E3C98A">Nivel seleccionado</span>
+            <span style="position:relative;display:block;font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(32px,4vw,52px);line-height:1.05;margin-top:8px">{{ lvlName }}</span>
+            <span style="position:relative;display:block;width:56px;height:1px;background:#C99B39;margin:20px 0"></span>
+            <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr));gap:20px">
+              <div>
+                <span style="display:block;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(227,201,138,0.9)">Tope acumulado</span>
+                <span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(22px,2.4vw,30px);margin-top:6px">Gs. {{ lvlCap }}</span>
+              </div>
+              <div>
+                <span style="display:block;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(227,201,138,0.9)">Servicios por pedido</span>
+                <span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(22px,2.4vw,30px);margin-top:6px">Gs. {{ lvlSrv }}</span>
+              </div>
+            </div>
+            <p style="position:relative;font-size:14.5px;line-height:1.65;color:rgba(247,242,233,0.85);margin:22px 0 0">{{ lvlNote }}</p>
+            <p style="position:relative;font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;color:rgba(247,242,233,0.6);margin:20px 0 0;border-top:1px solid rgba(227,201,138,0.3);padding-top:16px">Los topes corresponden a compras acumuladas para optar a progresar de nivel. No son líneas de crédito ni montos aprobados. La progresión está sujeta a evaluación y decisión de Doña Compra.</p>
+          </div>
+        </div>
+
+        <a href="#/niveles-y-tarifas" style="display:inline-flex;align-items:center;gap:10px;margin-top:clamp(26px,3vw,40px);border-bottom:1px solid #C99B39;padding-bottom:4px;font-size:14.5px;letter-spacing:0.06em;text-transform:uppercase;color:#173B2A" style-hover="color:#C99B39">Conocé nuestros niveles y tarifas</a>
+      </div>
+    </section>
+
+    <section style="background:#F7F2E9;border-top:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,110px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(26px,5vw,64px);align-items:center">
+        <div>
+          <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+            <span style="display:block;width:132px;height:132px;border-radius:50%;overflow:hidden;border:2px solid #C99B39;background:#173B2A;flex:none"><img src="assets/dona-compra-logo-400.jpg" alt="Emblema de Doña Compra" style="width:100%;height:100%;object-fit:cover;object-position:50% 42%;transform:scale(1.28)" /></span>
+            <span style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:112px;height:112px;border:1.5px solid rgba(201,155,57,0.85);border-radius:50%;transform:rotate(6deg);text-align:center;padding:10px;flex:none">
+              <span style="display:block;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:#635E4D">Visita</span>
+              <span style="display:block;font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:16px;line-height:1.05;color:#173B2A;margin:5px 0">En tu negocio</span>
+              <span style="display:block;width:24px;height:1px;background:rgba(201,155,57,0.9);margin:0 auto 5px"></span>
+              <span style="display:block;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:#635E4D">24 horas</span>
+            </span>
+          </div>
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(28px,4.6vw,58px);line-height:1.05;color:#173B2A;margin:26px 0 0;max-width:16ch;text-wrap:balance">¿Tenés un negocio? Tenemos que conversar.</h2>
+        </div>
+        <div>
+          <p style="font-size:17px;line-height:1.65;color:#4A5245;margin:0;max-width:44ch">Contanos qué mercadería necesitás y coordinamos una visita para explicarte cómo trabaja Doña Compra.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
+            <a href="{{ waLink }}" target="_blank" rel="noopener" data-cta="true" style="display:inline-flex;align-items:center;background:#173B2A;color:#FFFDF8;padding:16px 26px;font-size:13.5px;letter-spacing:0.08em;text-transform:uppercase" style-hover="background:#C99B39;color:#10291E">Escribile a Doña</a>
+            <a href="#/contacto" data-cta="true" style="display:inline-flex;align-items:center;border:1px solid #173B2A;color:#173B2A;padding:16px 26px;font-size:13.5px;letter-spacing:0.08em;text-transform:uppercase" style-hover="background:#173B2A;color:#FFFDF8">Solicitar visita</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ─────────── CÓMO FUNCIONA ─────────── -->
+  <sc-if value="{{ atComo }}">
+  <div>
+    <section style="background:#FFFDF8;border-bottom:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,90px) clamp(18px,4vw,40px)">
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#635E4D">El recorrido de una compra</span>
+        <h1 style="font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(38px,7vw,100px);line-height:0.95;letter-spacing:-0.02em;color:#173B2A;margin:16px 0 0;max-width:22ch;text-wrap:pretty">Así de claro funciona Doña.</h1>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(20px,4vw,50px);margin-top:26px;align-items:start">
+          <p style="font-size:clamp(16px,1.8vw,20px);line-height:1.55;color:#4A5245;margin:0;max-width:40ch">Elegís lo que necesita tu negocio. Doña compra la mercadería. Vos la retirás y pagás después.</p>
+          <div style="position:relative;overflow:hidden;border:1px solid rgba(201,155,57,0.55);height:clamp(150px,18vw,230px)"><img src="assets/paso-2.jpg" alt="Comprobantes y mercadería" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F7F2E9">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,100px) clamp(18px,4vw,40px)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),2fr));gap:clamp(16px,3vw,44px);padding:clamp(22px,3vw,34px) 0;border-top:1.5px solid #173B2A">
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(26px,3.6vw,44px);line-height:1.05;color:#173B2A;margin:0">Elegís tu mercadería</h2>
+          <div>
+            <p style="font-size:16px;line-height:1.65;color:#4A5245;margin:0">Vos decidís qué productos necesita tu negocio y con qué mayorista o proveedor querés trabajar. No te cambiamos de proveedor ni te imponemos un surtido: la lista la armás vos.</p>
+            <p style="font-size:14.5px;line-height:1.6;color:#635E4D;margin:12px 0 0">Nos pasás el detalle del pedido por WhatsApp o en la visita.</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),2fr));gap:clamp(16px,3vw,44px);padding:clamp(22px,3vw,34px) 0;border-top:1px solid rgba(23,59,42,0.2)">
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(26px,3.6vw,44px);line-height:1.05;color:#173B2A;margin:0">Doña realiza la compra</h2>
+          <div>
+            <p style="font-size:16px;line-height:1.65;color:#4A5245;margin:0">Doña Compra le paga al proveedor al contado, adquiere la mercadería y después te la revende a vos bajo las condiciones acordadas, con factura legal emitida con su RUC.</p>
+            <p style="font-size:14.5px;line-height:1.6;color:#635E4D;margin:12px 0 0">Es una operación de compraventa y reventa de mercadería, no un préstamo de dinero.</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),2fr));gap:clamp(16px,3vw,44px);padding:clamp(22px,3vw,34px) 0;border-top:1px solid rgba(23,59,42,0.2)">
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(26px,3.6vw,44px);line-height:1.05;color:#173B2A;margin:0">Retirás con tu código</h2>
+          <div>
+            <p style="font-size:16px;line-height:1.65;color:#4A5245;margin:0">Cada pedido tiene un código único de retiro. Lo presentás al proveedor y retirás tu mercadería. El código tiene vigencia, queda asociado a un responsable y se registra la fecha y la hora del retiro.</p>
+            <p style="font-size:14.5px;line-height:1.6;color:#635E4D;margin:12px 0 0">Un código se usa una sola vez: eso evita que otra persona retire tu pedido.</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),2fr));gap:clamp(16px,3vw,44px);padding:clamp(22px,3vw,34px) 0;border-top:1px solid rgba(23,59,42,0.2);border-bottom:1.5px solid #173B2A">
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(26px,3.6vw,44px);line-height:1.05;color:#173B2A;margin:0">Pagás después</h2>
+          <div>
+            <p style="font-size:16px;line-height:1.65;color:#4A5245;margin:0">La fecha de vencimiento figura en tu factura, con un plazo máximo de 30 días contados desde la fecha de emisión. Podés abonar en partes o de una sola vez, antes o en la fecha indicada.</p>
+            <p style="font-size:14.5px;line-height:1.6;color:#635E4D;margin:12px 0 0">Te avisamos por WhatsApp antes del vencimiento, en horario comercial.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#FFFDF8;border-top:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(26px,4vw,60px)">
+        <div>
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(24px,3.2vw,38px);line-height:1.1;color:#173B2A;margin:0 0 20px">Lo que conviene tener claro</h2>
+          <div style="display:flex;flex-direction:column">
+            <div style="display:flex;gap:12px;padding:13px 0;border-top:1px solid rgba(23,59,42,0.16)"><span style="color:#C99B39;flex:none">—</span><span style="font-size:15px;line-height:1.6;color:#3A4337">No se entrega un préstamo en efectivo: Doña compra mercadería y te la revende.</span></div>
+            <div style="display:flex;gap:12px;padding:13px 0;border-top:1px solid rgba(23,59,42,0.16)"><span style="color:#C99B39;flex:none">—</span><span style="font-size:15px;line-height:1.6;color:#3A4337">No hay aprobación automática. Cada operación está sujeta a evaluación.</span></div>
+            <div style="display:flex;gap:12px;padding:13px 0;border-top:1px solid rgba(23,59,42,0.16)"><span style="font-size:15px;line-height:1.6;color:#3A4337"><span style="color:#C99B39;margin-right:12px">—</span>Se aplica un margen comercial del 12 % sobre el precio de compra, más los servicios del nivel.</span></div>
+            <div style="display:flex;gap:12px;padding:13px 0;border-top:1px solid rgba(23,59,42,0.16)"><span style="color:#C99B39;flex:none">—</span><span style="font-size:15px;line-height:1.6;color:#3A4337">El plazo se cuenta desde la fecha de factura, no desde el retiro.</span></div>
+            <div style="display:flex;gap:12px;padding:13px 0;border-top:1px solid rgba(23,59,42,0.16);border-bottom:1px solid rgba(23,59,42,0.16)"><span style="color:#C99B39;flex:none">—</span><span style="font-size:15px;line-height:1.6;color:#3A4337">El retiro se realiza según el procedimiento acordado para cada pedido.</span></div>
+          </div>
+        </div>
+        <div>
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(24px,3.2vw,38px);line-height:1.1;color:#173B2A;margin:0 0 20px">Cómo se paga</h2>
+          <p style="font-size:15.5px;line-height:1.65;color:#4A5245;margin:0 0 20px">Los medios habilitados según nuestras condiciones comerciales. El día de pago figura siempre en tu factura.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,46%),1fr));gap:1px;background:rgba(23,59,42,0.16);border:1px solid rgba(23,59,42,0.16)">
+            <div style="background:#FFFDF8;padding:20px 16px"><span style="font-family:Sreda,Vollkorn,serif;font-size:21px;color:#173B2A">Transferencia</span></div>
+            <div style="background:#FFFDF8;padding:20px 16px"><span style="font-family:Sreda,Vollkorn,serif;font-size:21px;color:#173B2A">Tigo Money</span></div>
+            <div style="background:#FFFDF8;padding:20px 16px"><span style="font-family:Sreda,Vollkorn,serif;font-size:21px;color:#173B2A">Mango</span></div>
+            <div style="background:#FFFDF8;padding:20px 16px"><span style="font-family:Sreda,Vollkorn,serif;font-size:21px;color:#173B2A">Alias</span></div>
+          </div>
+          <p style="font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;color:#635E4D;margin:14px 0 0">Los datos concretos de cada medio se confirman al emitir tu factura. No hay cobro online en el sitio.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#173B2A">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(24px,4vw,56px);align-items:center">
+        <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(28px,4.4vw,56px);line-height:1.05;color:#FFFDF8;margin:0;max-width:18ch;text-wrap:balance">Ahora que sabés cómo funciona, hablemos de tu negocio.</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a href="#/contacto" data-cta="true" style="display:inline-flex;align-items:center;background:#C99B39;color:#10291E;padding:16px 26px;font-size:13.5px;letter-spacing:0.08em;text-transform:uppercase" style-hover="background:#FFFDF8">Solicitá una visita</a>
+          <a href="#/niveles-y-tarifas" data-cta="true" style="display:inline-flex;align-items:center;border:1px solid rgba(255,253,248,0.45);color:#FFFDF8;padding:16px 26px;font-size:13.5px;letter-spacing:0.08em;text-transform:uppercase" style-hover="border-color:#C99B39;color:#C99B39">Ver niveles y tarifas</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ─────────── PARA TU NEGOCIO ─────────── -->
+  <sc-if value="{{ atNegocio }}">
+  <div>
+    <section style="background:#F7F2E9">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#635E4D">Tu negocio tiene su propia historia</span>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(18px,3vw,40px);margin-top:18px;align-items:center">
+          <h1 style="font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(36px,6vw,86px);line-height:0.96;letter-spacing:-0.02em;color:#173B2A;margin:0">Vos sabés lo que tu negocio necesita.<span style="display:block;font-weight:300;font-style:italic">Doña te ayuda a comprarlo.</span></h1>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="position:relative;overflow:hidden;border:1px solid rgba(201,155,57,0.55);height:clamp(130px,16vw,200px)"><img src="assets/rubro-ropa.jpg" alt="Tienda de ropa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+            <div style="position:relative;overflow:hidden;border:1px solid rgba(201,155,57,0.55);height:clamp(130px,16vw,200px);margin-top:28px"><img src="assets/rubro-despensas.jpg" alt="Mostrador de despensa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+          </div>
+        </div>
+        <p style="font-size:16px;line-height:1.65;color:#4A5245;margin:26px 0 0;max-width:62ch">Trabajamos con comerciantes que conocen sus productos y sus proveedores y buscan una alternativa para organizar sus compras de mercadería.</p>
+      </div>
+    </section>
+
+    <section style="background:#FFFDF8;border-top:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#173B2A;margin:0 0 8px">Elegí tu rubro</h2>
+        <p style="font-size:15.5px;line-height:1.65;color:#4A5245;margin:0 0 26px;max-width:54ch">Estos son los rubros que figuran en nuestro material comercial. Tocá el tuyo para ver cómo se aplica el servicio.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <button onClick="{{ rub0 }}" style="background:{{ rbBg0 }};border:1px solid {{ rbBd0 }};color:{{ rbFg0 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Ropa</button>
+          <button onClick="{{ rub1 }}" style="background:{{ rbBg1 }};border:1px solid {{ rbBd1 }};color:{{ rbFg1 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Calzado</button>
+          <button onClick="{{ rub2 }}" style="background:{{ rbBg2 }};border:1px solid {{ rbBd2 }};color:{{ rbFg2 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Bijouterie</button>
+          <button onClick="{{ rub3 }}" style="background:{{ rbBg3 }};border:1px solid {{ rbBd3 }};color:{{ rbFg3 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Cosméticos</button>
+          <button onClick="{{ rub4 }}" style="background:{{ rbBg4 }};border:1px solid {{ rbBd4 }};color:{{ rbFg4 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Perfumes</button>
+          <button onClick="{{ rub5 }}" style="background:{{ rbBg5 }};border:1px solid {{ rbBd5 }};color:{{ rbFg5 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Peluquerías</button>
+          <button onClick="{{ rub6 }}" style="background:{{ rbBg6 }};border:1px solid {{ rbBd6 }};color:{{ rbFg6 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Regalería</button>
+          <button onClick="{{ rub7 }}" style="background:{{ rbBg7 }};border:1px solid {{ rbBd7 }};color:{{ rbFg7 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Librería y útiles</button>
+          <button onClick="{{ rub8 }}" style="background:{{ rbBg8 }};border:1px solid {{ rbBd8 }};color:{{ rbFg8 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Revendedoras</button>
+          <button onClick="{{ rub9 }}" style="background:{{ rbBg9 }};border:1px solid {{ rbBd9 }};color:{{ rbFg9 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Despensas</button>
+          <button onClick="{{ rub10 }}" style="background:{{ rbBg10 }};border:1px solid {{ rbBd10 }};color:{{ rbFg10 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Comedores</button>
+          <button onClick="{{ rub11 }}" style="background:{{ rbBg11 }};border:1px solid {{ rbBd11 }};color:{{ rbFg11 }};padding:10px 16px;font-size:13.5px;cursor:pointer">Restaurantes</button>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(20px,3vw,44px);margin-top:30px;align-items:center">
+          <div>
+            <div style="position:relative;overflow:hidden;border:1px solid rgba(201,155,57,0.55);height:clamp(200px,24vw,310px)"><img src="assets/rubro-ropa.jpg" data-rubro-img="true" alt="Foto del rubro seleccionado" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+            <p style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#635E4D;margin:8px 0 0">{{ rubPhoto }}</p>
+          </div>
+          <div>
+            <h3 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(26px,3.4vw,40px);line-height:1.08;color:#173B2A;margin:0">{{ rubName }}</h3>
+            <p style="font-size:16px;line-height:1.65;color:#4A5245;margin:14px 0 0;max-width:48ch">{{ rubText }}</p>
+            <p style="font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;color:#635E4D;margin:16px 0 0;max-width:52ch">No publicamos listas de productos ni disponibilidad: la mercadería la elegís vos con tu proveedor.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F7F2E9;border-top:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#173B2A;margin:0 0 26px">Tres preguntas antes de escribirnos</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:clamp(16px,2.5vw,32px)">
+          <div style="border-top:1.5px solid #C99B39;padding-top:18px">
+            <h3 style="font-family:Sreda,Vollkorn,serif;font-style:italic;font-weight:400;font-size:clamp(21px,2.6vw,28px);color:#173B2A;margin:0">¿Ya trabajás con un proveedor?</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:10px 0 0">Si ya le comprás a un mayorista, seguís con él. Doña se suma a esa relación, no la reemplaza.</p>
+          </div>
+          <div style="border-top:1.5px solid #C99B39;padding-top:18px">
+            <h3 style="font-family:Sreda,Vollkorn,serif;font-style:italic;font-weight:400;font-size:clamp(21px,2.6vw,28px);color:#173B2A;margin:0">¿Sabés qué mercadería necesitás?</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:10px 0 0">Cuanto más claro el pedido, más rápido avanzamos: producto, cantidad y para cuándo.</p>
+          </div>
+          <div style="border-top:1.5px solid #C99B39;padding-top:18px">
+            <h3 style="font-family:Sreda,Vollkorn,serif;font-style:italic;font-weight:400;font-size:clamp(21px,2.6vw,28px);color:#173B2A;margin:0">¿Querés conocer las condiciones?</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:10px 0 0">Te explicamos el margen, los servicios de tu nivel y el plazo antes de que confirmes nada.</p>
+          </div>
+        </div>
+        <p style="font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;color:#635E4D;margin:22px 0 0;max-width:70ch">Estas preguntas orientan la conversación. No son requisitos de aprobación ni garantizan la aceptación de una operación.</p>
+        <a href="#/contacto" style="display:inline-flex;align-items:center;margin-top:30px;background:#173B2A;color:#FFFDF8;padding:16px 26px;font-size:13.5px;letter-spacing:0.08em;text-transform:uppercase" style-hover="background:#C99B39;color:#10291E">Quiero conversar con Doña</a>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ─────────── NIVELES Y TARIFAS ─────────── -->
+  <sc-if value="{{ atNiveles }}">
+  <div>
+    <section style="background:#FFFDF8;border-bottom:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,88px) clamp(18px,4vw,40px)">
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#635E4D">Cuentas claras</span>
+        <h1 style="font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(36px,6.4vw,94px);line-height:0.95;letter-spacing:-0.02em;color:#173B2A;margin:16px 0 0;max-width:14ch">Sabés lo que pagás. Desde el principio.</h1>
+        <p style="font-size:clamp(16px,1.8vw,20px);line-height:1.55;color:#4A5245;margin:22px 0 0;max-width:48ch">Conocé el margen comercial, los servicios de cada nivel y las condiciones de tus compras.</p>
+      </div>
+    </section>
+
+    <section style="background:#F7F2E9">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,84px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#173B2A;margin:0 0 24px">Cómo se forma el precio</h2>
+        <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:10px">
+          <div style="flex:1 1 200px;background:#FFFDF8;border:1px solid rgba(23,59,42,0.18);padding:22px">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Precio de compra</div>
+            <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:10px 0 0">Lo que cuesta la mercadería en tu proveedor.</p>
+          </div>
+          <div style="display:flex;align-items:center;font-family:Sreda,Vollkorn,serif;font-size:30px;color:#C99B39">+</div>
+          <div style="flex:1 1 200px;background:#FFFDF8;border:1px solid rgba(23,59,42,0.18);padding:22px">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Margen comercial 12 %</div>
+            <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:10px 0 0">El margen de la reventa. No es un interés ni una tasa mensual.</p>
+          </div>
+          <div style="display:flex;align-items:center;font-family:Sreda,Vollkorn,serif;font-size:30px;color:#C99B39">+</div>
+          <div style="flex:1 1 200px;background:#FFFDF8;border:1px solid rgba(23,59,42,0.18);padding:22px">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Servicios fijos del nivel</div>
+            <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:10px 0 0">Montos fijos por pedido, según tu nivel.</p>
+          </div>
+          <div style="display:flex;align-items:center;font-family:Sreda,Vollkorn,serif;font-size:30px;color:#C99B39">=</div>
+          <div style="flex:1 1 200px;background:#173B2A;padding:22px">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#E3C98A">Total de tu factura</div>
+            <p style="font-size:14.5px;line-height:1.6;color:rgba(255,253,248,0.82);margin:10px 0 0">Con su fecha de vencimiento, hasta 30 días.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#FFFDF8;border-top:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#173B2A;margin:0 0 8px">Calculadora orientativa</h2>
+        <p style="font-size:15.5px;line-height:1.65;color:#4A5245;margin:0 0 28px;max-width:56ch">Poné el precio de compra de tu mercadería y tu nivel. Te mostramos el desglose completo.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:clamp(20px,3vw,44px);align-items:start">
+          <div>
+            <label style="display:block">
+              <span style="display:block;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D;margin-bottom:9px">Precio de compra de la mercadería</span>
+              <span style="display:flex;align-items:center;border:1px solid rgba(23,59,42,0.25);background:#F7F2E9">
+                <span style="padding:0 0 0 14px;font-family:Sreda,Vollkorn,serif;font-size:20px;color:#635E4D">Gs.</span>
+                <input type="text" inputmode="numeric" value="{{ calcInput }}" onInput="{{ onCalcInput }}" placeholder="125.000" style="flex:1;background:transparent;border:0;padding:15px 14px;font-family:Sreda,Vollkorn,serif;font-size:clamp(22px,3vw,30px);color:#173B2A;width:100%" style-focus="outline:none" />
+              </span>
+            </label>
+            <sc-if value="{{ calcWarn }}"><p style="font-size:13.5px;line-height:1.6;color:#B0573F;margin:10px 0 0">{{ calcWarnText }}</p></sc-if>
+
+            <div style="margin-top:24px">
+              <span style="display:block;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D;margin-bottom:9px">Nivel del cliente</span>
+              <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <button onClick="{{ lvl0 }}" style="background:{{ lvlBg0 }};border:1px solid {{ lvlBd0 }};color:{{ lvlFg0 }};padding:10px 15px;font-size:13px;cursor:pointer">Hierro</button>
+                <button onClick="{{ lvl1 }}" style="background:{{ lvlBg1 }};border:1px solid {{ lvlBd1 }};color:{{ lvlFg1 }};padding:10px 15px;font-size:13px;cursor:pointer">Cobre</button>
+                <button onClick="{{ lvl2 }}" style="background:{{ lvlBg2 }};border:1px solid {{ lvlBd2 }};color:{{ lvlFg2 }};padding:10px 15px;font-size:13px;cursor:pointer">Bronce</button>
+                <button onClick="{{ lvl3 }}" style="background:{{ lvlBg3 }};border:1px solid {{ lvlBd3 }};color:{{ lvlFg3 }};padding:10px 15px;font-size:13px;cursor:pointer">Plata</button>
+                <button onClick="{{ lvl4 }}" style="background:{{ lvlBg4 }};border:1px solid {{ lvlBd4 }};color:{{ lvlFg4 }};padding:10px 15px;font-size:13px;cursor:pointer">Oro</button>
+                <button onClick="{{ lvl5 }}" style="background:{{ lvlBg5 }};border:1px solid {{ lvlBd5 }};color:{{ lvlFg5 }};padding:10px 15px;font-size:13px;cursor:pointer">Rubis</button>
+                <button onClick="{{ lvl6 }}" style="background:{{ lvlBg6 }};border:1px solid {{ lvlBd6 }};color:{{ lvlFg6 }};padding:10px 15px;font-size:13px;cursor:pointer">Diamante</button>
+              </div>
+              <p style="font-size:13.5px;line-height:1.6;color:#635E4D;margin:14px 0 0">Pedido mínimo en {{ lvlName }}: Gs. {{ lvlMin }} de precio de compra.</p>
+            </div>
+          </div>
+
+          <div style="background:#F7F2E9;border:1px solid rgba(23,59,42,0.18);padding:clamp(20px,3vw,30px)">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding-bottom:13px;border-bottom:1px solid rgba(23,59,42,0.14)">
+              <span style="font-size:14.5px;color:#4A5245">Precio de compra</span>
+              <span style="font-family:Sreda,Vollkorn,serif;font-size:19px;color:#202820">{{ cMerc }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid rgba(23,59,42,0.14)">
+              <span style="font-size:14.5px;color:#4A5245">Margen comercial 12 %</span>
+              <span style="font-family:Sreda,Vollkorn,serif;font-size:19px;color:#202820">{{ cMargen }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid rgba(23,59,42,0.14)">
+              <span style="font-size:14.5px;color:#4A5245">Seguridad de compras</span>
+              <span style="font-family:Sreda,Vollkorn,serif;font-size:19px;color:#202820">{{ cSeg }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid rgba(23,59,42,0.14)">
+              <span style="font-size:14.5px;color:#4A5245">Análisis de compras</span>
+              <span style="font-family:Sreda,Vollkorn,serif;font-size:19px;color:#202820">{{ cAna }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid rgba(23,59,42,0.14)">
+              <span style="font-size:14.5px;color:#4A5245">Pack Doña Compra</span>
+              <span style="font-family:Sreda,Vollkorn,serif;font-size:19px;color:#202820">{{ cPack }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid rgba(23,59,42,0.14)">
+              <span style="font-size:14.5px;color:#4A5245">Total de servicios</span>
+              <span style="font-family:Sreda,Vollkorn,serif;font-size:19px;color:#202820">{{ cServ }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding-top:18px">
+              <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#173B2A">Total estimado</span>
+              <span style="font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(28px,4vw,42px);line-height:1;color:#173B2A">{{ cTotal }}</span>
+            </div>
+            <p style="font-family:ui-monospace,monospace;font-size:10.5px;line-height:1.7;color:#635E4D;margin:18px 0 0">Simulación orientativa basada en las condiciones tarifarias proporcionadas. Toda operación está sujeta a evaluación y confirmación de Doña Compra.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F7F2E9;border-top:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#173B2A;margin:0 0 8px">Tarifas de servicios por pedido</h2>
+        <p style="font-size:15.5px;line-height:1.65;color:#4A5245;margin:0 0 24px;max-width:58ch">Importes en guaraníes, por pedido. Seguridad y Análisis cuestan lo mismo en todos los niveles; el Pack cambia según el nivel.</p>
+        <div style="position:relative;background:#10291E;padding:clamp(18px,2.6vw,30px);overflow:hidden">
+          <div style="position:absolute;inset:0;pointer-events:none;opacity:0.5;background-image:repeating-linear-gradient(90deg,rgba(227,201,138,0.12) 0 1px,transparent 1px 104px)"></div>
+          <div data-tarifas-head="true" style="position:relative;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.3fr;gap:12px;padding:0 4px 12px;border-bottom:1px solid rgba(227,201,138,0.35)">
+            <span style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#E3C98A">Nivel</span>
+            <span style="text-align:right;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(227,201,138,0.75)">Seguridad</span>
+            <span style="text-align:right;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(227,201,138,0.75)">Análisis</span>
+            <span style="text-align:right;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(227,201,138,0.75)">Pack Doña</span>
+            <span style="text-align:right;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#FFFDF8">Total por pedido</span>
+          </div>
+
+          <div data-tarifas="true" style="position:relative">
+            <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.3fr;gap:12px;align-items:center;padding:14px 4px 16px;border-bottom:1px solid rgba(227,201,138,0.16)" style-hover="background:rgba(227,201,138,0.07)">
+              <span style="display:flex;align-items:baseline;gap:10px"><span style="font-family:ui-monospace,monospace;font-size:10px;color:rgba(227,201,138,0.6)">01</span><span style="font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,1.9vw,21px);color:#FFFDF8">Hierro</span></span>
+              <span data-cell="Seguridad" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">4.000</span>
+              <span data-cell="Análisis" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">3.000</span>
+              <span data-cell="Pack Doña" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">3.000</span>
+              <span style="text-align:right"><span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(19px,2.2vw,25px);color:#E3C98A">10.000</span><span style="display:block;height:2px;margin-top:7px;background:rgba(227,201,138,0.18)"><span style="display:block;height:2px;width:12%;background:#C99B39;margin-left:auto"></span></span></span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.3fr;gap:12px;align-items:center;padding:14px 4px 16px;border-bottom:1px solid rgba(227,201,138,0.16)" style-hover="background:rgba(227,201,138,0.07)">
+              <span style="display:flex;align-items:baseline;gap:10px"><span style="font-family:ui-monospace,monospace;font-size:10px;color:rgba(227,201,138,0.6)">02</span><span style="font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,1.9vw,21px);color:#FFFDF8">Cobre</span></span>
+              <span data-cell="Seguridad" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">4.000</span>
+              <span data-cell="Análisis" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">3.000</span>
+              <span data-cell="Pack Doña" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">4.500</span>
+              <span style="text-align:right"><span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(19px,2.2vw,25px);color:#E3C98A">11.500</span><span style="display:block;height:2px;margin-top:7px;background:rgba(227,201,138,0.18)"><span style="display:block;height:2px;width:14%;background:#C99B39;margin-left:auto"></span></span></span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.3fr;gap:12px;align-items:center;padding:14px 4px 16px;border-bottom:1px solid rgba(227,201,138,0.16)" style-hover="background:rgba(227,201,138,0.07)">
+              <span style="display:flex;align-items:baseline;gap:10px"><span style="font-family:ui-monospace,monospace;font-size:10px;color:rgba(227,201,138,0.6)">03</span><span style="font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,1.9vw,21px);color:#FFFDF8">Bronce</span></span>
+              <span data-cell="Seguridad" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">4.000</span>
+              <span data-cell="Análisis" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">3.000</span>
+              <span data-cell="Pack Doña" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">8.000</span>
+              <span style="text-align:right"><span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(19px,2.2vw,25px);color:#E3C98A">15.000</span><span style="display:block;height:2px;margin-top:7px;background:rgba(227,201,138,0.18)"><span style="display:block;height:2px;width:18%;background:#C99B39;margin-left:auto"></span></span></span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.3fr;gap:12px;align-items:center;padding:14px 4px 16px;border-bottom:1px solid rgba(227,201,138,0.16)" style-hover="background:rgba(227,201,138,0.07)">
+              <span style="display:flex;align-items:baseline;gap:10px"><span style="font-family:ui-monospace,monospace;font-size:10px;color:rgba(227,201,138,0.6)">04</span><span style="font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,1.9vw,21px);color:#FFFDF8">Plata</span></span>
+              <span data-cell="Seguridad" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">4.000</span>
+              <span data-cell="Análisis" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">3.000</span>
+              <span data-cell="Pack Doña" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">30.000</span>
+              <span style="text-align:right"><span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(19px,2.2vw,25px);color:#E3C98A">37.000</span><span style="display:block;height:2px;margin-top:7px;background:rgba(227,201,138,0.18)"><span style="display:block;height:2px;width:45%;background:#C99B39;margin-left:auto"></span></span></span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.3fr;gap:12px;align-items:center;padding:14px 4px 16px;border-bottom:1px solid rgba(227,201,138,0.16)" style-hover="background:rgba(227,201,138,0.07)">
+              <span style="display:flex;align-items:baseline;gap:10px"><span style="font-family:ui-monospace,monospace;font-size:10px;color:rgba(227,201,138,0.6)">05</span><span style="font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,1.9vw,21px);color:#FFFDF8">Oro</span></span>
+              <span data-cell="Seguridad" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">4.000</span>
+              <span data-cell="Análisis" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">3.000</span>
+              <span data-cell="Pack Doña" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">40.000</span>
+              <span style="text-align:right"><span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(19px,2.2vw,25px);color:#E3C98A">47.000</span><span style="display:block;height:2px;margin-top:7px;background:rgba(227,201,138,0.18)"><span style="display:block;height:2px;width:57%;background:#C99B39;margin-left:auto"></span></span></span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.3fr;gap:12px;align-items:center;padding:14px 4px 16px;border-bottom:1px solid rgba(227,201,138,0.16)" style-hover="background:rgba(227,201,138,0.07)">
+              <span style="display:flex;align-items:baseline;gap:10px"><span style="font-family:ui-monospace,monospace;font-size:10px;color:rgba(227,201,138,0.6)">06</span><span style="font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,1.9vw,21px);color:#FFFDF8">Rubís</span></span>
+              <span data-cell="Seguridad" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">4.000</span>
+              <span data-cell="Análisis" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">3.000</span>
+              <span data-cell="Pack Doña" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">70.000</span>
+              <span style="text-align:right"><span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(19px,2.2vw,25px);color:#E3C98A">77.000</span><span style="display:block;height:2px;margin-top:7px;background:rgba(227,201,138,0.18)"><span style="display:block;height:2px;width:94%;background:#C99B39;margin-left:auto"></span></span></span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.3fr;gap:12px;align-items:center;padding:14px 4px 16px" style-hover="background:rgba(227,201,138,0.07)">
+              <span style="display:flex;align-items:baseline;gap:10px"><span style="font-family:ui-monospace,monospace;font-size:10px;color:rgba(227,201,138,0.6)">07</span><span style="font-family:Sreda,Vollkorn,serif;font-size:clamp(17px,1.9vw,21px);color:#FFFDF8">Diamante</span></span>
+              <span data-cell="Seguridad" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">4.000</span>
+              <span data-cell="Análisis" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">3.000</span>
+              <span data-cell="Pack Doña" style="text-align:right;font-family:ui-monospace,monospace;font-size:13px;color:rgba(247,242,233,0.7)">75.000</span>
+              <span style="text-align:right"><span style="display:block;font-family:Sreda,Vollkorn,serif;font-size:clamp(19px,2.2vw,25px);color:#E3C98A">82.000</span><span style="display:block;height:2px;margin-top:7px;background:rgba(227,201,138,0.18)"><span style="display:block;height:2px;width:100%;background:#C99B39;margin-left:auto"></span></span></span>
+            </div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px;margin-top:22px">
+          <div style="border-top:1.5px solid #C99B39;padding-top:14px">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Pedido mínimo · Hierro</div>
+            <div style="font-family:Sreda,Vollkorn,serif;font-size:26px;color:#173B2A;margin-top:6px">Gs. 100.000</div>
+          </div>
+          <div style="border-top:1.5px solid #C99B39;padding-top:14px">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Pedido mínimo · desde Cobre</div>
+            <div style="font-family:Sreda,Vollkorn,serif;font-size:26px;color:#173B2A;margin-top:6px">Gs. 150.000</div>
+          </div>
+          <div style="border-top:1.5px solid #C99B39;padding-top:14px">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Margen comercial</div>
+            <div style="font-family:Sreda,Vollkorn,serif;font-size:26px;color:#173B2A;margin-top:6px">12 % en todos los niveles</div>
+          </div>
+        </div>
+        <p style="font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;color:#635E4D;margin:16px 0 0;max-width:76ch">Los mínimos están expresados en precio de compra de la mercadería. Valores de referencia según las condiciones tarifarias del 28/10/2026; el tratamiento impositivo se aplica según la configuración fiscal vigente.</p>
+      </div>
+    </section>
+
+    <section style="background:#FFFDF8;border-top:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:clamp(26px,4vw,60px)">
+        <div>
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(24px,3.4vw,40px);line-height:1.08;color:#173B2A;margin:0 0 20px">Cómo funcionan los niveles</h2>
+          <div style="display:flex;flex-direction:column">
+            <div style="padding:13px 0;border-top:1px solid rgba(23,59,42,0.16);font-size:15px;line-height:1.6;color:#3A4337">Cada nivel tiene un tope de compras acumuladas para optar a progresar.</div>
+            <div style="padding:13px 0;border-top:1px solid rgba(23,59,42,0.16);font-size:15px;line-height:1.6;color:#3A4337">Al ingresar a un nuevo nivel, el contador acumulado se reinicia en cero.</div>
+            <div style="padding:13px 0;border-top:1px solid rgba(23,59,42,0.16);font-size:15px;line-height:1.6;color:#3A4337">Cambiar de nivel no es automático: superar el tope habilita una evaluación.</div>
+            <div style="padding:13px 0;border-top:1px solid rgba(23,59,42,0.16);font-size:15px;line-height:1.6;color:#3A4337">Se asciende de a un nivel por vez, por decisión de Doña Compra.</div>
+            <div style="padding:13px 0;border-top:1px solid rgba(23,59,42,0.16);font-size:15px;line-height:1.6;color:#3A4337">Una operación se factura completa bajo el nivel vigente al confirmarla.</div>
+            <div style="padding:13px 0;border-top:1px solid rgba(23,59,42,0.16);font-size:15px;line-height:1.6;color:#3A4337">El cambio aplica a pedidos posteriores; nunca de forma retroactiva.</div>
+            <div style="padding:13px 0;border-top:1px solid rgba(23,59,42,0.16);font-size:15px;line-height:1.6;color:#3A4337">El cliente puede permanecer en su nivel si así se resuelve.</div>
+            <div style="padding:13px 0;border-top:1px solid rgba(23,59,42,0.16);border-bottom:1px solid rgba(23,59,42,0.16);font-size:15px;line-height:1.6;color:#3A4337">Diamante conserva su nivel mientras la relación comercial continúe normalmente, según las condiciones.</div>
+          </div>
+        </div>
+        <div>
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(24px,3.4vw,40px);line-height:1.08;color:#173B2A;margin:0 0 20px">Condiciones de pago</h2>
+          <div style="background:#F7F2E9;border:1px solid rgba(23,59,42,0.18);padding:clamp(20px,3vw,28px);display:flex;flex-direction:column;gap:16px">
+            <div>
+              <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Plazo</div>
+              <p style="font-size:15px;line-height:1.6;color:#3A4337;margin:7px 0 0">Pago máximo a 30 días después de la fecha de factura. La fecha de vencimiento está indicada en la factura.</p>
+            </div>
+            <div style="height:1px;background:rgba(23,59,42,0.14)"></div>
+            <div>
+              <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Atrasos</div>
+              <p style="font-size:15px;line-height:1.6;color:#3A4337;margin:7px 0 0">Sin multas ni intereses por atraso. Si hace falta una gestión de cobranza o un pagaré, pueden refacturarse los gastos realmente realizados y comprobados, sin margen adicional.</p>
+            </div>
+            <div style="height:1px;background:rgba(23,59,42,0.14)"></div>
+            <div>
+              <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Documentación</div>
+              <p style="font-size:15px;line-height:1.6;color:#3A4337;margin:7px 0 0">El documento contractual oficial se comparte durante el proceso de alta y quedará disponible en el sitio una vez autorizada su publicación.</p>
+            </div>
+          </div>
+          <a href="#/contacto" style="display:inline-flex;align-items:center;margin-top:24px;background:#173B2A;color:#FFFDF8;padding:16px 26px;font-size:13.5px;letter-spacing:0.08em;text-transform:uppercase" style-hover="background:#C99B39;color:#10291E">Consultá tus condiciones</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ─────────── SERVICIOS ─────────── -->
+  <sc-if value="{{ atServicios }}">
+  <div>
+    <section style="background:#173B2A">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,90px) clamp(18px,4vw,40px)">
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E3C98A">Servicios</span>
+        <h1 style="font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(34px,5.6vw,84px);line-height:0.98;letter-spacing:-0.02em;color:#FFFDF8;margin:16px 0 0;max-width:17ch">No se trata solamente de comprar mercadería.</h1>
+        <p style="font-size:clamp(16px,1.8vw,20px);line-height:1.55;color:rgba(255,253,248,0.78);margin:20px 0 0;max-width:48ch">Detrás de cada operación hay servicios que acompañan tu actividad comercial.</p>
+      </div>
+    </section>
+
+    <section style="background:#F7F2E9">
+      <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,40px)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(20px,4vw,56px);padding:clamp(40px,6vw,80px) 0;border-bottom:1px solid rgba(23,59,42,0.18);align-items:center">
+          <div>
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Gs. 4.000 por pedido</div>
+            <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(28px,4vw,50px);line-height:1.04;color:#173B2A;margin:12px 0 0">Seguridad de las compras</h2>
+            <p style="font-size:16px;line-height:1.65;color:#4A5245;margin:16px 0 0;max-width:46ch">Preparamos el código de retiro de tu pedido y documentamos fotográficamente la mercadería. Así sabés qué se compró, quién lo retiró y cuándo.</p>
+          </div>
+          <div style="position:relative;overflow:hidden;border:1px solid rgba(201,155,57,0.55);height:clamp(180px,22vw,280px)"><img src="assets/paso-1.jpg" alt="Cajas con etiqueta de pedido" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(20px,4vw,56px);padding:clamp(40px,6vw,80px) 0;border-bottom:1px solid rgba(23,59,42,0.18);align-items:center">
+          <div style="position:relative;overflow:hidden;border:1px solid rgba(201,155,57,0.55);height:clamp(180px,22vw,280px);order:2"><img src="assets/paso-4.jpg" alt="Libreta comercial y facturas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+          <div>
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Gs. 3.000 por pedido</div>
+            <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(28px,4vw,50px);line-height:1.04;color:#173B2A;margin:12px 0 0">Análisis de las compras</h2>
+            <p style="font-size:16px;line-height:1.65;color:#4A5245;margin:16px 0 0;max-width:46ch">Archivamos y analizamos tus compras, con una revisión periódica y la elaboración de un informe anual de tu actividad con Doña Compra.</p>
+          </div>
+        </div>
+
+        <div style="padding:clamp(40px,6vw,80px) 0;border-bottom:1px solid rgba(23,59,42,0.18)">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(20px,4vw,56px);align-items:end">
+            <div>
+              <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">De Gs. 3.000 a Gs. 75.000 según el nivel</div>
+              <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(28px,4vw,50px);line-height:1.04;color:#173B2A;margin:12px 0 0">Pack Doña Compra</h2>
+            </div>
+            <p style="font-size:16px;line-height:1.65;color:#4A5245;margin:0;max-width:46ch">El Pack reúne tres áreas de trabajo. Su importe por pedido depende de tu nivel, no del monto de la mercadería.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1px;background:rgba(23,59,42,0.18);border:1px solid rgba(23,59,42,0.18);margin-top:30px">
+            <div style="background:#FFFDF8;padding:24px">
+              <h3 style="font-family:Sreda,Vollkorn,serif;font-style:italic;font-weight:400;font-size:25px;color:#173B2A;margin:0">Publicidad</h3>
+              <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:10px 0 0">Acciones publicitarias contempladas por el programa comercial.</p>
+            </div>
+            <div style="background:#FFFDF8;padding:24px">
+              <h3 style="font-family:Sreda,Vollkorn,serif;font-style:italic;font-weight:400;font-size:25px;color:#173B2A;margin:0">Seguimiento y negociaciones</h3>
+              <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:10px 0 0">Gestiones logísticas, comerciales y administrativas entre el comerciante y los mayoristas.</p>
+            </div>
+            <div style="background:#FFFDF8;padding:24px">
+              <h3 style="font-family:Sreda,Vollkorn,serif;font-style:italic;font-weight:400;font-size:25px;color:#173B2A;margin:0">Club Doña Compra</h3>
+              <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:10px 0 0">Componente del programa destinado a crear beneficios para los clientes de los comerciantes, según su funcionamiento real.</p>
+            </div>
+          </div>
+          <p style="font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;color:#635E4D;margin:14px 0 0;max-width:70ch">Los beneficios concretos del Club se comunican una vez definidos. No publicamos promesas que todavía no están detalladas en las condiciones.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(20px,4vw,56px);padding:clamp(40px,6vw,80px) 0;align-items:start">
+          <div>
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#635E4D">Gs. 300.000 · a pedido</div>
+            <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(28px,4vw,50px);line-height:1.04;color:#173B2A;margin:12px 0 0">Legajo de buena gestión</h2>
+            <p style="font-size:16px;line-height:1.65;color:#4A5245;margin:16px 0 0;max-width:46ch">Un documento que reúne hechos verificables de tu historial comercial con Doña Compra: compras realizadas, puntualidad de pago y antigüedad de la relación.</p>
+          </div>
+          <div style="background:#173B2A;padding:clamp(22px,3vw,30px)">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#E3C98A">Lo que el legajo no es</div>
+            <div style="display:flex;flex-direction:column;margin-top:14px">
+              <div style="padding:12px 0;border-top:1px solid rgba(227,201,138,0.3);font-size:14.5px;line-height:1.6;color:rgba(255,253,248,0.84)">No se entrega a terceros sin tu consentimiento.</div>
+              <div style="padding:12px 0;border-top:1px solid rgba(227,201,138,0.3);font-size:14.5px;line-height:1.6;color:rgba(255,253,248,0.84)">No garantiza crédito ni aprobación de ninguna operación.</div>
+              <div style="padding:12px 0;border-top:1px solid rgba(227,201,138,0.3);font-size:14.5px;line-height:1.6;color:rgba(255,253,248,0.84)">No asegura condiciones especiales con mayoristas ni ventajas comerciales.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ─────────── NOSOTROS ─────────── -->
+  <sc-if value="{{ atNosotros }}">
+  <div>
+    <section style="background:#FFFDF8;border-bottom:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,90px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(26px,4vw,64px);align-items:center">
+        <div>
+          <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#635E4D">Nosotros</span>
+          <h1 style="font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(34px,5.6vw,80px);line-height:0.98;letter-spacing:-0.02em;color:#173B2A;margin:16px 0 0;max-width:15ch">Una forma más cercana de hacer negocios.</h1>
+          <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:#4A5245;margin:20px 0 0;max-width:46ch">Doña Compra es una propuesta comercial que facilita la compra de mercadería a comerciantes, con operaciones claras y acompañamiento en cada pedido.</p>
+        </div>
+        <div style="display:flex;justify-content:center">
+          <span style="display:block;width:min(100%,360px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid #C99B39;background:#173B2A"><img src="assets/dona-compra-logo-400.jpg" alt="Emblema de Doña Compra" style="width:100%;height:100%;object-fit:cover;object-position:50% 44%;transform:scale(1.22)" /></span>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F7F2E9">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(24px,4vw,56px)">
+          <p style="font-family:Sreda,Vollkorn,serif;font-weight:300;font-size:clamp(21px,2.8vw,32px);line-height:1.35;color:#173B2A;margin:0">El comercio de barrio funciona desde siempre con una idea simple: al que cumple, se le fía. Doña Compra ordena esa costumbre y la convierte en una operación comercial clara, con factura, fechas y condiciones escritas.</p>
+          <div>
+            <p style="font-size:16px;line-height:1.7;color:#4A5245;margin:0">No reemplazamos a tu proveedor ni te vendemos un surtido armado. Compramos lo que vos elegís, te lo revendemos con un margen conocido de antemano y acordamos cuándo lo pagás.</p>
+            <p style="font-size:16px;line-height:1.7;color:#4A5245;margin:16px 0 0">Antes de abrir una ficha visitamos el negocio. Conocer cómo trabaja cada comerciante es parte del servicio: de ahí sale la confianza, no de un formulario.</p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:clamp(14px,2vw,26px);margin-top:clamp(34px,5vw,64px)">
+          <div style="border-top:1.5px solid #C99B39;padding-top:16px">
+            <h3 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:22px;color:#173B2A;margin:0">Claridad</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:9px 0 0">Margen, servicios y vencimiento se explican antes de confirmar el pedido.</p>
+          </div>
+          <div style="border-top:1.5px solid #C99B39;padding-top:16px">
+            <h3 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:22px;color:#173B2A;margin:0">Relación comercial</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:9px 0 0">Tratamos con el comerciante, no con un número de expediente.</p>
+          </div>
+          <div style="border-top:1.5px solid #C99B39;padding-top:16px">
+            <h3 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:22px;color:#173B2A;margin:0">Puntualidad</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:9px 0 0">Pagamos al proveedor al contado y esperamos la misma seriedad de vuelta.</p>
+          </div>
+          <div style="border-top:1.5px solid #C99B39;padding-top:16px">
+            <h3 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:22px;color:#173B2A;margin:0">Crecimiento progresivo</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:#4A5245;margin:9px 0 0">La relación se amplía con el tiempo y con cada pedido cumplido.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#173B2A">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,100px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(24px,4vw,56px);align-items:center">
+        <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(30px,4.6vw,62px);line-height:1.02;color:#FFFDF8;margin:0;max-width:14ch;text-wrap:balance">Tu palabra importa. Tus compras también.</h2>
+        <div>
+          <p style="font-size:16.5px;line-height:1.7;color:rgba(255,253,248,0.82);margin:0">El sistema de niveles es la forma de registrar esa historia: cada pedido cumplido queda anotado y suma al historial comercial que compartimos con vos.</p>
+          <p style="font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;color:rgba(255,253,248,0.55);margin:16px 0 0">El historial comercial no constituye una garantía legal ni implica la aprobación automática de nuevas operaciones.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#FFFDF8">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px);text-align:center">
+        <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(26px,4vw,48px);line-height:1.06;color:#173B2A;margin:0 auto;max-width:20ch">La mejor forma de conocer a Doña Compra es conversando.</h2>
+        <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:28px">
+          <a href="#/contacto" data-cta="true" style="display:inline-flex;align-items:center;background:#173B2A;color:#FFFDF8;padding:16px 26px;font-size:13.5px;letter-spacing:0.08em;text-transform:uppercase" style-hover="background:#C99B39;color:#10291E">Solicitá una visita</a>
+          <a href="#/como-funciona" data-cta="true" style="display:inline-flex;align-items:center;border:1px solid #173B2A;color:#173B2A;padding:16px 26px;font-size:13.5px;letter-spacing:0.08em;text-transform:uppercase" style-hover="background:#173B2A;color:#FFFDF8">Ver cómo funciona</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ─────────── CONTACTO ─────────── -->
+  <sc-if value="{{ atContacto }}">
+  <div>
+    <section style="background:#F7F2E9;border-bottom:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#635E4D">Contacto</span>
+        <h1 style="font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(36px,6.4vw,94px);line-height:0.95;letter-spacing:-0.02em;color:#173B2A;margin:16px 0 0;max-width:13ch">Sentate a conversar con Doña.</h1>
+        <p style="font-size:clamp(16px,1.8vw,20px);line-height:1.55;color:#4A5245;margin:20px 0 0;max-width:50ch">Contanos qué necesita tu negocio y coordinamos una visita para explicarte cómo funciona nuestro servicio.</p>
+      </div>
+    </section>
+
+    <section style="background:#FFFDF8">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,88px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(26px,4vw,60px);align-items:start">
+
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="display:block;background:#173B2A;padding:clamp(22px,3vw,32px)" style-hover="background:#10291E">
+            <span style="display:block;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E3C98A">Escribile a Doña</span>
+            <span style="display:block;font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(28px,4vw,44px);color:#FFFDF8;margin-top:10px">{{ phone }}</span>
+            <span style="display:block;font-size:14.5px;line-height:1.6;color:rgba(255,253,248,0.72);margin-top:8px">WhatsApp. La forma más rápida de empezar la conversación.</span>
+          </a>
+          <div style="border:1px solid rgba(23,59,42,0.18);padding:clamp(20px,3vw,26px)">
+            <span style="display:block;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#635E4D">Correo</span>
+            <a href="mailto:donacompra@gmail.com" style="display:block;font-family:Sreda,Vollkorn,serif;font-size:22px;color:#173B2A;margin-top:8px">donacompra@gmail.com</a>
+          </div>
+          <div style="border:1px solid rgba(23,59,42,0.18);padding:clamp(20px,3vw,26px)">
+            <span style="display:block;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#635E4D">Área de referencia</span>
+            <div style="font-family:Sreda,Vollkorn,serif;font-size:22px;color:#173B2A;margin-top:8px">Gran Asunción, Paraguay</div>
+            <p style="font-size:14px;line-height:1.6;color:#4A5245;margin:10px 0 0">Doña Compra ofrece visitas al negocio dentro de 24 horas según nuestro material comercial, sujetas a coordinación y disponibilidad.</p>
+          </div>
+          <div style="border:1px solid rgba(23,59,42,0.18);padding:clamp(20px,3vw,26px)">
+            <span style="display:block;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#635E4D">Horario de contacto</span>
+            <div style="display:flex;justify-content:space-between;font-size:15px;color:#202820;margin-top:12px"><span>Lunes a viernes</span><span>08:00 – 18:00</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:15px;color:#202820;margin-top:7px"><span>Sábados</span><span>08:00 – 12:00</span></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(24px,3.2vw,38px);line-height:1.08;color:#173B2A;margin:0 0 8px">Solicitud de visita</h2>
+          <p style="font-size:15px;line-height:1.65;color:#4A5245;margin:0 0 24px;max-width:48ch">Completá el formulario y lo enviamos como mensaje de WhatsApp a Doña, listo para que lo revises antes de mandarlo.</p>
+
+          <sc-if value="{{ formSent }}">
+            <div style="background:#173B2A;padding:clamp(22px,3vw,32px)">
+              <div style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:28px;color:#E3C98A">Mensaje preparado</div>
+              <p style="font-size:15px;line-height:1.65;color:rgba(255,253,248,0.84);margin:12px 0 0">Se abrió WhatsApp con tu solicitud cargada. Si no se abrió, usá el botón de arriba y pegá tus datos.</p>
+              <button onClick="{{ resetForm }}" style="margin-top:18px;background:none;border:1px solid rgba(227,201,138,0.6);color:#E3C98A;padding:12px 20px;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer">Cargar otra solicitud</button>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submitForm }}" novalidate="novalidate" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px">
+            <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#635E4D">Nombre completo *</span>
+              <input type="text" value="{{ fNombre }}" onInput="{{ setNombre }}" placeholder="Rosa Giménez" style="background:#F7F2E9;border:1px solid rgba(23,59,42,0.22);padding:13px 14px;font-size:15px;color:#202820;width:100%" style-focus="outline:none;border-color:#C99B39" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#635E4D">Nombre del negocio *</span>
+              <input type="text" value="{{ fNegocio }}" onInput="{{ setNegocio }}" placeholder="Perfumería Rosita" style="background:#F7F2E9;border:1px solid rgba(23,59,42,0.22);padding:13px 14px;font-size:15px;color:#202820;width:100%" style-focus="outline:none;border-color:#C99B39" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#635E4D">Rubro *</span>
+              <select value="{{ fRubro }}" onChange="{{ setRubro }}" style="background:#F7F2E9;border:1px solid rgba(23,59,42,0.22);padding:13px 14px;font-size:15px;color:#202820;width:100%" style-focus="outline:none;border-color:#C99B39">
+                <option value="">Elegí tu rubro</option>
+                <option value="Ropa">Ropa</option>
+                <option value="Calzado">Calzado</option>
+                <option value="Bijouterie">Bijouterie</option>
+                <option value="Cosméticos">Cosméticos</option>
+                <option value="Perfumes">Perfumes</option>
+                <option value="Peluquería">Peluquería</option>
+                <option value="Regalería">Regalería</option>
+                <option value="Librería y útiles">Librería y útiles</option>
+                <option value="Revendedora">Revendedora</option>
+                <option value="Despensa">Despensa</option>
+                <option value="Comedor">Comedor</option>
+                <option value="Restaurante">Restaurante</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#635E4D">Ciudad o zona *</span>
+              <input type="text" value="{{ fCiudad }}" onInput="{{ setCiudad }}" placeholder="Asunción, Mercado 4" style="background:#F7F2E9;border:1px solid rgba(23,59,42,0.22);padding:13px 14px;font-size:15px;color:#202820;width:100%" style-focus="outline:none;border-color:#C99B39" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#635E4D">WhatsApp *</span>
+              <input type="tel" inputmode="tel" value="{{ fTel }}" onInput="{{ setTel }}" placeholder="0994 876 333" style="background:#F7F2E9;border:1px solid rgba(23,59,42,0.22);padding:13px 14px;font-size:15px;color:#202820;width:100%" style-focus="outline:none;border-color:#C99B39" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#635E4D">Proveedor con el que trabajás</span>
+              <input type="text" value="{{ fProveedor }}" onInput="{{ setProveedor }}" placeholder="Opcional" style="background:#F7F2E9;border:1px solid rgba(23,59,42,0.22);padding:13px 14px;font-size:15px;color:#202820;width:100%" style-focus="outline:none;border-color:#C99B39" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px">
+              <span style="font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#635E4D">Horario preferido de contacto</span>
+              <select value="{{ fHorario }}" onChange="{{ setHorario }}" style="background:#F7F2E9;border:1px solid rgba(23,59,42,0.22);padding:13px 14px;font-size:15px;color:#202820;width:100%" style-focus="outline:none;border-color:#C99B39">
+                <option value="Mañana (08 a 12)">Mañana (08 a 12)</option>
+                <option value="Tarde (12 a 18)">Tarde (12 a 18)</option>
+                <option value="Sábado a la mañana">Sábado a la mañana</option>
+              </select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;grid-column:1 / -1">
+              <span style="font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#635E4D">Tipo de mercadería que necesitás *</span>
+              <input type="text" value="{{ fMerca }}" onInput="{{ setMerca }}" placeholder="Perfumes importados, 2 cajas" style="background:#F7F2E9;border:1px solid rgba(23,59,42,0.22);padding:13px 14px;font-size:15px;color:#202820;width:100%" style-focus="outline:none;border-color:#C99B39" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;grid-column:1 / -1">
+              <span style="font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:#635E4D">Mensaje adicional</span>
+              <textarea rows="4" value="{{ fMensaje }}" onInput="{{ setMensaje }}" placeholder="Contanos cualquier cosa que nos ayude a prepararnos para la visita." style="background:#F7F2E9;border:1px solid rgba(23,59,42,0.22);padding:13px 14px;font-size:15px;color:#202820;width:100%;resize:vertical;font-family:Poppins,sans-serif" style-focus="outline:none;border-color:#C99B39"></textarea>
+            </label>
+            <label style="display:flex;gap:11px;align-items:flex-start;grid-column:1 / -1;cursor:pointer">
+              <input type="checkbox" checked="{{ fConsent }}" onChange="{{ setConsent }}" style="width:19px;height:19px;margin-top:2px;accent-color:#173B2A;flex:none" />
+              <span style="font-size:13.5px;line-height:1.6;color:#4A5245">Autorizo a Doña Compra a contactarme por WhatsApp o teléfono para coordinar la visita. *</span>
+            </label>
+            <input type="text" value="{{ fTrampa }}" onInput="{{ setTrampa }}" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+
+            <sc-if value="{{ hasErrors }}">
+              <div style="grid-column:1 / -1;border-left:2px solid #B0573F;background:#FBF1EC;padding:14px 16px">
+                <p style="font-size:13.5px;line-height:1.6;color:#8A3F2B;margin:0">{{ errorText }}</p>
+              </div>
+            </sc-if>
+
+            <div style="grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+              <button type="submit" style="background:#173B2A;color:#FFFDF8;border:1px solid #173B2A;padding:16px 26px;font-size:13.5px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer" style-hover="background:#C99B39;color:#10291E;border-color:#C99B39">Enviar por WhatsApp</button>
+              <span style="font-family:ui-monospace,monospace;font-size:11px;line-height:1.6;color:#635E4D;max-width:34ch">Se abre WhatsApp con el mensaje escrito. Nada se envía sin que vos lo confirmes.</span>
+            </div>
+          </form>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ─────────── PREGUNTAS FRECUENTES ─────────── -->
+  <sc-if value="{{ atFaq }}">
+  <div>
+    <section style="background:#F7F2E9;border-bottom:1px solid rgba(23,59,42,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#635E4D">Preguntas frecuentes</span>
+        <h1 style="font-family:Sreda,Vollkorn,serif;font-weight:600;font-size:clamp(34px,5.6vw,80px);line-height:0.98;letter-spacing:-0.02em;color:#173B2A;margin:16px 0 0;max-width:16ch">Lo que más nos preguntan los comerciantes.</h1>
+      </div>
+    </section>
+    <section style="background:#FFFDF8">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,88px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:0 clamp(26px,5vw,70px)">
+        <div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Qué es Doña Compra?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">Una empresa que compra la mercadería que vos elegís en tu proveedor y te la revende con factura, para que pagues después.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Doña Compra presta dinero?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">No. No entregamos efectivo. Realizamos una operación comercial de compra y reventa de mercadería.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Puedo elegir mi propio proveedor?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">Sí. Elegís el mayorista o proveedor que ya conocés y los productos que necesitás.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Quién compra la mercadería?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">Doña Compra le paga al proveedor al contado y adquiere la mercadería a su nombre, para después revendértela.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Cómo retiro mi pedido?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">Con un código único de retiro, de un solo uso, con vigencia y responsable registrados.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Cuándo tengo que pagar?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">A más tardar 30 días después de la fecha de factura. El vencimiento exacto figura en ese documento.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Qué incluye el precio?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">El precio de compra de la mercadería, el margen comercial del 12 % y los servicios fijos de tu nivel.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18);border-bottom:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿El margen comercial cambia según mi nivel?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">No. El margen es del 12 % en los siete niveles. Lo que cambia es el Pack Doña Compra.</p></div>
+        </div>
+        <div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Cómo funcionan los niveles?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">Cada nivel tiene un tope de compras acumuladas. Al ingresar a un nivel, el contador vuelve a cero.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Subo de nivel automáticamente?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">No. Superar el tope habilita una evaluación. El ascenso es de a un nivel y lo decide Doña Compra.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Existen montos mínimos de pedido?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">Sí: Gs. 100.000 en nivel Hierro y Gs. 150.000 desde nivel Cobre, expresados en precio de compra.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Cobran multas por atraso?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">No aplicamos multas ni intereses por atraso. Sí conversamos para acomodar la situación.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Qué sucede si hace falta una gestión de cobranza?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">Si se requiere una gestión de cobranza o un pagaré, pueden refacturarse los gastos realmente realizados y comprobados, sin margen adicional.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Qué es el Pack Doña Compra?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">Un servicio por pedido que reúne publicidad, seguimiento y negociaciones, y el Club Doña Compra. Su importe depende del nivel.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Qué es el Legajo de buena gestión?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">Un documento, a pedido, que reúne hechos verificables de tu historial: compras, puntualidad y antigüedad. Referencia: Gs. 300.000.</p></div>
+          <div style="padding:20px 0;border-top:1px solid rgba(23,59,42,0.18);border-bottom:1px solid rgba(23,59,42,0.18)"><h2 style="font-family:Sreda,Vollkorn,serif;font-weight:500;font-size:clamp(19px,2.2vw,24px);color:#173B2A;margin:0">¿Cómo solicito una visita?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A5245;margin:9px 0 0">Escribinos por WhatsApp o completá el formulario de contacto. Coordinamos la visita según disponibilidad.</p></div>
+        </div>
+      </div>
+      <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,40px) clamp(44px,6vw,80px)">
+        <a href="#/contacto" data-cta="true" style="display:inline-flex;align-items:center;background:#173B2A;color:#FFFDF8;padding:16px 26px;font-size:13.5px;letter-spacing:0.08em;text-transform:uppercase" style-hover="background:#C99B39;color:#10291E">Tengo otra pregunta</a>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  </main>
+
+  <footer style="background:#10291E">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(36px,5vw,64px) clamp(18px,4vw,40px) 26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:clamp(24px,4vw,48px)">
+      <div>
+        <div style="display:flex;align-items:center;gap:11px">
+          <span style="display:block;width:44px;height:44px;border-radius:50%;overflow:hidden;border:1.5px solid #C99B39;background:#173B2A;flex:none"><img src="assets/dona-compra-logo-400.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 42%;transform:scale(1.3)" /></span>
+          <span style="font-family:Sreda,Vollkorn,serif;font-size:19px;font-weight:600;letter-spacing:0.02em;color:#F7F2E9">DOÑA COMPRA</span>
+        </div>
+        <p style="font-size:13.5px;line-height:1.7;color:rgba(247,242,233,0.6);margin:16px 0 0;max-width:36ch">Compra de mercadería para comerciantes, sujeta a evaluación previa y visita. Factura legal con el RUC de Doña Compra.</p>
+      </div>
+      <div>
+        <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#C99B39">Navegación</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin-top:14px">
+          <a href="#/" style="color:rgba(247,242,233,0.78);font-size:14px">Inicio</a>
+          <a href="#/como-funciona" style="color:rgba(247,242,233,0.78);font-size:14px">Cómo funciona</a>
+          <a href="#/para-tu-negocio" style="color:rgba(247,242,233,0.78);font-size:14px">Para tu negocio</a>
+          <a href="#/niveles-y-tarifas" style="color:rgba(247,242,233,0.78);font-size:14px">Niveles y tarifas</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#C99B39">Más</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin-top:14px">
+          <a href="#/servicios" style="color:rgba(247,242,233,0.78);font-size:14px">Servicios</a>
+          <a href="#/nosotros" style="color:rgba(247,242,233,0.78);font-size:14px">Nosotros</a>
+          <a href="#/preguntas-frecuentes" style="color:rgba(247,242,233,0.78);font-size:14px">Preguntas frecuentes</a>
+          <a href="#/contacto" style="color:rgba(247,242,233,0.78);font-size:14px">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#C99B39">Escribile a Doña</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin-top:14px">
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="color:rgba(247,242,233,0.78);font-size:14px">WhatsApp {{ phone }}</a>
+          <a href="mailto:donacompra@gmail.com" style="color:rgba(247,242,233,0.78);font-size:14px">donacompra@gmail.com</a>
+          <span style="color:rgba(247,242,233,0.55);font-size:14px">Gran Asunción, Paraguay</span>
+          <span style="color:rgba(247,242,233,0.55);font-size:14px">Lu–Vi 08–18 · Sá 08–12</span>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:18px clamp(18px,4vw,40px) 30px;border-top:1px solid rgba(247,242,233,0.1);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap">
+      <span style="color:rgba(247,242,233,0.45);font-size:12.5px">© 2026 Doña Compra</span>
+      <span style="color:rgba(247,242,233,0.45);font-size:12.5px">Doña paga hoy tu mercadería. Vendé más y pagá después.</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;0994 876 333&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;},&quot;waMessage&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Hola, Doña Compra. Tengo un negocio y me gustaría conocer cómo puedo comprar mercadería con ustedes.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;}}">
+const LEVELS = [
+  { name: 'Hierro', cap: 250000, pack: 3000, min: 100000, note: 'Nivel de entrada. Pedido mínimo de Gs. 100.000 en precio de compra.' },
+  { name: 'Cobre', cap: 500000, pack: 4500, min: 150000, note: 'Desde Cobre el pedido mínimo pasa a Gs. 150.000 en precio de compra.' },
+  { name: 'Bronce', cap: 1000000, pack: 8000, min: 150000, note: 'El contador acumulado vuelve a cero al ingresar a este nivel.' },
+  { name: 'Plata', cap: 3000000, pack: 30000, min: 150000, note: 'El Pack Doña Compra aumenta por nivel, no por el monto de la mercadería.' },
+  { name: 'Oro', cap: 5000000, pack: 40000, min: 150000, note: 'El margen comercial sigue siendo del 12 %, igual que en Hierro.' },
+  { name: 'Rubis', cap: 8000000, pack: 70000, min: 150000, note: 'La progresión se evalúa pedido por pedido y la resuelve Doña Compra.' },
+  { name: 'Diamante', cap: 10000000, pack: 75000, min: 150000, note: 'Diamante conserva su nivel mientras la relación comercial continúe normalmente.' }
+];
+
+const RUBROS = [
+  ['Ropa', 'foto · tienda de ropa de barrio', 'Compra de temporada y reposición de talles para tiendas de ropa que trabajan con mayoristas conocidos.'],
+  ['Calzado', 'foto · zapatería', 'Pedidos por curva de talles, con el proveedor con el que ya trabajás.'],
+  ['Bijouterie', 'foto · exhibidor de bijouterie', 'Compras por blíster o docena, con rotación rápida de mostrador.'],
+  ['Cosméticos', 'foto · góndola de cosmética', 'Reposición de líneas de maquillaje y cuidado, elegidas por vos según lo que te piden.'],
+  ['Perfumes', 'foto · exhibidor de perfumería', 'Compras de mayor valor unitario, donde pagar al contado suele descapitalizar el negocio.'],
+  ['Peluquerías', 'foto · salón de peluquería', 'Insumos profesionales y línea capilar para el servicio de cada semana.'],
+  ['Regalería', 'foto · local de regalos', 'Compras concentradas en fechas fuertes, con pago posterior a la venta.'],
+  ['Librería y útiles', 'foto · librería escolar', 'Compra fuerte de temporada escolar, distribuida en el tiempo.'],
+  ['Revendedoras', 'foto · pedido de revendedora', 'Emprendedoras que venden por catálogo o por redes y necesitan stock para arrancar el ciclo.'],
+  ['Despensas', 'foto · despensa de barrio', 'Reposición de productos de alta rotación sin frenar la caja diaria.'],
+  ['Comedores', 'foto · comedor', 'Compra de insumos para el servicio, coordinada con el proveedor habitual.'],
+  ['Restaurantes', 'foto · cocina de restaurante', 'Pedidos de insumos con pago posterior, según las condiciones acordadas.']
+];
+
+const STEPS = {
+  elegis: 'Vos elegís el producto y el proveedor.',
+  compra: 'Doña paga al proveedor al contado.',
+  retiras: 'Retirás tu mercadería con un código seguro.',
+  pagas: 'Pagás a más tardar 30 días después de la factura.'
+};
+
+const PAGES = {
+  '': 'home', '/': 'home',
+  '/como-funciona': 'como',
+  '/para-tu-negocio': 'negocio',
+  '/niveles-y-tarifas': 'niveles',
+  '/servicios': 'servicios',
+  '/nosotros': 'nosotros',
+  '/contacto': 'contacto',
+  '/preguntas-frecuentes': 'faq'
+};
+
+class Component extends DCLogic {
+  state = {
+    page: 'home', scrolled: false, menuOpen: false, step: 'elegis',
+    jStep: 0, jProg: 0,
+    level: 0, rubro: 0, calc: '125.000',
+    slider: 55,
+    form: { nombre: '', negocio: '', rubro: '', ciudad: '', tel: '', proveedor: '', horario: 'Mañana (08 a 12)', merca: '', mensaje: '', consent: false, trampa: '' },
+    errors: '', sent: false
+  };
+
+  componentDidMount() {
+    this.onHash = () => {
+      try {
+      const h = (window.location.hash || '').replace(/^#/, '');
+      const page = PAGES[h] || PAGES[h.replace(/\/$/, '')] || 'home';
+      this.setState({ page, menuOpen: false, sent: false, errors: '' });
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      } catch (err) { console.error('route', err && (err.stack || err.message || err)); }
+    };
+    this.startJourney();
+    this.onScroll = () => {
+      const s = window.scrollY > 40;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+      if (this._scrollRaf) return;
+      this._scrollRaf = window.requestAnimationFrame(() => {
+        this._scrollRaf = null;
+        try {
+          const h = window.innerHeight;
+          const pending = document.querySelectorAll('main section:not([data-dc-played])');
+          pending.forEach((el) => {
+            if (el.getBoundingClientRect().top < h * 0.94) this.playSection(el);
+          });
+          if (!this._plx) this._plx = document.querySelectorAll('[data-parallax]');
+          if (this._plx.length) {
+            const y = window.scrollY || 0;
+            if (y < h * 2.2) {
+              this._plx.forEach((el, i) => {
+                el.style.transform = 'translate3d(0,' + (-y * (0.05 + i * 0.035)).toFixed(1) + 'px,0)';
+              });
+            }
+          }
+        } catch (err) { console.error('scroll', err && (err.stack || err.message || err)); }
+      });
+    };
+    window.addEventListener('hashchange', this.onHash);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onHash();
+    this.reveal();
+  }
+
+  componentDidUpdate() {
+    const prev = this._lastPage;
+    this._lastPage = this.state.page;
+    if (prev !== undefined && prev !== this.state.page) {
+      if (this.io) { this.io.disconnect(); this.io = null; }
+      this._plx = null;
+      this.reveal();
+    }
+  }
+
+  startJourney() {
+    if (this.jTimer) clearInterval(this.jTimer);
+    this.jTimer = setInterval(() => {
+      if (this.state.page !== 'home' || document.hidden) return;
+      this.setState((s) => ({ jStep: (s.jStep + 1) % 4 }));
+    }, 4200);
+  }
+
+  goJourney(i) { this.setState({ jStep: i }); this.startJourney(); }
+
+  syncRubroImg() {
+    const slugs = ['ropa','calzado','bijouterie','cosmeticos','perfumes','peluquerias','regaleria','libreria','revendedoras','despensas','comedores','restaurantes'];
+    const el = document.querySelector('[data-rubro-img]');
+    if (el) el.setAttribute('src', 'assets/rubro-' + slugs[this.state.rubro] + '.jpg');
+  }
+
+  componentDidUpdate() { this.syncRubroImg(); }
+
+  paintSlider(v) {
+    const p = Math.max(0, Math.min(100, v));
+    this._slider = p;
+    if (this._sliderRaf) return;
+    this._sliderRaf = window.requestAnimationFrame(() => {
+      this._sliderRaf = null;
+      const q = this._slider;
+      const panel = document.querySelector('[data-slider-panel]');
+      const edge = document.querySelector('[data-slider-edge]');
+      const handle = document.querySelector('[data-slider-handle]');
+      const t = (q + 6).toFixed(2), b = (q - 6).toFixed(2);
+      if (panel) panel.style.clipPath = 'polygon(0% 0%,' + t + '% 0%,' + b + '% 100%,0% 100%)';
+      if (edge) edge.style.clipPath = 'polygon(' + t + '% 0%,' + (q + 6.35).toFixed(2) + '% 0%,' + (q - 5.65).toFixed(2) + '% 100%,' + b + '% 100%)';
+      if (handle) handle.style.left = q + '%';
+    });
+  }
+
+  playSection(el) {
+    if (!el || el.dataset.dcPlayed) return;
+    el.dataset.dcPlayed = '1';
+    const ease = 'cubic-bezier(0.2,0.7,0.2,1)';
+    const host = el.firstElementChild && el.children.length === 1 ? el.firstElementChild : el;
+    const kids = Array.prototype.slice.call(host.children);
+    if (kids.length > 1 && kids.length < 16) {
+      kids.forEach((k, i) => {
+        if (k.style.animation) return;
+        k.style.animation = 'dcLift 0.85s ' + ease + ' ' + (0.18 + i * 0.09).toFixed(2) + 's both';
+      });
+    }
+    try {
+      const cs = window.getComputedStyle(el);
+      if (cs.position === 'static') el.style.position = 'relative';
+      const curtain = document.createElement('div');
+      curtain.style.cssText = 'position:absolute;inset:0;z-index:6;pointer-events:none;transform:scaleY(0);transform-origin:bottom;background:' + (cs.backgroundColor && cs.backgroundColor !== 'rgba(0, 0, 0, 0)' ? cs.backgroundColor : '#F7F2E9');
+      const rule = document.createElement('div');
+      rule.style.cssText = 'position:absolute;left:0;right:0;top:0;height:1.5px;background:#C99B39';
+      curtain.appendChild(rule);
+      el.appendChild(curtain);
+      curtain.style.animation = 'dcCurtainY 0.95s cubic-bezier(0.65,0,0.35,1)';
+      curtain.addEventListener('animationend', () => { if (curtain.parentNode) curtain.parentNode.removeChild(curtain); });
+      window.setTimeout(() => { if (curtain.parentNode) curtain.parentNode.removeChild(curtain); }, 1600);
+    } catch (err) {
+      console.error('curtain', err && (err.stack || err.message || err));
+    }
+  }
+
+  reveal(attempt) {
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const tries = attempt || 0;
+    window.setTimeout(() => {
+      try {
+        const nodes = Array.prototype.slice.call(document.querySelectorAll('main section'));
+        if (!nodes.length) {
+          if (tries < 8) this.reveal(tries + 1);
+          return;
+        }
+        const play = (el) => this.playSection(el);
+        if (!this.io && typeof IntersectionObserver === 'function') {
+          this.io = new IntersectionObserver((entries) => {
+            entries.forEach((en) => {
+              if (!en.isIntersecting) return;
+              play(en.target);
+              this.io.unobserve(en.target);
+            });
+          }, { rootMargin: '0px 0px -6% 0px', threshold: 0.02 });
+        }
+        nodes.forEach((el, i) => {
+          if (el.dataset.dcSeen) return;
+          el.dataset.dcSeen = '1';
+          const box = el.getBoundingClientRect();
+          if (i === 0 || box.top < window.innerHeight) { play(el); return; }
+          if (this.io) this.io.observe(el); else play(el);
+        });
+      } catch (err) {
+        console.error('reveal', err);
+      }
+    }, tries === 0 ? 60 : 180);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this.onHash);
+    window.removeEventListener('scroll', this.onScroll);
+    if (this.jTimer) clearInterval(this.jTimer);
+    if (this.io) { this.io.disconnect(); this.io = null; }
+  }
+
+  gs(n) {
+    return new Intl.NumberFormat('es-PY', { maximumFractionDigits: 0 }).format(Math.round(n || 0));
+  }
+
+  setField(k) {
+    return (e) => {
+      const v = k === 'consent' ? e.target.checked : e.target.value;
+      this.setState((s) => ({ form: Object.assign({}, s.form, { [k]: v }), errors: '' }));
+    };
+  }
+
+  submit(e) {
+    e.preventDefault();
+    const f = this.state.form;
+    const miss = [];
+    if (!f.nombre.trim()) miss.push('tu nombre completo');
+    if (!f.negocio.trim()) miss.push('el nombre del negocio');
+    if (!f.rubro) miss.push('el rubro');
+    if (!f.ciudad.trim()) miss.push('la ciudad o zona');
+    if (!f.merca.trim()) miss.push('el tipo de mercadería');
+    const digits = f.tel.replace(/\D/g, '');
+    if (digits.length < 9 || digits.length > 12) miss.push('un número de WhatsApp válido (9 a 12 dígitos)');
+    if (!f.consent) miss.push('la autorización de contacto');
+    if (f.trampa) { this.setState({ errors: 'No pudimos procesar el envío. Escribinos directamente por WhatsApp.' }); return; }
+    if (miss.length) { this.setState({ errors: 'Falta completar: ' + miss.join(', ') + '.' }); return; }
+
+    const lines = [
+      'Hola, Doña Compra. Quiero solicitar una visita.',
+      '',
+      'Nombre: ' + f.nombre,
+      'Negocio: ' + f.negocio,
+      'Rubro: ' + f.rubro,
+      'Ciudad o zona: ' + f.ciudad,
+      'WhatsApp: ' + f.tel,
+      f.proveedor ? 'Proveedor: ' + f.proveedor : null,
+      'Mercadería que necesito: ' + f.merca,
+      'Horario preferido: ' + f.horario,
+      f.mensaje ? 'Mensaje: ' + f.mensaje : null
+    ].filter(Boolean);
+
+    const url = 'https://wa.me/' + this.waNumber() + '?text=' + encodeURIComponent(lines.join('\n'));
+    window.open(url, '_blank', 'noopener');
+    this.setState({ sent: true, errors: '' });
+  }
+
+  waNumber() {
+    const digits = String(this.props.phone ?? '0994 876 333').replace(/\D/g, '');
+    return '595' + digits.replace(/^0/, '');
+  }
+
+  renderVals() {
+    const p = this.state.page;
+    const L = LEVELS[this.state.level];
+    const R = RUBROS[this.state.rubro];
+    const phone = this.props.phone ?? '0994 876 333';
+    const msg = this.props.waMessage ?? 'Hola, Doña Compra. Tengo un negocio y me gustaría conocer cómo puedo comprar mercadería con ustedes.';
+
+    const merc = parseInt(String(this.state.calc).replace(/\D/g, ''), 10) || 0;
+    const margen = Math.round(merc * 0.12);
+    const serv = 7000 + L.pack;
+    const total = merc + margen + serv;
+    const belowMin = merc > 0 && merc < L.min;
+
+    const js = this.state.jStep, jp = Math.min(100, this.state.jProg);
+    const vals = {
+      jGo0: () => this.goJourney(0), jGo1: () => this.goJourney(1),
+      jGo2: () => this.goJourney(2), jGo3: () => this.goJourney(3),
+      phone,
+      waLink: 'https://wa.me/' + this.waNumber() + '?text=' + encodeURIComponent(msg),
+      scrolled: this.state.scrolled,
+      topRibbon: !this.state.scrolled,
+      menuOpen: this.state.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+
+      atHome: p === 'home', atComo: p === 'como', atNegocio: p === 'negocio',
+      atNiveles: p === 'niveles', atServicios: p === 'servicios',
+      atNosotros: p === 'nosotros', atContacto: p === 'contacto', atFaq: p === 'faq',
+
+      lvlInitial: L.name.charAt(0),
+
+      slider: this.state.slider,
+      onSlider: (e) => this.paintSlider(parseFloat(e.target.value)),
+
+      stepText: STEPS[this.state.step],
+      isElegis: this.state.step === 'elegis', isCompra: this.state.step === 'compra',
+      isRetiras: this.state.step === 'retiras', isPagas: this.state.step === 'pagas',
+      pickElegis: () => this.setState({ step: 'elegis' }),
+      pickCompra: () => this.setState({ step: 'compra' }),
+      pickRetiras: () => this.setState({ step: 'retiras' }),
+      pickPagas: () => this.setState({ step: 'pagas' }),
+
+      lvlName: L.name, lvlCap: this.gs(L.cap), lvlSrv: this.gs(7000 + L.pack),
+      lvlMin: this.gs(L.min), lvlNote: L.note,
+
+      rubName: R[0], rubPhoto: R[1], rubText: R[2],
+
+      calcInput: this.state.calc,
+      onCalcInput: (e) => {
+        const d = e.target.value.replace(/\D/g, '').slice(0, 12);
+        this.setState({ calc: d ? this.gs(parseInt(d, 10)) : '' });
+      },
+      cMerc: 'Gs. ' + this.gs(merc),
+      cMargen: 'Gs. ' + this.gs(margen),
+      cSeg: 'Gs. 4.000',
+      cAna: 'Gs. 3.000',
+      cPack: 'Gs. ' + this.gs(L.pack),
+      cServ: 'Gs. ' + this.gs(serv),
+      cTotal: 'Gs. ' + this.gs(total),
+      jOp0: js === 0 ? 1 : 0.35, jOp1: js === 1 ? 1 : 0.35, jOp2: js === 2 ? 1 : 0.35, jOp3: js === 3 ? 1 : 0.35,
+      jBg0: js >= 0 ? '#C99B39' : 'transparent', jBg1: js >= 1 ? '#C99B39' : 'transparent',
+      jBg2: js >= 2 ? '#C99B39' : 'transparent', jBg3: js >= 3 ? '#C99B39' : 'transparent',
+      jFg0: js >= 0 ? '#10291E' : '#173B2A', jFg1: js >= 1 ? '#10291E' : '#173B2A',
+      jFg2: js >= 2 ? '#10291E' : '#173B2A', jFg3: js >= 3 ? '#10291E' : '#173B2A',
+      jSc0: js === 0 ? 1.12 : 1, jSc1: js === 1 ? 1.12 : 1, jSc2: js === 2 ? 1.12 : 1, jSc3: js === 3 ? 1.12 : 1,
+      jW0: js === 0 ? '100%' : '0%', jW1: js === 1 ? '100%' : '0%',
+      jW2: js === 2 ? '100%' : '0%', jW3: js === 3 ? '100%' : '0%',
+      jT0: js === 0 ? 'width 4.2s linear' : 'none', jT1: js === 1 ? 'width 4.2s linear' : 'none',
+      jT2: js === 2 ? 'width 4.2s linear' : 'none', jT3: js === 3 ? 'width 4.2s linear' : 'none',
+      jOn0: js === 0 ? 1 : 0, jOn1: js === 1 ? 1 : 0, jOn2: js === 2 ? 1 : 0, jOn3: js === 3 ? 1 : 0,
+      jY0: js === 0 ? '0px' : '42px', jY1: js === 1 ? '0px' : '42px',
+      jY2: js === 2 ? '0px' : '42px', jY3: js === 3 ? '0px' : '42px',
+
+      calcWarn: belowMin,
+      calcWarnText: 'El pedido mínimo en ' + L.name + ' es de Gs. ' + this.gs(L.min) + ' en precio de compra.',
+
+      fNombre: this.state.form.nombre, setNombre: this.setField('nombre'),
+      fNegocio: this.state.form.negocio, setNegocio: this.setField('negocio'),
+      fRubro: this.state.form.rubro, setRubro: this.setField('rubro'),
+      fCiudad: this.state.form.ciudad, setCiudad: this.setField('ciudad'),
+      fTel: this.state.form.tel, setTel: this.setField('tel'),
+      fProveedor: this.state.form.proveedor, setProveedor: this.setField('proveedor'),
+      fHorario: this.state.form.horario, setHorario: this.setField('horario'),
+      fMerca: this.state.form.merca, setMerca: this.setField('merca'),
+      fMensaje: this.state.form.mensaje, setMensaje: this.setField('mensaje'),
+      fConsent: this.state.form.consent, setConsent: this.setField('consent'),
+      fTrampa: this.state.form.trampa, setTrampa: this.setField('trampa'),
+      hasErrors: !!this.state.errors, errorText: this.state.errors,
+      formSent: this.state.sent, formOpen: !this.state.sent,
+      submitForm: (e) => this.submit(e),
+      resetForm: () => this.setState({ sent: false })
+    };
+
+    LEVELS.forEach((lv, i) => {
+      const on = i === this.state.level;
+      vals['lvl' + i] = () => this.setState({ level: i });
+      vals['lvlBg' + i] = on ? '#173B2A' : 'transparent';
+      vals['lvlBd' + i] = on ? '#173B2A' : 'rgba(23,59,42,0.25)';
+      vals['lvlFg' + i] = on ? '#FFFDF8' : '#202820';
+    });
+
+    RUBROS.forEach((rb, i) => {
+      const on = i === this.state.rubro;
+      vals['rub' + i] = () => this.setState({ rubro: i });
+      vals['rbBg' + i] = on ? '#173B2A' : 'transparent';
+      vals['rbBd' + i] = on ? '#173B2A' : 'rgba(23,59,42,0.25)';
+      vals['rbFg' + i] = on ? '#FFFDF8' : '#202820';
+    });
+
+    return vals;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.thumbnail
+
+# Vercel
+.vercel
+
+# Deps / build (por si más adelante se agrega un bundler)
+node_modules/
+dist/
+.env
+.env.local
