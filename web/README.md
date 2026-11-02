@@ -21,7 +21,10 @@ Vercel a `web/`.
 | Preguntas frecuentes | Portada, con datos estructurados FAQPage |
 | Feed de anuncios | Listo: filtros por URL, paginado, detalle por publicación |
 | Me gusta y compartir | Listos (los me gusta necesitan la base conectada) |
-| Carga y moderación de publicaciones | Pendiente: hoy se cargan por semilla o a mano |
+| Cuentas con roles y acceso | Listo |
+| Back-office: resumen, mensajes, moderación, boletín | Listo |
+| Alta de publicaciones desde el panel | Pendiente: hoy se cargan por semilla |
+| Notificaciones por correo al moderar | Pendiente |
 | Cuentas, roles y back-office | Pendiente |
 
 ## Arrancar
@@ -115,6 +118,48 @@ npm run db:seed
 
 Carga las publicaciones de ejemplo. Es idempotente: reconoce por `slug`, así
 que correrlo dos veces no duplica nada.
+
+### Cuentas y panel
+
+No hay registro público a propósito. La primera cuenta se crea por consola:
+
+```bash
+npm run admin:crear -- correo@ejemplo.com "Nombre Apellido"
+```
+
+Genera una contraseña al azar y la imprime **una sola vez**. Guardala en tu
+gestor de contraseñas: no queda almacenada en claro en ningún lado. Si la
+corrés sobre una cuenta que ya existe, cambia la contraseña y cierra sus
+sesiones abiertas.
+
+El panel vive en `/admin` y solo lo ve el rol `admin`. Roles previstos:
+`admin`, `comerciante`, `mayorista` y `miembro`.
+
+Decisiones de seguridad que conviene no revertir sin pensarlo:
+
+- **Contraseñas con scrypt**, que viene en Node, con sal por usuario y los
+  parámetros de coste guardados dentro del hash para poder subirlos después
+  sin invalidar los existentes. La comparación es en tiempo constante.
+- **Sesiones en base, no JWT.** Con un token firmado no se puede cerrar una
+  sesión antes de que venza; para un panel de administración eso no alcanza.
+  En la cookie viaja un token aleatorio y en la base se guarda su SHA-256, así
+  que leer la tabla no da cookies utilizables.
+- **Cookie `httpOnly` y `sameSite: lax`**: inaccesible desde JavaScript y no
+  viaja en peticiones de otros sitios.
+- **Falla cerrada**: si la base no está disponible, no hay sesión y el panel
+  redirige al acceso. Nunca al revés.
+- **Cada acción de servidor del panel vuelve a exigir el rol.** Que el layout
+  lo haga no alcanza: una acción se puede invocar directamente, sin pasar por
+  la página que la contiene.
+- **Un único mensaje de error al entrar.** Distinguir "ese correo no existe"
+  de "la contraseña es incorrecta" permite averiguar qué direcciones están
+  registradas. Por lo mismo, cuando el correo no existe se verifica igual
+  contra un hash señuelo, para que la demora no lo delate.
+- **Límite de intentos**: 8 por correo cada 15 minutos, y el triple por
+  origen, porque detrás de una misma salida a internet puede haber una
+  oficina entera.
+- **Una cuenta suspendida pierde el acceso en la siguiente petición**, sin
+  esperar a que venza la sesión.
 
 ### Anuncios
 

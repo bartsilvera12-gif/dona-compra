@@ -192,3 +192,108 @@ export const reacciones = pgTable(
 
 export type Publicacion = typeof publicaciones.$inferSelect;
 export type NuevaPublicacion = typeof publicaciones.$inferInsert;
+
+/* ---------------------------------------------------------------------------
+   Cuentas y sesiones
+   --------------------------------------------------------------------------- */
+
+/**
+ * Roles del pliego, mas el de administracion.
+ *
+ * El orden no implica jerarquia: los permisos se deciden por rol explicito,
+ * nunca por "mayor o igual que", que es como se cuelan los errores de
+ * autorizacion cuando se agrega un rol en el medio.
+ */
+export const rolUsuario = pgEnum("rol_usuario", [
+  "admin",
+  "comerciante",
+  "mayorista",
+  "miembro",
+]);
+
+export const estadoUsuario = pgEnum("estado_usuario", [
+  "activo",
+  "suspendido",
+]);
+
+export const usuarios = pgTable(
+  "usuarios",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    correo: text("correo").notNull().unique(),
+    nombre: text("nombre").notNull(),
+
+    /**
+     * scrypt con sal por usuario, en el formato
+     * scrypt$N$r$p$<sal base64>$<derivado base64>.
+     * Nunca se guarda ni se registra la contrasena en claro.
+     */
+    hash: text("hash").notNull(),
+
+    rol: rolUsuario("rol").notNull().default("comerciante"),
+    estado: estadoUsuario("estado").notNull().default("activo"),
+
+    /** Datos del negocio, para comerciantes y mayoristas. */
+    negocio: text("negocio"),
+    ciudad: text("ciudad"),
+
+    creadoEn: timestamp("creado_en", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    ultimoAccesoEn: timestamp("ultimo_acceso_en", { withTimezone: true }),
+  },
+  (t) => [
+    index("usuarios_rol_idx").on(t.rol),
+    index("usuarios_estado_idx").on(t.estado),
+  ],
+);
+
+/**
+ * Sesiones en base, no en un token firmado.
+ *
+ * Con un JWT no se puede cerrar una sesion antes de que venza; para un panel
+ * de administracion eso no alcanza. Aca basta borrar la fila.
+ */
+export const sesiones = pgTable(
+  "sesiones",
+  {
+    /** Hash del token que viaja en la cookie, no el token. */
+    tokenHash: text("token_hash").primaryKey(),
+    usuarioId: uuid("usuario_id")
+      .notNull()
+      .references(() => usuarios.id, { onDelete: "cascade" }),
+    creadoEn: timestamp("creado_en", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    expiraEn: timestamp("expira_en", { withTimezone: true }).notNull(),
+    ipHash: text("ip_hash"),
+    userAgent: text("user_agent"),
+  },
+  (t) => [
+    index("sesiones_usuario_idx").on(t.usuarioId),
+    index("sesiones_expira_idx").on(t.expiraEn),
+  ],
+);
+
+/**
+ * Intentos de acceso, para frenar la prueba de contrasenas por fuerza bruta.
+ * Se registran los fallidos; un acceso correcto limpia los del correo.
+ */
+export const intentosAcceso = pgTable(
+  "intentos_acceso",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    correo: text("correo").notNull(),
+    ipHash: text("ip_hash"),
+    creadoEn: timestamp("creado_en", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [
+    index("intentos_correo_idx").on(t.correo, t.creadoEn),
+    index("intentos_ip_idx").on(t.ipHash, t.creadoEn),
+  ],
+);
+
+export type Usuario = typeof usuarios.$inferSelect;
+export type Rol = Usuario["rol"];

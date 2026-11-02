@@ -12,7 +12,8 @@
     "db:studio": "drizzle-kit studio",
     "check": "node --env-file=.env.local scripts/check-env.mjs",
     "check:contraste": "node scripts/check-contraste.mjs",
-    "db:seed": "node --env-file=.env.local scripts/seed.mjs"
+    "db:seed": "node --env-file=.env.local scripts/seed.mjs",
+    "admin:crear": "node --env-file=.env.local scripts/crear-admin.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
@@ -21,6 +22,7 @@
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "resend": "^6.37.0",
+    "server-only": "^0.0.1",
     "zod": "^4.6.7"
   },
   "devDependencies": {

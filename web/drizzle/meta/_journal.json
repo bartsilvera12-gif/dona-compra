@@ -15,6 +15,13 @@
       "when": 1793627635516,
       "tag": "0001_anuncios",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793628175008,
+      "tag": "0002_cuentas",
+      "breakpoints": true
     }
   ]
 }

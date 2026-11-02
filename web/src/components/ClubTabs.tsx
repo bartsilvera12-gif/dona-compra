@@ -64,20 +64,21 @@ export default function ClubTabs() {
       ) : (
         <div className="max-w-[460px]">
           <h2>Acceso de miembros</h2>
-          <Card className="mt-6 border-terracotta/30 bg-terracotta/8">
-            <h3 className="mb-2">Todavía no está habilitado</h3>
-            <p className="text-ink">
-              El acceso con usuario y clave llega junto con las cuentas de la
-              plataforma. Mientras tanto, si ya sos miembro y necesitás algo,
-              escribinos y te atendemos directo.
-            </p>
-          </Card>
+          <p className="mt-4 text-ink">
+            Si ya sos miembro, entrá con el correo y la clave que te dimos.
+          </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/contacto"
+              href="/acceso"
               className="inline-block rounded-[var(--radius-button)] bg-navy px-7 py-3.5 text-sm font-medium text-card hover:bg-navy-deep hover:text-card"
             >
-              Escribirnos
+              Entrar
+            </Link>
+            <Link
+              href="/contacto"
+              className="inline-block rounded-[var(--radius-button)] border border-navy px-7 py-3.5 text-sm font-medium text-navy"
+            >
+              No tengo acceso
             </Link>
           </div>
           <p className="mt-5 text-xs text-muted">
