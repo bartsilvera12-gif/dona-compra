@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ClubTabs from "@/components/ClubTabs";
-import { CTA, Hero, Section } from "@/components/ui";
+import { CTA, Section } from "@/components/ui";
+import { PortadaFoto } from "@/components/bloques";
 
 export const metadata: Metadata = {
   title: "El Club Doña Compra",
@@ -11,10 +12,14 @@ export const metadata: Metadata = {
 export default function ClubPage() {
   return (
     <main>
-      <Hero
-        eyebrow="El Club Doña Compra"
+      <PortadaFoto
+        rotulo="El Club Doña Compra"
         titulo="El Club Doña Compra"
         bajada="El espacio de los comerciantes que ya compran con nosotros: ventajas, ofertas reservadas y acompañamiento. Se accede por historial de compras, no por cuota."
+        foto={{
+          src: "/assets/rubro-cosmeticos.jpg",
+          alt: "Comercio con mercadería repuesta",
+        }}
       />
 
       <Section tono="tarjeta">

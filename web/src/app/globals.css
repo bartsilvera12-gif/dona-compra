@@ -125,6 +125,62 @@
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Revelado al entrar en pantalla.
+
+   El contenido arranca OCULTO solo si el JavaScript llegó a marcar el
+   documento (`js` en <html>). Sin JavaScript nunca se oculta, así que el
+   texto siempre se lee: una animación no debe poder esconder contenido.
+   --------------------------------------------------------------------------- */
+.js [data-revelar] {
+  opacity: 0;
+}
+
+.js [data-revelar][data-visible="1"] {
+  animation: dcEntrar 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* El retardo escalona los hijos de una misma fila. */
+.js [data-revelar][data-visible="1"][data-retardo="1"] { animation-delay: 0.09s; }
+.js [data-revelar][data-visible="1"][data-retardo="2"] { animation-delay: 0.18s; }
+.js [data-revelar][data-visible="1"][data-retardo="3"] { animation-delay: 0.27s; }
+.js [data-revelar][data-visible="1"][data-retardo="4"] { animation-delay: 0.36s; }
+.js [data-revelar][data-visible="1"][data-retardo="5"] { animation-delay: 0.45s; }
+
+@keyframes dcEntrar {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Acercamiento lento de las fotos de portada. */
+.js [data-acercar] {
+  animation: dcAcercar 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes dcAcercar {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+
+/* Con movimiento reducido no hay animación: el contenido aparece y ya. */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-revelar],
+  .js [data-revelar][data-visible="1"] {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+  .js [data-acercar] {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -119,6 +119,27 @@ npm run db:seed
 Carga las publicaciones de ejemplo. Es idempotente: reconoce por `slug`, así
 que correrlo dos veces no duplica nada.
 
+### Composición y movimiento
+
+Los bloques visuales viven en `src/components/bloques.tsx`: portada con
+collage, portada con foto, paso numerado con imagen, cifra destacada, fila
+alterna y mosaico de rubros. Las páginas se arman con ellos en vez de repetir
+rejillas de tarjetas iguales.
+
+`Revelar` anima la entrada de un bloque cuando aparece en pantalla. Tres
+cuidados que conviene no perder:
+
+- **Sin JavaScript nada se oculta.** El CSS solo esconde si `<html>` tiene la
+  clase `js`, que agrega un script en línea. Una animación no puede dejar
+  contenido invisible.
+- **Red de seguridad de 10 segundos**: si el observador no llegara a
+  dispararse, el bloque se muestra igual.
+- **`prefers-reduced-motion`** desactiva la animación y el contenido aparece
+  directamente.
+
+El estado del revelado vive en un atributo del DOM, no en React: así no hay
+un render por cada elemento que entra mientras se hace scroll.
+
 ### Cuentas y panel
 
 No hay registro público a propósito. La primera cuenta se crea por consola:

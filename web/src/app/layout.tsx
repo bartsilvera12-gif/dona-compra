@@ -71,6 +71,16 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es">
+      <head>
+        {/* Marca el documento antes del primer pintado. El CSS solo oculta
+            para animar si esta clase está, así que sin JavaScript nada queda
+            escondido. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('js')`,
+          }}
+        />
+      </head>
       <body
         className={`${montserrat.variable} ${inter.variable} flex min-h-screen flex-col antialiased`}
       >
