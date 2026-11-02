@@ -19,7 +19,9 @@ Vercel a `web/`.
 | El Club | Portada; el acceso de miembros espera a las cuentas |
 | Jurídica | Portada, con las 4 secciones apiladas e índice |
 | Preguntas frecuentes | Portada, con datos estructurados FAQPage |
-| Feed de anuncios con base de datos | Pendiente |
+| Feed de anuncios | Listo: filtros por URL, paginado, detalle por publicación |
+| Me gusta y compartir | Listos (los me gusta necesitan la base conectada) |
+| Carga y moderación de publicaciones | Pendiente: hoy se cargan por semilla o a mano |
 | Cuentas, roles y back-office | Pendiente |
 
 ## Arrancar
@@ -104,7 +106,31 @@ npm run db:generate
 npm run db:migrate
 ```
 
-Dos tablas: `mensajes` (consultas del formulario) y `suscriptores` (boletín).
+Cuatro tablas: `mensajes` (consultas del formulario), `suscriptores`
+(boletín), `publicaciones` (anuncios) y `reacciones` (me gusta).
+
+```bash
+npm run db:seed
+```
+
+Carga las publicaciones de ejemplo. Es idempotente: reconoce por `slug`, así
+que correrlo dos veces no duplica nada.
+
+### Anuncios
+
+- Los filtros viven en la URL (`/anuncios?categoria=Ofertas&orden=precio-desc`),
+  no en estado de cliente. Son compartibles, el buscador los puede recorrer y
+  funcionan sin JavaScript: el formulario es un `GET` normal.
+- Cada publicación tiene su propia página, `/anuncios/<slug>`, con canonical,
+  Open Graph y datos estructurados. Un lightbox no habría sido indexable.
+- **Moderación previa:** solo se muestra lo que está en estado `publicada`.
+  Una fila nueva nace en `pendiente` y no aparece en el feed.
+- **Videos:** las tarjetas están maquetadas en 9:16. El campo `video_url`
+  espera la URL del reproductor externo (Cloudflare Stream, Vimeo o YouTube
+  no listado); sin ella se muestra la portada y un aviso.
+- **Me gusta:** se identifican por una cookie opaca de visitante, no por
+  cuenta. No dice quién es nadie, solo evita el doble conteo, así que no
+  requiere consentimiento de cookies.
 
 ## Privacidad y anti-spam
 

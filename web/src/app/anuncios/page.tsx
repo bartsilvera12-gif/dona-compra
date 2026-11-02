@@ -1,51 +1,106 @@
 import type { Metadata } from "next";
 import BoletinForm from "@/components/BoletinForm";
+import FiltrosAnuncios from "@/components/anuncios/Filtros";
+import Paginacion from "@/components/anuncios/Paginacion";
+import Tarjeta from "@/components/anuncios/Tarjeta";
+import { Aviso, Card, Hero, Section } from "@/components/ui";
+import {
+  listarPublicaciones,
+  ORDENES,
+  type Filtros,
+  type Orden,
+} from "@/db/anuncios";
 
 export const metadata: Metadata = {
   title: "Anuncios",
   description:
-    "Novedades, ofertas y publicaciones de la comunidad Doña Compra en fotos y videos.",
+    "Novedades, ofertas de mayoristas socios y publicaciones de la comunidad Doña Compra, en fotos y videos cortos.",
 };
 
-export default function AnunciosPage() {
+type Props = {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+const uno = (v: string | string[] | undefined) =>
+  (Array.isArray(v) ? v[0] : v)?.trim() || undefined;
+
+export default async function AnunciosPage({ searchParams }: Props) {
+  const sp = await searchParams;
+
+  const ordenCrudo = uno(sp.orden);
+  const filtros: Filtros = {
+    categoria: uno(sp.categoria),
+    ciudad: uno(sp.ciudad),
+    tipo: uno(sp.tipo),
+    precioMax: Number(uno(sp.precioMax)) || undefined,
+    orden:
+      ordenCrudo && ordenCrudo in ORDENES ? (ordenCrudo as Orden) : "recientes",
+    pagina: Number(uno(sp.pagina)) || 1,
+  };
+
+  const { items, total, pagina, paginas, ciudades, modoDemo } =
+    await listarPublicaciones(filtros);
+
   return (
     <main>
-      <section className="border-b border-navy/12">
-        <div className="mx-auto max-w-[1280px] px-[clamp(18px,4vw,40px)] py-[clamp(40px,6vw,86px)]">
-          <span className="text-[11px] uppercase tracking-[0.2em] text-muted">
-            Anuncios
-          </span>
-          <h1 className="mt-4">Lo que pasa en la comunidad.</h1>
-          <p className="mt-4 max-w-[56ch] text-[clamp(16px,1.8vw,19px)] text-ink">
-            Novedades, ofertas de mayoristas socios y publicaciones de
-            comerciantes del Club, en fotos y videos cortos.
-          </p>
-        </div>
-      </section>
+      <Hero
+        eyebrow="Anuncios"
+        titulo="Lo que pasa en la comunidad."
+        bajada="Novedades, ofertas de mayoristas socios y publicaciones de comerciantes del Club, en fotos y videos cortos."
+      />
 
-      <section className="bg-card">
-        <div className="mx-auto max-w-[1280px] px-[clamp(18px,4vw,40px)] py-[clamp(40px,6vw,86px)]">
-          <div className="max-w-[70ch] rounded-[var(--radius-card)] border border-terracotta/30 bg-terracotta/8 p-[clamp(16px,2.2vw,24px)]">
-            <h3 className="mb-2">El feed llega con la base de datos</h3>
+      <Section tono="tarjeta">
+        {modoDemo && (
+          <div className="mb-8">
+            <Aviso titulo="Contenido de ejemplo">
+              La base de datos todavía no está conectada, así que lo que se ve
+              abajo son publicaciones de muestra. Con{" "}
+              <code className="rounded bg-navy/8 px-1.5 py-0.5 text-[14px]">
+                DATABASE_URL
+              </code>{" "}
+              configurada, el feed pasa a mostrar las publicaciones reales.
+            </Aviso>
+          </div>
+        )}
+
+        <FiltrosAnuncios filtros={filtros} ciudades={ciudades} total={total} />
+
+        {items.length === 0 ? (
+          <Card className="py-12 text-center">
+            <h3 className="mb-2">No hay publicaciones con esos filtros</h3>
             <p className="text-ink">
-              Las publicaciones, la carga de fotos y videos y la moderación
-              previa son el siguiente paso. El boletín de acá abajo ya funciona
-              de verdad.
+              Probá ampliando la ciudad o subiendo el precio máximo.
             </p>
+          </Card>
+        ) : (
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(min(290px,100%),1fr))] gap-[clamp(16px,2vw,24px)]">
+            {items.map((p) => (
+              <Tarjeta key={p.id} p={p} />
+            ))}
           </div>
+        )}
 
-          <div className="mt-8 max-w-[620px] rounded-[var(--radius-card)] border border-navy/12 bg-card p-[clamp(16px,2.2vw,24px)]">
-            <h2 className="mb-2 text-[clamp(20px,2.6vw,26px)]">
-              Boletín Doña Compra
-            </h2>
-            <p className="mb-5 text-ink">
-              Ofertas y novedades en tu correo. Te mandamos un correo para
-              confirmar, y te podés dar de baja cuando quieras.
-            </p>
-            <BoletinForm />
-          </div>
-        </div>
-      </section>
+        <Paginacion filtros={filtros} pagina={pagina} paginas={paginas} />
+
+        <p className="mt-8 max-w-[76ch] text-xs leading-relaxed text-muted">
+          Las publicaciones pasan por moderación antes de aparecer. Los
+          contenidos de mayoristas y comerciantes son responsabilidad de quien
+          los publica.
+        </p>
+      </Section>
+
+      <Section>
+        <Card className="max-w-[620px]">
+          <h2 className="mb-2 text-[clamp(20px,2.6vw,26px)]">
+            Boletín Doña Compra
+          </h2>
+          <p className="mb-5 text-ink">
+            Ofertas y novedades en tu correo. Te mandamos un correo para
+            confirmar, y te podés dar de baja cuando quieras.
+          </p>
+          <BoletinForm />
+        </Card>
+      </Section>
     </main>
   );
 }

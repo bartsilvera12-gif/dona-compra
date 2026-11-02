@@ -43,76 +43,86 @@
   --radius-button: 8px;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* Los estilos base van en @layer base a proposito.
+   Tailwind v4 emite sus utilidades dentro de capas, y una regla SIN capa le
+   gana a cualquier regla con capa sin importar la especificidad. Con estas
+   reglas sueltas, `a { color }` pisaba a text-card y los enlaces claros sobre
+   fondo oscuro salian azul sobre azul. Dentro de la capa base, las utilidades
+   vuelven a mandar. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  margin: 0;
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  background: linear-gradient(
-    135deg,
-    var(--color-grad-start) 0%,
-    var(--color-grad-mid) 52%,
-    var(--color-grad-end) 100%
-  );
-  background-attachment: fixed;
-  min-height: 100vh;
-}
+  body {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    /* Degradado pastel del manual: azul arriba a la izquierda, durazno abajo
+       a la derecha. */
+    background: linear-gradient(
+      135deg,
+      var(--color-grad-start) 0%,
+      var(--color-grad-mid) 52%,
+      var(--color-grad-end) 100%
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-heading);
-  color: var(--color-navy);
-  line-height: 1.2;
-  margin: 0;
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    color: var(--color-navy);
+    line-height: 1.2;
+    margin: 0;
+  }
 
-/* El manual fija 32/24/20px; acá escalan pero sin bajar de esos valores. */
-h1 {
-  font-size: clamp(32px, 5.4vw, 64px);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-h2 {
-  font-size: clamp(24px, 3.2vw, 34px);
-  font-weight: 700;
-}
-h3 {
-  font-size: 20px;
-  font-weight: 600;
-}
+  /* El manual fija 32/24/20px; aca escalan pero sin bajar de esos valores. */
+  h1 {
+    font-size: clamp(32px, 5.4vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-size: clamp(24px, 3.2vw, 34px);
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+  }
 
-a {
-  color: var(--color-navy);
-  text-decoration: none;
-}
-a:hover {
-  color: var(--color-terracotta);
-}
+  a {
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-terracotta-ink);
+  }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
-  border-radius: var(--radius-button);
-}
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    border-radius: var(--radius-button);
+  }
 
-::selection {
-  background: var(--color-terracotta);
-  color: var(--color-card);
-}
+  ::selection {
+    background: var(--color-terracotta);
+    color: var(--color-card);
+  }
 
-:focus-visible {
-  outline: 2px solid var(--color-terracotta);
-  outline-offset: 2px;
+  :focus-visible {
+    outline: 2px solid var(--color-terracotta-ink);
+    outline-offset: 2px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
