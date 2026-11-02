@@ -9,7 +9,8 @@
     "lint": "eslint",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "check": "node --env-file=.env.local scripts/check-env.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",

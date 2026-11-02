@@ -38,6 +38,16 @@ npm run dev
 > código: con `npm run build && npm start` funciona normalmente. En un
 > navegador externo, `npm run dev` anda bien.
 
+## Verificar la configuración
+
+```bash
+npm run check
+```
+
+Dice si la base conecta, en qué región está, si faltan tablas, si la API key
+de correo sirve y si el remitente pertenece a un dominio verificado. No
+imprime ningún secreto, así que se puede correr y pegar la salida sin riesgo.
+
 ## Variables de entorno
 
 Ninguna es obligatoria para que el sitio levante. Sin base de datos y sin
