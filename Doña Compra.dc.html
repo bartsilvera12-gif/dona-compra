@@ -169,6 +169,89 @@
   .dcx-legal h3 { font-weight: 600; font-size: 20px; margin: 28px 0 8px; }
   .dcx-legal p, .dcx-legal ul { font-size: 16px; line-height: 1.6; color: #4A4A4A; margin: 0 0 12px; max-width: 74ch; }
   .dcx-legal ul { padding-left: 20px; line-height: 1.7; }
+
+  /* ── Paginas de contenido (concepto, comerciantes, mayoristas, club) ── */
+  .dcx-foto { position: relative; overflow: hidden; border-radius: 12px; background: #E3ECF5; }
+  .dcx-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .dcx-portada .dcx-foto { aspect-ratio: 4 / 3; animation: dcReveal 0.8s cubic-bezier(0.2,0.7,0.2,1) 0.15s both; }
+  .dcx-portada .dcx-foto img { animation: dcZoom 1.4s cubic-bezier(0.2,0.7,0.2,1) both; }
+  .dcx-acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .dcx-btn { display: inline-block; background: #1A365D; color: #FCFCFC; border-radius: 8px; padding: 14px 26px; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; }
+  .dcx-btn:hover { background: #142C4D; color: #FCFCFC; }
+  .dcx-btn-2 { display: inline-block; border: 1px solid #1A365D; color: #1A365D; border-radius: 8px; padding: 14px 26px; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; }
+  .dcx-btn-2:hover { border-color: #C25E38; color: #AE5432; }
+  /* Collage de cuatro fotos a distinta altura, con el titulo montado encima. */
+  .dcx-collage { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(8px,1.4vw,16px); margin-top: 28px; }
+  @media (min-width: 640px) { .dcx-collage { grid-template-columns: repeat(4, 1fr); } }
+  .dcx-collage > div { aspect-ratio: 4 / 5; animation: dcReveal 0.8s cubic-bezier(0.2,0.7,0.2,1) both; }
+  .dcx-collage > div:nth-child(1) { animation-delay: 0.08s; }
+  .dcx-collage > div:nth-child(2) { animation-delay: 0.16s; }
+  .dcx-collage > div:nth-child(3) { animation-delay: 0.24s; }
+  .dcx-collage > div:nth-child(4) { animation-delay: 0.32s; }
+  @media (min-width: 640px) {
+    .dcx-collage > div:nth-child(1) { margin-top: 40px; }
+    .dcx-collage > div:nth-child(3) { margin-top: 56px; }
+    .dcx-collage > div:nth-child(4) { margin-top: 16px; }
+  }
+  .dcx-collage img { animation: dcZoom 1.4s cubic-bezier(0.2,0.7,0.2,1) both; }
+  .dcx-sobre { margin-top: clamp(24px,3.4vw,40px) !important; max-width: 20ch; }
+  .dcx-acento { color: #AE5432; }
+  .dcx-h2 { font-weight: 700; font-size: clamp(24px,3.2vw,34px); margin: 16px 0 0; max-width: 22ch; }
+  .dcx-cifras { display: grid; gap: clamp(24px,3vw,40px); }
+  @media (min-width: 640px) { .dcx-cifras { grid-template-columns: repeat(3, 1fr); } }
+  .dcx-cifra { border-left: 2px solid #C25E38; padding-left: 20px; }
+  .dcx-cifra b { display: block; font-family: Montserrat, sans-serif; font-weight: 700; font-size: clamp(34px,5vw,56px); line-height: 1; color: #1A365D; }
+  .dcx-cifra b small { margin-left: 4px; font-size: 0.45em; font-weight: 600; color: #AE5432; }
+  .dcx-cifra span { display: block; margin-top: 12px; max-width: 28ch; font-size: 14.5px; line-height: 1.6; color: #4A4A4A; }
+  .dcx-rejilla { display: grid; gap: 16px; margin-top: 36px; }
+  @media (min-width: 640px) { .dcx-rejilla { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .dcx-rejilla.dcx-3 { grid-template-columns: repeat(3, 1fr); } .dcx-rejilla.dcx-4 { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 640px) { .dcx-rejilla.dcx-3p { grid-template-columns: repeat(3, 1fr); } }
+  .dcx-tarjeta { height: 100%; background: #FCFCFC; border: 1px solid rgba(26,54,93,0.12); border-radius: 12px; padding: clamp(18px,2.4vw,26px); }
+  .dcx-tarjeta h3 { font-weight: 600; font-size: 19px; margin: 0 0 8px; }
+  .dcx-tarjeta p { font-size: 16px; line-height: 1.55; color: #4A4A4A; margin: 0; }
+  .dcx-tarjeta i { display: block; font-style: normal; font-family: ui-monospace, monospace; font-size: 12px; color: #AE5432; margin-bottom: 14px; }
+  /* Paso numerado con su foto. */
+  .dcx-paso { display: flex; flex-direction: column; height: 100%; overflow: hidden; background: #FCFCFC; border: 1px solid rgba(26,54,93,0.12); border-radius: 12px; transition: box-shadow 0.3s ease; }
+  .dcx-paso:hover { box-shadow: 0 14px 34px -18px rgba(26,54,93,0.45); }
+  .dcx-paso .dcx-foto { aspect-ratio: 5 / 3; border-radius: 0; }
+  .dcx-paso .dcx-foto img { transition: transform 0.5s ease; }
+  .dcx-paso:hover .dcx-foto img { transform: scale(1.05); }
+  .dcx-paso .dcx-foto em { position: absolute; left: 0; bottom: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: #FCFCFC; border-top-right-radius: 12px; font-style: normal; font-family: ui-monospace, monospace; font-weight: 600; font-size: 17px; color: #AE5432; }
+  .dcx-paso > div:last-child { padding: clamp(16px,2vw,22px); }
+  .dcx-paso h3 { font-weight: 600; font-size: 19px; margin: 0 0 8px; }
+  .dcx-paso p { font-size: 15.5px; line-height: 1.55; color: #4A4A4A; margin: 0; }
+  /* Fila de imagen y texto; con dcx-inv la imagen va a la derecha. */
+  .dcx-fila { display: grid; gap: clamp(24px,4vw,56px); align-items: center; }
+  @media (min-width: 1024px) { .dcx-fila { grid-template-columns: 1fr 1fr; } .dcx-fila.dcx-inv > .dcx-foto { order: 2; } }
+  .dcx-fila > .dcx-foto { aspect-ratio: 4 / 3; }
+  .dcx-fila p { font-size: 16.5px; line-height: 1.6; color: #4A4A4A; margin: 16px 0 0; max-width: 52ch; }
+  /* Mosaico de rubros: el degradado garantiza el contraste del nombre. */
+  .dcx-mosaico { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(8px,1.2vw,14px); margin-top: 36px; }
+  @media (min-width: 640px) { .dcx-mosaico { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1024px) { .dcx-mosaico { grid-template-columns: repeat(4, 1fr); } }
+  .dcx-mosaico > div { aspect-ratio: 1; }
+  .dcx-mosaico img { transition: transform 0.5s ease; }
+  .dcx-mosaico > div:hover img { transform: scale(1.05); }
+  .dcx-mosaico > div::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(18,40,74,0.85), rgba(18,40,74,0.2) 45%, transparent); }
+  .dcx-mosaico span { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; padding: 12px; font-family: Montserrat, sans-serif; font-weight: 600; font-size: 15px; color: #FCFCFC; }
+  .dcx-nota { font-size: 12.5px; line-height: 1.6; color: #6B6B6B; margin: 24px 0 0; max-width: 74ch; }
+  .dcx-enlace { display: inline-block; margin-top: 28px; color: #AE5432; font-weight: 500; }
+  .dcx-si-no { display: grid; gap: 16px; margin-top: 32px; }
+  @media (min-width: 1024px) { .dcx-si-no { grid-template-columns: 1fr 1fr; } }
+  .dcx-si-no ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; font-size: 16px; line-height: 1.55; color: #4A4A4A; }
+  .dcx-si-no li { display: flex; gap: 10px; }
+  .dcx-si-no li::before { flex: none; font-weight: 700; }
+  .dcx-si li::before { content: "\2713"; color: #0E8A63; }
+  .dcx-no li::before { content: "\2715"; color: #C0392B; }
+  /* Ventajas del Club: las dos que mas importan ocupan el doble y llevan foto. */
+  .dcx-ventajas { display: grid; gap: 16px; margin-top: 32px; }
+  @media (min-width: 640px) { .dcx-ventajas { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .dcx-ventajas { grid-template-columns: repeat(4, 1fr); } .dcx-ventajas > .dcx-grande { grid-column: span 2; } }
+  .dcx-grande { display: grid; overflow: hidden; padding: 0 !important; }
+  @media (min-width: 640px) { .dcx-grande { grid-template-columns: 1fr 1fr; } }
+  .dcx-grande .dcx-foto { min-height: 200px; border-radius: 0; }
+  .dcx-grande > div:last-child { padding: clamp(18px,2.4vw,26px); align-self: center; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </helmet>
@@ -1248,70 +1331,87 @@
 
   <sc-if value="{{ atConcepto }}">
   <div>
-    <section style="border-bottom:1px solid rgba(26,54,93,0.12)">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B6B">El Concepto</span>
-        <h1 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(32px,5.6vw,68px);line-height:1.2;letter-spacing:-0.01em;color:#1A365D;margin:16px 0 0">Doña paga hoy. Vos pagás después.</h1>
-        <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.5;color:#4A4A4A;margin:16px 0 0;max-width:56ch">Doña Compra es un servicio de compra de mercadería para comerciantes. Vos elegís qué comprar y a qué proveedor. Nosotros lo pagamos al contado y vos nos pagás en hasta 30 días, según las condiciones acordadas.</p>
+    <section style="overflow:hidden;border-bottom:1px solid rgba(26,54,93,0.12)">
+      <div class="dcx-wrap" style="padding-top:clamp(28px,4vw,48px);padding-bottom:clamp(36px,5vw,64px)">
+        <div class="dcx-entra"><span class="dcx-rotulo">El Concepto</span></div>
+        <div class="dcx-collage">
+          <div class="dcx-foto"><img src="assets/hero-1-640.jpg" alt="Despensa de barrio con las góndolas surtidas" loading="lazy" /></div>
+          <div class="dcx-foto"><img src="assets/hero-2-640.jpg" alt="Comerciante reponiendo una góndola" loading="lazy" /></div>
+          <div class="dcx-foto"><img src="assets/hero-4-640.jpg" alt="Pasillo de un comercio con stock repuesto" loading="lazy" /></div>
+          <div class="dcx-foto"><img src="assets/hero-3-640.jpg" alt="Caja con mercadería lista para retirar" loading="lazy" /></div>
+        </div>
+        <h1 class="dcx-sobre dcx-entra" style="font-weight:700;font-size:clamp(34px,5.4vw,64px);letter-spacing:-0.01em">Doña paga hoy. <span class="dcx-acento">Vos pagás después.</span></h1>
+        <p class="dcx-bajada dcx-entra-2" style="max-width:58ch">Doña Compra es un servicio de compra de mercadería para comerciantes. Vos elegís qué comprar y a qué proveedor. Nosotros lo pagamos al contado y vos nos pagás en hasta 30 días, según las condiciones acordadas.</p>
+        <div class="dcx-acciones dcx-entra-2"><a href="#/contacto" class="dcx-btn">Pedir una visita</a><a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" class="dcx-btn-2">Escribir por WhatsApp</a></div>
       </div>
     </section>
 
     <section style="background:#FCFCFC">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#1A365D;margin:0 0 16px">El problema que resuelve</h2>
-        <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0;max-width:62ch">El comerciante de barrio vende bien, pero compra mal. Para reponer stock tiene que pagar al contado, y eso le vacía la caja justo cuando más la necesita. El resultado es conocido: se compra menos de lo que se podría vender, se pierden las temporadas fuertes y el negocio no crece.</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px;margin-top:32px">
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Sin la mercadería que necesitás</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Comprás de a poco porque la caja no da para más, y te quedás sin los talles o los productos que te piden.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Las temporadas se pierden</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Escolar, Día de la Madre, fin de año: son las compras que más rinden y las que más capital exigen de golpe.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">El crédito formal no llega</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Muchos comercios chicos no califican para un crédito bancario, o el trámite tarda más de lo que dura la oportunidad.</p></div>
+      <div class="dcx-wrap">
+        <div class="dcx-fila">
+          <div class="dcx-foto"><img src="assets/hoy-entrega-1400.jpg" alt="Entrega de cajas de mercadería desde una camioneta" loading="lazy" /></div>
+          <div>
+            <span class="dcx-rotulo">El problema</span>
+            <h2 class="dcx-h2">Vende bien, pero compra mal.</h2>
+            <p>El comerciante de barrio vende bien, pero compra mal. Para reponer stock tiene que pagar al contado, y eso le vacía la caja justo cuando más la necesita.</p>
+            <p>El resultado es conocido: se compra menos de lo que se podría vender, se pierden las temporadas fuertes y el negocio no crece.</p>
+          </div>
+        </div>
+        <div class="dcx-rejilla dcx-3">
+          <div class="dcx-tarjeta"><i>01</i><h3>Sin la mercadería que necesitás</h3><p>Comprás de a poco porque la caja no da para más, y te quedás sin los talles o los productos que te piden.</p></div>
+          <div class="dcx-tarjeta"><i>02</i><h3>Las temporadas se pierden</h3><p>Escolar, Día de la Madre, fin de año: son las compras que más rinden y las que más capital exigen de golpe.</p></div>
+          <div class="dcx-tarjeta"><i>03</i><h3>El crédito formal no llega</h3><p>Muchos comercios chicos no califican para un crédito bancario, o el trámite tarda más de lo que dura la oportunidad.</p></div>
         </div>
       </div>
     </section>
 
     <section>
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#1A365D;margin:0 0 16px">Cómo lo resolvemos</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px;margin-top:32px">
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">1 · Elegís vos</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">El producto y el proveedor los elegís vos. Trabajamos con el mayorista que ya conocés, no te imponemos uno.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">2 · Doña paga al contado</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Pagamos la mercadería al proveedor en el momento. Para él es una venta al contado como cualquier otra.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">3 · Retirás con código</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Te damos un código seguro con el que retirás tu mercadería. La compra queda registrada con factura legal.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">4 · Pagás después</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Tenés hasta 30 días desde la factura para pagarnos, según las condiciones que acordamos en la visita.</p></div>
+      <div class="dcx-wrap">
+        <span class="dcx-rotulo">La solución</span>
+        <h2 class="dcx-h2">Cómo lo resolvemos.</h2>
+        <div class="dcx-rejilla dcx-4">
+          <article class="dcx-paso"><div class="dcx-foto"><img src="assets/paso-3.jpg" alt="Lista del pedido escrita en un cuaderno" loading="lazy" /><em aria-hidden="true">1</em></div><div><h3>Elegís vos</h3><p>El producto y el proveedor los elegís vos. Trabajamos con el mayorista que ya conocés, no te imponemos uno.</p></div></article>
+          <article class="dcx-paso"><div class="dcx-foto"><img src="assets/paso-2.jpg" alt="Pago al proveedor en el mostrador" loading="lazy" /><em aria-hidden="true">2</em></div><div><h3>Doña paga al contado</h3><p>Pagamos la mercadería al proveedor en el momento. Para él es una venta al contado como cualquier otra.</p></div></article>
+          <article class="dcx-paso"><div class="dcx-foto"><img src="assets/paso-1.jpg" alt="Entrega de una caja de mercadería" loading="lazy" /><em aria-hidden="true">3</em></div><div><h3>Retirás con código</h3><p>Te damos un código seguro con el que retirás tu mercadería. La compra queda registrada con factura legal.</p></div></article>
+          <article class="dcx-paso"><div class="dcx-foto"><img src="assets/paso-4.jpg" alt="Cuentas del negocio con calculadora y facturas" loading="lazy" /><em aria-hidden="true">4</em></div><div><h3>Pagás después</h3><p>Tenés hasta 30 días desde la factura para pagarnos, según las condiciones que acordamos en la visita.</p></div></article>
         </div>
-        <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0;margin-top:24px"><a href="#/como-funciona" style="color:#C25E38;font-weight:500">Ver el detalle paso a paso &rarr;</a></p>
+        <a href="#/como-funciona" class="dcx-enlace">Ver el detalle paso a paso &rarr;</a>
       </div>
     </section>
 
     <section style="background:#FCFCFC">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#1A365D;margin:0 0 16px">Qué es y qué no es</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin-top:24px">
-          <div style="background:#FCFCFC;border:1px solid rgba(16,185,129,0.35);border-radius:12px;padding:clamp(16px,2.2vw,24px)">
-            <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Qué es</h3>
-            <ul style="margin:0;padding-left:18px;font-size:16px;line-height:1.7;color:#4A4A4A">
+      <div class="dcx-wrap">
+        <span class="dcx-rotulo">Para que quede claro</span>
+        <h2 class="dcx-h2">Qué es y qué no es.</h2>
+        <div class="dcx-si-no">
+          <div class="dcx-tarjeta dcx-si" style="border-color:rgba(16,185,129,0.4)">
+            <h3>Qué es</h3>
+            <ul>
               <li>Un servicio de compra de mercadería con pago diferido.</li>
               <li>Una compra con factura legal a nombre de Doña Compra.</li>
               <li>Un acuerdo evaluado caso por caso, con visita previa al negocio.</li>
             </ul>
           </div>
-          <div style="background:#FCFCFC;border:1px solid rgba(239,68,68,0.35);border-radius:12px;padding:clamp(16px,2.2vw,24px)">
-            <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Qué no es</h3>
-            <ul style="margin:0;padding-left:18px;font-size:16px;line-height:1.7;color:#4A4A4A">
+          <div class="dcx-tarjeta dcx-no" style="border-color:rgba(239,68,68,0.4)">
+            <h3>Qué no es</h3>
+            <ul>
               <li>No es un préstamo de dinero: no te damos efectivo.</li>
               <li>No somos un banco ni una financiera.</li>
               <li>No vendemos mercadería propia: el proveedor lo elegís vos.</li>
             </ul>
           </div>
         </div>
+        <a href="#/preguntas-frecuentes" class="dcx-enlace">Ver las preguntas frecuentes &rarr;</a>
       </div>
     </section>
 
     <section style="background:#1A365D">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(36px,5vw,64px) clamp(18px,4vw,40px);text-align:center">
         <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#FCFCFC;margin:0 0 12px">¿Te sirve para tu negocio?</h2>
-        <p style="font-size:16px;line-height:1.5;color:rgba(252,252,252,0.75);margin:0 auto 24px;max-width:52ch">Coordinamos una visita al local, evaluamos juntos y te explicamos las condiciones sin compromiso.</p>
+        <p style="font-size:16px;line-height:1.5;color:rgba(252,252,252,0.78);margin:0 auto 24px;max-width:52ch">Coordinamos una visita al local, evaluamos juntos y te explicamos las condiciones sin compromiso.</p>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-          <a href="#/contacto" style="display:inline-block;background:#C25E38;color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Pedir una visita</a>
-          <a href="{{ waLink }}" target="_blank" rel="noopener" onClick="{{ onWa }}" style="display:inline-block;border:1px solid rgba(252,252,252,0.5);color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Escribir por WhatsApp</a>
+          <a href="#/contacto" style="display:inline-block;background:#AE5432;color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Pedir una visita</a>
+          <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:inline-block;border:1px solid rgba(252,252,252,0.5);color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Escribir por WhatsApp</a>
         </div>
       </div>
     </section>
@@ -1320,49 +1420,74 @@
 
   <sc-if value="{{ atComerciante }}">
   <div>
-    <section style="border-bottom:1px solid rgba(26,54,93,0.12)">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B6B">Para comerciantes</span>
-        <h1 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(32px,5.6vw,68px);line-height:1.2;letter-spacing:-0.01em;color:#1A365D;margin:16px 0 0">Comprá el stock que necesitás, no el que te permite la caja.</h1>
-        <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.5;color:#4A4A4A;margin:16px 0 0;max-width:56ch">Si tenés un negocio en Gran Asunción y comprás mercadería para revender, Doña Compra te permite reponer hoy y pagar después de vender.</p>
+    <section class="dcx-portada">
+      <div class="dcx-wrap">
+        <div class="dcx-entra">
+          <span class="dcx-rotulo">Para comerciantes</span>
+          <h1>Comprá el stock que necesitás, no el que te permite la caja.</h1>
+          <p class="dcx-bajada">Si tenés un negocio en Gran Asunción y comprás mercadería para revender, Doña Compra te permite reponer hoy y pagar después de vender.</p>
+          <div class="dcx-acciones"><a href="#/contacto" class="dcx-btn">Pedir una visita</a><a href="#/preguntas-frecuentes" class="dcx-btn-2">Preguntas frecuentes</a></div>
+        </div>
+        <div class="dcx-foto"><img src="assets/hoy-entrega-1400.jpg" alt="Entrega de cajas de mercadería desde una camioneta" /></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="dcx-wrap">
+        <div class="dcx-cifras">
+          <div class="dcx-cifra"><b>100<small>mil Gs.</small></b><span>Pedido mínimo en nivel Hierro, expresado en precio de compra.</span></div>
+          <div class="dcx-cifra"><b>7<small>niveles</small></b><span>El tope de compra sube a medida que cumplís.</span></div>
+          <div class="dcx-cifra"><b>0</b><span>Multas e intereses por atraso. Si hay un problema, se conversa.</span></div>
+        </div>
       </div>
     </section>
 
     <section style="background:#FCFCFC">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#1A365D;margin:0 0 16px">Lo que cambia en tu negocio</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px;margin-top:32px">
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Comprás la cantidad correcta</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Podés traer la curva de talles completa o el surtido entero, en vez de recortarlo por falta de efectivo.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">La caja sigue trabajando</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">El dinero del día queda en el negocio para gastos, sueldos y servicios, no inmovilizado en el depósito.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Llegás a las temporadas</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Escolar, Día de la Madre y fin de año se compran con tiempo y se pagan con lo que esas mismas ventas generan.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Tu proveedor de siempre</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">No cambiás de mayorista ni de condiciones comerciales. Seguís comprando donde ya tenés confianza.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Todo con factura</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Cada compra se documenta con factura legal, lo que te ordena el costo de mercadería del mes.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Crecés de nivel</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">A medida que cumplís, subís de nivel y tu tope de compra aumenta. <a href="#/niveles-y-tarifas" style="color:#C25E38">Ver niveles</a>.</p></div>
+      <div class="dcx-wrap">
+        <span class="dcx-rotulo">Lo que cambia</span>
+        <h2 class="dcx-h2">Qué pasa en tu negocio cuando no pagás al contado.</h2>
+        <div class="dcx-rejilla dcx-3">
+          <div class="dcx-tarjeta"><i>01</i><h3>Comprás la cantidad correcta</h3><p>Podés traer la curva de talles completa o el surtido entero, en vez de recortarlo por falta de efectivo.</p></div>
+          <div class="dcx-tarjeta"><i>02</i><h3>La caja sigue trabajando</h3><p>El dinero del día queda en el negocio para gastos, sueldos y servicios, no inmovilizado en el depósito.</p></div>
+          <div class="dcx-tarjeta"><i>03</i><h3>Llegás a las temporadas</h3><p>Escolar, Día de la Madre y fin de año se compran con tiempo y se pagan con lo que esas mismas ventas generan.</p></div>
+          <div class="dcx-tarjeta"><i>04</i><h3>Tu proveedor de siempre</h3><p>No cambiás de mayorista ni de condiciones comerciales. Seguís comprando donde ya tenés confianza.</p></div>
+          <div class="dcx-tarjeta"><i>05</i><h3>Todo con factura</h3><p>Cada compra se documenta con factura legal, lo que te ordena el costo de mercadería del mes.</p></div>
+          <div class="dcx-tarjeta"><i>06</i><h3>Crecés de nivel</h3><p>A medida que cumplís, subís de nivel y tu tope de compra aumenta. <a href="#/niveles-y-tarifas" style="color:#AE5432">Ver niveles</a>.</p></div>
         </div>
       </div>
     </section>
 
     <section>
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#1A365D;margin:0 0 16px">Qué necesitás para empezar</h2>
-        <div style="display:grid;gap:12px;margin-top:24px;max-width:70ch">
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px);display:flex;gap:16px;align-items:flex-start">
-            <span style="flex:none;width:34px;height:34px;border-radius:50%;background:#1A365D;color:#FCFCFC;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px">1</span>
-            <div><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Un negocio en funcionamiento</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Local, puesto o emprendimiento que ya esté vendiendo en Gran Asunción.</p></div>
-          </div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px);display:flex;gap:16px;align-items:flex-start">
-            <span style="flex:none;width:34px;height:34px;border-radius:50%;background:#1A365D;color:#FCFCFC;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px">2</span>
-            <div><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Documento de identidad</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Cédula vigente de la persona que va a quedar como responsable de la compra.</p></div>
-          </div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px);display:flex;gap:16px;align-items:flex-start">
-            <span style="flex:none;width:34px;height:34px;border-radius:50%;background:#1A365D;color:#FCFCFC;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px">3</span>
-            <div><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Una visita al local</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Pasamos por el negocio, conversamos y definimos tu nivel inicial y tu tope de compra.</p></div>
-          </div>
+      <div class="dcx-wrap">
+        <span class="dcx-rotulo">Para empezar</span>
+        <h2 class="dcx-h2">Tres cosas y una visita.</h2>
+        <div class="dcx-rejilla dcx-3p">
+          <article class="dcx-paso"><div class="dcx-foto"><img src="assets/hero-1-640.jpg" alt="Despensa de barrio con las góndolas surtidas" loading="lazy" /><em aria-hidden="true">1</em></div><div><h3>Un negocio en funcionamiento</h3><p>Local, puesto o emprendimiento que ya esté vendiendo en Gran Asunción.</p></div></article>
+          <article class="dcx-paso"><div class="dcx-foto"><img src="assets/paso-3.jpg" alt="Persona completando datos en un cuaderno" loading="lazy" /><em aria-hidden="true">2</em></div><div><h3>Documento de identidad</h3><p>Cédula vigente de la persona que va a quedar como responsable de la compra.</p></div></article>
+          <article class="dcx-paso"><div class="dcx-foto"><img src="assets/rubro-despensas.jpg" alt="Góndolas de una despensa" loading="lazy" /><em aria-hidden="true">3</em></div><div><h3>Una visita al local</h3><p>Pasamos por el negocio, conversamos y definimos tu nivel inicial y tu tope de compra.</p></div></article>
         </div>
-        <p style="font-size:12px;line-height:1.5;color:#6B6B6B;margin:20px 0 0;max-width:70ch">Toda solicitud queda sujeta a evaluación previa. El nivel inicial, el tope de compra y las condiciones de pago se definen en la visita y constan en el acuerdo firmado.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
-          <a href="#/contacto" style="display:inline-block;background:#1A365D;color:#FCFCFC;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;letter-spacing:0.04em">Pedir una visita</a>
-          <a href="#/preguntas-frecuentes" style="display:inline-block;border:1px solid #1A365D;color:#1A365D;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;letter-spacing:0.04em">Ver preguntas frecuentes</a>
+        <p class="dcx-nota">Toda solicitud queda sujeta a evaluación previa. El nivel inicial, el tope de compra y las condiciones de pago se definen en la visita y constan en el acuerdo firmado.</p>
+      </div>
+    </section>
+
+    <section style="background:#FCFCFC">
+      <div class="dcx-wrap">
+        <span class="dcx-rotulo">Rubros</span>
+        <h2 class="dcx-h2">¿Tu rubro está acá?</h2>
+        <p style="font-size:16.5px;line-height:1.6;color:#4A4A4A;margin:16px 0 0;max-width:56ch">Estos son los que más trabajan con nosotros. Si el tuyo no está pero vendés al público y reponés con un mayorista, escribinos igual.</p>
+        <div class="dcx-mosaico">
+          <div class="dcx-foto"><img src="assets/rubro-ropa.jpg" alt="" loading="lazy" /><span>Ropa</span></div>
+          <div class="dcx-foto"><img src="assets/rubro-calzado.jpg" alt="" loading="lazy" /><span>Calzado</span></div>
+          <div class="dcx-foto"><img src="assets/rubro-bijouterie.jpg" alt="" loading="lazy" /><span>Bijouterie</span></div>
+          <div class="dcx-foto"><img src="assets/rubro-cosmeticos.jpg" alt="" loading="lazy" /><span>Cosméticos</span></div>
+          <div class="dcx-foto"><img src="assets/rubro-perfumes.jpg" alt="" loading="lazy" /><span>Perfumes</span></div>
+          <div class="dcx-foto"><img src="assets/rubro-peluquerias.jpg" alt="" loading="lazy" /><span>Peluquerías</span></div>
+          <div class="dcx-foto"><img src="assets/rubro-regaleria.jpg" alt="" loading="lazy" /><span>Regalería</span></div>
+          <div class="dcx-foto"><img src="assets/rubro-libreria.jpg" alt="" loading="lazy" /><span>Librería y útiles</span></div>
+          <div class="dcx-foto"><img src="assets/rubro-revendedoras.jpg" alt="" loading="lazy" /><span>Revendedoras</span></div>
+          <div class="dcx-foto"><img src="assets/rubro-despensas.jpg" alt="" loading="lazy" /><span>Despensas</span></div>
+          <div class="dcx-foto"><img src="assets/rubro-comedores.jpg" alt="" loading="lazy" /><span>Comedores</span></div>
+          <div class="dcx-foto"><img src="assets/rubro-restaurantes.jpg" alt="" loading="lazy" /><span>Restaurantes</span></div>
         </div>
       </div>
     </section>
@@ -1370,10 +1495,10 @@
     <section style="background:#1A365D">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(36px,5vw,64px) clamp(18px,4vw,40px);text-align:center">
         <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#FCFCFC;margin:0 0 12px">Empezá con una visita</h2>
-        <p style="font-size:16px;line-height:1.5;color:rgba(252,252,252,0.75);margin:0 auto 24px;max-width:52ch">Sin costo y sin compromiso. Conversamos en tu local y te explicamos las condiciones.</p>
+        <p style="font-size:16px;line-height:1.5;color:rgba(252,252,252,0.78);margin:0 auto 24px;max-width:52ch">Sin costo y sin compromiso. Conversamos en tu local y te explicamos las condiciones.</p>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-          <a href="#/contacto" style="display:inline-block;background:#C25E38;color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Pedir una visita</a>
-          <a href="{{ waLink }}" target="_blank" rel="noopener" onClick="{{ onWa }}" style="display:inline-block;border:1px solid rgba(252,252,252,0.5);color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Escribir por WhatsApp</a>
+          <a href="#/contacto" style="display:inline-block;background:#AE5432;color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Pedir una visita</a>
+          <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:inline-block;border:1px solid rgba(252,252,252,0.5);color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Escribir por WhatsApp</a>
         </div>
       </div>
     </section>
@@ -1382,39 +1507,66 @@
 
   <sc-if value="{{ atMayoristas }}">
   <div>
-    <section style="border-bottom:1px solid rgba(26,54,93,0.12)">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B6B">Para mayoristas</span>
-        <h1 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(32px,5.6vw,68px);line-height:1.2;letter-spacing:-0.01em;color:#1A365D;margin:16px 0 0">Vendé más, cobrá al contado, sin riesgo de cobranza.</h1>
-        <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.5;color:#4A4A4A;margin:16px 0 0;max-width:56ch">Si sos mayorista o distribuidor, Doña Compra te paga en el momento la mercadería que tus clientes comerciantes necesitan. El riesgo del pago diferido lo asumimos nosotros.</p>
+    <section class="dcx-portada">
+      <div class="dcx-wrap">
+        <div class="dcx-entra">
+          <span class="dcx-rotulo">Para mayoristas</span>
+          <h1>Vendé más, cobrá al contado, sin riesgo de cobranza.</h1>
+          <p class="dcx-bajada">Si sos mayorista o distribuidor, Doña Compra te paga en el momento la mercadería que tus clientes comerciantes necesitan. El riesgo del pago diferido lo asumimos nosotros.</p>
+          <div class="dcx-acciones"><a href="#/contacto" class="dcx-btn">Quiero ser proveedor</a><a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" class="dcx-btn-2">Escribir por WhatsApp</a></div>
+        </div>
+        <div class="dcx-foto"><img src="assets/hero-4-640.jpg" alt="Pasillo de un supermercado con las góndolas llenas" /></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="dcx-wrap">
+        <div class="dcx-cifras">
+          <div class="dcx-cifra"><b>0<small>días</small></b><span>De espera para cobrar: el pago al proveedor es al contado.</span></div>
+          <div class="dcx-cifra"><b>0</b><span>Riesgo de incobrables de tu lado. La cobranza es asunto nuestro.</span></div>
+          <div class="dcx-cifra"><b>12<small>rubros</small></b><span>Comerciantes de ropa, calzado, cosmética, despensas y más.</span></div>
+        </div>
       </div>
     </section>
 
     <section style="background:#FCFCFC">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#1A365D;margin:0 0 16px">Por qué te conviene</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px;margin-top:32px">
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Cobrás al contado</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Nosotros pagamos en el momento de la compra. Para vos es una venta de contado, sin cuenta corriente.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Sin riesgo de incobrables</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">La evaluación del comerciante y el riesgo del pago a 30 días quedan de nuestro lado, no del tuyo.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Tickets más grandes</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">El comerciante que no tiene que pagar al contado compra más cantidad y surtido en el mismo pedido.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Clientes que vuelven</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">El comerciante sigue comprando en tu depósito: nosotros no vendemos mercadería ni competimos con vos.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Sin cambiar tu operación</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Seguís facturando y despachando como siempre. No te pedimos sistema nuevo ni integración.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">Difusión en el Club</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Podés publicar ofertas y novedades para la comunidad de comerciantes que compra con nosotros.</p></div>
+      <div class="dcx-wrap">
+        <span class="dcx-rotulo">Por qué te conviene</span>
+        <h2 class="dcx-h2">Tu cliente compra más y vos cobrás igual de rápido.</h2>
+        <div class="dcx-rejilla dcx-3">
+          <div class="dcx-tarjeta"><i>01</i><h3>Cobrás al contado</h3><p>Nosotros pagamos en el momento de la compra. Para vos es una venta de contado, sin cuenta corriente.</p></div>
+          <div class="dcx-tarjeta"><i>02</i><h3>Sin riesgo de incobrables</h3><p>La evaluación del comerciante y el riesgo del pago a 30 días quedan de nuestro lado, no del tuyo.</p></div>
+          <div class="dcx-tarjeta"><i>03</i><h3>Tickets más grandes</h3><p>El comerciante que no tiene que pagar al contado compra más cantidad y surtido en el mismo pedido.</p></div>
+          <div class="dcx-tarjeta"><i>04</i><h3>Clientes que vuelven</h3><p>El comerciante sigue comprando en tu depósito: nosotros no vendemos mercadería ni competimos con vos.</p></div>
+          <div class="dcx-tarjeta"><i>05</i><h3>Sin cambiar tu operación</h3><p>Seguís facturando y despachando como siempre. No te pedimos sistema nuevo ni integración.</p></div>
+          <div class="dcx-tarjeta"><i>06</i><h3>Difusión en el Club</h3><p>Podés publicar ofertas y novedades para la comunidad de comerciantes que compra con nosotros.</p></div>
         </div>
       </div>
     </section>
 
     <section>
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#1A365D;margin:0 0 16px">Cómo trabajamos juntos</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px;margin-top:32px">
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">1 · Nos presentamos</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Coordinamos una reunión, te explicamos el servicio y acordamos cómo operar con tus clientes.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">2 · El comerciante arma el pedido</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Tu cliente elegí el pedido con vos, como siempre, y nos lo pasa para la compra.</p></div>
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">3 · Pagamos y se retira</h3><p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">Abonamos al contado y el comerciante retira con el código seguro que le entregamos.</p></div>
+      <div class="dcx-wrap">
+        <span class="dcx-rotulo">Cómo trabajamos</span>
+        <h2 class="dcx-h2">Tres pasos y seguís igual.</h2>
+        <div class="dcx-rejilla dcx-3p">
+          <article class="dcx-paso"><div class="dcx-foto"><img src="assets/hero-2-640.jpg" alt="Comerciante reponiendo una góndola" loading="lazy" /><em aria-hidden="true">1</em></div><div><h3>Nos presentamos</h3><p>Coordinamos una reunión, te explicamos el servicio y acordamos cómo operar con tus clientes.</p></div></article>
+          <article class="dcx-paso"><div class="dcx-foto"><img src="assets/paso-3.jpg" alt="Lista del pedido escrita en un cuaderno" loading="lazy" /><em aria-hidden="true">2</em></div><div><h3>El comerciante arma el pedido</h3><p>Tu cliente elige el pedido con vos, como siempre, y nos lo pasa para la compra.</p></div></article>
+          <article class="dcx-paso"><div class="dcx-foto"><img src="assets/paso-1.jpg" alt="Entrega de una caja de mercadería" loading="lazy" /><em aria-hidden="true">3</em></div><div><h3>Pagamos y se retira</h3><p>Abonamos al contado y el comerciante retira con el código seguro que le entregamos.</p></div></article>
         </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px">
-          <a href="#/contacto" style="display:inline-block;background:#1A365D;color:#FCFCFC;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;letter-spacing:0.04em">Quiero ser proveedor</a>
-          <a href="{{ waLink }}" target="_blank" rel="noopener" onClick="{{ onWa }}" style="display:inline-block;border:1px solid #1A365D;color:#1A365D;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;letter-spacing:0.04em">Escribir por WhatsApp</a>
+      </div>
+    </section>
+
+    <section style="background:#FCFCFC">
+      <div class="dcx-wrap">
+        <div class="dcx-fila dcx-inv">
+          <div class="dcx-foto"><img src="assets/rubro-libreria.jpg" alt="Librería con útiles escolares en exhibición" loading="lazy" /></div>
+          <div>
+            <span class="dcx-rotulo">No competimos con vos</span>
+            <h2 class="dcx-h2">Doña Compra no vende mercadería.</h2>
+            <p>No tenemos depósito propio ni catálogo. Compramos en el tuyo lo que tu cliente elige, y se lo revendemos con pago diferido.</p>
+            <p>Por eso el comerciante sigue siendo tu cliente: la relación comercial no se muda a ningún lado.</p>
+            <a href="#/el-concepto" class="dcx-enlace">Ver el concepto completo &rarr;</a>
+          </div>
         </div>
       </div>
     </section>
@@ -1422,10 +1574,10 @@
     <section style="background:#1A365D">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(36px,5vw,64px) clamp(18px,4vw,40px);text-align:center">
         <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#FCFCFC;margin:0 0 12px">¿Sumamos a tu depósito?</h2>
-        <p style="font-size:16px;line-height:1.5;color:rgba(252,252,252,0.75);margin:0 auto 24px;max-width:52ch">Escribinos y coordinamos una reunión para ver cómo encaja con tu forma de vender.</p>
+        <p style="font-size:16px;line-height:1.5;color:rgba(252,252,252,0.78);margin:0 auto 24px;max-width:52ch">Escribinos y coordinamos una reunión para ver cómo encaja con tu forma de vender.</p>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-          <a href="#/contacto" style="display:inline-block;background:#C25E38;color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Pedir una visita</a>
-          <a href="{{ waLink }}" target="_blank" rel="noopener" onClick="{{ onWa }}" style="display:inline-block;border:1px solid rgba(252,252,252,0.5);color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Escribir por WhatsApp</a>
+          <a href="#/contacto" style="display:inline-block;background:#AE5432;color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Pedir una visita</a>
+          <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:inline-block;border:1px solid rgba(252,252,252,0.5);color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Escribir por WhatsApp</a>
         </div>
       </div>
     </section>
@@ -1434,58 +1586,77 @@
 
   <sc-if value="{{ atClub }}">
   <div>
-    <section style="border-bottom:1px solid rgba(26,54,93,0.12)">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B6B">El Club Doña Compra</span>
-        <h1 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(32px,5.6vw,68px);line-height:1.2;letter-spacing:-0.01em;color:#1A365D;margin:16px 0 0">El Club Doña Compra</h1>
-        <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.5;color:#4A4A4A;margin:16px 0 0;max-width:56ch">El espacio de los comerciantes que ya compran con nosotros: ventajas, ofertas reservadas y acompañamiento. Se accede por historial de compras, no por cuota.</p>
+    <section class="dcx-portada">
+      <div class="dcx-wrap">
+        <div class="dcx-entra">
+          <span class="dcx-rotulo">El Club Doña Compra</span>
+          <h1>El Club Doña Compra</h1>
+          <p class="dcx-bajada">El espacio de los comerciantes que ya compran con nosotros: ventajas, ofertas reservadas y acompañamiento. Se accede por historial de compras, no por cuota.</p>
+          <div class="dcx-acciones"><a href="#/contacto" class="dcx-btn">Quiero sumarme al Club</a></div>
+        </div>
+        <div class="dcx-foto"><img src="assets/rubro-cosmeticos.jpg" alt="Estantes de un comercio de cosmética con la mercadería repuesta" /></div>
       </div>
     </section>
 
     <section style="background:#FCFCFC">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <div role="tablist" aria-label="Secciones del Club" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px">
-          <button type="button" role="tab" onClick="{{ goVentajas }}" aria-selected="{{ tabVentajas }}" style="border-radius:8px;padding:12px 22px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid rgba(26,54,93,0.25);background:{{ ventajasBg }};color:{{ ventajasFg }}">Ventajas</button>
-          <button type="button" role="tab" onClick="{{ goAcceso }}" aria-selected="{{ tabAcceso }}" style="border-radius:8px;padding:12px 22px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid rgba(26,54,93,0.25);background:{{ accesoBg }};color:{{ accesoFg }}">Acceso de miembros</button>
+      <div class="dcx-wrap">
+        <div role="tablist" aria-label="Secciones del Club" style="display:inline-flex;gap:4px;border:1px solid rgba(26,54,93,0.2);background:#FCFCFC;border-radius:999px;padding:4px;margin-bottom:36px">
+          <button type="button" role="tab" onClick="{{ goVentajas }}" aria-selected="{{ tabVentajas }}" style="border-radius:999px;padding:10px 22px;font-size:14px;font-weight:500;cursor:pointer;border:0;background:{{ ventajasBg }};color:{{ ventajasFg }}">Ventajas</button>
+          <button type="button" role="tab" onClick="{{ goAcceso }}" aria-selected="{{ tabAcceso }}" style="border-radius:999px;padding:10px 22px;font-size:14px;font-weight:500;cursor:pointer;border:0;background:{{ accesoBg }};color:{{ accesoFg }}">Acceso de miembros</button>
         </div>
 
         <sc-if value="{{ tabVentajas }}" hint-placeholder-val="{{ true }}">
         <div>
-          <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#1A365D;margin:0 0 16px">Ventajas exclusivas</h2>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px;margin-top:24px">
-            <sc-for list="{{ clubVentajas }}" as="v" hint-placeholder-count="6">
-              <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)">
-                <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#1A365D;margin:0 0 8px">{{ v.t }}</h3>
-                <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">{{ v.d }}</p>
-              </div>
-            </sc-for>
+        <span class="dcx-rotulo">Para miembros</span>
+        <h2 class="dcx-h2">Ventajas exclusivas.</h2>
+          <div class="dcx-ventajas">
+            <div class="dcx-tarjeta dcx-grande"><div class="dcx-foto"><img src="assets/rubro-ropa.jpg" alt="Ropa en exhibición en un local" loading="lazy" /></div><div><h3>Tope de compra más alto</h3><p>Los miembros progresan de nivel antes y acceden a topes mayores sobre el mismo historial.</p></div></div>
+            <div class="dcx-tarjeta dcx-grande"><div class="dcx-foto"><img src="assets/rubro-regaleria.jpg" alt="Regalería en exhibición" loading="lazy" /></div><div><h3>Ofertas reservadas</h3><p>Pedidos de mayoristas socios que se publican primero en el Club antes de abrirse al resto.</p></div></div>
+            <div class="dcx-tarjeta"><h3>Visita prioritaria</h3><p>La solicitud de visita de un miembro se agenda antes que una solicitud nueva.</p></div>
+            <div class="dcx-tarjeta"><h3>Acompañamiento</h3><p>Revisión del historial de compras y sugerencias de reposición según tu rubro.</p></div>
+            <div class="dcx-tarjeta"><h3>Temporadas</h3><p>Aviso anticipado de las compras fuertes: escolar, Día de la Madre, fin de año.</p></div>
+            <div class="dcx-tarjeta"><h3>Sin costo adicional</h3><p>Pertenecer al Club no tiene cuota. Se accede por historial de compras.</p></div>
           </div>
-          <p style="font-size:12px;line-height:1.5;color:#6B6B6B;margin-top:24px;max-width:70ch">El ingreso al Club y las ventajas descritas dependen del historial de compras y quedan sujetos a la evaluación de Doña Compra. No constituyen una oferta vinculante.</p>
-          <div style="margin-top:28px"><a href="#/contacto" style="display:inline-block;background:#1A365D;color:#FCFCFC;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;letter-spacing:0.04em;border:0;cursor:pointer">Quiero sumarme al Club</a></div>
+          <p class="dcx-nota">El ingreso al Club y las ventajas descritas dependen del historial de compras y quedan sujetos a la evaluación de Doña Compra. No constituyen una oferta vinculante.</p>
         </div>
         </sc-if>
 
         <sc-if value="{{ tabAcceso }}">
-        <div style="max-width:440px">
-          <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#1A365D;margin:0 0 16px">Acceso de miembros</h2>
-          <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0;margin-bottom:24px">Si ya sos miembro del Club, entrá con los datos que te entregamos en la visita.</p>
-          <form onSubmit="{{ clubSubmit }}" style="display:grid;gap:16px">
-            <div>
-              <label for="club-user" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B6B;margin-bottom:6px">Cédula o usuario</label>
-              <input id="club-user" type="text" autoComplete="username" value="{{ clubUser }}" onInput="{{ setClubUser }}" style="width:100%;padding:12px 14px;border:1px solid rgba(26,54,93,0.25);border-radius:8px;background:#FCFCFC;color:#4A4A4A;font-size:16px" />
-            </div>
-            <div>
-              <label for="club-pass" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B6B;margin-bottom:6px">Clave</label>
-              <input id="club-pass" type="password" autoComplete="current-password" value="{{ clubPass }}" onInput="{{ setClubPass }}" style="width:100%;padding:12px 14px;border:1px solid rgba(26,54,93,0.25);border-radius:8px;background:#FCFCFC;color:#4A4A4A;font-size:16px" />
-            </div>
-            <button type="submit" style="display:inline-block;background:#1A365D;color:#FCFCFC;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;letter-spacing:0.04em;border:0;cursor:pointer">Entrar</button>
-          </form>
-          <sc-if value="{{ hasClubMsg }}">
-            <p role="status" style="margin:20px 0 0;padding:14px 16px;border-radius:12px;background:rgba(194,94,56,0.1);border:1px solid rgba(194,94,56,0.35);font-size:14px;line-height:1.5;color:#4A4A4A">{{ clubMsg }}</p>
-          </sc-if>
-          <p style="font-size:12px;line-height:1.5;color:#6B6B6B;margin-top:20px">¿Todavía no sos miembro? <a href="#/contacto" style="color:#C25E38;font-weight:500">Pedí tu visita</a> y evaluamos tu ingreso.</p>
+        <div class="dcx-fila">
+          <div class="dcx-foto"><img src="assets/rubro-perfumes.jpg" alt="Perfumes en los estantes de un comercio" loading="lazy" /></div>
+          <div style="max-width:440px">
+            <span class="dcx-rotulo">Miembros</span>
+            <h2 class="dcx-h2">Acceso de miembros</h2>
+            <p style="margin-bottom:24px">Si ya sos miembro del Club, entrá con los datos que te entregamos en la visita.</p>
+            <form onSubmit="{{ clubSubmit }}" style="display:grid;gap:16px">
+              <div>
+                <label for="club-user" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B6B;margin-bottom:6px">Cédula o usuario</label>
+                <input id="club-user" type="text" autoComplete="username" value="{{ clubUser }}" onInput="{{ setClubUser }}" style="width:100%;padding:12px 14px;border:1px solid rgba(26,54,93,0.25);border-radius:8px;background:#FCFCFC;color:#4A4A4A;font-size:16px" />
+              </div>
+              <div>
+                <label for="club-pass" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B6B;margin-bottom:6px">Clave</label>
+                <input id="club-pass" type="password" autoComplete="current-password" value="{{ clubPass }}" onInput="{{ setClubPass }}" style="width:100%;padding:12px 14px;border:1px solid rgba(26,54,93,0.25);border-radius:8px;background:#FCFCFC;color:#4A4A4A;font-size:16px" />
+              </div>
+              <button type="submit" class="dcx-btn" style="border:0;cursor:pointer">Entrar</button>
+            </form>
+            <sc-if value="{{ hasClubMsg }}">
+              <p role="status" style="margin:20px 0 0;padding:14px 16px;border-radius:12px;background:rgba(194,94,56,0.1);border:1px solid rgba(194,94,56,0.35);font-size:14px;line-height:1.5;color:#4A4A4A">{{ clubMsg }}</p>
+            </sc-if>
+            <p style="font-size:13px;line-height:1.5;color:#6B6B6B;margin-top:20px">¿Todavía no sos miembro? <a href="#/contacto" style="color:#AE5432;font-weight:500">Pedí tu visita</a> y evaluamos tu ingreso.</p>
+          </div>
         </div>
         </sc-if>
+      </div>
+    </section>
+
+    <section style="background:#1A365D">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(36px,5vw,64px) clamp(18px,4vw,40px);text-align:center">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#FCFCFC;margin:0 0 12px">¿Querés sumarte al Club?</h2>
+        <p style="font-size:16px;line-height:1.5;color:rgba(252,252,252,0.78);margin:0 auto 24px;max-width:52ch">Empieza con una visita al negocio. A partir de ahí, el historial de compras define el ingreso.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a href="#/contacto" style="display:inline-block;background:#AE5432;color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Pedir una visita</a>
+          <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:inline-block;border:1px solid rgba(252,252,252,0.5);color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Escribir por WhatsApp</a>
+        </div>
       </div>
     </section>
   </div>
