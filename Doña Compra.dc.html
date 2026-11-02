@@ -102,6 +102,73 @@
   [data-mosaic] > div:hover { transform: translateY(-7px); }
   [data-parallax] { will-change: transform; }
   @keyframes dcBand { from { opacity: 0; transform: rotate(-1.6deg) translateX(-3%); } to { opacity: 1; transform: rotate(-1.6deg) translateX(0); } }
+  /* ── Paginas de servicio (contacto, anuncios, FAQ, juridica) ──
+     Portada compacta con fotos o un bloque al costado, en vez de un titulo
+     solo con media pantalla vacia. */
+  .dcx-wrap { max-width: 1280px; margin: 0 auto; padding: clamp(40px,6vw,86px) clamp(18px,4vw,40px); }
+  .dcx-portada { border-bottom: 1px solid rgba(26,54,93,0.12); overflow: hidden; }
+  .dcx-portada > .dcx-wrap { padding-top: clamp(32px,5vw,64px); padding-bottom: clamp(32px,5vw,64px); display: grid; gap: clamp(24px,4vw,56px); align-items: center; }
+  @media (min-width: 1024px) { .dcx-portada > .dcx-wrap { grid-template-columns: 1.15fr 1fr; } }
+  .dcx-portada h1 { font-weight: 700; font-size: clamp(32px,4.6vw,54px); letter-spacing: -0.01em; margin: 20px 0 0; max-width: 18ch; }
+  .dcx-bajada { font-size: clamp(16px,1.8vw,18.5px); line-height: 1.5; color: #4A4A4A; margin: 20px 0 0; max-width: 52ch; }
+  .dcx-entra { animation: dcReveal 0.75s cubic-bezier(0.2,0.7,0.2,1) both; }
+  .dcx-entra-2 { animation: dcReveal 0.75s cubic-bezier(0.2,0.7,0.2,1) 0.18s both; }
+  .dcx-rotulo { display: flex; align-items: center; gap: 12px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #6B6B6B; }
+  .dcx-rotulo::before { content: ""; width: 32px; height: 1px; background: #C25E38; }
+  .dcx-fotos { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px,1.2vw,14px); }
+  .dcx-fotos > div { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 12px; background: #E3ECF5; animation: dcReveal 0.8s cubic-bezier(0.2,0.7,0.2,1) both; }
+  .dcx-fotos > div:nth-child(1) { margin-top: 32px; animation-delay: 0.1s; }
+  .dcx-fotos > div:nth-child(2) { animation-delay: 0.2s; }
+  .dcx-fotos > div:nth-child(3) { margin-top: 48px; animation-delay: 0.3s; }
+  .dcx-fotos img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: dcZoom 1.4s cubic-bezier(0.2,0.7,0.2,1) both; }
+  .dcx-pildora { display: inline-block; border: 1px solid rgba(26,54,93,0.15); background: #FCFCFC; border-radius: 999px; padding: 6px 14px; font-size: 13px; color: #4A4A4A; }
+  .dcx-dos { display: grid; gap: clamp(28px,5vw,72px); align-items: start; }
+  @media (min-width: 1024px) {
+    .dcx-dos { grid-template-columns: 1.45fr 1fr; }
+    .dcx-indice { grid-template-columns: 270px 1fr; }
+    .dcx-fijo { position: sticky; top: 110px; }
+  }
+  .dcx-canal { border-top: 1px solid rgba(26,54,93,0.12); padding: 20px 0; }
+  .dcx-canal:first-child { border-top: 0; padding-top: 0; }
+  .dcx-canal > span { display: block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6B6B6B; margin-bottom: 8px; }
+  .dcx-red { display: flex; align-items: center; gap: 12px; border: 1px solid rgba(26,54,93,0.15); background: #FCFCFC; border-radius: 8px; padding: 12px 16px; font-size: 14.5px; font-weight: 500; color: #1A365D; }
+  .dcx-red:hover { border-color: #C25E38; color: #AE5432; }
+  .dcx-wa { position: relative; display: block; overflow: hidden; border-radius: 12px; background: #1A365D; color: #FCFCFC; }
+  .dcx-wa:hover { color: #FCFCFC; }
+  .dcx-wa img { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; display: block; opacity: 0.55; transition: transform 0.5s ease; }
+  .dcx-wa:hover img { transform: scale(1.05); }
+  .dcx-flecha { display: inline-block; transition: transform 0.25s ease; }
+  a:hover .dcx-flecha { transform: translateX(4px); }
+  /* Feed en columnas: los videos 9:16 conviven con las fotos sin huecos. */
+  .dcx-feed { column-count: 3; column-gap: clamp(16px,2vw,24px); }
+  @media (max-width: 1024px) { .dcx-feed { column-count: 2; } }
+  @media (max-width: 640px) { .dcx-feed { column-count: 1; } }
+  .dcx-feed > article { break-inside: avoid; margin-bottom: clamp(16px,2vw,24px); background: #FCFCFC; border: 1px solid rgba(26,54,93,0.12); border-radius: 12px; overflow: hidden; transition: box-shadow 0.3s ease; }
+  .dcx-feed > article:hover { box-shadow: 0 14px 34px -18px rgba(26,54,93,0.45); }
+  .dcx-feed > article img { transition: transform 0.5s ease; }
+  .dcx-feed > article:hover img { transform: scale(1.04); }
+  .dcx-recorte { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .dcx-accion { flex: 1; background: none; border: 1px solid rgba(26,54,93,0.18); border-radius: 8px; padding: 8px; font-size: 13px; cursor: pointer; }
+  .dcx-accion:hover { border-color: #C25E38; }
+  .dcx-nav-lateral { display: flex; flex-wrap: wrap; gap: 8px; }
+  .dcx-nav-lateral a, .dcx-nav-lateral button { display: flex; align-items: center; gap: 12px; border: 1px solid rgba(26,54,93,0.15); border-radius: 999px; padding: 8px 16px; font-size: 14px; color: #4A4A4A; background: none; cursor: pointer; text-align: left; }
+  .dcx-nav-lateral a:hover, .dcx-nav-lateral button:hover { border-color: #C25E38; }
+  .dcx-nav-lateral b { font-family: ui-monospace, monospace; font-weight: 400; font-size: 12px; color: #AE5432; }
+  @media (min-width: 1024px) {
+    .dcx-nav-lateral { display: grid; gap: 4px; }
+    .dcx-nav-lateral a, .dcx-nav-lateral button { border-color: transparent; border-radius: 8px; padding: 10px 12px; }
+    .dcx-nav-lateral a:hover, .dcx-nav-lateral button:hover { background: #F9F7F7; border-color: transparent; }
+  }
+  .dcx-faq details { border-bottom: 1px solid rgba(26,54,93,0.12); }
+  .dcx-faq summary { list-style: none; cursor: pointer; padding: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: Montserrat, sans-serif; font-weight: 600; font-size: 17px; color: #1A365D; }
+  .dcx-faq summary::-webkit-details-marker { display: none; }
+  .dcx-faq summary:hover { color: #AE5432; }
+  .dcx-faq summary::after { content: "+"; flex: none; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(26,54,93,0.15); display: flex; align-items: center; justify-content: center; font-size: 18px; color: #AE5432; transition: transform 0.25s ease; }
+  .dcx-faq details[open] summary::after { transform: rotate(45deg); border-color: #C25E38; }
+  .dcx-faq p { margin: -4px 0 0; padding: 0 48px 24px 0; font-size: 16px; line-height: 1.6; color: #4A4A4A; max-width: 64ch; }
+  .dcx-legal h3 { font-weight: 600; font-size: 20px; margin: 28px 0 8px; }
+  .dcx-legal p, .dcx-legal ul { font-size: 16px; line-height: 1.6; color: #4A4A4A; margin: 0 0 12px; max-width: 74ch; }
+  .dcx-legal ul { padding-left: 20px; line-height: 1.7; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </helmet>
@@ -1013,63 +1080,34 @@
   <!-- ─────────── CONTACTO ─────────── -->
   <sc-if value="{{ atContacto }}">
   <div>
-    <section style="border-bottom:1px solid rgba(26,54,93,0.12)">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B6B">Contacto</span>
-        <h1 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(32px,5.6vw,68px);line-height:1.2;letter-spacing:-0.01em;color:#1A365D;margin:16px 0 0">Hablemos de tu negocio.</h1>
-        <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.5;color:#4A4A4A;margin:16px 0 0;max-width:56ch">Escribinos por el formulario, por correo o directamente por WhatsApp. {{ plazo }}</p>
+    <section class="dcx-portada">
+      <div class="dcx-wrap">
+        <div class="dcx-entra">
+          <span class="dcx-rotulo">Contacto</span>
+          <h1>Hablemos de tu negocio.</h1>
+          <p class="dcx-bajada">Escribinos por el formulario, por correo o directamente por WhatsApp. {{ plazo }}</p>
+        </div>
+        <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" class="dcx-wa dcx-entra-2">
+          <img src="assets/paso-1.jpg" alt="" />
+          <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,#1A365D 45%,transparent)"></span>
+          <span style="position:relative;display:block;margin-top:-40px;padding:0 clamp(20px,3vw,30px) clamp(20px,3vw,30px)">
+            <span style="display:block;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E8A98E">WhatsApp &middot; la vía más rápida</span>
+            <span style="display:block;font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,40px);line-height:1;color:#FCFCFC;margin-top:10px">{{ phone }}</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:#AE5432;color:#FCFCFC;border-radius:8px;padding:12px 20px;font-size:14px;font-weight:500">Abrir el chat <span class="dcx-flecha" aria-hidden="true">&rarr;</span></span>
+          </span>
+        </a>
       </div>
     </section>
 
     <section style="background:#FCFCFC">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(24px,4vw,56px);align-items:start">
-
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:block;background:#1A365D;border-radius:12px;padding:clamp(20px,3vw,30px)" style-hover="background:#142C4D">
-            <span style="display:block;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#E8A98E">WhatsApp</span>
-            <span style="display:block;font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,34px);color:#FCFCFC;margin-top:8px">{{ phone }}</span>
-            <span style="display:block;font-size:14.5px;line-height:1.5;color:rgba(252,252,252,0.72);margin-top:8px">La forma más rápida de empezar la conversación.</span>
-          </a>
-
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)">
-            <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;line-height:1.2;color:#1A365D;margin:0 0 8px">Correo</h3>
-            <a href="{{ mailto }}" style="font-size:17px;color:#C25E38;word-break:break-all">{{ email }}</a>
-          </div>
-
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)">
-            <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;line-height:1.2;color:#1A365D;margin:0 0 8px">Horarios y respuesta</h3>
-            <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">{{ horario }}</p>
-            <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0;margin-top:8px;color:#C25E38;font-weight:500">{{ plazo }}</p>
-          </div>
-
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)">
-            <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;line-height:1.2;color:#1A365D;margin:0 0 8px">Seguinos</h3>
-            <div style="display:grid;gap:8px;margin-top:12px">
-              <sc-if value="{{ hasFb }}">
-            <a href="{{ fbUrl }}" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:10px;border:1px solid rgba(26,54,93,0.18);border-radius:8px;padding:12px 16px;font-size:14px;color:#1A365D" style-hover="border-color:#C25E38"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.75-1.6 1.5V12h2.8l-.45 2.9h-2.35v7A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a>
-              </sc-if>
-              <sc-if value="{{ hasIg }}">
-            <a href="{{ igUrl }}" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:10px;border:1px solid rgba(26,54,93,0.18);border-radius:8px;padding:12px 16px;font-size:14px;color:#1A365D" style-hover="border-color:#C25E38"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.17.4.37 1 .42 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.22.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.17-1 .37-2.2.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.22-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.07-.9.04-1.4.2-1.7.3-.4.17-.7.37-1 .67-.3.3-.5.6-.67 1-.1.3-.26.8-.3 1.7C3.5 8.5 3.5 8.9 3.5 12s0 3.5.07 4.7c.4.9.2 1.4.3 1.7.17.4.37.7.67 1 .3.3.6.5 1 .67.3.1.8.26 1.7.3 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c.9-.04 1.4-.2 1.7-.3.4-.17.7-.37 1-.67.3-.3.5-.6.67-1 .1-.3.26-.8.3-1.7.07-1.2.07-1.6.07-4.7s0-3.5-.07-4.7c-.04-.9-.2-1.4-.3-1.7a2.7 2.7 0 0 0-.67-1 2.7 2.7 0 0 0-1-.67c-.3-.1-.8-.26-1.7-.3C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-.9a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0z"/></svg><span>Instagram</span></a>
-              </sc-if>
-              <sc-if value="{{ hasSitio }}">
-            <a href="{{ sitioUrl }}" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:10px;border:1px solid rgba(26,54,93,0.18);border-radius:8px;padding:12px 16px;font-size:14px;color:#1A365D" style-hover="border-color:#C25E38"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg><span>Sitio web</span></a>
-              </sc-if>
-              <sc-if value="{{ sinRedes }}" hint-placeholder-val="{{ true }}">
-                <p style="font-size:12px;line-height:1.5;color:#6B6B6B">Los enlaces a Facebook e Instagram se activan al cargar las direcciones en la configuración del sitio.</p>
-              </sc-if>
-            </div>
-          </div>
-
-          <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px)">
-            <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;line-height:1.2;color:#1A365D;margin:0 0 8px">¿Dudas frecuentes?</h3>
-            <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0;margin-bottom:12px">Puede que tu pregunta ya tenga respuesta.</p>
-            <a href="#/preguntas-frecuentes" style="color:#C25E38;font-weight:500;font-size:15px">Ver preguntas frecuentes &rarr;</a>
-          </div>
-        </div>
+      <div class="dcx-wrap dcx-dos">
 
         <div>
-          <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#1A365D;margin:0 0 16px">Escribinos</h2>
-          <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0;margin-bottom:24px;max-width:48ch">Completá el formulario y lo preparamos como mensaje para que lo revises antes de enviarlo.</p>
+          <span class="dcx-rotulo">Formulario</span>
+          <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#1A365D;margin:16px 0 12px">Escribinos</h2>
+          <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0;margin-bottom:32px;max-width:48ch">Completá el formulario y lo preparamos como mensaje para que lo revises antes de enviarlo.</p>
+
+          <div style="background:#F9F7F7;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(18px,3vw,32px)">
 
           <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
           <form onSubmit="{{ submitForm }}" noValidate="true" style="display:grid;gap:18px">
@@ -1159,6 +1197,49 @@
               </div>
             </div>
           </sc-if>
+          </div>
+        </div>
+
+        <div class="dcx-fijo">
+          <span class="dcx-rotulo">Otros canales</span>
+          <div style="margin-top:24px">
+            <div class="dcx-canal">
+              <span>Correo</span>
+              <a href="{{ mailto }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:19px;color:#1A365D;word-break:break-all;text-decoration:underline;text-decoration-color:rgba(194,94,56,0.5);text-underline-offset:4px">{{ email }}</a>
+            </div>
+
+            <div class="dcx-canal">
+              <span>Horarios</span>
+              <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0">{{ horario }}</p>
+              <p style="display:flex;align-items:center;gap:8px;font-size:14.5px;line-height:1.5;margin:8px 0 0;color:#AE5432;font-weight:500"><span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:#10B981"></span>{{ plazo }}</p>
+            </div>
+
+            <div class="dcx-canal">
+              <span>Seguinos</span>
+            <div style="display:grid;gap:8px">
+              <sc-if value="{{ hasFb }}">
+            <a href="{{ fbUrl }}" target="_blank" rel="noopener noreferrer" class="dcx-red"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.75-1.6 1.5V12h2.8l-.45 2.9h-2.35v7A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a>
+              </sc-if>
+              <sc-if value="{{ hasIg }}">
+            <a href="{{ igUrl }}" target="_blank" rel="noopener noreferrer" class="dcx-red"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.17.4.37 1 .42 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.22.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.17-1 .37-2.2.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.22-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.07-.9.04-1.4.2-1.7.3-.4.17-.7.37-1 .67-.3.3-.5.6-.67 1-.1.3-.26.8-.3 1.7C3.5 8.5 3.5 8.9 3.5 12s0 3.5.07 4.7c.4.9.2 1.4.3 1.7.17.4.37.7.67 1 .3.3.6.5 1 .67.3.1.8.26 1.7.3 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c.9-.04 1.4-.2 1.7-.3.4-.17.7-.37 1-.67.3-.3.5-.6.67-1 .1-.3.26-.8.3-1.7.07-1.2.07-1.6.07-4.7s0-3.5-.07-4.7c-.04-.9-.2-1.4-.3-1.7a2.7 2.7 0 0 0-.67-1 2.7 2.7 0 0 0-1-.67c-.3-.1-.8-.26-1.7-.3C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-.9a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0z"/></svg><span>Instagram</span></a>
+              </sc-if>
+              <sc-if value="{{ hasSitio }}">
+            <a href="{{ sitioUrl }}" target="_blank" rel="noopener noreferrer" class="dcx-red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg><span>Sitio web</span></a>
+              </sc-if>
+              <sc-if value="{{ sinRedes }}" hint-placeholder-val="{{ true }}">
+                <p style="font-size:12px;line-height:1.5;color:#6B6B6B;margin:0">Los enlaces a Facebook e Instagram se activan al cargar las direcciones en la configuración del sitio.</p>
+              </sc-if>
+            </div>
+            </div>
+
+            <div class="dcx-canal">
+              <span>¿Dudas frecuentes?</span>
+              <a href="#/preguntas-frecuentes" style="display:flex;align-items:center;justify-content:space-between;gap:16px;border-radius:12px;background:rgba(194,94,56,0.08);padding:16px 20px;color:#1A365D">
+                <span><span style="display:block;font-family:Montserrat,sans-serif;font-weight:600">Puede que ya tenga respuesta</span><span style="display:block;font-size:14px;color:#4A4A4A">Ver preguntas frecuentes</span></span>
+                <span class="dcx-flecha" aria-hidden="true" style="font-size:20px">&rarr;</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1412,33 +1493,47 @@
 
   <sc-if value="{{ atAnuncios }}">
   <div>
-    <section style="border-bottom:1px solid rgba(26,54,93,0.12)">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B6B">Anuncios</span>
-        <h1 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(32px,5.6vw,68px);line-height:1.2;letter-spacing:-0.01em;color:#1A365D;margin:16px 0 0">Lo que pasa en la comunidad.</h1>
-        <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.5;color:#4A4A4A;margin:16px 0 0;max-width:56ch">Novedades, ofertas de mayoristas socios y publicaciones de comerciantes del Club, en fotos y videos cortos.</p>
+    <section class="dcx-portada">
+      <div class="dcx-wrap">
+        <div class="dcx-entra">
+          <span class="dcx-rotulo">Anuncios</span>
+          <h1>Lo que pasa en la comunidad.</h1>
+          <p class="dcx-bajada">Novedades, ofertas de mayoristas socios y publicaciones de comerciantes del Club, en fotos y videos cortos.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:28px">
+            <span class="dcx-pildora">Fotos y videos 9:16</span>
+            <span class="dcx-pildora">Me gusta y compartir</span>
+            <span class="dcx-pildora">Moderación previa</span>
+          </div>
+        </div>
+        <div class="dcx-fotos">
+          <div><img src="assets/hero-2-640.jpg" alt="Comerciante reponiendo una góndola" /></div>
+          <div><img src="assets/rubro-despensas.jpg" alt="Góndolas de una despensa" /></div>
+          <div><img src="assets/rubro-ropa.jpg" alt="Ropa en exhibición" /></div>
+        </div>
       </div>
     </section>
 
     <section style="background:#FCFCFC">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
+      <div class="dcx-wrap">
 
-        <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px);margin-bottom:32px">
-          <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#1A365D;margin:0 0 16px">Filtrar publicaciones</h2>
+        <div style="background:#F9F7F7;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px);margin-bottom:40px">
+          <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Filtrar publicaciones</h2>
 
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
-            <sc-for list="{{ cats }}" as="c" hint-placeholder-count="4">
-              <button type="button" onClick="{{ c.pick }}" style="border-radius:8px;padding:9px 16px;font-size:13.5px;font-weight:500;cursor:pointer;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }}">{{ c.v }}</button>
-            </sc-for>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+            <div role="group" aria-label="Categoría" style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{ cats }}" as="c" hint-placeholder-count="4">
+                <button type="button" onClick="{{ c.pick }}" style="border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:500;cursor:pointer;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }}">{{ c.v }}</button>
+              </sc-for>
+            </div>
+
+            <div role="group" aria-label="Tipo de publicación" style="display:inline-flex;gap:4px;border:1px solid rgba(26,54,93,0.2);background:#FCFCFC;border-radius:999px;padding:4px">
+              <sc-for list="{{ tipos }}" as="t" hint-placeholder-count="3">
+                <button type="button" onClick="{{ t.pick }}" style="border-radius:999px;padding:6px 16px;font-size:13.5px;font-weight:500;cursor:pointer;border:0;background:{{ t.bg }};color:{{ t.fg }}">{{ t.v }}</button>
+              </sc-for>
+            </div>
           </div>
 
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
-            <sc-for list="{{ tipos }}" as="t" hint-placeholder-count="3">
-              <button type="button" onClick="{{ t.pick }}" style="border-radius:8px;padding:9px 16px;font-size:13.5px;font-weight:500;cursor:pointer;border:1px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }}">{{ t.v }}</button>
-            </sc-for>
-          </div>
-
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px;margin-top:20px;padding-top:20px;border-top:1px solid rgba(26,54,93,0.1)">
             <div>
               <label for="f-ciudad" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#6B6B6B;margin-bottom:6px">Ciudad</label>
               <select id="f-ciudad" value="{{ ciudadVal }}" onChange="{{ setCiudadF }}" style="width:100%;padding:12px 14px;border:1px solid rgba(26,54,93,0.25);border-radius:8px;background:#FCFCFC;color:#4A4A4A;font-size:16px">
@@ -1471,32 +1566,31 @@
         </sc-if>
 
         <sc-if value="{{ hasPosts }}" hint-placeholder-val="{{ true }}">
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(290px,100%),1fr));gap:clamp(16px,2vw,24px)">
+        <div class="dcx-feed">
           <sc-for list="{{ posts }}" as="p" hint-placeholder-count="8">
-            <article style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
-              <button type="button" onClick="{{ p.onOpen }}" aria-label="Abrir publicación" style="position:relative;display:block;border:0;padding:0;cursor:pointer;background:#E3ECF5;border-radius:0;aspect-ratio:{{ p.ratio }};overflow:hidden">
+            <article>
+              <button type="button" onClick="{{ p.onOpen }}" aria-label="Abrir publicación" style="position:relative;display:block;width:100%;border:0;padding:0;cursor:pointer;background:#E3ECF5;border-radius:0;aspect-ratio:{{ p.ratio }};overflow:hidden">
                 <img data-dc-src="{{ p.img }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="{{ p.alt }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
+                <span aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:80px;background:linear-gradient(to bottom,rgba(18,40,74,0.55),transparent)"></span>
+                <span style="position:absolute;top:12px;left:12px;background:#FCFCFC;color:#1A365D;border-radius:999px;padding:4px 12px;font-size:11.5px;font-weight:600">{{ p.cat }}</span>
                 <sc-if value="{{ p.esVideo }}">
-                  <span aria-hidden="true" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(18,40,74,0.25)">
-                    <span style="width:54px;height:54px;border-radius:50%;background:rgba(252,252,252,0.92);display:flex;align-items:center;justify-content:center;color:#1A365D;font-size:20px;padding-left:4px">&#9654;</span>
+                  <span style="position:absolute;top:12px;right:12px;background:#AE5432;color:#FCFCFC;border-radius:999px;padding:4px 12px;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase">Video</span>
+                  <span aria-hidden="true" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+                    <span style="width:64px;height:64px;border-radius:50%;background:rgba(252,252,252,0.92);display:flex;align-items:center;justify-content:center;color:#1A365D;padding-left:4px;box-shadow:0 8px 24px rgba(0,0,0,0.2)"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
                   </span>
-                  <span style="position:absolute;top:10px;left:10px;background:#C25E38;color:#FCFCFC;border-radius:8px;padding:4px 9px;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase">Video 9:16</span>
+                </sc-if>
+                <sc-if value="{{ p.tienePrecio }}">
+                  <span style="position:absolute;bottom:12px;left:12px;background:#FCFCFC;color:#AE5432;border-radius:8px;padding:6px 12px;font-family:ui-monospace,monospace;font-size:15px;font-weight:600">{{ p.precioTxt }}</span>
                 </sc-if>
               </button>
-              <div style="padding:16px;display:flex;flex-direction:column;gap:8px;flex:1">
-                <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-                  <span style="background:rgba(26,54,93,0.08);color:#1A365D;border-radius:4px;padding:3px 8px;font-size:11px;font-weight:500">{{ p.cat }}</span>
-                  <span style="font-size:12px;line-height:1.5;color:#6B6B6B">{{ p.ciudad }}</span>
-                </div>
-                <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;line-height:1.2;color:#1A365D;margin:0">{{ p.titulo }}</h3>
-                <p style="font-size:14.5px;line-height:1.5;color:#4A4A4A;margin:0;flex:1">{{ p.texto }}</p>
-                <sc-if value="{{ p.tienePrecio }}">
-                  <span style="font-family:ui-monospace,monospace;font-size:17px;font-weight:600;color:#C25E38">{{ p.precioTxt }}</span>
-                </sc-if>
+              <div style="padding:clamp(16px,1.8vw,20px);display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#6B6B6B">{{ p.ciudad }}</span>
+                <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;line-height:1.3;color:#1A365D;margin:0">{{ p.titulo }}</h3>
+                <p class="dcx-recorte" style="font-size:14.5px;line-height:1.5;color:#4A4A4A;margin:0">{{ p.texto }}</p>
                 <div style="font-size:12px;line-height:1.5;color:#6B6B6B;display:flex;gap:6px;flex-wrap:wrap"><span>{{ p.autor }}</span><span>&middot;</span><span>{{ p.fechaTxt }}</span></div>
                 <div style="display:flex;gap:8px;margin-top:4px;border-top:1px solid rgba(26,54,93,0.1);padding-top:12px">
-                  <button type="button" onClick="{{ p.onLike }}" aria-pressed="{{ p.liked }}" style="flex:1;background:none;border:1px solid rgba(26,54,93,0.18);border-radius:8px;padding:8px;font-size:13px;cursor:pointer;color:{{ p.likeFg }}">&#9829; {{ p.likeTxt }}</button>
-                  <button type="button" onClick="{{ p.onShare }}" style="flex:1;background:none;border:1px solid rgba(26,54,93,0.18);border-radius:8px;padding:8px;font-size:13px;cursor:pointer;color:#4A4A4A">Compartir</button>
+                  <button type="button" onClick="{{ p.onLike }}" aria-pressed="{{ p.liked }}" class="dcx-accion" style="color:{{ p.likeFg }}">&#9829; {{ p.likeTxt }}</button>
+                  <button type="button" onClick="{{ p.onShare }}" class="dcx-accion" style="color:#4A4A4A">Compartir</button>
                 </div>
               </div>
             </article>
@@ -1509,10 +1603,13 @@
     </section>
 
     <section>
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <div style="background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px);max-width:620px">
-          <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(20px,2.6vw,26px);color:#1A365D;margin:0 0 8px">Boletín Doña Compra</h2>
-          <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0;margin-bottom:20px">Ofertas y novedades en tu correo. Sin spam, y te podés dar de baja cuando quieras.</p>
+      <div class="dcx-wrap">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));overflow:hidden;background:#FCFCFC;border:1px solid rgba(26,54,93,0.12);border-radius:12px">
+        <div style="position:relative;min-height:220px;background:#E3ECF5"><img src="assets/hoy-entrega-1400.jpg" alt="Entrega de cajas de mercadería desde una camioneta" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" /></div>
+        <div style="padding:clamp(20px,3.4vw,44px)">
+          <span class="dcx-rotulo">Boletín</span>
+          <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);color:#1A365D;margin:16px 0 12px">Las ofertas, en tu correo.</h2>
+          <p style="font-size:16px;line-height:1.5;color:#4A4A4A;margin:0;margin-bottom:24px;max-width:46ch">Ofertas y novedades de los mayoristas socios. Sin spam, y te podés dar de baja cuando quieras.</p>
           <sc-if value="{{ newsOpen }}" hint-placeholder-val="{{ true }}">
           <form onSubmit="{{ newsSubmit }}" style="display:flex;gap:10px;flex-wrap:wrap">
             <label for="news-mail" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Tu correo</label>
@@ -1523,7 +1620,19 @@
           <sc-if value="{{ newsOk }}">
             <p role="status" style="margin:0;padding:14px 16px;border-radius:12px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.4);font-size:14.5px;color:#4A4A4A">Anotamos tu correo. Te vamos a escribir cuando salga el próximo boletín.</p>
           </sc-if>
-          <p style="font-size:12px;line-height:1.5;color:#6B6B6B;margin-top:14px">Al suscribirte aceptás la <a href="#/juridica" style="color:#C25E38">política de privacidad</a>.</p>
+          <p style="font-size:12px;line-height:1.5;color:#6B6B6B;margin-top:14px">Al suscribirte aceptás la <a href="#/juridica" style="color:#AE5432">política de privacidad</a>.</p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#1A365D">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(36px,5vw,64px) clamp(18px,4vw,40px);text-align:center">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);color:#FCFCFC;margin:0 0 12px">¿Querés comprar así para tu negocio?</h2>
+        <p style="font-size:16px;line-height:1.5;color:rgba(252,252,252,0.78);margin:0 auto 24px;max-width:52ch">Elegí la mercadería en tu proveedor, nosotros la pagamos y vos la pagás después. Empieza con una visita.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+          <a href="#/contacto" style="display:inline-block;background:#AE5432;color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Pedir una visita</a>
+          <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:inline-block;border:1px solid rgba(252,252,252,0.5);color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Escribir por WhatsApp</a>
         </div>
       </div>
     </section>
@@ -1559,26 +1668,34 @@
 
   <sc-if value="{{ atJuridica }}">
   <div>
-    <section style="border-bottom:1px solid rgba(26,54,93,0.12)">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B6B">Información jurídica</span>
-        <h1 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(32px,5.6vw,68px);line-height:1.2;letter-spacing:-0.01em;color:#1A365D;margin:16px 0 0">Aviso legal y condiciones</h1>
-        <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.5;color:#4A4A4A;margin:16px 0 0;max-width:56ch">Aviso legal, condiciones generales de uso, política de privacidad y política de cookies de este sitio.</p>
+    <section class="dcx-portada">
+      <div class="dcx-wrap">
+        <div class="dcx-entra">
+          <span class="dcx-rotulo">Información jurídica</span>
+          <h1>Aviso legal y condiciones</h1>
+          <p class="dcx-bajada">Aviso legal, condiciones generales de uso, política de privacidad y política de cookies de este sitio.</p>
+          <p style="font-size:14px;color:#6B6B6B;margin:12px 0 0">Última actualización: noviembre de 2026.</p>
+        </div>
+        <div class="dcx-entra-2" style="background:rgba(194,94,56,0.08);border:1px solid rgba(194,94,56,0.3);border-radius:12px;padding:clamp(18px,2.4vw,26px)">
+          <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:19px;color:#1A365D;margin:0 0 8px">Texto pendiente de validación legal</h2>
+          <p style="font-size:15px;line-height:1.55;color:#4A4A4A;margin:0">Estas cláusulas son una base redactada para el sitio. Antes de publicar, deben ser revisadas por un profesional y completadas con el RUC, la razón social y el domicilio definitivos.</p>
+        </div>
       </div>
     </section>
 
     <section style="background:#FCFCFC">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <div role="tablist" aria-label="Secciones jurídicas" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px">
-          <button type="button" onClick="{{ goAviso }}" style="border-radius:8px;padding:11px 18px;font-size:13.5px;font-weight:500;cursor:pointer;border:1px solid rgba(26,54,93,0.25);background:{{ avisoBg }};color:{{ avisoFg }}">Aviso legal</button>
-          <button type="button" onClick="{{ goCgu }}" style="border-radius:8px;padding:11px 18px;font-size:13.5px;font-weight:500;cursor:pointer;border:1px solid rgba(26,54,93,0.25);background:{{ cguBg }};color:{{ cguFg }}">Condiciones de uso</button>
-          <button type="button" onClick="{{ goPriv }}" style="border-radius:8px;padding:11px 18px;font-size:13.5px;font-weight:500;cursor:pointer;border:1px solid rgba(26,54,93,0.25);background:{{ privBg }};color:{{ privFg }}">Privacidad (RGPD)</button>
-          <button type="button" onClick="{{ goCook }}" style="border-radius:8px;padding:11px 18px;font-size:13.5px;font-weight:500;cursor:pointer;border:1px solid rgba(26,54,93,0.25);background:{{ cookBg }};color:{{ cookFg }}">Cookies</button>
+      <div class="dcx-wrap dcx-dos dcx-indice">
+        <div class="dcx-fijo">
+          <span class="dcx-rotulo" style="margin-bottom:16px">En esta página</span>
+          <div role="tablist" aria-label="Secciones jurídicas" class="dcx-nav-lateral">
+            <button type="button" onClick="{{ goAviso }}" style="background:{{ avisoBg }};color:{{ avisoFg }}"><b style="color:inherit">01</b>Aviso legal</button>
+            <button type="button" onClick="{{ goCgu }}" style="background:{{ cguBg }};color:{{ cguFg }}"><b style="color:inherit">02</b>Condiciones de uso</button>
+            <button type="button" onClick="{{ goPriv }}" style="background:{{ privBg }};color:{{ privFg }}"><b style="color:inherit">03</b>Privacidad (RGPD)</button>
+            <button type="button" onClick="{{ goCook }}" style="background:{{ cookBg }};color:{{ cookFg }}"><b style="color:inherit">04</b>Cookies</button>
+          </div>
         </div>
 
-        <div style="background:rgba(194,94,56,0.08);border:1px solid rgba(194,94,56,0.3);border-radius:12px;padding:16px;margin-bottom:32px;max-width:74ch">
-          <p style="font-size:14px;line-height:1.5;color:#4A4A4A;margin:0"><strong style="color:#1A365D">Texto pendiente de validación legal.</strong> Estas cláusulas son una base redactada para el sitio. Antes de publicar, deben ser revisadas por un profesional y completadas con el RUC, la razón social y el domicilio definitivos.</p>
-        </div>
+        <div>
 
         <sc-if value="{{ legalAviso }}" hint-placeholder-val="{{ true }}">
         <div>
@@ -1664,6 +1781,7 @@
           <button type="button" onClick="{{ reopenCookies }}" style="display:inline-block;background:#1A365D;color:#FCFCFC;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;letter-spacing:0.04em;border:0;cursor:pointer;margin-top:8px">Cambiar mis preferencias de cookies</button>
         </div>
         </sc-if>
+        </div>
       </div>
     </section>
   </div>
@@ -1671,37 +1789,94 @@
 
   <sc-if value="{{ atFaq }}">
   <div>
-    <section style="background:transparent;border-bottom:1px solid rgba(26,54,93,0.12)">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(18px,4vw,40px)">
-        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6B6B">Preguntas frecuentes</span>
-        <h1 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(34px,5.6vw,80px);line-height:0.98;letter-spacing:-0.02em;color:#1A365D;margin:16px 0 0;max-width:16ch">Lo que más nos preguntan los comerciantes.</h1>
+    <section class="dcx-portada">
+      <div class="dcx-wrap">
+        <div class="dcx-entra">
+          <span class="dcx-rotulo">Preguntas frecuentes</span>
+          <h1>Lo que más nos preguntan los comerciantes.</h1>
+          <p class="dcx-bajada">Si tu duda no está acá, escribinos y te respondemos.</p>
+        </div>
+        <div class="dcx-fotos">
+          <div><img src="assets/rubro-libreria.jpg" alt="Librería con útiles escolares" /></div>
+          <div><img src="assets/hero-4-640.jpg" alt="Pasillo de un supermercado con góndolas llenas" /></div>
+          <div><img src="assets/rubro-calzado.jpg" alt="Calzado en exhibición" /></div>
+        </div>
       </div>
     </section>
-    <section style="background:#FCFCFC;border-radius:12px">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,88px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:0 clamp(26px,5vw,70px)">
-        <div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Qué es Doña Compra?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">Una empresa que compra la mercadería que vos elegís en tu proveedor y te la revende con factura, para que pagues después.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Doña Compra presta dinero?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">No. No entregamos efectivo. Realizamos una operación comercial de compra y reventa de mercadería.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Puedo elegir mi propio proveedor?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">Sí. Elegís el mayorista o proveedor que ya conocés y los productos que necesitás.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Quién compra la mercadería?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">Doña Compra le paga al proveedor al contado y adquiere la mercadería a su nombre, para después revendértela.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Cómo retiro mi pedido?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">Con un código único de retiro, de un solo uso, con vigencia y responsable registrados.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Cuándo tengo que pagar?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">A más tardar 30 días después de la fecha de factura. El vencimiento exacto figura en ese documento.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Qué incluye el precio?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">El precio de compra de la mercadería, el margen comercial del 12 % y los servicios fijos de tu nivel.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18);border-bottom:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿El margen comercial cambia según mi nivel?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">No. El margen es del 12 % en los siete niveles. Lo que cambia es el Pack Doña Compra.</p></div>
+
+    <section style="background:#FCFCFC">
+      <div class="dcx-wrap dcx-dos dcx-indice">
+        <div class="dcx-fijo">
+          <span class="dcx-rotulo" style="margin-bottom:16px">Temas</span>
+          <ul style="list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:14px;color:#4A4A4A">
+            <li style="display:flex;align-items:center;gap:12px"><span style="font-family:ui-monospace,monospace;font-size:12px;color:#AE5432">01</span>Cómo funciona<span style="margin-left:auto;font-size:12px;color:#6B6B6B">5</span></li>
+            <li style="display:flex;align-items:center;gap:12px"><span style="font-family:ui-monospace,monospace;font-size:12px;color:#AE5432">02</span>Pagos y precio<span style="margin-left:auto;font-size:12px;color:#6B6B6B">5</span></li>
+            <li style="display:flex;align-items:center;gap:12px"><span style="font-family:ui-monospace,monospace;font-size:12px;color:#AE5432">03</span>Niveles y montos<span style="margin-left:auto;font-size:12px;color:#6B6B6B">4</span></li>
+            <li style="display:flex;align-items:center;gap:12px"><span style="font-family:ui-monospace,monospace;font-size:12px;color:#AE5432">04</span>Historial y visitas<span style="margin-left:auto;font-size:12px;color:#6B6B6B">2</span></li>
+          </ul>
+          <div style="margin-top:28px;background:#1A365D;border-radius:12px;padding:24px">
+            <p style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#FCFCFC;margin:0">¿No la encontrás?</p>
+            <p style="font-size:14px;line-height:1.5;color:rgba(252,252,252,0.8);margin:8px 0 0">{{ plazo }}</p>
+            <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:inline-block;margin-top:16px;color:#E8A98E;font-weight:500">Escribir por WhatsApp <span class="dcx-flecha" aria-hidden="true">&rarr;</span></a>
+          </div>
         </div>
-        <div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Cómo funcionan los niveles?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">Cada nivel tiene un tope de compras acumuladas. Al ingresar a un nivel, el contador vuelve a cero.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Subo de nivel automáticamente?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">No. Superar el tope habilita una evaluación. El ascenso es de a un nivel y lo decide Doña Compra.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Existen montos mínimos de pedido?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">Sí: Gs. 100.000 en nivel Hierro y Gs. 150.000 desde nivel Cobre, expresados en precio de compra.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Cobran multas por atraso?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">No aplicamos multas ni intereses por atraso. Sí conversamos para acomodar la situación.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Qué sucede si hace falta una gestión de cobranza?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">Si se requiere una gestión de cobranza o un pagaré, pueden refacturarse los gastos realmente realizados y comprobados, sin margen adicional.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Qué es el Pack Doña Compra?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">Un servicio por pedido que reúne publicidad, seguimiento y negociaciones, y el Club Doña Compra. Su importe depende del nivel.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Qué es el Legajo de buena gestión?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">Un documento, a pedido, que reúne hechos verificables de tu historial: compras, puntualidad y antigüedad. Referencia: Gs. 300.000.</p></div>
-          <div style="padding:20px 0;border-top:1px solid rgba(26,54,93,0.18);border-bottom:1px solid rgba(26,54,93,0.18)"><h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(19px,2.2vw,24px);color:#1A365D;margin:0">¿Cómo solicito una visita?</h2><p style="font-size:14.5px;line-height:1.65;color:#4A4A4A;margin:9px 0 0">Escribinos por WhatsApp o completá el formulario de contacto. Coordinamos la visita según disponibilidad.</p></div>
+
+        <div style="display:grid;gap:clamp(40px,5vw,64px)">
+          <div class="dcx-faq">
+            <span class="dcx-rotulo">Tema 01</span>
+            <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);color:#1A365D;margin:12px 0 20px">Cómo funciona</h2>
+            <div style="border-top:1px solid rgba(26,54,93,0.12)">
+              <details><summary>¿Qué es Doña Compra?</summary><p>Una empresa que compra la mercadería que vos elegís en tu proveedor y te la revende con factura, para que pagues después.</p></details>
+              <details><summary>¿Doña Compra presta dinero?</summary><p>No. No entregamos efectivo. Realizamos una operación comercial de compra y reventa de mercadería.</p></details>
+              <details><summary>¿Puedo elegir mi propio proveedor?</summary><p>Sí. Elegís el mayorista o proveedor que ya conocés y los productos que necesitás.</p></details>
+              <details><summary>¿Quién compra la mercadería?</summary><p>Doña Compra le paga al proveedor al contado y adquiere la mercadería a su nombre, para después revendértela.</p></details>
+              <details><summary>¿Cómo retiro mi pedido?</summary><p>Con un código único de retiro, de un solo uso, con vigencia y responsable registrados.</p></details>
+            </div>
+          </div>
+
+          <div class="dcx-faq">
+            <span class="dcx-rotulo">Tema 02</span>
+            <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);color:#1A365D;margin:12px 0 20px">Pagos y precio</h2>
+            <div style="border-top:1px solid rgba(26,54,93,0.12)">
+              <details><summary>¿Cuándo tengo que pagar?</summary><p>A más tardar 30 días después de la fecha de factura. El vencimiento exacto figura en ese documento.</p></details>
+              <details><summary>¿Qué incluye el precio?</summary><p>El precio de compra de la mercadería, el margen comercial del 12 % y los servicios fijos de tu nivel.</p></details>
+              <details><summary>¿Qué es el Pack Doña Compra?</summary><p>Un servicio por pedido que reúne publicidad, seguimiento y negociaciones, y el Club Doña Compra. Su importe depende del nivel.</p></details>
+              <details><summary>¿Cobran multas por atraso?</summary><p>No aplicamos multas ni intereses por atraso. Sí conversamos para acomodar la situación.</p></details>
+              <details><summary>¿Qué sucede si hace falta una gestión de cobranza?</summary><p>Si se requiere una gestión de cobranza o un pagaré, pueden refacturarse los gastos realmente realizados y comprobados, sin margen adicional.</p></details>
+            </div>
+          </div>
+
+          <div class="dcx-faq">
+            <span class="dcx-rotulo">Tema 03</span>
+            <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);color:#1A365D;margin:12px 0 20px">Niveles y montos</h2>
+            <div style="border-top:1px solid rgba(26,54,93,0.12)">
+              <details><summary>¿Cómo funcionan los niveles?</summary><p>Cada nivel tiene un tope de compras acumuladas. Al ingresar a un nivel, el contador vuelve a cero.</p></details>
+              <details><summary>¿El margen comercial cambia según mi nivel?</summary><p>No. El margen es del 12 % en los siete niveles. Lo que cambia es el Pack Doña Compra.</p></details>
+              <details><summary>¿Subo de nivel automáticamente?</summary><p>No. Superar el tope habilita una evaluación. El ascenso es de a un nivel y lo decide Doña Compra.</p></details>
+              <details><summary>¿Existen montos mínimos de pedido?</summary><p>Sí: Gs. 100.000 en nivel Hierro y Gs. 150.000 desde nivel Cobre, expresados en precio de compra.</p></details>
+            </div>
+          </div>
+
+          <div class="dcx-faq">
+            <span class="dcx-rotulo">Tema 04</span>
+            <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);color:#1A365D;margin:12px 0 20px">Historial y visitas</h2>
+            <div style="border-top:1px solid rgba(26,54,93,0.12)">
+              <details><summary>¿Qué es el Legajo de buena gestión?</summary><p>Un documento, a pedido, que reúne hechos verificables de tu historial: compras, puntualidad y antigüedad. Referencia: Gs. 300.000.</p></details>
+              <details><summary>¿Cómo solicito una visita?</summary><p>Escribinos por WhatsApp o completá el formulario de contacto. Coordinamos la visita según disponibilidad.</p></details>
+            </div>
+          </div>
         </div>
       </div>
-      <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,40px) clamp(44px,6vw,80px)">
-        <a href="#/contacto" data-cta="true" style="display:inline-flex;align-items:center;background:#1A365D;color:#FCFCFC;padding:16px 26px;font-size:13.5px;letter-spacing:0.08em;text-transform:uppercase" style-hover="background:#C25E38;color:#12284A">Tengo otra pregunta</a>
+    </section>
+
+    <section style="background:#1A365D">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(36px,5vw,64px) clamp(18px,4vw,40px);text-align:center">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);color:#FCFCFC;margin:0 0 12px">¿Tenés otra pregunta?</h2>
+        <p style="font-size:16px;line-height:1.5;color:rgba(252,252,252,0.78);margin:0 auto 24px;max-width:52ch">Escribinos y te respondemos. {{ plazo }}</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+          <a href="#/contacto" style="display:inline-block;background:#AE5432;color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Ir a contacto</a>
+          <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:inline-block;border:1px solid rgba(252,252,252,0.5);color:#FCFCFC;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Escribir por WhatsApp</a>
+        </div>
       </div>
     </section>
   </div>
