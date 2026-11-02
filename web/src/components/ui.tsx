@@ -33,30 +33,6 @@ export function Section({
   );
 }
 
-export function Hero({
-  eyebrow,
-  titulo,
-  bajada,
-}: {
-  eyebrow: string;
-  titulo: string;
-  bajada: string;
-}) {
-  return (
-    <section className="border-b border-navy/12">
-      <Wrap>
-        <span className="text-[11px] uppercase tracking-[0.2em] text-muted">
-          {eyebrow}
-        </span>
-        <h1 className="mt-4 max-w-[18ch]">{titulo}</h1>
-        <p className="mt-4 max-w-[56ch] text-[clamp(16px,1.8vw,19px)] text-ink">
-          {bajada}
-        </p>
-      </Wrap>
-    </section>
-  );
-}
-
 export function Card({
   children,
   className = "",

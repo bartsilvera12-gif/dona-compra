@@ -7,7 +7,8 @@ export default function Tarjeta({ p }: { p: ItemFeed }) {
   const esVideo = p.tipo === "video";
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-navy/12 bg-card">
+    // break-inside-avoid: el feed va en columnas y una tarjeta no se parte.
+    <article className="group mb-[clamp(16px,2vw,24px)] flex break-inside-avoid flex-col overflow-hidden rounded-[var(--radius-card)] border border-navy/12 bg-card transition-shadow duration-300 hover:shadow-[0_14px_34px_-18px_rgba(26,54,93,0.45)]">
       <Link
         href={`/anuncios/${p.slug}`}
         className="relative block overflow-hidden bg-grad-start"
@@ -18,59 +19,64 @@ export default function Tarjeta({ p }: { p: ItemFeed }) {
           src={p.imagen}
           alt={p.imagenAlt ?? `${p.titulo} — ${p.categoria}, ${p.ciudad}`}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 33vw"
-          className="object-cover"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
+        {/* Degradado: garantiza el contraste de los rótulos sobre la foto. */}
+        <span
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-navy-dark/55 to-transparent"
+        />
+        <span className="absolute left-3 top-3 rounded-full bg-card px-3 py-1 text-[11.5px] font-semibold text-navy">
+          {p.categoria}
+        </span>
         {esVideo && (
           <>
+            <span className="absolute right-3 top-3 rounded-full bg-terracotta-ink px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-card">
+              Video
+            </span>
             <span
               aria-hidden="true"
-              className="absolute inset-0 flex items-center justify-center bg-navy-dark/25"
+              className="absolute inset-0 flex items-center justify-center"
             >
-              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-card/92 pl-1 text-xl text-navy">
-                ▶
+              {/* SVG y no "▶": algunos sistemas dibujan ese carácter como emoji. */}
+              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-card/92 pl-1 text-navy shadow-lg transition-transform duration-300 group-hover:scale-110">
+                <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
+                  <path d="M7 4.5v15l13-7.5z" />
+                </svg>
               </span>
-            </span>
-            <span className="absolute left-2.5 top-2.5 rounded-[var(--radius-button)] bg-terracotta-ink px-2.5 py-1 text-[10.5px] uppercase tracking-[0.1em] text-card">
-              Video 9:16
             </span>
           </>
         )}
+        {p.precio > 0 && (
+          <span className="absolute bottom-3 left-3 rounded-[var(--radius-button)] bg-card px-3 py-1.5 font-mono text-[15px] font-semibold text-terracotta-ink shadow-sm">
+            {precioGs(p.precio)}
+          </span>
+        )}
       </Link>
 
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded px-2 py-0.5 text-[11px] font-medium bg-navy/8 text-navy">
-            {p.categoria}
-          </span>
-          <span className="text-xs text-muted">{p.ciudad}</span>
-        </div>
+      <div className="flex flex-1 flex-col gap-2 p-[clamp(16px,1.8vw,20px)]">
+        <span className="text-xs uppercase tracking-[0.12em] text-muted">
+          {p.ciudad}
+        </span>
 
-        <h3 className="text-[17px] leading-tight">
+        <h3 className="text-[18px] leading-snug">
           <Link href={`/anuncios/${p.slug}`} className="hover:text-terracotta-ink">
             {p.titulo}
           </Link>
         </h3>
 
-        <p className="flex-1 text-[14.5px] text-ink">{p.texto}</p>
+        <p className="line-clamp-3 text-[14.5px] text-ink">{p.texto}</p>
 
-        {p.precio > 0 && (
-          <span className="font-mono text-[17px] font-semibold text-terracotta-ink">
-            {precioGs(p.precio)}
+        <div className="mt-2 flex items-center justify-between gap-3 border-t border-navy/10 pt-3 text-xs text-muted">
+          <span className="min-w-0 truncate">
+            {p.autor} · <time dateTime={p.fecha}>{fechaLarga(p.fecha)}</time>
           </span>
-        )}
-
-        <div className="flex flex-wrap gap-1.5 text-xs text-muted">
-          <span>{p.autor}</span>
-          <span aria-hidden="true">·</span>
-          <time dateTime={p.fecha}>{fechaLarga(p.fecha)}</time>
           {p.meGusta > 0 && (
-            <>
-              <span aria-hidden="true">·</span>
-              <span>
-                {p.meGusta} {p.meGusta === 1 ? "me gusta" : "me gusta"}
-              </span>
-            </>
+            <span className="flex-none text-terracotta-ink">
+              <span aria-hidden="true">♥</span> {p.meGusta}
+              <span className="sr-only"> me gusta</span>
+            </span>
           )}
         </div>
       </div>

@@ -138,6 +138,73 @@ export function PortadaFoto({
   );
 }
 
+/**
+ * Portada compacta para las páginas de servicio (anuncios, contacto, FAQ,
+ * jurídica): el título no ocupa la pantalla entera y el lado derecho lleva
+ * tres fotos escalonadas o lo que la página necesite tener a mano, como el
+ * WhatsApp en Contacto. Sin eso, media portada quedaba vacía.
+ */
+export function PortadaCompacta({
+  rotulo,
+  titulo,
+  bajada,
+  fotos,
+  lateral,
+  children,
+}: {
+  rotulo: string;
+  titulo: string;
+  bajada: React.ReactNode;
+  fotos?: { src: string; alt: string }[];
+  lateral?: React.ReactNode;
+  children?: React.ReactNode;
+}) {
+  const desfase = ["mt-8", "mt-0", "mt-12"];
+
+  return (
+    <section className="overflow-hidden border-b border-navy/12">
+      <Wrap className="!py-[clamp(32px,5vw,64px)]">
+        <div className="grid items-center gap-[clamp(24px,4vw,56px)] lg:grid-cols-[1.15fr_1fr]">
+          <Revelar>
+            <Rotulo>{rotulo}</Rotulo>
+            <h1 className="mt-5 max-w-[18ch] text-[clamp(32px,4.6vw,54px)]">
+              {titulo}
+            </h1>
+            <div className="mt-5 max-w-[52ch] text-[clamp(16px,1.8vw,18.5px)] text-ink">
+              {bajada}
+            </div>
+            {children && <div className="mt-7">{children}</div>}
+          </Revelar>
+
+          {fotos && fotos.length > 0 && (
+            <div className="grid grid-cols-3 gap-[clamp(8px,1.2vw,14px)]">
+              {fotos.slice(0, 3).map((f, i) => (
+                <Revelar key={f.src + i} retardo={(i + 1) as 1 | 2 | 3}>
+                  <div
+                    className={`relative aspect-[3/4] overflow-hidden rounded-[var(--radius-card)] bg-grad-start ${desfase[i]}`}
+                  >
+                    <Image
+                      src={f.src}
+                      alt={f.alt}
+                      fill
+                      sizes="(max-width: 1024px) 33vw, 16vw"
+                      className="object-cover"
+                      data-acercar=""
+                      priority={i === 0}
+                    />
+                  </div>
+                </Revelar>
+              ))}
+            </div>
+          )}
+
+          {lateral && <Revelar retardo={2}>{lateral}</Revelar>}
+        </div>
+      </Wrap>
+    </section>
+  );
+}
+
 /** Paso numerado con su foto. Para las secuencias de cuatro pasos. */
 export function PasoFoto({
   n,
