@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dona-compra.vercel.app/sitemap.xml
