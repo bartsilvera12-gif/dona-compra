@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design system Doña Compra — valores del manual de marca v1.0.
+   Cualquier color, tipografía o radio del sitio sale de acá.
+   --------------------------------------------------------------------------- */
+@theme {
+  /* Superficies */
+  --color-card: #fcfcfc;
+  --color-grad-start: #e3ecf5; /* azul pastel, arriba a la izquierda */
+  --color-grad-mid: #f9f7f7;
+  --color-grad-end: #fdf0ef; /* rosa durazno, abajo a la derecha */
+
+  /* Texto e institucional */
+  --color-navy: #1a365d; /* dominante: títulos, botones */
+  --color-navy-dark: #12284a; /* superficies oscuras: footer, menú */
+  --color-navy-deep: #142c4d; /* hover del dominante */
+  --color-ink: #4a4a4a; /* texto corriente */
+  --color-muted: #6b6b6b; /* notas, etiquetas */
+
+  /* Acentos */
+  --color-terracotta: #c25e38; /* montos, totales, acentos */
+  --color-terracotta-soft: #e8a98e; /* terracota sobre fondo oscuro */
+  --color-ocre: #d97706;
+
+  /* Estados */
+  --color-ok: #10b981;
+  --color-error: #ef4444;
+
+  /* Tipografía */
+  --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radios */
+  --radius-card: 12px;
+  --radius-button: 8px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background: linear-gradient(
+    135deg,
+    var(--color-grad-start) 0%,
+    var(--color-grad-mid) 52%,
+    var(--color-grad-end) 100%
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  color: var(--color-navy);
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* El manual fija 32/24/20px; acá escalan pero sin bajar de esos valores. */
+h1 {
+  font-size: clamp(32px, 5.4vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+h2 {
+  font-size: clamp(24px, 3.2vw, 34px);
+  font-weight: 700;
+}
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+a {
+  color: var(--color-navy);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-terracotta);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  border-radius: var(--radius-button);
+}
+
+::selection {
+  background: var(--color-terracotta);
+  color: var(--color-card);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

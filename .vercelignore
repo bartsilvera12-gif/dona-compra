@@ -2,3 +2,5 @@
 uploads/
 .thumbnail
 Doña Compra v1.dc.html
+web/node_modules/
+web/.next/
