@@ -15,7 +15,10 @@ Vercel a `web/`.
 | Formulario de contacto (servidor) | Listo |
 | Boletín con doble opt-in | Listo |
 | Inicio | Portado, versión corta |
-| Concepto, Comerciantes, Mayoristas, Club, Jurídica, FAQ | Marcador: contenido todavía en el sitio estático |
+| Concepto, Comerciantes, Mayoristas | Portadas |
+| El Club | Portada; el acceso de miembros espera a las cuentas |
+| Jurídica | Portada, con las 4 secciones apiladas e índice |
+| Preguntas frecuentes | Portada, con datos estructurados FAQPage |
 | Feed de anuncios con base de datos | Pendiente |
 | Cuentas, roles y back-office | Pendiente |
 
@@ -38,7 +41,7 @@ npm run dev
 > código: con `npm run build && npm start` funciona normalmente. En un
 > navegador externo, `npm run dev` anda bien.
 
-## Verificar la configuración
+## Verificar
 
 ```bash
 npm run check
@@ -47,6 +50,28 @@ npm run check
 Dice si la base conecta, en qué región está, si faltan tablas, si la API key
 de correo sirve y si el remitente pertenece a un dominio verificado. No
 imprime ningún secreto, así que se puede correr y pegar la salida sin riesgo.
+
+```bash
+npm run check:contraste
+```
+
+Mide cada combinación de color del sitio contra WCAG AA (4.5:1 para texto
+normal, 3:1 para texto grande y elementos de interfaz), que es lo que pide el
+pliego. Falla con código distinto de cero si alguna no llega.
+
+### Accesibilidad del color
+
+Dos colores del manual no alcanzan AA para texto y tienen variante propia:
+
+| Uso | Color | Por qué |
+| --- | --- | --- |
+| Acentos, bordes | `--color-terracotta` `#C25E38` | El del manual. Da 4.13 sobre la tarjeta: alcanza para elementos de interfaz (3:1), no para texto |
+| Texto y fondos de botón | `--color-terracotta-ink` `#AE5432` | Mismo tono y saturación, algo más oscuro. 4.98 y 4.59 |
+| Bordes y fondos de error | `--color-error` `#EF4444` | El del manual |
+| Texto de error | `--color-error-ink` `#C0392B` | El del manual da 3.67 sobre tarjeta, insuficiente para texto |
+
+Sobre fondo oscuro el terracota no sirve en ninguna de las dos variantes
+(3.47 y 3.11): ahí va `--color-terracotta-soft` `#E8A98E`, que da 7.35.
 
 ## Variables de entorno
 

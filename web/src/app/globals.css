@@ -19,13 +19,20 @@
   --color-muted: #6b6b6b; /* notas, etiquetas */
 
   /* Acentos */
-  --color-terracotta: #c25e38; /* montos, totales, acentos */
+  --color-terracotta: #c25e38; /* montos, totales, bordes y acentos */
+  /* Variante para TEXTO y fondos de boton. El terracota del manual da 4.13
+     sobre la tarjeta y 3.8 sobre el degradado, y WCAG AA pide 4.5. Mismo
+     tono y saturacion, algo mas oscuro: 4.98 y 4.59. */
+  --color-terracotta-ink: #ae5432;
   --color-terracotta-soft: #e8a98e; /* terracota sobre fondo oscuro */
   --color-ocre: #d97706;
 
   /* Estados */
   --color-ok: #10b981;
-  --color-error: #ef4444;
+  --color-error: #ef4444; /* bordes y fondos de error (umbral 3:1) */
+  /* El rojo del manual da 3.67 sobre tarjeta: no alcanza para TEXTO.
+     Este cumple en tarjeta (5.30) y sobre el degradado (4.89). */
+  --color-error-ink: #c0392b;
 
   /* Tipografía */
   --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;

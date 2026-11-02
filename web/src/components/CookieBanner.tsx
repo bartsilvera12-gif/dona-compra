@@ -118,7 +118,7 @@ gtag('config','${site.gaId}',{anonymize_ip:true});`}
               <button
                 type="button"
                 onClick={() => decidir("all")}
-                className="cursor-pointer rounded-[var(--radius-button)] bg-terracotta px-6 py-3 text-[13.5px] font-medium text-card hover:opacity-90"
+                className="cursor-pointer rounded-[var(--radius-button)] bg-terracotta-ink px-6 py-3 text-[13.5px] font-medium text-card hover:opacity-90"
               >
                 Aceptar todo
               </button>

@@ -1,17 +1,30 @@
 import type { Metadata } from "next";
-import EnMigracion from "@/components/EnMigracion";
+import ClubTabs from "@/components/ClubTabs";
+import { CTA, Hero, Section } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "El Club Doña Compra",
-  description: "Acceso de miembros, ventajas exclusivas y ofertas para los comerciantes que compran con nosotros.",
+  description:
+    "Acceso de miembros, ventajas exclusivas y ofertas para los comerciantes que compran con Doña Compra.",
 };
 
-export default function Page() {
+export default function ClubPage() {
   return (
-    <EnMigracion
-      titulo="El Club Doña Compra"
-      bajada="Acceso de miembros, ventajas exclusivas y ofertas para los comerciantes que compran con nosotros."
-      ruta="#/club"
-    />
+    <main>
+      <Hero
+        eyebrow="El Club Doña Compra"
+        titulo="El Club Doña Compra"
+        bajada="El espacio de los comerciantes que ya compran con nosotros: ventajas, ofertas reservadas y acompañamiento. Se accede por historial de compras, no por cuota."
+      />
+
+      <Section tono="tarjeta">
+        <ClubTabs />
+      </Section>
+
+      <CTA
+        titulo="¿Querés sumarte al Club?"
+        texto="Empieza con una visita al negocio. A partir de ahí, el historial de compras define el ingreso."
+      />
+    </main>
   );
 }

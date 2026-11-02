@@ -39,7 +39,7 @@ export default function Footer() {
 
         {columnas.map((col) => (
           <div key={col.titulo}>
-            <div className="text-[10.5px] uppercase tracking-[0.2em] text-terracotta">
+            <div className="text-[10.5px] uppercase tracking-[0.2em] text-terracotta-soft">
               {col.titulo}
             </div>
             <nav
@@ -60,7 +60,7 @@ export default function Footer() {
         ))}
 
         <div>
-          <div className="text-[10.5px] uppercase tracking-[0.2em] text-terracotta">
+          <div className="text-[10.5px] uppercase tracking-[0.2em] text-terracotta-soft">
             Escribinos
           </div>
           <div className="mt-3.5 flex flex-col items-start gap-2.5 text-sm">
@@ -105,7 +105,7 @@ export default function Footer() {
       </div>
 
       <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-3.5 border-t border-card/10 px-[clamp(18px,4vw,40px)] pb-7 pt-4.5">
-        <span className="text-[12.5px] text-card/45">© 2026 Doña Compra</span>
+        <span className="text-[12.5px] text-card/65">© 2026 Doña Compra</span>
         <span className="flex flex-wrap items-center gap-4">
           <Link href="/juridica" className="text-[12.5px] text-card/60 hover:text-terracotta-soft">
             Aviso legal y privacidad

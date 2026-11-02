@@ -61,14 +61,14 @@ export default function BoletinForm() {
           />
           <span>
             Acepto recibir el boletín y la{" "}
-            <a href="/juridica" className="text-terracotta underline">
+            <a href="/juridica" className="text-terracotta-ink underline">
               política de privacidad
             </a>
             . Podés darte de baja desde cualquier correo.
           </span>
         </label>
         {estado.errores?.consent && (
-          <p className="text-[13px] text-error" role="alert">
+          <p className="text-[13px] text-error-ink" role="alert">
             {estado.errores.consent}
           </p>
         )}

@@ -74,7 +74,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 aria-current={activo(item.href) ? "page" : undefined}
-                className={`relative whitespace-nowrap px-2.5 py-1.5 text-[13.5px] hover:text-terracotta ${
+                className={`relative whitespace-nowrap px-2.5 py-1.5 text-[13.5px] hover:text-terracotta-ink ${
                   activo(item.href) ? "text-navy" : "text-ink"
                 }`}
               >

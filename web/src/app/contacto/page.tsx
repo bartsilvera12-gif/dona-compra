@@ -52,7 +52,7 @@ export default function ContactoPage() {
               <h3 className="mb-2">Correo</h3>
               <a
                 href={`mailto:${site.email}`}
-                className="break-all text-[17px] text-terracotta"
+                className="break-all text-[17px] text-terracotta-ink"
               >
                 {site.email}
               </a>
@@ -61,7 +61,7 @@ export default function ContactoPage() {
             <div className={CARD}>
               <h3 className="mb-2">Horarios y respuesta</h3>
               <p className="text-ink">{site.horario}</p>
-              <p className="mt-2 font-medium text-terracotta">{site.plazo}</p>
+              <p className="mt-2 font-medium text-terracotta-ink">{site.plazo}</p>
             </div>
 
             <div className={CARD}>
@@ -104,7 +104,7 @@ export default function ContactoPage() {
               </p>
               <Link
                 href="/preguntas-frecuentes"
-                className="font-medium text-terracotta"
+                className="font-medium text-terracotta-ink"
               >
                 Ver preguntas frecuentes →
               </Link>

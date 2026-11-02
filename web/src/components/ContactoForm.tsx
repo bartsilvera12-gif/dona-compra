@@ -13,7 +13,7 @@ const LABEL =
 function Error({ msg }: { msg?: string }) {
   if (!msg) return null;
   return (
-    <p className="mt-1.5 text-[13px] text-error" role="alert">
+    <p className="mt-1.5 text-[13px] text-error-ink" role="alert">
       {msg}
     </p>
   );
@@ -109,7 +109,7 @@ export default function ContactoForm() {
                 href={waLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-terracotta underline"
+                className="font-medium text-terracotta-ink underline"
               >
                 Abrir WhatsApp
               </a>
@@ -195,7 +195,7 @@ export default function ContactoForm() {
         <span>
           Acepto que Doña Compra trate mis datos para responder esta consulta,
           según la{" "}
-          <a href="/juridica" className="text-terracotta underline">
+          <a href="/juridica" className="text-terracotta-ink underline">
             política de privacidad
           </a>
           . *

@@ -56,7 +56,7 @@ export default function Home() {
             ))}
           </div>
           <p className="mt-7">
-            <Link href="/el-concepto" className="font-medium text-terracotta">
+            <Link href="/el-concepto" className="font-medium text-terracotta-ink">
               Conocer el concepto completo →
             </Link>
           </p>
