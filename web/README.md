@@ -23,9 +23,11 @@ Vercel a `web/`.
 | Me gusta y compartir | Listos (los me gusta necesitan la base conectada) |
 | Cuentas con roles y acceso | Listo |
 | Back-office: resumen, mensajes, moderación, boletín | Listo |
-| Alta de publicaciones desde el panel | Pendiente: hoy se cargan por semilla |
+| Alta y edición de publicaciones desde el panel | Listo |
+| Niveles y tarifas, con calculadora | Listo |
+| Servicios y Nosotros | Listos |
+| Subida de imágenes y videos | Pendiente: hoy se referencian por ruta o URL |
 | Notificaciones por correo al moderar | Pendiente |
-| Cuentas, roles y back-office | Pendiente |
 
 ## Arrancar
 
@@ -139,6 +141,26 @@ cuidados que conviene no perder:
 
 El estado del revelado vive en un atributo del DOM, no en React: así no hay
 un render por cada elemento que entra mientras se hace scroll.
+
+### Rutas heredadas del sitio estático
+
+`/como-funciona` y `/para-tu-negocio` redirigen de forma permanente a
+`/el-concepto` y `/comerciante`: su contenido ya vive ahí y volver a crearlas
+sería contenido duplicado, que reparte la autoridad entre dos URLs que dicen
+lo mismo. Los enlaces y marcadores viejos siguen funcionando.
+
+`/niveles-y-tarifas`, `/servicios` y `/nosotros` sí existen como páginas
+propias, porque su contenido no está en ninguna otra.
+
+### Niveles y tarifas
+
+Los importes viven en `src/lib/niveles.ts` y son los del material comercial:
+margen del 12 %, seguro de Gs. 4.000, análisis de Gs. 3.000 y el Pack según
+nivel. La calculadora y la tabla leen de ahí, así que un cambio de tarifa se
+hace en un solo lugar.
+
+La calculadora dice en pantalla que es una estimación, no una cotización: el
+nivel y las condiciones se definen en la visita.
 
 ### Cuentas y panel
 

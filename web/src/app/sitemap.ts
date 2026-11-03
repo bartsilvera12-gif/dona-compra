@@ -1,12 +1,15 @@
 import type { MetadataRoute } from "next";
-import { nav, site } from "@/lib/site";
+import { nav, navDetalle, site } from "@/lib/site";
 import { slugsPublicados } from "@/db/anuncios";
 
 /** Ahora que cada página es una URL real, el sitemap las lista todas,
     incluida una entrada por publicación del feed. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const ahora = new Date();
-  const rutas = [...nav.map((n) => n.href), "/preguntas-frecuentes"];
+  const rutas = [
+    ...nav.map((n) => n.href),
+    ...navDetalle.map((n) => n.href),
+  ];
 
   const fijas: MetadataRoute.Sitemap = rutas.map((ruta) => ({
     url: `${site.url}${ruta === "/" ? "" : ruta}`,

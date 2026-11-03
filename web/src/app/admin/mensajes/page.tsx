@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { desc, eq } from "drizzle-orm";
 import { requireDb } from "@/db";
 import { mensajes } from "@/db/schema";
@@ -38,16 +39,16 @@ export default async function MensajesPage({ searchParams }: Props) {
       <h2 className="mb-5 text-[22px]">Mensajes</h2>
 
       <nav aria-label="Filtrar por estado" className="mb-6 flex flex-wrap gap-2">
-        <a
-          href="/admin/mensajes"
+        <Link
+          href={"/admin/mensajes"}
           className={`rounded-[var(--radius-button)] border px-4 py-2 text-[13.5px] ${
             !filtro ? "border-navy bg-navy text-card" : "border-navy/25 text-ink"
           }`}
         >
           Todos
-        </a>
+        </Link>
         {ESTADOS.map((e) => (
-          <a
+          <Link
             key={e}
             href={`/admin/mensajes?estado=${e}`}
             className={`rounded-[var(--radius-button)] border px-4 py-2 text-[13.5px] capitalize ${
@@ -55,7 +56,7 @@ export default async function MensajesPage({ searchParams }: Props) {
             }`}
           >
             {e}
-          </a>
+          </Link>
         ))}
       </nav>
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { nav, site, waLink } from "@/lib/site";
+import { nav, navDetalle, site, waLink } from "@/lib/site";
 
 export default function Header() {
   const pathname = usePathname();
@@ -125,13 +125,16 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/preguntas-frecuentes"
-              onClick={() => setAbierto(false)}
-              className="pt-4 text-sm uppercase tracking-[0.08em] text-card/65"
-            >
-              Preguntas frecuentes
-            </Link>
+            {navDetalle.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setAbierto(false)}
+                className="pt-3 text-sm uppercase tracking-[0.08em] text-card/65 hover:text-terracotta-soft"
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
         </div>
       )}

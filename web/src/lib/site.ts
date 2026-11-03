@@ -60,5 +60,16 @@ export const nav = [
   { href: "/contacto", label: "Contacto" },
 ] as const;
 
+/**
+ * Páginas de detalle: no entran en el menú principal, que con ocho ya está
+ * lleno, pero sí en el pie, en el menú móvil y en el sitemap.
+ */
+export const navDetalle = [
+  { href: "/niveles-y-tarifas", label: "Niveles y tarifas" },
+  { href: "/servicios", label: "Servicios" },
+  { href: "/nosotros", label: "Nosotros" },
+  { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
+] as const;
+
 export const ASUNTOS = ["Comerciante", "Mayorista", "Prensa", "Otro"] as const;
 export type Asunto = (typeof ASUNTOS)[number];

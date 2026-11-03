@@ -18,10 +18,12 @@ const COLOR: Record<Estado, string> = {
   archivada: "border-navy/20 bg-navy/5 text-navy",
 };
 
-type Props = { searchParams: Promise<{ estado?: string }> };
+type Props = {
+  searchParams: Promise<{ estado?: string; guardada?: string }>;
+};
 
 export default async function PublicacionesPage({ searchParams }: Props) {
-  const { estado: filtro } = await searchParams;
+  const { estado: filtro, guardada } = await searchParams;
   const db = requireDb();
 
   const filas = await db
@@ -37,23 +39,42 @@ export default async function PublicacionesPage({ searchParams }: Props) {
 
   return (
     <div>
-      <h2 className="mb-2 text-[22px]">Publicaciones</h2>
-      <p className="mb-6 max-w-[70ch] text-ink">
-        Solo las que están en estado <strong>publicada</strong> aparecen en el
-        feed. Una publicación nueva nace en <strong>pendiente</strong>.
-      </p>
+      <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h2 className="mb-2 text-[22px]">Publicaciones</h2>
+          <p className="max-w-[70ch] text-ink">
+            Solo las que están en estado <strong>publicada</strong> aparecen en
+            el feed. Una publicación nueva nace en <strong>pendiente</strong>.
+          </p>
+        </div>
+        <Link
+          href="/admin/publicaciones/nueva"
+          className="flex-none rounded-[var(--radius-button)] bg-navy px-5 py-2.5 text-[13.5px] font-medium text-card hover:bg-navy-deep hover:text-card"
+        >
+          Nueva publicación
+        </Link>
+      </div>
+
+      {guardada && (
+        <p
+          role="status"
+          className="mb-6 rounded-[var(--radius-card)] border border-ok/45 bg-ok/10 px-4 py-3 text-[14.5px] text-ink"
+        >
+          Publicación guardada.
+        </p>
+      )}
 
       <nav aria-label="Filtrar por estado" className="mb-6 flex flex-wrap gap-2">
-        <a
-          href="/admin/publicaciones"
+        <Link
+          href={"/admin/publicaciones"}
           className={`rounded-[var(--radius-button)] border px-4 py-2 text-[13.5px] ${
             !filtro ? "border-navy bg-navy text-card" : "border-navy/25 text-ink"
           }`}
         >
           Todas
-        </a>
+        </Link>
         {ESTADOS.map((e) => (
-          <a
+          <Link
             key={e}
             href={`/admin/publicaciones?estado=${e}`}
             className={`rounded-[var(--radius-button)] border px-4 py-2 text-[13.5px] capitalize ${
@@ -61,14 +82,17 @@ export default async function PublicacionesPage({ searchParams }: Props) {
             }`}
           >
             {e}
-          </a>
+          </Link>
         ))}
       </nav>
 
       {filas.length === 0 ? (
         <p className="rounded-[var(--radius-card)] border border-navy/12 bg-card p-8 text-center text-ink">
-          No hay publicaciones {filtro ? `en estado «${filtro}»` : "todavía"}.
-          Podés cargar las de ejemplo con <code>npm run db:seed</code>.
+          No hay publicaciones {filtro ? `en estado «${filtro}»` : "todavía"}.{" "}
+          <Link href="/admin/publicaciones/nueva" className="text-terracotta-ink underline">
+            Creá la primera
+          </Link>{" "}
+          o cargá las de ejemplo con <code>npm run db:seed</code>.
         </p>
       ) : (
         <div className="grid gap-3">
@@ -125,6 +149,12 @@ export default async function PublicacionesPage({ searchParams }: Props) {
                 )}
 
                 <div className="flex flex-wrap items-end gap-2 border-t border-navy/10 pt-4">
+                  <Link
+                    href={`/admin/publicaciones/${p.id}`}
+                    className="rounded-[var(--radius-button)] border border-navy/25 px-3.5 py-2 text-[13px] font-medium text-navy hover:border-terracotta"
+                  >
+                    Editar
+                  </Link>
                   {ESTADOS.filter((e) => e !== p.estado).map((e) => (
                     <form key={e} action={moderarPublicacion}>
                       <input type="hidden" name="id" value={p.id} />

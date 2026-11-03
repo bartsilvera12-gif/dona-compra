@@ -17,8 +17,16 @@ const columnas = [
     enlaces: [
       ["/club", "El Club Doña Compra"],
       ["/anuncios", "Anuncios"],
-      ["/preguntas-frecuentes", "Preguntas frecuentes"],
       ["/contacto", "Contacto"],
+      ["/preguntas-frecuentes", "Preguntas frecuentes"],
+    ],
+  },
+  {
+    titulo: "Detalle",
+    enlaces: [
+      ["/niveles-y-tarifas", "Niveles y tarifas"],
+      ["/servicios", "Servicios"],
+      ["/nosotros", "Nosotros"],
     ],
   },
 ] as const;
