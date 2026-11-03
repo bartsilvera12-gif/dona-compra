@@ -4,6 +4,7 @@ import { randomBytes } from "node:crypto";
 import { put } from "@vercel/blob";
 import { MAX_BYTES, nombreSeguro, procesarImagen } from "@/lib/imagenes";
 import { exigirSesion } from "@/lib/sesion";
+import { subidaDisponible } from "@/lib/subida";
 
 /**
  * Subida de imágenes para las publicaciones.
@@ -17,7 +18,6 @@ import { exigirSesion } from "@/lib/sesion";
  */
 
 const token = (process.env.BLOB_READ_WRITE_TOKEN ?? "").trim();
-export const subidaDisponible = token.length > 0;
 
 export type EstadoSubida = {
   ok?: boolean;

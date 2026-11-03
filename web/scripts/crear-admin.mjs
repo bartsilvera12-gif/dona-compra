@@ -8,14 +8,10 @@
  * guardada en ningún lado en claro.
  */
 
-import { neon } from "@neondatabase/serverless";
+import { sql, cerrar } from "./conexion.mjs";
+
 import { randomBytes, scrypt as scryptCb } from "node:crypto";
 
-const url = (process.env.DATABASE_URL ?? "").trim();
-if (!url) {
-  console.error("✗ DATABASE_URL no está configurada. Completá web/.env.local.");
-  process.exit(1);
-}
 
 const [correoCrudo, nombreCrudo] = process.argv.slice(2);
 if (!correoCrudo) {
@@ -60,7 +56,6 @@ const hash = [
   derivado.toString("base64"),
 ].join("$");
 
-const sql = neon(url);
 
 const [existente] = await sql`
   select id, rol from usuarios where correo = ${correo} limit 1`;
@@ -88,3 +83,6 @@ console.log(`      ${password}`);
 console.log("");
 console.log("  Guardala en tu gestor de contraseñas ahora.");
 console.log("  No queda almacenada en claro en ningún lado.");
+
+// Con el driver nativo hay que cerrar el pool o el proceso no termina.
+await cerrar();

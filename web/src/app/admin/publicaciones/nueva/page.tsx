@@ -1,6 +1,6 @@
 import Link from "next/link";
 import FormPublicacion from "@/components/admin/FormPublicacion";
-import { subidaDisponible } from "../subir";
+import { subidaDisponible } from "@/lib/subida";
 
 export const metadata = { title: "Nueva publicación" };
 

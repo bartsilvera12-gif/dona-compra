@@ -6,7 +6,7 @@
  * Importa el módulo real, no una copia: Node 24 ejecuta TypeScript directo.
  */
 
-import sharp from "sharp";
+import sharp, { type Sharp } from "sharp";
 import { procesarImagen, nombreSeguro, MAX_BYTES } from "../src/lib/imagenes.ts";
 
 const ok = (s: string) => `\x1b[32m✓\x1b[0m ${s}`;
@@ -86,10 +86,12 @@ console.log("\n\x1b[1mLo que se guarda es seguro\x1b[0m\n");
 // dirección del local de alguien sin querer es un problema real.
 const conGps = await lienzo(600, 400)
   .jpeg()
+  // El tipo de sharp no declara GPSIFD, pero la biblioteca lo escribe igual:
+  // es justo el bloque que interesa comprobar que se borra.
   .withExif({
     IFD0: { Copyright: "Prueba", Artist: "Camara" },
     GPSIFD: { GPSLatitudeRef: "S", GPSLongitudeRef: "W" },
-  })
+  } as Parameters<Sharp["withExif"]>[0])
   .toBuffer();
 
 const metaAntes = await sharp(conGps).metadata();

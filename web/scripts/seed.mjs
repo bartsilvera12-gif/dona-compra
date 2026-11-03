@@ -8,14 +8,10 @@
  * archivo de ejemplo.
  */
 
-import { neon } from "@neondatabase/serverless";
+import { sql, cerrar } from "./conexion.mjs";
+
 import { readFileSync } from "node:fs";
 
-const url = (process.env.DATABASE_URL ?? "").trim();
-if (!url) {
-  console.error("✗ DATABASE_URL no está configurada. Completá web/.env.local.");
-  process.exit(1);
-}
 
 // Se leen los datos del mismo archivo que usa la aplicación, extrayendo los
 // objetos con una evaluación acotada para no depender de un compilador de TS.
@@ -33,7 +29,6 @@ const base = {
 };
 const DEMO = new Function("base", `return ${arreglo}`)(base);
 
-const sql = neon(url);
 
 let creadas = 0;
 let actualizadas = 0;
@@ -65,3 +60,6 @@ for (const p of DEMO) {
 
 console.log(`✓ ${creadas} publicación(es) creada(s), ${actualizadas} actualizada(s).`);
 console.log("  Todas quedan en estado «publicada».");
+
+// Con el driver nativo hay que cerrar el pool o el proceso no termina.
+await cerrar();

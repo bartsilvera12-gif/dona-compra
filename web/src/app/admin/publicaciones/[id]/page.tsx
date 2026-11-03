@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 import FormPublicacion from "@/components/admin/FormPublicacion";
-import { subidaDisponible } from "../subir";
+import { subidaDisponible } from "@/lib/subida";
 import { requireDb } from "@/db";
 import { publicaciones } from "@/db/schema";
 import { eliminarPublicacion } from "../form-actions";

@@ -110,6 +110,37 @@ de romperse.
 
 ## Base de datos
 
+El driver se elige solo según a dónde apunte `DATABASE_URL`: HTTP para Neon
+(lo que conviene en funciones serverless) y el protocolo nativo para un
+Postgres común. Antes el proyecto solo hablaba con Neon, así que no se podía
+levantar sin crear una cuenta primero, que es una barrera absurda para probar
+un cambio.
+
+### Levantar una base local
+
+Con un Postgres instalado en la máquina:
+
+```bash
+createdb dona_compra
+```
+
+Después poné en `web/.env.local`:
+
+```bash
+DATABASE_URL=postgresql://USUARIO:CLAVE@localhost:5432/dona_compra
+```
+
+Y creá las tablas, los datos de ejemplo y una cuenta de administración:
+
+```bash
+cd web && npm run db:migrate && npm run db:seed
+```
+
+```bash
+cd web && npm run admin:crear -- vos@ejemplo.com "Tu Nombre"
+```
+
+
 Postgres en Neon, **región europea (Frankfurt)**. Es donde viven los datos
 personales de las consultas y del boletín, y la decisión queda del lado
 conservador respecto al RGPD. El negocio opera en Paraguay bajo la Ley
