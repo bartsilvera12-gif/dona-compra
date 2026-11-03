@@ -26,7 +26,10 @@ Vercel a `web/`.
 | Alta y edición de publicaciones desde el panel | Listo |
 | Niveles y tarifas, con calculadora | Listo |
 | Servicios y Nosotros | Listos |
+| Gestión de cuentas desde el panel | Listo |
+| Cambio de contraseña y sesiones propias | Listo |
 | Subida de imágenes y videos | Pendiente: hoy se referencian por ruta o URL |
+| Área del Club para miembros | Pendiente: el panel es solo para admin |
 | Notificaciones por correo al moderar | Pendiente |
 
 ## Arrancar
@@ -203,6 +206,33 @@ Decisiones de seguridad que conviene no revertir sin pensarlo:
   oficina entera.
 - **Una cuenta suspendida pierde el acceso en la siguiente petición**, sin
   esperar a que venza la sesión.
+
+#### Nadie puede dejarse afuera
+
+El panel se vuelve inaccesible si el único administrador se saca el acceso a
+sí mismo, y de ahí solo se sale por consola. Por eso, en `/admin/usuarios`:
+
+- Un admin **no puede** cambiarse el rol, suspenderse ni borrarse.
+- **No se puede** bajar de rol, suspender ni borrar al último admin activo.
+- **No se puede** restablecer la propia contraseña desde la lista: eso cierra
+  todas las sesiones, y al cerrarse la actual el panel redirige al acceso
+  antes de que se alcance a leer la contraseña generada. Para cambiarla está
+  Mi cuenta, que conserva la sesión de este navegador.
+
+Las guardas están en el servidor; en la interfaz los botones aparecen
+desactivados para no ofrecer algo que va a ser rechazado.
+
+#### Contraseñas de cuentas nuevas
+
+Se generan al azar (24 caracteres) y se muestran **una sola vez** en pantalla.
+No se envían por correo ni quedan en claro en ningún lado: si se pierden, hay
+que restablecerlas. Restablecer una contraseña cierra las sesiones de esa
+cuenta.
+
+Cambiar la propia contraseña desde Mi cuenta cierra **las demás** sesiones,
+no la del navegador en uso: si se cambió por sospecha, quien la tuviera queda
+afuera y la persona sigue trabajando. Pide la contraseña actual, así una
+sesión robada no alcanza para apropiarse de la cuenta.
 
 ### Anuncios
 

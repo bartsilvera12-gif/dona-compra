@@ -22,6 +22,7 @@ async function metricas() {
     [confirmados],
     [sinConfirmar],
     [cuentas],
+    [admins],
   ] = await Promise.all([
     db.select({ n }).from(mensajes).where(eq(mensajes.estado, "nuevo")),
     db.select({ n }).from(mensajes),
@@ -44,6 +45,10 @@ async function metricas() {
       .from(suscriptores)
       .where(isNull(suscriptores.confirmadoEn)),
     db.select({ n }).from(usuarios),
+    db
+      .select({ n })
+      .from(usuarios)
+      .where(and(eq(usuarios.rol, "admin"), eq(usuarios.estado, "activo"))),
   ]);
 
   return {
@@ -54,6 +59,7 @@ async function metricas() {
     confirmados: confirmados?.n ?? 0,
     sinConfirmar: sinConfirmar?.n ?? 0,
     cuentas: cuentas?.n ?? 0,
+    admins: admins?.n ?? 0,
   };
 }
 
@@ -127,7 +133,12 @@ export default async function AdminInicio() {
           nota={`${m.sinConfirmar} sin confirmar`}
           href="/admin/suscriptores"
         />
-        <Tarjeta titulo="Cuentas" valor={m.cuentas} />
+        <Tarjeta
+          titulo="Cuentas"
+          valor={m.cuentas}
+          nota={`${m.admins} con acceso al panel`}
+          href="/admin/usuarios"
+        />
       </div>
 
       {(m.nuevos > 0 || m.pendientes > 0) && (

@@ -16,6 +16,8 @@ const SECCIONES = [
   ["/admin/mensajes", "Mensajes"],
   ["/admin/publicaciones", "Publicaciones"],
   ["/admin/suscriptores", "Boletín"],
+  ["/admin/usuarios", "Cuentas"],
+  ["/admin/cuenta", "Mi cuenta"],
 ] as const;
 
 export default async function AdminLayout({
