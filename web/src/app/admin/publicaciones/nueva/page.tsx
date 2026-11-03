@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FormPublicacion from "@/components/admin/FormPublicacion";
+import { subidaDisponible } from "../subir";
 
 export const metadata = { title: "Nueva publicación" };
 
@@ -21,7 +22,7 @@ export default function NuevaPublicacionPage() {
       </p>
 
       <div className="max-w-[760px] rounded-[var(--radius-card)] border border-navy/12 bg-card p-[clamp(18px,2.5vw,28px)]">
-        <FormPublicacion />
+        <FormPublicacion subidaDisponible={subidaDisponible} />
       </div>
     </div>
   );

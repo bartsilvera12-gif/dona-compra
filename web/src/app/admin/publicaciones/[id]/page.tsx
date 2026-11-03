@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 import FormPublicacion from "@/components/admin/FormPublicacion";
+import { subidaDisponible } from "../subir";
 import { requireDb } from "@/db";
 import { publicaciones } from "@/db/schema";
 import { eliminarPublicacion } from "../form-actions";
@@ -39,7 +40,7 @@ export default async function EditarPublicacionPage({ params }: Props) {
       </p>
 
       <div className="max-w-[760px] rounded-[var(--radius-card)] border border-navy/12 bg-card p-[clamp(18px,2.5vw,28px)]">
-        <FormPublicacion p={p} />
+        <FormPublicacion p={p} subidaDisponible={subidaDisponible} />
       </div>
 
       <div className="mt-8 max-w-[760px] rounded-[var(--radius-card)] border border-error/35 bg-card p-[clamp(16px,2.2vw,22px)]">

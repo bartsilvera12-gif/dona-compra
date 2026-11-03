@@ -28,7 +28,8 @@ Vercel a `web/`.
 | Servicios y Nosotros | Listos |
 | Gestión de cuentas desde el panel | Listo |
 | Cambio de contraseña y sesiones propias | Listo |
-| Subida de imágenes y videos | Pendiente: hoy se referencian por ruta o URL |
+| Subida de imágenes | Lista: se reprocesan a WebP y se les borran los metadatos |
+| Alojamiento de videos | Pendiente: falta elegir el proveedor externo |
 | Área del Club para miembros | Pendiente: el panel es solo para admin |
 | Notificaciones por correo al moderar | Pendiente |
 
@@ -64,6 +65,14 @@ imprime ningún secreto, así que se puede correr y pegar la salida sin riesgo.
 ```bash
 npm run check:contraste
 ```
+
+```bash
+npm run check:imagenes
+```
+
+Prueba la validación y el reprocesado de imágenes contra el módulo real: que
+acepte los formatos válidos, que rechace SVG, PDF, HTML y archivos corruptos,
+que borre los metadatos EXIF y que el nombre del archivo no se use tal cual.
 
 Mide cada combinación de color del sitio contra WCAG AA (4.5:1 para texto
 normal, 3:1 para texto grande y elementos de interfaz), que es lo que pide el
@@ -233,6 +242,35 @@ Cambiar la propia contraseña desde Mi cuenta cierra **las demás** sesiones,
 no la del navegador en uso: si se cambió por sospecha, quien la tuviera queda
 afuera y la persona sigue trabajando. Pide la contraseña actual, así una
 sesión robada no alcanza para apropiarse de la cuenta.
+
+### Subida de imágenes
+
+Las imágenes van a Vercel Blob, no al disco del servidor: en una función
+serverless el sistema de archivos es efímero y lo que se escriba se pierde en
+el siguiente despliegue. Sin `BLOB_READ_WRITE_TOKEN` el panel sigue aceptando
+una ruta o una URL escritas a mano.
+
+Decisiones que conviene no revertir sin pensarlo:
+
+- **No se confía en el nombre ni en el tipo que declara el navegador.** Los
+  manda quien sube. Lo que decide es el encabezado real del archivo.
+- **Los SVG se rechazan.** Son XML y pueden contener `<script>`; aceptarlos
+  es cargar código de terceros en el sitio.
+- **La imagen se vuelve a codificar siempre**, aunque ya venga en un formato
+  válido. Eso hace dos cosas a la vez:
+  - borra los metadatos, **incluida la ubicación GPS** que las cámaras de
+    teléfono dejan en la foto, porque publicar la dirección del local de
+    alguien sin querer es un problema de privacidad real;
+  - neutraliza los archivos políglotas, que son imágenes válidas con otra
+    cosa escondida: lo que se guarda es la salida de nuestro propio
+    codificador, no los bytes que llegaron.
+- **El nombre del archivo se descarta** y se genera uno propio, sin tildes ni
+  rutas, con un sufijo al azar.
+- Se limita a 8 MB de entrada y 1600 px de lado mayor, y la salida siempre es
+  **WebP**, que es lo que pedía el pliego para el rendimiento.
+- Las imágenes se sirven desde el dominio del almacenamiento, no desde el del
+  sitio: un archivo servido desde otro origen no puede tocar las cookies ni
+  el almacenamiento de la aplicación.
 
 ### Anuncios
 

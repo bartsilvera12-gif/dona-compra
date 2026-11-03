@@ -8,6 +8,7 @@ import {
   type EstadoForm,
 } from "@/app/admin/publicaciones/form-actions";
 import type { Publicacion } from "@/db/schema";
+import SubirImagen from "./SubirImagen";
 
 const INPUT =
   "w-full rounded-[var(--radius-button)] border border-navy/25 bg-card px-3.5 py-2.5 text-[15px] text-ink focus:border-terracotta";
@@ -63,7 +64,13 @@ const DISPONIBLES = [
 
 const hoy = () => new Date().toISOString().slice(0, 10);
 
-export default function FormPublicacion({ p }: { p?: Publicacion }) {
+export default function FormPublicacion({
+  p,
+  subidaDisponible = false,
+}: {
+  p?: Publicacion;
+  subidaDisponible?: boolean;
+}) {
   const [estado, accion] = useActionState(
     guardarPublicacion,
     {} satisfies EstadoForm,
@@ -187,8 +194,8 @@ export default function FormPublicacion({ p }: { p?: Publicacion }) {
           </datalist>
           <Err msg={e.imagen} />
           <p className="mt-1.5 text-xs text-muted">
-            Una ruta de las que ya están en el proyecto, o una URL completa. La
-            subida de archivos todavía no está hecha.
+            Subí un archivo acá abajo, o escribí una ruta de las que ya están
+            en el proyecto o una URL completa.
           </p>
         </div>
         {/* Vista previa: evita publicar con una ruta mal escrita. */}
@@ -206,6 +213,8 @@ export default function FormPublicacion({ p }: { p?: Publicacion }) {
           </span>
         </div>
       </div>
+
+      <SubirImagen disponible={subidaDisponible} onSubida={setImagen} />
 
       <div>
         <label htmlFor="imagenAlt" className={LABEL}>

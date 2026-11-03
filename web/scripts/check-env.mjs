@@ -115,6 +115,35 @@ if (!hay("RESEND_API_KEY")) {
 }
 console.log(hay("MAIL_TO") ? ok("MAIL_TO configurada") : warn("MAIL_TO vacía — se usa NEXT_PUBLIC_EMAIL"));
 
+// ---------------------------------------------------------- Subida de imagenes
+console.log(titulo("Subida de imágenes"));
+if (!hay("BLOB_READ_WRITE_TOKEN")) {
+  console.log(warn("BLOB_READ_WRITE_TOKEN vacía — el panel acepta imágenes por ruta o URL, pero no subir archivos"));
+  avisos++;
+} else {
+  // Se comprueba contra la API real: un token mal copiado no se nota hasta
+  // que alguien intenta subir algo.
+  try {
+    const r = await fetch("https://blob.vercel-storage.com/", {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${val("BLOB_READ_WRITE_TOKEN")}`,
+        "x-api-version": "7",
+        "x-content-type": "text/plain",
+      },
+    });
+    if (r.status === 401 || r.status === 403) {
+      console.log(no("el token de Blob no es válido"));
+      fallos++;
+    } else {
+      console.log(ok("token de Blob aceptado"));
+    }
+  } catch (err) {
+    console.log(warn(`no se pudo comprobar el token de Blob: ${err.message}`));
+    avisos++;
+  }
+}
+
 // ------------------------------------------------------------------ Anti-spam
 console.log(titulo("Anti-spam"));
 if (!hay("IP_HASH_SALT")) {

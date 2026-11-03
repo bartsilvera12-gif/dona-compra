@@ -1,6 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        // Las imágenes subidas se sirven desde el almacenamiento de Vercel,
+        // en su propio dominio. Que no compartan origen con el sitio es
+        // deseable: un archivo servido desde otro dominio no puede tocar las
+        // cookies ni el almacenamiento de la aplicación.
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+        pathname: "/**",
+      },
+    ],
+  },
+
   async redirects() {
     return [
       /**
