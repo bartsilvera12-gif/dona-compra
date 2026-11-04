@@ -172,10 +172,12 @@ export default function NivelesPage() {
           <Revelar>
             <Nota>
               El recargo se aplica sobre el costo mayorista de la cotización, no
-              sobre el precio al que después vendés. Pasar el cupo no hace subir
-              de nivel solo: el ascenso es de a un nivel y necesita los pedidos
-              cancelados en plazo, una solicitud, un nuevo Análisis y la
-              decisión de la dirección.
+              sobre el precio al que después vendés. Ojo con no confundir dos cosas:
+              el cupo es lo que podés tener comprometido a la vez, mientras que
+              para pedir el ascenso hay que superar el acumulado de compras
+              previsto para tu nivel. Y superarlo tampoco alcanza: el ascenso es
+              de a un nivel y necesita además los pedidos cancelados en plazo,
+              una solicitud, un nuevo Análisis y la decisión de la dirección.
             </Nota>
           </Revelar>
         </Wrap>

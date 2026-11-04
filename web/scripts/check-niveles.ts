@@ -43,5 +43,43 @@ ok(calcular(50_000, bronce).bajoMinimo, "50.000 esta bajo el minimo de Bronce");
 ok(!calcular(150_000, bronce).bajoMinimo, "150.000 alcanza el minimo");
 ok(calcular(2_000_000, bronce).sobreCupo, "2.000.000 pasa el cupo de Bronce");
 
-console.log(fallos === 0 ? `OK — ${NIVELES.length} niveles verificados contra las CGV` : `${fallos} fallas`);
+
+/* ---------------------------------------------------------------------------
+ * Segunda fuente: el correo de Antonio con la tabla de niveles y un pedido
+ * Bronce resuelto. Vale la pena comprobarlo aparte de las CGV, porque dos
+ * fuentes independientes que coinciden descartan que yo haya copiado mal.
+ * ------------------------------------------------------------------------- */
+
+const CORREO: [string, number, number, number, number][] = [
+  // nivel, cupo, pedido minimo, recargo %, servicios por pedido
+  ["Hierro", 250_000, 100_000, 18, 7_000],
+  ["Cobre", 500_000, 150_000, 17, 8_000],
+  ["Bronce", 1_000_000, 150_000, 16, 9_000],
+  ["Plata", 3_000_000, 150_000, 15, 11_500],
+  ["Oro", 5_000_000, 150_000, 14, 14_500],
+  ["Rubis", 8_000_000, 150_000, 13, 19_000],
+  ["Diamante", 10_000_000, 150_000, 12, 22_500],
+];
+
+ok(CORREO.length === NIVELES.length, "el correo trae otra cantidad de niveles");
+CORREO.forEach(([nombre, cupo, minimo, rec, srv], i) => {
+  const n = NIVELES[i];
+  ok(n.nombre === nombre, `orden: ${n.nombre} != ${nombre}`);
+  ok(n.tope === cupo, `${nombre} cupo del correo`);
+  ok(n.minimo === minimo, `${nombre} minimo del correo`);
+  ok(Math.round(n.recargo * 100) === rec, `${nombre} recargo del correo`);
+  ok(totalServicios(n.servicios) === srv, `${nombre} servicios del correo`);
+});
+
+// El ejemplo resuelto del correo: Bronce, costo mayorista 500.000.
+const ej = calcular(500_000, NIVELES[2]);
+ok(ej.recargo === 80_000, `ejemplo del correo: recargo ${ej.recargo} != 80.000`);
+ok(ej.totalServicios === 9_000, `ejemplo del correo: servicios ${ej.totalServicios} != 9.000`);
+ok(ej.total === 589_000, `ejemplo del correo: total ${ej.total} != 589.000`);
+
+console.log(
+  fallos === 0
+    ? "OK — la tabla y el ejemplo del correo coinciden con el sitio"
+    : `${fallos} fallas`,
+);
 process.exit(fallos ? 1 : 0);

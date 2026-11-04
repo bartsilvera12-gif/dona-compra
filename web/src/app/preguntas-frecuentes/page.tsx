@@ -44,7 +44,9 @@ const GRUPOS: ReadonlyArray<{ id: string; titulo: string; preguntas: ReadonlyArr
     preguntas: [
       ["¿Cómo funcionan los niveles?", "Cada nivel tiene un cupo: el máximo de mercadería que se puede comprar para vos al mismo tiempo. Podés tener varios pedidos abiertos mientras la suma de lo comprometido y todavía impago no pase ese cupo."],
       ["¿El recargo comercial cambia según mi nivel?", "Sí. Va del 18 % en Hierro al 12 % en Diamante, y se aplica sobre el costo mayorista, no sobre el precio al que después vendés."],
-      ["¿Subo de nivel automáticamente?", "No. Hacen falta los pedidos cancelados en plazo, una solicitud, un nuevo Análisis y la decisión de la dirección. El ascenso es de a un nivel, sin saltarse ninguno."],
+      ["¿Subo de nivel automáticamente?", "No. Hay que superar el acumulado de compras previsto para tu nivel, y además tener los pedidos cancelados en plazo, presentar una solicitud, hacer un nuevo Análisis y recibir la decisión de la dirección. El ascenso es de a un nivel, sin saltarse ninguno."],
+      ["¿Y si un pedido me hace pasar el acumulado?", "Ese pedido se factura entero con el nivel que tenías al confirmarlo. El nivel nuevo, si la dirección lo aprueba, rige para los pedidos siguientes."],
+      ["¿Un pago parcial me libera cupo?", "No. El cupo se libera recién cuando el pedido queda cancelado por completo."],
       ["¿Existen montos mínimos de pedido?", "Sí: Gs. 100.000 en nivel Hierro y Gs. 150.000 desde nivel Cobre, expresados en costo mayorista."],
     ],
   },

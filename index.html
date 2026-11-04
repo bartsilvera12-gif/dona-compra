@@ -552,7 +552,7 @@
       <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,110px) clamp(18px,4vw,40px)">
         <div style="display:flex;flex-direction:column;gap:16px">
           <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,4.4vw,56px);line-height:1.08;margin:0;max-width:32ch;text-wrap:pretty;background-image:linear-gradient(118deg,#1A365D 0%,#1A365D 40%,#7F8AA3 46%,#B0573F 50%,#7F8AA3 54%,#1A365D 60%,#1A365D 100%);background-size:280% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;animation:dcShine 7s ease-in-out 1.6s infinite">La confianza se construye con cada pedido.</h2>
-          <p style="font-size:15.5px;line-height:1.65;color:#4A4A4A;margin:0;max-width:46ch">Siete niveles con topes de compras acumuladas. Tocá cada uno para ver qué significa.</p>
+          <p style="font-size:15.5px;line-height:1.65;color:#4A4A4A;margin:0;max-width:46ch">Siete niveles. Cuanto más alto, menor el recargo y mayor el cupo. Tocá cada uno para ver qué significa.</p>
         </div>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(22px,3vw,44px);margin-top:clamp(32px,5vw,58px);align-items:start">
@@ -608,7 +608,7 @@
             <span style="position:relative;display:block;width:56px;height:1px;background:#C25E38;margin:20px 0"></span>
             <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr));gap:20px">
               <div>
-                <span style="display:block;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(232,169,142,0.9)">Tope acumulado</span>
+                <span style="display:block;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(232,169,142,0.9)">Cupo de compras</span>
                 <span style="display:block;font-family:Montserrat,sans-serif;font-size:clamp(22px,2.4vw,30px);margin-top:6px">Gs. {{ lvlCap }}</span>
               </div>
               <div>
@@ -617,7 +617,7 @@
               </div>
             </div>
             <p style="position:relative;font-size:14.5px;line-height:1.65;color:rgba(252,252,252,0.85);margin:22px 0 0">{{ lvlNote }}</p>
-            <p style="position:relative;font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;color:rgba(252,252,252,0.6);margin:20px 0 0;border-top:1px solid rgba(232,169,142,0.3);padding-top:16px">Los topes corresponden a compras acumuladas para optar a progresar de nivel. No son líneas de crédito ni montos aprobados. La progresión está sujeta a evaluación y decisión de Doña Compra.</p>
+            <p style="position:relative;font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;color:rgba(252,252,252,0.6);margin:20px 0 0;border-top:1px solid rgba(232,169,142,0.3);padding-top:16px">El cupo es el costo mayorista máximo que se puede tener comprometido a la vez. No es una línea de crédito ni un monto aprobado. Para progresar de nivel hay además que superar el acumulado de compras previsto, y la progresión queda sujeta a evaluación y decisión de Doña Compra.</p>
           </div>
         </div>
 
@@ -1021,8 +1021,8 @@
           <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,40px);line-height:1.08;color:#1A365D;margin:0 0 20px">Cómo funcionan los niveles</h2>
           <div style="display:flex;flex-direction:column">
             <div style="padding:13px 0;border-top:1px solid rgba(26,54,93,0.16);font-size:15px;line-height:1.6;color:#44464A">Cada nivel fija un cupo: el máximo de mercadería comprometida a la vez.</div>
-            <div style="padding:13px 0;border-top:1px solid rgba(26,54,93,0.16);font-size:15px;line-height:1.6;color:#44464A">Al ingresar a un nuevo nivel, el contador acumulado se reinicia en cero.</div>
-            <div style="padding:13px 0;border-top:1px solid rgba(26,54,93,0.16);font-size:15px;line-height:1.6;color:#44464A">Cambiar de nivel no es automático: superar el tope habilita una evaluación.</div>
+            <div style="padding:13px 0;border-top:1px solid rgba(26,54,93,0.16);font-size:15px;line-height:1.6;color:#44464A">Podés tener varios pedidos abiertos mientras lo comprometido no pase el cupo.</div>
+            <div style="padding:13px 0;border-top:1px solid rgba(26,54,93,0.16);font-size:15px;line-height:1.6;color:#44464A">Cambiar de nivel no es automático: superar el acumulado previsto habilita una evaluación.</div>
             <div style="padding:13px 0;border-top:1px solid rgba(26,54,93,0.16);font-size:15px;line-height:1.6;color:#44464A">Se asciende de a un nivel por vez, por decisión de Doña Compra.</div>
             <div style="padding:13px 0;border-top:1px solid rgba(26,54,93,0.16);font-size:15px;line-height:1.6;color:#44464A">Una operación se factura completa bajo el nivel vigente al confirmarla.</div>
             <div style="padding:13px 0;border-top:1px solid rgba(26,54,93,0.16);font-size:15px;line-height:1.6;color:#44464A">El cambio aplica a pedidos posteriores; nunca de forma retroactiva.</div>
@@ -2071,7 +2071,9 @@
               <details><summary>¿El recargo comercial cambia según mi nivel?</summary><p>Sí. Va del 18 % en Hierro al 12 % en Diamante, y se aplica sobre el costo mayorista, no sobre el precio al que después vendés.</p></details>
               <details><summary>¿Qué es el estatus Pagador Rápido?</summary><p>Un reconocimiento para quien paga antes de tiempo. Se obtiene con al menos 6 pedidos pagados por completo y un plazo promedio de pago menor a 25 días desde el retiro. Da un punto porcentual menos de recargo sobre la mercadería: en Bronce, por ejemplo, pasás del 16 % al 15 %. No alcanza a los cinco servicios y no es retroactivo.</p></details>
               <details><summary>¿Cuánto cuesta el Análisis de ingreso?</summary><p>Gs. 50.000 en Hierro, 100.000 en Cobre, 150.000 en Bronce y en Plata, y 200.000 en Oro. Para entrar directo a un nivel intermedio se pagan también los de los anteriores, así que entrar directo a Oro suma Gs. 650.000. A Rubis y Diamante no se entra directo. El total se te informa antes de que te comprometas, y no se devuelve si la decisión es negativa.</p></details>
-              <details><summary>¿Subo de nivel automáticamente?</summary><p>No. Hacen falta los pedidos cancelados en plazo, una solicitud, un nuevo Análisis y la decisión de la dirección. El ascenso es de a un nivel, sin saltarse ninguno.</p></details>
+              <details><summary>¿Subo de nivel automáticamente?</summary><p>No. Hay que superar el acumulado de compras previsto para tu nivel, y además tener los pedidos cancelados en plazo, presentar una solicitud, hacer un nuevo Análisis y recibir la decisión de la dirección. El ascenso es de a un nivel, sin saltarse ninguno.</p></details>
+              <details><summary>¿Y si un pedido me hace pasar el acumulado?</summary><p>Ese pedido se factura entero con el nivel que tenías al confirmarlo. El nivel nuevo, si la dirección lo aprueba, rige para los pedidos siguientes.</p></details>
+              <details><summary>¿Un pago parcial me libera cupo?</summary><p>No. El cupo se libera recién cuando el pedido queda cancelado por completo.</p></details>
               <details><summary>¿Existen montos mínimos de pedido?</summary><p>Sí: Gs. 100.000 en nivel Hierro y Gs. 150.000 desde nivel Cobre, expresados en costo mayorista.</p></details>
             </div>
           </div>
