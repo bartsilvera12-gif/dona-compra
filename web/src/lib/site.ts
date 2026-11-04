@@ -26,10 +26,17 @@ export const site = {
   facebook: env("NEXT_PUBLIC_FACEBOOK"),
   instagram: env("NEXT_PUBLIC_INSTAGRAM"),
 
-  // Datos registrales, para la página jurídica.
+  // Datos registrales, para la página jurídica. Salen del artículo 1 de las
+  // Condiciones Generales de Servicio y de Venta de noviembre 2026.
   razonSocial: env("NEXT_PUBLIC_RAZON_SOCIAL", "Doña Compra"),
-  ruc: env("NEXT_PUBLIC_RUC"),
-  domicilio: env("NEXT_PUBLIC_DOMICILIO", "Gran Asunción, Paraguay"),
+  ruc: env("NEXT_PUBLIC_RUC", "9405073-2"),
+  domicilio: env(
+    "NEXT_PUBLIC_DOMICILIO",
+    "Edificio Diamante 1, Calle Coronel Feliciano Duarte 111, 403 San Lorenzo, Paraguay",
+  ),
+  representante: env("NEXT_PUBLIC_REPRESENTANTE", "Antonio Ferreira"),
+  /** Circunscripción judicial competente (art. 15 de las CGV). */
+  jurisdiccion: "San Lorenzo, Paraguay",
 
   // Sin ID no se carga analítica, ni siquiera con consentimiento.
   gaId: env("NEXT_PUBLIC_GA_ID"),

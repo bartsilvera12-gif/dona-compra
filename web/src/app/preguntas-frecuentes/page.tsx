@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 
 type Pregunta = readonly [string, string];
 
-/* Agrupadas por tema: dieciséis preguntas seguidas no se recorren, cuatro
-   bloques con nombre sí. */
+/* Agrupadas por tema: treinta preguntas seguidas no se recorren, seis bloques
+   con nombre sí. */
 const GRUPOS: ReadonlyArray<{ id: string; titulo: string; preguntas: ReadonlyArray<Pregunta> }> = [
   {
     id: "como-funciona",
@@ -30,21 +30,46 @@ const GRUPOS: ReadonlyArray<{ id: string; titulo: string; preguntas: ReadonlyArr
     id: "pagos-y-precio",
     titulo: "Pagos y precio",
     preguntas: [
-      ["¿Cuándo tengo que pagar?", "A más tardar 30 días después de la fecha de factura. El vencimiento exacto figura en ese documento."],
-      ["¿Qué incluye el precio?", "El precio de compra de la mercadería, el margen comercial del 12 % y los servicios fijos de tu nivel."],
-      ["¿Qué es el Pack Doña Compra?", "Un servicio por pedido que reúne publicidad, seguimiento y negociaciones, y el Club Doña Compra. Su importe depende del nivel."],
-      ["¿Cobran multas por atraso?", "No aplicamos multas ni intereses por atraso. Sí conversamos para acomodar la situación."],
-      ["¿Qué sucede si hace falta una gestión de cobranza?", "Si se requiere una gestión de cobranza o un pagaré, pueden refacturarse los gastos realmente realizados y comprobados, sin margen adicional."],
+      ["¿Cuándo tengo que pagar?", "A más tardar 30 días calendario desde el retiro efectivo de la mercadería en el mayorista, acreditado con el código de recepción. No cuentan desde la fecha de la factura ni desde la compra al mayorista."],
+      ["¿Qué incluye el precio?", "El costo de la mercadería en el mayorista, el recargo comercial de tu nivel y la tarifa fija de los cinco Servicios Doña Compra."],
+      ["¿Cuáles son los cinco Servicios Doña Compra?", "Seguimiento de Compras con Código, Custodia y Trazabilidad Documental, Gestión de Proveedores Amigos, Publicidad y Promoción de la Red, y Gestión del Club Doña Compra. Tienen tarifa fija por pedido: entre Gs. 7.000 en Hierro y Gs. 22.500 en Diamante."],
+      ["¿Cobran multas por atraso?", "No aplicamos multas ni intereses por atraso. Lo que sí ocurre es que, al día siguiente del vencimiento, quedan suspendidas las compras nuevas hasta regularizar; el desbloqueo lo revisa la dirección caso por caso."],
+      ["¿Qué sucede si hace falta una gestión de cobranza?", "Si se requiere una gestión de cobranza o un pagaré, pueden refacturarse los gastos realmente realizados y comprobados, sin recargo adicional."],
+      ["¿Qué pasa si dejo de hacer pedidos?", "Después de tres meses calendario sin ningún pedido válido termina el estatus de miembro, con aviso 30 y 7 días antes. Volver a entrar sigue otra vez el procedimiento de entrada."],
     ],
   },
   {
     id: "niveles",
     titulo: "Niveles y montos",
     preguntas: [
-      ["¿Cómo funcionan los niveles?", "Cada nivel tiene un tope de compras acumuladas. Al ingresar a un nivel, el contador vuelve a cero."],
-      ["¿El margen comercial cambia según mi nivel?", "No. El margen es del 12 % en los siete niveles. Lo que cambia es el Pack Doña Compra."],
-      ["¿Subo de nivel automáticamente?", "No. Superar el tope habilita una evaluación. El ascenso es de a un nivel y lo decide Doña Compra."],
-      ["¿Existen montos mínimos de pedido?", "Sí: Gs. 100.000 en nivel Hierro y Gs. 150.000 desde nivel Cobre, expresados en precio de compra."],
+      ["¿Cómo funcionan los niveles?", "Cada nivel tiene un cupo: el máximo de mercadería que se puede comprar para vos al mismo tiempo. Podés tener varios pedidos abiertos mientras la suma de lo comprometido y todavía impago no pase ese cupo."],
+      ["¿El recargo comercial cambia según mi nivel?", "Sí. Va del 18 % en Hierro al 12 % en Diamante, y se aplica sobre el costo mayorista, no sobre el precio al que después vendés."],
+      ["¿Subo de nivel automáticamente?", "No. Hacen falta los pedidos cancelados en plazo, una solicitud, un nuevo Análisis y la decisión de la dirección. El ascenso es de a un nivel, sin saltarse ninguno."],
+      ["¿Existen montos mínimos de pedido?", "Sí: Gs. 100.000 en nivel Hierro y Gs. 150.000 desde nivel Cobre, expresados en costo mayorista."],
+    ],
+  },
+  {
+    id: "entrada",
+    titulo: "Cómo se entra",
+    preguntas: [
+      ["¿Cómo empieza el trámite?", "Con la Solicitud de Entrada, que es gratuita y se hace por WhatsApp. Podés pedir Hierro, Cobre, Bronce, Plata u Oro. A Rubis y Diamante no se entra directo: se llega por ascenso."],
+      ["¿Qué son las tres situaciones de WhatsApp?", "Situaciones comerciales de todos los días, elegidas al azar y enviadas de a una antes de cualquier pago. Respondés con tus palabras, por escrito o con un audio, en español, en guaraní o mezclando. No hay respuesta correcta que adivinar, y tus respuestas por sí solas nunca alcanzan para rechazar una candidatura."],
+      ["¿Cuánto cuesta el Análisis?", "Depende del nivel: Gs. 50.000 en Hierro, 100.000 en Cobre, 150.000 en Bronce y en Plata, y 200.000 en Oro. Para entrar directo a un nivel intermedio se pagan también los de los anteriores, así que entrar directo a Oro suma Gs. 650.000. El total se te informa antes de que te comprometas."],
+      ["¿Pagar el Análisis me asegura entrar?", "No. El Análisis cubre el diagnóstico y el informe; la admisión la decide la dirección, y el importe no se devuelve si la decisión es negativa."],
+      ["¿Qué es la Prueba de Palabra Empeñada?", "Una prueba práctica voluntaria que puede consistir en recibir y devolver Gs. 10.000 que son de Doña Compra. No pagás nada. Podés decir que no o retirarte cuando quieras, sin que eso afecte tu solicitud, tu nivel ni tu cupo. Si participás, solo puede jugar a tu favor."],
+      ["¿Necesito RUC para solicitar?", "No para la solicitud preliminar. Antes de la primera reventa sí hay que verificar los requisitos fiscales para facturar por SIFEN/DNIT, y podemos informarte sobre un acompañamiento opcional."],
+      ["Vendo desde mi casa o por internet, ¿puedo entrar?", "Sí. Los comercios a domicilio y en línea se verifican por medios adecuados. No quedás excluido por no tener vidriera."],
+    ],
+  },
+  {
+    id: "pagador-rapido",
+    titulo: "Pagador Rápido y el Club",
+    preguntas: [
+      ["¿Qué es el estatus Pagador Rápido?", "Un reconocimiento para quien paga antes de tiempo. Se obtiene con al menos 6 pedidos pagados por completo y un plazo promedio de pago menor a 25 días desde el retiro. Da un punto porcentual menos de recargo sobre la mercadería: en Bronce, por ejemplo, pasás del 16 % al 15 %."],
+      ["¿La rebaja alcanza a los servicios?", "No. Solo al recargo sobre la mercadería. Los cinco Servicios Doña Compra se siguen facturando con su tarifa normal."],
+      ["¿Es retroactiva?", "No. Se aplica a los pedidos posteriores al reconocimiento, nunca a facturas anteriores. El estatus se reevalúa cada tanto y se pierde apenas hay un atraso."],
+      ["¿Qué más trae el estatus?", "Una insignia, un autoadhesivo con QR para exhibir en tu local, tu acceso personal al Club Doña Compra y la posibilidad de invitar a tus propios clientes al Club."],
+      ["¿Mi nombre aparece publicado en algún lado?", "Solo si lo autorizás por separado. La publicación en la web del Club incluye tu nombre comercial, tu localidad y la insignia vigente, nunca montos, deudas ni detalles de tus pagos. Podés pedir el retiro cuando quieras."],
     ],
   },
   {

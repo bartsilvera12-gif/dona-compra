@@ -2,42 +2,43 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Revelar from "@/components/Revelar";
 import { PortadaCompacta, Rotulo } from "@/components/bloques";
-import { CTA, Wrap } from "@/components/ui";
+import { CTA, Nota, Wrap } from "@/components/ui";
+import { precioGs } from "@/lib/formato";
+import {
+  NIVELES,
+  NOMBRE_SERVICIO,
+  totalServicios,
+  type Servicios,
+} from "@/lib/niveles";
+
+/* Los cinco servicios y sus tarifas salen del artículo 6 de las Condiciones
+   Generales, vía src/lib/niveles.ts. Los nombres son los del contrato y no se
+   cambian acá. Las descripciones se mantienen cortas a propósito: el contrato
+   fija el nombre y el precio, no una definición, así que decimos lo que el
+   material comercial ya decía y nada más. */
 
 export const metadata: Metadata = {
   title: "Servicios",
   description:
-    "Seguridad de las compras, análisis, Pack Doña Compra y legajo de buena gestión: los servicios que acompañan cada pedido.",
+    "Los cinco Servicios Doña Compra que se facturan en cada pedido, con su tarifa fija por nivel, y el legajo de buena gestión.",
 };
 
-const SERVICIOS = [
-  {
-    precio: "Gs. 4.000",
-    cuando: "por pedido",
-    titulo: "Seguridad de las compras",
-    texto:
-      "Preparamos el código de retiro de tu pedido y documentamos fotográficamente la mercadería. Así sabés qué se compró, quién lo retiró y cuándo.",
-  },
-  {
-    precio: "Gs. 3.000",
-    cuando: "por pedido",
-    titulo: "Análisis de las compras",
-    texto:
-      "Archivamos y analizamos tus compras, con una revisión periódica y la elaboración de un informe anual de tu actividad con Doña Compra.",
-  },
-] as const;
+const DESCRIPCION: Record<keyof Servicios, string> = {
+  seguimiento:
+    "Preparamos el código de recepción único de tu pedido y documentamos el retiro: qué se compró, quién lo retiró y cuándo.",
+  custodia:
+    "Archivamos la factura y los documentos de cada operación, de modo que tu historial de compras quede ordenado y consultable.",
+  proveedores:
+    "Gestiones logísticas, comerciales y administrativas entre vos y los mayoristas con los que trabajamos.",
+  publicidad:
+    "Acciones de publicidad y promoción de la red de comercios, contempladas por el programa comercial.",
+  club:
+    "Gestión del Club Doña Compra, el espacio donde las marcas que nos acompañan generan beneficios para los clientes de los comercios.",
+};
 
-const PACK = [
-  ["Publicidad", "Acciones publicitarias contempladas por el programa comercial."],
-  [
-    "Seguimiento y negociaciones",
-    "Gestiones logísticas, comerciales y administrativas entre el comerciante y los mayoristas.",
-  ],
-  [
-    "Club Doña Compra",
-    "Componente del programa destinado a crear beneficios para los clientes de los comerciantes, según su funcionamiento real.",
-  ],
-] as const;
+const primero = NIVELES[0];
+const ultimo = NIVELES[NIVELES.length - 1];
+const CLAVES = Object.keys(NOMBRE_SERVICIO) as (keyof Servicios)[];
 
 export default function ServiciosPage() {
   return (
@@ -46,11 +47,17 @@ export default function ServiciosPage() {
         rotulo="Servicios"
         titulo="No se trata solamente de comprar mercadería."
         bajada={
-          <p>
-            Detrás de cada operación hay servicios que acompañan tu actividad
-            comercial: el retiro seguro, el registro de lo comprado y el
-            seguimiento con los mayoristas.
-          </p>
+          <>
+            <p>
+              Detrás de cada operación hay cinco servicios que acompañan tu
+              actividad: el retiro seguro, el registro de lo comprado, las
+              gestiones con los mayoristas, la promoción de la red y el Club.
+            </p>
+            <p className="mt-3">
+              Tienen tarifa fija por pedido, que depende de tu nivel y no del
+              monto de la mercadería.
+            </p>
+          </>
         }
         fotos={[
           { src: "/assets/paso-3.jpg", alt: "Retiro de la mercadería con código" },
@@ -63,79 +70,67 @@ export default function ServiciosPage() {
         <Wrap>
           <Revelar>
             <Rotulo>Por pedido</Rotulo>
-            <h2 className="mt-4 mb-8 max-w-[22ch]">
-              Servicios fijos, iguales en todos los niveles.
+            <h2 className="mt-4 mb-3 max-w-[24ch]">
+              Los cinco Servicios Doña Compra.
             </h2>
-          </Revelar>
-
-          <div className="grid gap-4 lg:grid-cols-2">
-            {SERVICIOS.map((s, i) => (
-              <Revelar key={s.titulo} retardo={(i + 1) as 1 | 2}>
-                <div className="h-full rounded-[var(--radius-card)] border border-navy/12 bg-card p-[clamp(18px,2.5vw,28px)]">
-                  <span className="inline-flex items-baseline gap-1.5 rounded-[var(--radius-button)] bg-terracotta/10 px-3 py-1.5">
-                    <span className="font-mono text-[17px] font-semibold text-terracotta-ink">
-                      {s.precio}
-                    </span>
-                    <span className="text-[12px] text-muted">{s.cuando}</span>
-                  </span>
-                  <h3 className="mt-4 mb-2">{s.titulo}</h3>
-                  <p className="text-ink">{s.texto}</p>
-                </div>
-              </Revelar>
-            ))}
-          </div>
-        </Wrap>
-      </section>
-
-      <section>
-        <Wrap>
-          <Revelar>
-            <Rotulo>Según tu nivel</Rotulo>
-            <h2 className="mt-4 mb-3 max-w-[22ch]">Pack Doña Compra</h2>
-            <p className="mb-2 max-w-[58ch] text-ink">
-              El Pack reúne tres áreas de trabajo. Su importe por pedido depende
-              de tu nivel, no del monto de la mercadería.
-            </p>
-            <p className="mb-8">
-              <span className="font-mono text-[17px] font-semibold text-terracotta-ink">
-                De Gs. 3.000 a Gs. 75.000
+            <p className="mb-8 max-w-[60ch] text-ink">
+              Entre{" "}
+              <span className="font-mono font-semibold text-terracotta-ink">
+                {precioGs(totalServicios(primero.servicios))}
               </span>{" "}
-              <span className="text-[13.5px] text-muted">según el nivel</span>
-              {" · "}
-              <Link href="/niveles-y-tarifas" className="text-[14px] font-medium text-terracotta-ink">
-                ver la tabla completa →
+              en {primero.nombre} y{" "}
+              <span className="font-mono font-semibold text-terracotta-ink">
+                {precioGs(totalServicios(ultimo.servicios))}
+              </span>{" "}
+              en {ultimo.nombre}, sumados.{" "}
+              <Link
+                href="/niveles-y-tarifas"
+                className="font-medium text-terracotta-ink"
+              >
+                Ver la tabla completa →
               </Link>
             </p>
           </Revelar>
 
-          <div className="grid gap-4 sm:grid-cols-3">
-            {PACK.map(([t, d], i) => (
-              <Revelar key={t} retardo={(i + 1) as 1 | 2 | 3}>
-                <div className="flex h-full gap-4 rounded-[var(--radius-card)] border border-navy/12 bg-card p-[clamp(16px,2.2vw,22px)]">
-                  <span
-                    aria-hidden="true"
-                    className="w-0.5 flex-none self-stretch rounded bg-terracotta"
-                  />
-                  <div>
-                    <h3 className="mb-1.5 text-[18px]">{t}</h3>
-                    <p className="text-[15px] text-ink">{d}</p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {CLAVES.map((c, i) => {
+              const fijo = primero.servicios[c] === ultimo.servicios[c];
+              return (
+                <Revelar key={c} retardo={((i % 3) + 1) as 1 | 2 | 3}>
+                  <div className="h-full rounded-[var(--radius-card)] border border-navy/12 bg-card p-[clamp(18px,2.4vw,26px)]">
+                    <span className="inline-flex items-baseline gap-1.5 rounded-[var(--radius-button)] bg-terracotta/10 px-3 py-1.5">
+                      <span className="font-mono text-[16px] font-semibold text-terracotta-ink">
+                        {fijo
+                          ? precioGs(primero.servicios[c])
+                          : `${precioGs(primero.servicios[c])} – ${precioGs(ultimo.servicios[c])}`}
+                      </span>
+                      <span className="text-[12px] text-muted">
+                        {fijo ? "por pedido" : "según nivel"}
+                      </span>
+                    </span>
+                    <h3 className="mt-4 mb-2 text-[18px]">
+                      {NOMBRE_SERVICIO[c]}
+                    </h3>
+                    <p className="text-[15px] text-ink">{DESCRIPCION[c]}</p>
                   </div>
-                </div>
-              </Revelar>
-            ))}
+                </Revelar>
+              );
+            })}
           </div>
 
           <Revelar>
-            <p className="mt-6 max-w-[74ch] text-xs leading-relaxed text-muted">
-              Los beneficios concretos del Club se comunican una vez definidos.
-              No publicamos promesas que todavía no están detalladas en las
-              condiciones.
-            </p>
+            <Nota>
+              Dos de los cinco cuestan lo mismo en todos los niveles; los otros
+              tres acompañan al nivel. Puede haber además servicios
+              complementarios puntuales —logística excepcional, acompañamiento
+              técnico, acciones publicitarias a medida o capacitaciones—, que
+              siempre llevan cotización previa por escrito y se facturan aparte.
+            </Nota>
           </Revelar>
         </Wrap>
       </section>
 
-      <section className="bg-card">
+      <section>
         <Wrap>
           <div className="grid gap-[clamp(24px,4vw,48px)] lg:grid-cols-2">
             <Revelar>

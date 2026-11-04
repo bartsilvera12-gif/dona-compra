@@ -86,12 +86,12 @@ export default function Home() {
             <Cifra
               valor="30"
               unidad="días"
-              texto="Para pagar desde la fecha de factura, según las condiciones acordadas."
+              texto="Para pagar, desde el retiro efectivo de la mercadería en el mayorista."
             />
             <Cifra
-              valor="12"
+              valor="12–18"
               unidad="%"
-              texto="Margen comercial, igual en los siete niveles. Lo que cambia es el Pack."
+              texto="Recargo comercial sobre el costo mayorista. Baja a medida que subís de nivel."
               retardo={1}
             />
             <Cifra

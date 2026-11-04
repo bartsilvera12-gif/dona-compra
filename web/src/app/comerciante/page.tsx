@@ -22,7 +22,7 @@ const BENEFICIOS = [
   ["Llegás a las temporadas", "Escolar, Día de la Madre y fin de año se compran con tiempo y se pagan con lo que esas mismas ventas generan."],
   ["Tu proveedor de siempre", "No cambiás de mayorista ni de condiciones comerciales. Seguís comprando donde ya tenés confianza."],
   ["Todo con factura", "Cada compra se documenta con factura legal, lo que te ordena el costo de mercadería del mes."],
-  ["Crecés de nivel", "A medida que cumplís, subís de nivel y tu tope de compra aumenta. El margen sigue siendo del 12 %."],
+  ["Crecés de nivel", "A medida que cumplís, subís de nivel: el cupo de compra aumenta y el recargo comercial baja."],
 ] as const;
 
 const REQUISITOS = [

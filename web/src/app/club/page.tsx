@@ -8,7 +8,8 @@ import {
   PortadaCompacta,
   Rotulo,
 } from "@/components/bloques";
-import { btnPrimario, btnSecundario, CTA, Wrap } from "@/components/ui";
+import { btnPrimario, btnSecundario, CTA, Nota, Wrap } from "@/components/ui";
+import { PAGADOR_RAPIDO_DIAS, PAGADOR_RAPIDO_PEDIDOS } from "@/lib/niveles";
 import { waLink } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -56,6 +57,21 @@ const COMO = [
       "La acción llega a los comercios y a la página de anuncios, y te contamos cómo fue con lo que efectivamente pasó.",
     foto: { src: "/assets/paso-3.jpg", alt: "La acción en el punto de venta" },
   },
+] as const;
+
+const RECONOCIMIENTO = [
+  [
+    "La insignia",
+    "El distintivo de Pagador Rápido vigente, que acredita que pagás en fecha. Se reevalúa cada tanto y se pierde apenas hay un atraso.",
+  ],
+  [
+    "El autoadhesivo con QR",
+    "Un sello para la vidriera, con un enlace de verificación. El QR muestra que la insignia está vigente, nada más: ni deudas, ni montos, ni notas.",
+  ],
+  [
+    "La web del Club",
+    "Tu nombre comercial y tu localidad junto a la insignia. Podés invitar a tus propios clientes al Club por enlace o QR, con su propia adhesión voluntaria.",
+  ],
 ] as const;
 
 const RUBROS = [
@@ -192,25 +208,74 @@ export default function ClubPage() {
             titulo="Qué significa el Club de este lado."
             invertida
             foto={{
-              src: "/assets/rubro-ropa.jpg",
+              src: "/assets/local-ropa.jpg",
               alt: "Comerciante atendiendo en su local",
             }}
-            enlace={{ href: "/servicios", texto: "Ver el Pack Doña Compra" }}
+            enlace={{
+              href: "/niveles-y-tarifas#pagador-rapido",
+              texto: "Ver el estatus Pagador Rápido",
+            }}
           >
             <p>
-              Para vos, el Club es la parte del Pack Doña Compra que trae
-              beneficios de las marcas que nos acompañan hacia tus clientes.
+              El Club tiene dos caras. Por un lado trae hacia tus clientes los
+              beneficios de las marcas que nos acompañan. Por el otro reconoce
+              a los comerciantes que pagan en fecha.
             </p>
             <p className="mt-3">
-              Está incluido en el Pack: no tiene cuota aparte ni hay que pedir
-              nada para formar parte.
+              Ese reconocimiento es el estatus Pagador Rápido: se obtiene con
+              al menos {PAGADOR_RAPIDO_PEDIDOS} pedidos pagados por completo y
+              un promedio de pago menor a {PAGADOR_RAPIDO_DIAS} días desde el
+              retiro. Baja un punto tu recargo y abre el acceso al Club, para
+              vos y para tus clientes.
             </p>
-            <p className="mt-3 text-[14.5px] text-muted">
-              Los beneficios concretos se comunican una vez definidos. No
-              publicamos promesas que todavía no están detalladas en las
-              condiciones.
+            <p className="mt-3">
+              La gestión del Club es uno de los cinco Servicios Doña Compra que
+              ya se facturan en cada pedido: no tiene cuota aparte.
             </p>
           </FilaAlterna>
+        </Wrap>
+      </section>
+
+      <section className="bg-card">
+        <Wrap>
+          <Revelar>
+            <Rotulo>Nada se publica solo</Rotulo>
+            <h2 className="mt-4 mb-3 max-w-[24ch]">
+              Vos decidís qué se muestra.
+            </h2>
+            <p className="mb-8 max-w-[62ch] text-ink">
+              La insignia, el autoadhesivo con QR y la aparición en la web del
+              Club son tres autorizaciones separadas. Ninguna viene marcada de
+              antemano, ninguna se activa por firmar la Solicitud y todas se
+              pueden retirar.
+            </p>
+          </Revelar>
+
+          <div className="grid gap-4 sm:grid-cols-3">
+            {RECONOCIMIENTO.map(([t, d], i) => (
+              <Revelar key={t} retardo={(i + 1) as 1 | 2 | 3}>
+                <div className="flex h-full gap-4 rounded-[var(--radius-card)] border border-navy/12 bg-card p-[clamp(16px,2.2vw,24px)]">
+                  <span
+                    aria-hidden="true"
+                    className="w-0.5 flex-none self-stretch rounded bg-terracotta"
+                  />
+                  <div>
+                    <h3 className="mb-1.5 text-[18px]">{t}</h3>
+                    <p className="text-[15px] text-ink">{d}</p>
+                  </div>
+                </div>
+              </Revelar>
+            ))}
+          </div>
+
+          <Revelar>
+            <Nota>
+              Lo que se publica es tu nombre comercial, tu localidad y la
+              insignia vigente. Nunca montos, deudas, notas ni el detalle de
+              tus pagos. Si pedís el retiro, una insignia sin validez ya no se
+              puede mostrar como actual.
+            </Nota>
+          </Revelar>
         </Wrap>
       </section>
 

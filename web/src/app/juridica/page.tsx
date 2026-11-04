@@ -93,8 +93,9 @@ export default function JuridicaPage() {
         lateral={
           <Aviso titulo="Texto pendiente de validación legal">
             Estas cláusulas son una base redactada para el sitio. Antes de
-            publicar, deben ser revisadas por un profesional y completadas con
-            el RUC, la razón social y el domicilio definitivos.
+            publicar, deben ser revisadas por un profesional. Los datos registrales
+            y la jurisdicción ya salen de las Condiciones Generales de Servicio
+            y de Venta de noviembre 2026.
           </Aviso>
         }
       />
@@ -132,6 +133,8 @@ export default function JuridicaPage() {
                   RUC: {site.ruc || "pendiente de carga"}.
                   <br />
                   Domicilio: {site.domicilio}.
+                  <br />
+                  Representante: {site.representante}.
                   <br />
                   Correo de contacto: {correo}.
                 </P>
@@ -210,7 +213,9 @@ export default function JuridicaPage() {
                 <P>
                   Estas condiciones se rigen por la legislación de la República del
                   Paraguay. Para cualquier controversia, las partes se someten a
-                  los tribunales de Asunción, sin perjuicio de los derechos que la
+                  la competencia exclusiva de los tribunales ordinarios de la
+                  Circunscripción Judicial de {site.jurisdiccion} (art. 15 de las
+                  Condiciones Generales), sin perjuicio de los derechos que la
                   normativa reconozca al consumidor.
                 </P>
               </Parte>
@@ -219,9 +224,10 @@ export default function JuridicaPage() {
                 <P>
                   Esta política explica qué datos personales tratamos, con qué
                   finalidad y qué derechos tenés sobre ellos. Se redactó siguiendo
-                  el Reglamento General de Protección de Datos europeo (RGPD) y la
-                  Ley N.º 6534/2020 de protección de datos personales crediticios
-                  del Paraguay.
+                  la Ley N.º 6534/2020 de protección de datos personales del Paraguay,
+                  que es la norma aplicable a esta relación, y tomando además como
+                  referencia el Reglamento General de Protección de Datos europeo
+                  (RGPD) donde ofrece una garantía más amplia.
                 </P>
                 <Sub>Responsable del tratamiento</Sub>
                 <P>

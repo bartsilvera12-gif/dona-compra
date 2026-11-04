@@ -107,7 +107,7 @@ export const DEMO: Demo[] = [
     slug: "tope-nivel-bronce",
     titulo: "Subimos el tope del nivel Bronce",
     texto:
-      "Los comerciantes en Bronce ya pueden comprar hasta Gs. 1.000.000. El margen comercial sigue siendo del 12 %.",
+      "Los comerciantes en Bronce ya pueden comprar hasta Gs. 1.000.000, con un recargo comercial del 16 %.",
     tipo: "foto",
     categoria: "Novedades",
     ciudad: "Capiatá",

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const VALORES = [
-  ["Claridad", "Margen, servicios y vencimiento se explican antes de confirmar el pedido."],
+  ["Claridad", "Recargo, servicios y vencimiento se explican antes de confirmar el pedido."],
   ["Relación comercial", "Tratamos con el comerciante, no con un número de expediente."],
   ["Puntualidad", "Pagamos al proveedor al contado y esperamos la misma seriedad de vuelta."],
   ["Crecimiento progresivo", "La relación se amplía con el tiempo y con cada pedido cumplido."],
@@ -96,7 +96,7 @@ export default function NosotrosPage() {
             </p>
             <p className="mt-3">
               No reemplazamos a tu proveedor ni te vendemos un surtido armado.
-              Compramos lo que vos elegís, te lo revendemos con un margen
+              Compramos lo que vos elegís, te lo revendemos con un recargo
               conocido de antemano y acordamos cuándo lo pagás.
             </p>
             <p className="mt-3">
