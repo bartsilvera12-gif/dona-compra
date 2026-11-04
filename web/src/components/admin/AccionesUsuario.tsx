@@ -16,7 +16,7 @@ const ROLES: { v: Rol; label: string }[] = [
   { v: "admin", label: "Administración" },
   { v: "comerciante", label: "Comerciante" },
   { v: "mayorista", label: "Mayorista" },
-  { v: "miembro", label: "Miembro" },
+  { v: "marca", label: "Marca" },
 ];
 
 const boton =

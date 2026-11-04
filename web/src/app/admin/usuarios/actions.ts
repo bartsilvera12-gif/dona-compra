@@ -22,7 +22,7 @@ import { cerrarTodasLasSesiones, exigirSesion } from "@/lib/sesion";
  *     por consola.
  */
 
-const ROLES = ["admin", "comerciante", "mayorista", "miembro"] as const;
+const ROLES = ["admin", "comerciante", "mayorista", "marca"] as const;
 
 export type EstadoUsuarios = {
   ok?: boolean;
@@ -295,7 +295,7 @@ export async function cambiarMiPassword(
   _anterior: EstadoUsuarios,
   formData: FormData,
 ): Promise<EstadoUsuarios> {
-  const yo = await exigirSesion(["admin", "comerciante", "mayorista", "miembro"]);
+  const yo = await exigirSesion(["admin", "comerciante", "mayorista", "marca"]);
 
   const parsed = cambioSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) {

@@ -10,7 +10,7 @@ const ETIQUETA_ROL: Record<string, string> = {
   admin: "Administración",
   comerciante: "Comerciante",
   mayorista: "Mayorista",
-  miembro: "Miembro del Club",
+  marca: "Marca del Club",
 };
 
 export default async function CuentaPage() {

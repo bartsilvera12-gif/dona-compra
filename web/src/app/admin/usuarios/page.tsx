@@ -12,14 +12,14 @@ const ETIQUETA_ROL: Record<string, string> = {
   admin: "Administración",
   comerciante: "Comerciante",
   mayorista: "Mayorista",
-  miembro: "Miembro del Club",
+  marca: "Marca del Club",
 };
 
 const COLOR_ROL: Record<string, string> = {
   admin: "border-terracotta/45 bg-terracotta/8 text-terracotta-ink",
   comerciante: "border-navy/20 bg-navy/5 text-navy",
   mayorista: "border-navy/20 bg-navy/5 text-navy",
-  miembro: "border-navy/20 bg-navy/5 text-navy",
+  marca: "border-navy/20 bg-navy/5 text-navy",
 };
 
 export default async function UsuariosPage() {

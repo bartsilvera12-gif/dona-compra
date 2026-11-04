@@ -58,7 +58,7 @@ export default async function AnunciosPage({ searchParams }: Props) {
         bajada={
           <p>
             Novedades, ofertas de mayoristas socios y publicaciones de
-            comerciantes del Club, en fotos y videos cortos.
+            comerciantes de la red, en fotos y videos cortos.
           </p>
         }
         fotos={PORTADA}

@@ -34,7 +34,7 @@ begin
   if not exists (select 1 from pg_type t join pg_namespace n on n.oid = t.typnamespace
                  where n.nspname = 'donacompraweb' and t.typname = 'rol_miembro') then
     create type donacompraweb.rol_miembro as enum
-      ('admin', 'comerciante', 'mayorista', 'miembro');
+      ('admin', 'comerciante', 'mayorista', 'marca');
   end if;
 
   if not exists (select 1 from pg_type t join pg_namespace n on n.oid = t.typnamespace
@@ -78,7 +78,7 @@ $$;
 -- correcto: el acceso se concede, no se hereda.
 create table if not exists donacompraweb.miembros (
   user_id    uuid primary key references auth.users (id) on delete cascade,
-  rol        donacompraweb.rol_miembro not null default 'miembro',
+  rol        donacompraweb.rol_miembro not null default 'comerciante',
   nombre     text not null default '',
   negocio    text,
   ciudad     text,

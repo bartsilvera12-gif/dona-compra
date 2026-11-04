@@ -98,7 +98,7 @@ export default function FormUsuario() {
           >
             <option value="comerciante">Comerciante</option>
             <option value="mayorista">Mayorista</option>
-            <option value="miembro">Miembro del Club</option>
+            <option value="marca">Marca del Club</option>
             <option value="admin">Administración</option>
           </select>
           {rol === "admin" && (

@@ -16,7 +16,7 @@ Vercel a `web/`.
 | Boletín con doble opt-in | Listo |
 | Inicio | Portado, versión corta |
 | Concepto, Comerciantes, Mayoristas | Portadas |
-| El Club | Portada; el acceso de miembros espera a las cuentas |
+| El Club | Portada: espacio publicitario para las marcas que acompañan |
 | Jurídica | Portada, con las 4 secciones apiladas e índice |
 | Preguntas frecuentes | Portada, con datos estructurados FAQPage |
 | Feed de anuncios | Listo: filtros por URL, paginado, detalle por publicación |

@@ -30,7 +30,7 @@ export default async function AccesoPage({ searchParams }: Props) {
         <div className="mx-auto max-w-[420px]">
           <h1 className="mb-3 text-[clamp(28px,4vw,40px)]">Acceso</h1>
           <p className="mb-7 text-ink">
-            Para el equipo de Doña Compra y los miembros del Club.
+            Para el equipo de Doña Compra.
           </p>
           <FormAcceso aviso={aviso} />
         </div>

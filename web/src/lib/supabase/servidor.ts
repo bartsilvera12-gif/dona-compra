@@ -46,7 +46,7 @@ export async function usuarioActual() {
 
 export type Miembro = {
   user_id: string;
-  rol: "admin" | "comerciante" | "mayorista" | "miembro";
+  rol: "admin" | "comerciante" | "mayorista" | "marca";
   nombre: string;
   negocio: string | null;
   ciudad: string | null;

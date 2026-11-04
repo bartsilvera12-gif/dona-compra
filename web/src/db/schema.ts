@@ -208,7 +208,7 @@ export const rolUsuario = pgEnum("rol_usuario", [
   "admin",
   "comerciante",
   "mayorista",
-  "miembro",
+  "marca",
 ]);
 
 export const estadoUsuario = pgEnum("estado_usuario", [
