@@ -295,28 +295,33 @@ export default function Home() {
           responden la pregunta que queda: «bueno, ¿y cuánto me cuesta?». */}
       <section>
         <Wrap>
-          <div className="grid gap-[clamp(20px,3vw,48px)] lg:grid-cols-[minmax(0,26ch)_1fr]">
-            <Revelar>
-              <Rotulo>En la pizarra</Rotulo>
-              <h2 className="mt-4 max-w-[16ch]">Las cuentas, a la vista.</h2>
-              <p className="mt-4 text-ink">
+          <Revelar>
+            {/* El título y la bajada van en una fila, no en una columna al
+                costado de las fotos: con la galería al lado quedaba media
+                página vacía entre el texto y las imágenes. */}
+            <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
+              <div>
+                <Rotulo>En la pizarra</Rotulo>
+                <h2 className="mt-4 max-w-[16ch]">Las cuentas, a la vista.</h2>
+              </div>
+              <p className="max-w-[42ch] text-ink">
                 Lo mismo que te explica un asesor en la visita, tal cual se lo
-                explica. Tocá cualquiera para verla grande.
-              </p>
-              <p className="mt-5">
+                explica.{" "}
                 <Link
                   href="/niveles-y-tarifas"
-                  className="font-medium text-terracotta-ink"
+                  className="font-medium whitespace-nowrap text-terracotta-ink"
                 >
                   Ver la tabla completa →
                 </Link>
               </p>
-            </Revelar>
+            </div>
+          </Revelar>
 
-            <Revelar retardo={1}>
-              <Galeria fotos={PIZARRAS} columnas={2} formato="16/9" />
-            </Revelar>
-          </div>
+          <Revelar retardo={1}>
+            <div className="mt-10">
+              <Galeria fotos={PIZARRAS} variante="muro" />
+            </div>
+          </Revelar>
         </Wrap>
       </section>
 
