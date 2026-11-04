@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import Galeria from "@/components/Galeria";
 import Revelar from "@/components/Revelar";
+import VideoVertical from "@/components/VideoVertical";
 import { FilaAlterna, PortadaCompacta, Rotulo } from "@/components/bloques";
 import { CTA, Wrap } from "@/components/ui";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Nosotros",
@@ -15,6 +18,45 @@ const VALORES = [
   ["Puntualidad", "Pagamos al proveedor al contado y esperamos la misma seriedad de vuelta."],
   ["Crecimiento progresivo", "La relación se amplía con el tiempo y con cada pedido cumplido."],
 ] as const;
+
+const FOTOS = [
+  {
+    src: "/assets/local-despensa.jpg",
+    mini: "/assets/local-despensa-640.jpg",
+    alt: "Interior de una despensa de barrio: verdulería a la entrada, góndolas de almacén y la encargada en el mostrador",
+    pie: "Una despensa de barrio, con la encargada en el mostrador.",
+  },
+  {
+    src: "/assets/local-comedor.jpg",
+    mini: "/assets/local-comedor-640.jpg",
+    alt: "Comedor lleno al mediodía, con mesas largas, clientes almorzando y la vitrina de empanadas al fondo",
+    pie: "Un comedor al mediodía, en plena hora pico.",
+  },
+  {
+    src: "/assets/local-ropa.jpg",
+    mini: "/assets/local-ropa-640.jpg",
+    alt: "Tienda de ropa y artesanía con perchas, canastos y mantelería, atendiendo a una clienta",
+    pie: "Una tienda de ropa y artesanía, atendiendo.",
+  },
+];
+
+/**
+ * Datos estructurados del video. Sin esto el buscador ve una etiqueta <video>
+ * y poco más; con esto puede mostrar el clip como resultado de video, con su
+ * miniatura y su duración.
+ */
+const VIDEO_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: "Doña Compra, contada por ella misma",
+  description:
+    "Presentación en video de Doña Compra: qué es, a quién acompaña y cómo trabaja con los comercios de barrio de Gran Asunción.",
+  thumbnailUrl: `${site.url}/video/dona-compra-story-poster.jpg`,
+  contentUrl: `${site.url}/video/dona-compra-story.mp4`,
+  // ISO 8601: diez segundos.
+  duration: "PT10S",
+  uploadDate: "2026-11-04",
+};
 
 export default function NosotrosPage() {
   return (
@@ -115,6 +157,43 @@ export default function NosotrosPage() {
           </Revelar>
         </Wrap>
       </section>
+
+      <section>
+        <Wrap>
+          <Revelar>
+            <Rotulo>En los comercios</Rotulo>
+            <h2 className="mt-4 mb-3 max-w-[22ch]">
+              Dónde trabajamos, en imágenes.
+            </h2>
+            <p className="mb-9 max-w-[58ch] text-ink">
+              La despensa de la esquina, el comedor al mediodía, la tienda de
+              ropa. Estos son los negocios con los que trabajamos todas las
+              semanas.
+            </p>
+          </Revelar>
+
+          <div className="grid gap-[clamp(24px,4vw,48px)] lg:grid-cols-[340px_1fr] lg:items-start">
+            <Revelar>
+              <VideoVertical
+                src="/video/dona-compra-story.mp4"
+                poster="/video/dona-compra-story-poster.jpg"
+                titulo="Doña Compra, contada por ella misma"
+                descripcion="Diez segundos: quién es Doña Compra y a quién acompaña."
+              />
+            </Revelar>
+
+            <Revelar retardo={1}>
+              <Galeria fotos={FOTOS} />
+            </Revelar>
+          </div>
+        </Wrap>
+      </section>
+
+      <script
+        type="application/ld+json"
+        // El contenido es un objeto nuestro, no entra nada del usuario.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(VIDEO_JSONLD) }}
+      />
 
       <CTA
         titulo="La mejor forma de conocernos es conversando"
