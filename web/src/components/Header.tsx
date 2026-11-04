@@ -78,7 +78,7 @@ export default function Header() {
                   activo(item.href) ? "text-navy" : "text-ink"
                 }`}
               >
-                {item.label}
+                {"corto" in item ? item.corto : item.label}
                 {activo(item.href) && (
                   <span className="absolute inset-x-2.5 -bottom-px block h-[1.5px] bg-terracotta" />
                 )}

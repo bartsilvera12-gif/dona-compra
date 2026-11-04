@@ -55,27 +55,34 @@ export function waLink(mensaje?: string): string {
   return `https://wa.me/${waNumber()}?text=${encodeURIComponent(texto)}`;
 }
 
-/** Las 8 páginas del sitio, en el orden en que aparecen en el menú. */
+/**
+ * El menú principal.
+ *
+ * `corto` es la etiqueta que usa la barra de escritorio, donde el espacio se
+ * acaba; el nombre completo queda para el menú del teléfono y el pie, que no
+ * tienen esa limitación. Así «FAQ» no se le aparece a nadie como única forma
+ * de nombrar esa página.
+ */
 export const nav = [
   { href: "/", label: "Inicio" },
-  { href: "/el-concepto", label: "El Concepto" },
+  { href: "/el-concepto", label: "El Concepto", corto: "Concepto" },
   { href: "/comerciante", label: "Comerciantes" },
   { href: "/mayoristas", label: "Mayoristas" },
   { href: "/club", label: "El Club" },
   { href: "/anuncios", label: "Anuncios" },
+  { href: "/preguntas-frecuentes", label: "Preguntas frecuentes", corto: "FAQ" },
   { href: "/juridica", label: "Jurídica" },
   { href: "/contacto", label: "Contacto" },
 ] as const;
 
 /**
- * Páginas de detalle: no entran en el menú principal, que con ocho ya está
- * lleno, pero sí en el pie, en el menú móvil y en el sitemap.
+ * Páginas de detalle: no entran en el menú principal, pero sí en el pie, en el
+ * menú móvil y en el sitemap.
  */
 export const navDetalle = [
   { href: "/niveles-y-tarifas", label: "Niveles y tarifas" },
   { href: "/servicios", label: "Servicios" },
   { href: "/nosotros", label: "Nosotros" },
-  { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
 ] as const;
 
 export const ASUNTOS = ["Comerciante", "Mayorista", "Prensa", "Otro"] as const;
