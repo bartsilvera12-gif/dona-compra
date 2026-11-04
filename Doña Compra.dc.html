@@ -405,10 +405,10 @@
       <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(24px,4vw,56px);align-items:center">
           <figure style="margin:0">
-            <div style="max-width:340px;margin:0 auto;border:1px solid rgba(26,54,93,0.15);border-radius:12px;overflow:hidden;background:#1A365D">
+            <div style="position:relative;max-width:340px;margin:0 auto;border:1px solid rgba(26,54,93,0.15);border-radius:12px;overflow:hidden;background:#1A365D">
               <video src="video/dona-compra-story.mp4" poster="video/dona-compra-story-poster.jpg" controls playsinline preload="none" aria-label="Doña Compra, contada por ella misma" style="display:block;width:100%;aspect-ratio:9 / 16"></video>
+              <button onClick="{{ playVideo }}" aria-label="Reproducir el video: Doña Compra, contada por ella misma" style="position:absolute;inset:0;display:grid;place-items:center;background:rgba(26,54,93,0.15);border:0;padding:0;cursor:pointer" style-hover="background:rgba(26,54,93,0.3)"><span style="display:grid;place-items:center;width:72px;height:72px;border-radius:50%;background:rgba(252,252,252,0.95);box-shadow:0 10px 30px -10px rgba(0,0,0,0.6)"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" style="transform:translateX(3px);fill:#1A365D"><path d="M6 3.5v17l15-8.5z"></path></svg></span></button>
             </div>
-            <figcaption style="font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;color:#6B6B6B;margin:14px auto 0;max-width:340px">Este video todavía no tiene subtítulos. Se agregan en cuanto esté la transcripción.</figcaption>
           </figure>
           <div>
             <span class="dcx-rotulo">En diez segundos</span>
@@ -2774,6 +2774,19 @@ class Component extends DCLogic {
       stepText: STEPS[this.state.step],
       isElegis: this.state.step === 'elegis', isCompra: this.state.step === 'compra',
       isRetiras: this.state.step === 'retiras', isPagas: this.state.step === 'pagas',
+      // El boton de play encima del poster. No usa estado a proposito: un
+      // setState aca volveria a pintar la seccion y el <video> arrancaria de
+      // cero. Se esconde el boton por DOM y listo; los controles nativos del
+      // navegador se encargan del resto.
+      playVideo: (e) => {
+        const btn = e.target.closest('button');
+        const v = btn && btn.parentElement.querySelector('video');
+        if (!v) return;
+        const p = v.play();
+        if (p && p.then) p.then(() => { btn.style.display = 'none'; }).catch(() => {});
+        else btn.style.display = 'none';
+      },
+
       pickElegis: () => this.setState({ step: 'elegis' }),
       pickCompra: () => this.setState({ step: 'compra' }),
       pickRetiras: () => this.setState({ step: 'retiras' }),
