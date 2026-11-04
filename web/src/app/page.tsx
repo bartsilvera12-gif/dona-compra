@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site, waLink } from "@/lib/site";
 import Galeria from "@/components/Galeria";
@@ -91,6 +92,33 @@ const PIZARRAS = [
     pie: "La insignia de Socio de Confianza",
   },
 ];
+
+/**
+ * Las fotos de local que pasó el cliente. Van con el pie encima, sobre un
+ * degradado: distinto del muro de pizarras, que lleva el pie debajo de la
+ * tarjeta. Dos galerías seguidas con el mismo tratamiento se leerían como la
+ * misma sección repetida.
+ */
+const LOCALES = [
+  {
+    src: "/assets/local-despensa.jpg",
+    mini: "/assets/local-despensa-640.jpg",
+    alt: "Interior de una despensa de barrio: verdulería a la entrada, góndolas de almacén y la encargada en el mostrador",
+    pie: "Una despensa de barrio",
+  },
+  {
+    src: "/assets/local-comedor.jpg",
+    mini: "/assets/local-comedor-640.jpg",
+    alt: "Comedor lleno al mediodía, con mesas largas, clientes almorzando y la vitrina de empanadas al fondo",
+    pie: "Un comedor en plena hora pico",
+  },
+  {
+    src: "/assets/local-ropa.jpg",
+    mini: "/assets/local-ropa-640.jpg",
+    alt: "Tienda de ropa y artesanía con perchas, canastos y mantelería, atendiendo a una clienta",
+    pie: "Una tienda de ropa y artesanía",
+  },
+] as const;
 
 const RUBROS = [
   { slug: "ropa", nombre: "Ropa" },
@@ -321,6 +349,53 @@ export default function Home() {
             <div className="mt-10">
               <Galeria fotos={PIZARRAS} variante="muro" />
             </div>
+          </Revelar>
+        </Wrap>
+      </section>
+
+      {/* Las fotos de local, entre las pizarras y los rubros: después de las
+          cuentas y antes de la lista de oficios, que es donde ayuda ver de
+          qué clase de negocio estamos hablando. */}
+      <section className="bg-card">
+        <Wrap>
+          <Revelar>
+            <Rotulo>A pie de mostrador</Rotulo>
+            <h2 className="mt-4 max-w-[18ch]">Donde esto pasa de verdad.</h2>
+            <p className="mt-4 max-w-[56ch] text-ink">
+              Una despensa, un comedor, una tienda de ropa. Tres negocios
+              distintos con el mismo problema: reponer sin quedarse sin caja.
+            </p>
+          </Revelar>
+
+          <Revelar retardo={1}>
+            <ul className="mt-9 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-3">
+              {LOCALES.map((f) => (
+                <li
+                  key={f.src}
+                  className="group relative overflow-hidden rounded-[var(--radius-card)] border border-navy/12 bg-navy"
+                >
+                  <span className="relative block aspect-[4/3]">
+                    <Image
+                      src={f.mini}
+                      alt={f.alt}
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                    />
+                  </span>
+                  {/* El degradado no es decoración: sin él, el pie blanco cae
+                      sobre lo que toque de la foto y a veces no se lee. */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-navy-dark/85 to-transparent"
+                  />
+                  <span className="absolute bottom-3 left-4 text-[14px] font-medium text-card">
+                    {f.pie}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </Revelar>
         </Wrap>
       </section>
