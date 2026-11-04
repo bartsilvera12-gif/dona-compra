@@ -70,11 +70,11 @@ export default function Home() {
         rotulo="Gran Asunción, Paraguay"
         titulo={
           <>
-            Vendé más y{" "}
+            Elegí tu mercadería y{" "}
             <span className="text-terracotta-ink">pagá después.</span>
           </>
         }
-        bajada="Elegí la mercadería y el proveedor que ya conocés. Doña Compra paga al contado y vos pagás en hasta 30 días, según las condiciones acordadas."
+        bajada="Vos elegís el producto y el proveedor, con el mayorista que ya conocés. Doña Compra paga al contado y vos pagás en hasta 30 días, según las condiciones acordadas."
         fotos={[
           { src: "/assets/hero-1-640.jpg", alt: "Despensa de barrio" },
           { src: "/assets/hero-2-640.jpg", alt: "Góndola de almacén" },
