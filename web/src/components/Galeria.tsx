@@ -21,7 +21,21 @@ export type Foto = {
   pie?: string;
 };
 
-export default function Galeria({ fotos }: { fotos: Foto[] }) {
+export default function Galeria({
+  fotos,
+  columnas = 3,
+  formato = "4/3",
+}: {
+  fotos: Foto[];
+  /** Columnas en pantalla ancha. En teléfono siempre son dos. */
+  columnas?: 2 | 3;
+  /**
+   * Recorte de la miniatura. Para fotos de ambiente, 4/3. Para imágenes con
+   * texto —una pizarra, una tabla— conviene 16/9: el 4/3 les come el borde
+   * de arriba y el de abajo, que es justo donde suele estar el título.
+   */
+  formato?: "4/3" | "16/9";
+}) {
   const dialogo = useRef<HTMLDialogElement>(null);
   const [abierta, setAbierta] = useState<number | null>(null);
 
@@ -64,7 +78,11 @@ export default function Galeria({ fotos }: { fotos: Foto[] }) {
 
   return (
     <>
-      <ul className="grid list-none grid-cols-2 gap-3 p-0 sm:grid-cols-3">
+      <ul
+        className={`grid list-none grid-cols-2 gap-3 p-0 ${
+          columnas === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"
+        }`}
+      >
         {fotos.map((f, i) => (
           <li key={f.src}>
             <button
@@ -72,7 +90,11 @@ export default function Galeria({ fotos }: { fotos: Foto[] }) {
               onClick={() => abrir(i)}
               className="group block w-full cursor-pointer overflow-hidden rounded-[var(--radius-card)] border border-navy/12 bg-card p-0"
             >
-              <span className="relative block aspect-[4/3]">
+              <span
+                className={`relative block ${
+                  formato === "16/9" ? "aspect-[16/9]" : "aspect-[4/3]"
+                }`}
+              >
                 <Image
                   src={f.mini ?? f.src}
                   alt={f.alt}

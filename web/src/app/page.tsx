@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site, waLink } from "@/lib/site";
+import Galeria from "@/components/Galeria";
 import Revelar from "@/components/Revelar";
 import VideoVertical from "@/components/VideoVertical";
 import {
@@ -51,6 +52,45 @@ const PASOS = [
     foto: { src: "/assets/paso-4.jpg", alt: "Pago posterior a la venta" },
   },
 ] as const;
+
+/** Los papelitos que acompañan al video. */
+const LO_QUE_CUENTA = [
+  "Quién es Doña Compra",
+  "A quién acompaña",
+  "Por qué el barrio merece comprar como los grandes",
+] as const;
+
+/**
+ * Las pizarras del cliente. Son material de él, hecho para explicar las
+ * condiciones en una visita, y las cifras coinciden con las Condiciones
+ * Generales: las verifiqué una por una contra `niveles.ts`.
+ */
+const PIZARRAS = [
+  {
+    src: "/assets/pizarra-niveles.jpg",
+    mini: "/assets/pizarra-niveles-640.jpg",
+    alt: "Pizarra con los siete niveles, su cupo de compras y su recargo, de Hierro 18 % a Diamante 12 %",
+    pie: "Los siete niveles, con su cupo y su recargo",
+  },
+  {
+    src: "/assets/pizarra-analisis.jpg",
+    mini: "/assets/pizarra-analisis-640.jpg",
+    alt: "Pizarra con el precio del análisis de ingreso por nivel, de 50.000 a 200.000 guaraníes",
+    pie: "Cuánto cuesta el análisis de ingreso",
+  },
+  {
+    src: "/assets/pizarra-pagador-rapido.jpg",
+    mini: "/assets/pizarra-pagador-rapido-640.jpg",
+    alt: "Pizarra con el recargo estándar y el recargo con descuento de Pagador Rápido para cada nivel",
+    pie: "Pagador Rápido: un punto menos de recargo",
+  },
+  {
+    src: "/assets/pizarra-socio-confianza.jpg",
+    mini: "/assets/pizarra-socio-confianza-640.jpg",
+    alt: "Doña Compra con la insignia de Socio de Confianza junto a la tabla de recargos con descuento",
+    pie: "La insignia de Socio de Confianza",
+  },
+];
 
 const RUBROS = [
   { slug: "ropa", nombre: "Ropa" },
@@ -125,11 +165,36 @@ export default function Home() {
 
       {/* El video va acá, entre las cifras y la explicación: después de los
           números y antes del procedimiento, que es donde una cara hace más
-          falta. El formato 9:16 pide una columna angosta, así que comparte
-          fila con el texto en vez de quedar solo en el medio. */}
-      <section>
-        <Wrap>
-          <div className="grid items-center gap-[clamp(24px,4vw,56px)] lg:grid-cols-[340px_1fr]">
+          falta.
+
+          Va sobre una banda oscura a propósito. Toda la página corre sobre el
+          degradado pastel del manual, y un video vertical metido ahí queda
+          como una foto suelta. El fondo oscuro lo convierte en el único foco
+          de luz de la sección: la misma razón por la que en el cine se apagan
+          las luces. */}
+      <section className="relative overflow-hidden bg-navy-dark text-card">
+        {/* Trama de puntos y resplandor terracota: textura sin pedir otra
+            imagen al servidor. */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, #fcfcfc 1px, transparent 1.2px)",
+            backgroundSize: "24px 24px",
+          }}
+        />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-40 -right-32 h-[460px] w-[460px] rounded-full bg-terracotta/25 blur-[130px]"
+        />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-48 -left-40 h-[420px] w-[420px] rounded-full bg-terracotta/15 blur-[140px]"
+        />
+
+        <Wrap className="relative">
+          <div className="grid items-center gap-[clamp(36px,5vw,76px)] lg:grid-cols-[minmax(0,330px)_1fr]">
             <Revelar>
               <VideoVertical
                 src="/video/dona-compra-story.mp4"
@@ -139,19 +204,49 @@ export default function Home() {
             </Revelar>
 
             <Revelar retardo={1}>
-              <Rotulo>En diez segundos</Rotulo>
-              <h2 className="mt-4 mb-3 max-w-[20ch]">
-                Mejor que te lo cuente ella.
+              <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-terracotta-soft">
+                <span aria-hidden="true" className="h-px w-8 bg-terracotta-soft" />
+                En diez segundos
+              </span>
+              <h2 className="mt-4 mb-4 max-w-[16ch] text-card">
+                Mejor que te lo{" "}
+                <span className="text-terracotta-soft">cuente ella.</span>
               </h2>
-              <p className="max-w-[52ch] text-[clamp(16px,1.8vw,18.5px)] text-ink">
-                Quién es Doña Compra, a quién acompaña y por qué el comercio de
-                barrio merece comprar como compran los grandes.
+              <p className="max-w-[48ch] text-[clamp(16px,1.8vw,18.5px)] text-card/75">
+                Arranca solo, en silencio y con los subtítulos a la vista.
+                Tocá <span className="whitespace-nowrap">«Con sonido»</span> si
+                querés escucharla.
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link href="/el-concepto" className={btnPrimario}>
+
+              {/* Papelitos: los mismos carteles escritos a mano que salen en
+                  el video, pasados a la página. */}
+              <ul className="mt-7 flex list-none flex-wrap gap-3 p-0">
+                {LO_QUE_CUENTA.map((t, i) => (
+                  <li
+                    key={t}
+                    className={`flex items-center gap-2.5 rounded-[10px] bg-card px-3.5 py-2.5 text-[14px] text-navy shadow-[0_12px_26px_-16px_rgba(0,0,0,0.9)] ${
+                      ["-rotate-[1.6deg]", "rotate-[1.2deg]", "-rotate-[0.8deg]"][i]
+                    }`}
+                  >
+                    <span className="grid h-5 w-5 flex-none place-items-center rounded-full bg-terracotta text-[11px] font-semibold text-card">
+                      {i + 1}
+                    </span>
+                    {t}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/el-concepto"
+                  className="inline-block rounded-[var(--radius-button)] bg-terracotta px-7 py-3.5 text-sm font-medium tracking-[0.04em] text-card hover:bg-terracotta-ink hover:text-card"
+                >
                   Ver cómo funciona
                 </Link>
-                <Link href="/contacto" className={btnSecundario}>
+                <Link
+                  href="/contacto"
+                  className="inline-block rounded-[var(--radius-button)] border border-card/40 px-7 py-3.5 text-sm font-medium tracking-[0.04em] text-card hover:border-card"
+                >
                   Pedir una visita
                 </Link>
               </div>
@@ -193,6 +288,35 @@ export default function Home() {
               </Link>
             </p>
           </Revelar>
+        </Wrap>
+      </section>
+
+      {/* Las pizarras del cliente. Van después de los cuatro pasos porque
+          responden la pregunta que queda: «bueno, ¿y cuánto me cuesta?». */}
+      <section>
+        <Wrap>
+          <div className="grid gap-[clamp(20px,3vw,48px)] lg:grid-cols-[minmax(0,26ch)_1fr]">
+            <Revelar>
+              <Rotulo>En la pizarra</Rotulo>
+              <h2 className="mt-4 max-w-[16ch]">Las cuentas, a la vista.</h2>
+              <p className="mt-4 text-ink">
+                Lo mismo que te explica un asesor en la visita, tal cual se lo
+                explica. Tocá cualquiera para verla grande.
+              </p>
+              <p className="mt-5">
+                <Link
+                  href="/niveles-y-tarifas"
+                  className="font-medium text-terracotta-ink"
+                >
+                  Ver la tabla completa →
+                </Link>
+              </p>
+            </Revelar>
+
+            <Revelar retardo={1}>
+              <Galeria fotos={PIZARRAS} columnas={2} formato="16/9" />
+            </Revelar>
+          </div>
         </Wrap>
       </section>
 
