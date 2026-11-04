@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import Galeria from "@/components/Galeria";
 import Revelar from "@/components/Revelar";
-import VideoVertical from "@/components/VideoVertical";
 import { FilaAlterna, PortadaCompacta, Rotulo } from "@/components/bloques";
 import { CTA, Wrap } from "@/components/ui";
-import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Nosotros",
@@ -39,24 +37,6 @@ const FOTOS = [
     pie: "Una tienda de ropa y artesanía, atendiendo.",
   },
 ];
-
-/**
- * Datos estructurados del video. Sin esto el buscador ve una etiqueta <video>
- * y poco más; con esto puede mostrar el clip como resultado de video, con su
- * miniatura y su duración.
- */
-const VIDEO_JSONLD = {
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  name: "Doña Compra, contada por ella misma",
-  description:
-    "Presentación en video de Doña Compra: qué es, a quién acompaña y cómo trabaja con los comercios de barrio de Gran Asunción.",
-  thumbnailUrl: `${site.url}/video/dona-compra-story-poster.jpg`,
-  contentUrl: `${site.url}/video/dona-compra-story.mp4`,
-  // ISO 8601: diez segundos.
-  duration: "PT10S",
-  uploadDate: "2026-11-04",
-};
 
 export default function NosotrosPage() {
   return (
@@ -172,28 +152,11 @@ export default function NosotrosPage() {
             </p>
           </Revelar>
 
-          <div className="grid gap-[clamp(24px,4vw,48px)] lg:grid-cols-[340px_1fr] lg:items-start">
-            <Revelar>
-              <VideoVertical
-                src="/video/dona-compra-story.mp4"
-                poster="/video/dona-compra-story-poster.jpg"
-                titulo="Doña Compra, contada por ella misma"
-                descripcion="Diez segundos: quién es Doña Compra y a quién acompaña."
-              />
-            </Revelar>
-
-            <Revelar retardo={1}>
-              <Galeria fotos={FOTOS} />
-            </Revelar>
-          </div>
+          <Revelar>
+            <Galeria fotos={FOTOS} />
+          </Revelar>
         </Wrap>
       </section>
-
-      <script
-        type="application/ld+json"
-        // El contenido es un objeto nuestro, no entra nada del usuario.
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(VIDEO_JSONLD) }}
-      />
 
       <CTA
         titulo="La mejor forma de conocernos es conversando"
