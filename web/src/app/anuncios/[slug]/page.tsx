@@ -159,7 +159,7 @@ export default async function PublicacionPage({ params }: Props) {
               </div>
 
               <div className="mt-8 rounded-[var(--radius-card)] bg-navy p-[clamp(18px,2.6vw,28px)]">
-                <h2 className="mb-2 text-[20px] text-card">¿Te interesa?</h2>
+                <h2 className="mb-2 text-[20px] text-card">Te interesa?</h2>
                 <p className="mb-5 text-card/80">
                   Escribinos y coordinamos una visita a tu negocio.
                 </p>

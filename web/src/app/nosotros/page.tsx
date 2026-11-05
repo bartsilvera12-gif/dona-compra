@@ -160,7 +160,7 @@ export default function NosotrosPage() {
 
       <CTA
         titulo="La mejor forma de conocernos es conversando"
-        texto="Coordinamos una visita a tu negocio, sin costo y sin compromiso."
+        texto="Coordinamos una visita a tu negocio, sin compromiso."
       />
     </main>
   );

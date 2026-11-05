@@ -171,7 +171,7 @@ export default function ContactoPage() {
                   )}
                 </Canal>
 
-                <Canal rotulo="¿Dudas frecuentes?">
+                <Canal rotulo="Dudas frecuentes?">
                   <Link
                     href="/preguntas-frecuentes"
                     className="group flex items-center justify-between gap-4 rounded-[var(--radius-card)] bg-terracotta/8 px-5 py-4 text-navy hover:text-terracotta-ink"

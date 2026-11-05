@@ -39,7 +39,7 @@ const PASOS = [
     foto: { src: "/assets/paso-1.jpg", alt: "Eligiendo la mercadería" },
   },
   {
-    titulo: "Doña paga al contado",
+    titulo: "Doña Compra paga al contado",
     texto:
       "Pagamos la mercadería al proveedor en el momento. Para él es una venta al contado como cualquier otra.",
     foto: { src: "/assets/paso-2.jpg", alt: "Pago al proveedor" },
@@ -65,7 +65,7 @@ export default function ElConceptoPage() {
         rotulo="El Concepto"
         titulo={
           <>
-            Doña paga hoy.{" "}
+            Doña Compra paga hoy.{" "}
             <span className="text-terracotta-ink">Vos pagás después.</span>
           </>
         }
@@ -212,7 +212,7 @@ export default function ElConceptoPage() {
       </section>
 
       <CTA
-        titulo="¿Te sirve para tu negocio?"
+        titulo="Te sirve para tu negocio?"
         texto="Coordinamos una visita al local, evaluamos juntos y te explicamos las condiciones sin compromiso."
       />
     </main>

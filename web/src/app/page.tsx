@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site, waLink } from "@/lib/site";
+import { site } from "@/lib/site";
 import Galeria from "@/components/Galeria";
 import Revelar from "@/components/Revelar";
 import VideoVertical from "@/components/VideoVertical";
@@ -37,7 +37,7 @@ const PASOS = [
     foto: { src: "/assets/paso-1.jpg", alt: "Comerciante eligiendo mercadería" },
   },
   {
-    titulo: "Doña paga al contado",
+    titulo: "Doña Compra paga al contado",
     texto: "Pagamos la mercadería al proveedor en el momento, como cualquier venta de contado.",
     foto: { src: "/assets/paso-2.jpg", alt: "Pago al proveedor" },
   },
@@ -124,15 +124,17 @@ export default function Home() {
     <main>
       <PortadaCollage
         rotulo="Gran Asunción, Paraguay"
+        // El mensaje maestro, tal cual lo fija la hoja de dirección de
+        // comunicación (sección 4). No es una frase a reescribir.
         titulo={
           <>
-            Elegí tu mercadería y{" "}
-            <span className="text-terracotta-ink">pagá después.</span>
+            Elegí tu mercadería.{" "}
+            <span className="text-terracotta-ink">Pagá después!</span>
           </>
         }
-        bajada="Vos elegís el producto y el proveedor, con el mayorista que ya conocés. Doña Compra paga al contado y vos pagás en hasta 30 días, según las condiciones acordadas."
+        bajada="Doña Compra compra mercaderías y las revende a comercios, con condiciones de pago previamente acordadas. Sujeto a evaluación y a las condiciones comerciales vigentes."
         // Las cuatro son del material del cliente y en las cuatro aparece
-        // Doña. El retrato va segundo porque ese es el hueco más alto del
+        // Doña Compra. El retrato va segundo porque ese es el hueco más alto del
         // collage: es la foto que sostiene una cara de cerca.
         fotos={[
           {
@@ -152,19 +154,17 @@ export default function Home() {
             alt: "Doña Compra en un comedor lleno al mediodía",
           },
         ]}
+        // La llamada principal es «Conocé cómo funciona», no la conversión:
+        // la hoja pide que el sitio informe primero y convierta después.
+        // WhatsApp sigue a un toque, en la barra de arriba.
         acciones={
           <>
-            <Link href="/contacto" className={btnPrimario}>
+            <Link href="/el-concepto" className={btnPrimario}>
+              Conocé cómo funciona
+            </Link>
+            <Link href="/contacto" className={btnSecundario}>
               Pedir una visita
             </Link>
-            <a
-              href={waLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={btnSecundario}
-            >
-              Escribir por WhatsApp
-            </a>
           </>
         }
       />
@@ -211,7 +211,7 @@ export default function Home() {
           className="pointer-events-none absolute inset-0 opacity-[0.07]"
           style={{
             backgroundImage:
-              "radial-gradient(circle, #fcfcfc 1px, transparent 1.2px)",
+              "radial-gradient(circle, #f7f5ee 1px, transparent 1.2px)",
             backgroundSize: "24px 24px",
           }}
         />
@@ -259,7 +259,7 @@ export default function Home() {
                       ["-rotate-[1.6deg]", "rotate-[1.2deg]", "-rotate-[0.8deg]"][i]
                     }`}
                   >
-                    <span className="grid h-5 w-5 flex-none place-items-center rounded-full bg-terracotta text-[11px] font-semibold text-card">
+                    <span className="grid h-5 w-5 flex-none place-items-center rounded-full bg-terracotta text-[11px] font-semibold text-navy">
                       {i + 1}
                     </span>
                     {t}
@@ -270,7 +270,7 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/el-concepto"
-                  className="inline-block rounded-[var(--radius-button)] bg-terracotta px-7 py-3.5 text-sm font-medium tracking-[0.04em] text-card hover:bg-terracotta-ink hover:text-card"
+                  className="inline-block rounded-[var(--radius-button)] bg-terracotta px-7 py-3.5 text-sm font-medium tracking-[0.04em] text-navy hover:bg-ocre-oscuro hover:text-navy"
                 >
                   Ver cómo funciona
                 </Link>
@@ -323,7 +323,7 @@ export default function Home() {
       </section>
 
       {/* Las pizarras del cliente. Van después de los cuatro pasos porque
-          responden la pregunta que queda: «bueno, ¿y cuánto me cuesta?». */}
+          responden la pregunta que queda: «bueno, y cuánto me cuesta?». */}
       <section>
         <Wrap>
           <Revelar>
@@ -361,7 +361,7 @@ export default function Home() {
           <Revelar>
             <Rotulo>Rubros</Rotulo>
             <h2 className="mt-4 max-w-[22ch]">
-              Negocios que ya compran con Doña.
+              Negocios que ya compran con Doña Compra.
             </h2>
             <p className="mt-4 max-w-[56ch] text-ink">
               Si vendés al público y reponés con un mayorista, probablemente
@@ -385,7 +385,7 @@ export default function Home() {
 
       <CTA
         titulo="Empezá con una visita"
-        texto="Sin costo y sin compromiso. Conversamos en tu local y te explicamos las condiciones."
+        texto="Sin compromiso. Conversamos en tu local y te explicamos las condiciones."
       />
     </main>
   );

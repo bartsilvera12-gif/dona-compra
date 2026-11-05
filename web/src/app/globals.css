@@ -1,31 +1,44 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Design system Doña Compra — valores del manual de marca v1.0.
-   Cualquier color, tipografía o radio del sitio sale de acá.
+   Design system Doña Compra — carta gráfica v2.0, de la «Hoja de dirección de
+   comunicación» de noviembre 2026, sección 5.
+
+   Los cuatro colores de marca son verde oscuro #1B3B2B, ocre #E0A938, salvia
+   #789E82 y marfil #F7F5EE. Todo lo demás de esta lista es un derivado de
+   esos cuatro para los usos que la carta no nombra —una sombra para el pie,
+   un aclarado para el hover, un gris verdoso para el texto corriente—, no un
+   color nuevo.
+
+   Los nombres de los tokens se mantienen (`navy`, `terracotta`) aunque los
+   valores ya no lo sean: renombrarlos tocaba unas setecientas clases en los
+   dos sitios sin cambiar un pixel del resultado.
    --------------------------------------------------------------------------- */
 @theme {
   /* Superficies */
-  --color-card: #fcfcfc;
-  --color-grad-start: #e3ecf5; /* azul pastel, arriba a la izquierda */
-  --color-grad-mid: #f9f7f7;
-  --color-grad-end: #fdf0ef; /* rosa durazno, abajo a la derecha */
+  --color-card: #f7f5ee; /* marfil: fondo principal y tarjetas */
+  --color-grad-start: #e4ebe4; /* salvia muy claro, para huecos de imagen */
+  --color-grad-mid: #f7f5ee;
+  --color-grad-end: #f7f5ee;
 
   /* Texto e institucional */
-  --color-navy: #1a365d; /* dominante: títulos, botones */
-  --color-navy-dark: #12284a; /* superficies oscuras: footer, menú */
-  --color-navy-deep: #142c4d; /* hover del dominante */
-  --color-ink: #4a4a4a; /* texto corriente */
-  --color-muted: #6b6b6b; /* notas, etiquetas */
+  --color-navy: #1b3b2b; /* verde oscuro: títulos, botones, navegación */
+  --color-navy-dark: #142c20; /* sombra del verde: pie, menú, bandas */
+  --color-navy-deep: #24513a; /* aclarado del verde: hover del dominante */
+  --color-ink: #2f4237; /* texto corriente, verde oscuro desaturado */
+  --color-muted: #5c6b61; /* notas, etiquetas */
+  --color-salvia: #789e82; /* superficies humanas, ilustraciones */
 
   /* Acentos */
-  --color-terracotta: #c25e38; /* montos, totales, bordes y acentos */
-  /* Variante para TEXTO y fondos de boton. El terracota del manual da 4.13
-     sobre la tarjeta y 3.8 sobre el degradado, y WCAG AA pide 4.5. Mismo
-     tono y saturacion, algo mas oscuro: 4.98 y 4.59. */
-  --color-terracotta-ink: #ae5432;
-  --color-terracotta-soft: #e8a98e; /* terracota sobre fondo oscuro */
-  --color-ocre: #d97706;
+  --color-terracotta: #e0a938; /* ocre: filetes, bordes, botón secundario */
+  /* La carta prohíbe el ocre en letra chica sobre marfil, y tiene razón: da
+     1.8 y WCAG AA pide 4.5. Este es el mismo ocre oscurecido hasta 5.8, para
+     que los enlaces y los montos sigan leyéndose como acento y no como texto
+     corriente. El ocre de la carta queda para filetes, bordes y botones. */
+  --color-terracotta-ink: #7a5a12;
+  --color-terracotta-soft: #e0a938; /* ocre sobre fondo verde oscuro: 5.9 */
+  --color-ocre: #e0a938;
+  --color-ocre-oscuro: #c08c22; /* hover del botón ocre */
 
   /* Estados */
   --color-ok: #10b981;
@@ -61,15 +74,9 @@
     font-size: 16px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    /* Degradado pastel del manual: azul arriba a la izquierda, durazno abajo
-       a la derecha. */
-    background: linear-gradient(
-      135deg,
-      var(--color-grad-start) 0%,
-      var(--color-grad-mid) 52%,
-      var(--color-grad-end) 100%
-    );
-    background-attachment: fixed;
+    /* Marfil plano. La carta v2.0 pide fondo marfil y «superficies sobrias,
+       sin degradado permanente»: el degradado pastel era de la v1.0. */
+    background: var(--color-card);
     min-height: 100vh;
   }
 

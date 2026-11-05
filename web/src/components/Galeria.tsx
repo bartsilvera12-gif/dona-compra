@@ -131,7 +131,7 @@ export default function Galeria({
                   />
                   <span
                     aria-hidden="true"
-                    className="absolute top-2 left-2 grid h-6 w-6 place-items-center rounded-full bg-terracotta text-[11px] font-semibold text-card shadow-[0_4px_10px_-4px_rgba(0,0,0,0.6)]"
+                    className="absolute top-2 left-2 grid h-6 w-6 place-items-center rounded-full bg-terracotta text-[11px] font-semibold text-navy shadow-[0_4px_10px_-4px_rgba(0,0,0,0.6)]"
                   >
                     {i + 1}
                   </span>

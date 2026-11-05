@@ -168,7 +168,7 @@ export default function ServiciosPage() {
       </section>
 
       <CTA
-        titulo="¿Querés ver cómo queda tu pedido?"
+        titulo="Querés ver cómo queda tu pedido?"
         texto="En la calculadora de niveles y tarifas podés probar con el monto que comprarías."
       />
     </main>

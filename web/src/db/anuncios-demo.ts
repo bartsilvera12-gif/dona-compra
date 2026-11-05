@@ -73,7 +73,7 @@ export const DEMO: Demo[] = [
     ...base,
     id: "00000000-0000-0000-0000-000000000004",
     slug: "tres-meses-comprando-con-dona",
-    titulo: "Tres meses comprando con Doña",
+    titulo: "Tres meses comprando con Doña Compra",
     texto:
       "Una comerciante cuenta cómo cambió la reposición de su local desde que no tiene que pagar la mercadería al contado.",
     tipo: "video",

@@ -389,7 +389,7 @@ export default function NivelesPage() {
       </section>
 
       <CTA
-        titulo="¿Querés saber tu nivel?"
+        titulo="Querés saber tu nivel?"
         texto="Se define en la visita, mirando tu negocio. Coordinamos una sin compromiso."
       />
     </main>

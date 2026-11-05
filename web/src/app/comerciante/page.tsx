@@ -169,7 +169,7 @@ export default function ComerciantePage() {
         <Wrap>
           <Revelar>
             <Rotulo>Rubros</Rotulo>
-            <h2 className="mt-4 max-w-[22ch]">¿Tu rubro está acá?</h2>
+            <h2 className="mt-4 max-w-[22ch]">Tu rubro está acá?</h2>
             <p className="mt-4 max-w-[56ch] text-ink">
               Estos son los que más trabajan con nosotros. Si el tuyo no está
               pero vendés al público y reponés con un mayorista, escribinos
@@ -185,7 +185,7 @@ export default function ComerciantePage() {
 
       <CTA
         titulo="Empezá con una visita"
-        texto="Sin costo y sin compromiso. Conversamos en tu local y te explicamos las condiciones."
+        texto="Sin compromiso. Conversamos en tu local y te explicamos las condiciones."
       />
     </main>
   );

@@ -149,7 +149,7 @@ export default async function AnunciosPage({ searchParams }: Props) {
       </section>
 
       <CTA
-        titulo="¿Querés comprar así para tu negocio?"
+        titulo="Querés comprar así para tu negocio?"
         texto="Elegí la mercadería en tu proveedor, nosotros la pagamos y vos la pagás después. Empieza con una visita."
       />
     </main>

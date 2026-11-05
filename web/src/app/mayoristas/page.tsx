@@ -172,7 +172,7 @@ export default function MayoristasPage() {
       </section>
 
       <CTA
-        titulo="¿Sumamos a tu depósito?"
+        titulo="Sumamos a tu depósito?"
         texto="Escribinos y coordinamos una reunión para ver cómo encaja con tu forma de vender."
       />
     </main>

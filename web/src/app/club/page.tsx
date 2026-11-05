@@ -280,7 +280,7 @@ export default function ClubPage() {
       </section>
 
       <CTA
-        titulo="¿Tu marca quiere acompañarnos?"
+        titulo="Tu marca quiere acompañarnos?"
         texto="Contanos qué querés lograr y vemos juntos si el Club tiene sentido para lo que vendés."
       />
     </main>
