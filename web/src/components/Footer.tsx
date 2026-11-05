@@ -113,7 +113,20 @@ export default function Footer() {
       </div>
 
       <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-3.5 border-t border-card/10 px-[clamp(18px,4vw,40px)] pb-7 pt-4.5">
-        <span className="text-[12.5px] text-card/65">© 2026 Doña Compra</span>
+        <span className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[12.5px] text-card/65">
+          <span>© 2026 Doña Compra</span>
+          <span>
+            Desarrollado por{" "}
+            <a
+              href="https://neura.com.py"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-card/80 underline decoration-terracotta/60 underline-offset-2 hover:text-terracotta-soft"
+            >
+              Neura
+            </a>
+          </span>
+        </span>
         <span className="flex flex-wrap items-center gap-4">
           <Link href="/juridica" className="text-[12.5px] text-card/60 hover:text-terracotta-soft">
             Aviso legal y privacidad
