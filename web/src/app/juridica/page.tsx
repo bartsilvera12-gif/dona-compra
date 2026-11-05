@@ -3,16 +3,18 @@ import { site } from "@/lib/site";
 import { Aviso, Wrap } from "@/components/ui";
 import { PortadaCompacta } from "@/components/bloques";
 import CookiePrefsInline from "@/components/CookiePrefsInline";
+import CondicionesGenerales from "@/components/CondicionesGenerales";
 
 export const metadata: Metadata = {
   title: "Información jurídica",
   description:
-    "Aviso legal, condiciones generales de uso, política de privacidad y política de cookies de Doña Compra.",
+    "Aviso legal, Condiciones Generales de Servicio y de Venta, condiciones de uso del sitio, política de privacidad y política de cookies de Doña Compra.",
 };
 
 const SECCIONES = [
   ["aviso-legal", "Aviso legal"],
-  ["condiciones", "Condiciones generales de uso"],
+  ["cgv", "Condiciones Generales de Servicio y de Venta"],
+  ["condiciones", "Condiciones de uso del sitio"],
   ["privacidad", "Política de privacidad"],
   ["cookies", "Política de cookies"],
 ] as const;
@@ -167,7 +169,18 @@ export default function JuridicaPage() {
                 </P>
               </Parte>
 
-              <Parte id="condiciones" n={2} titulo="Condiciones generales de uso">
+              {/* El contrato comercial, entero. La hoja de dirección pide que
+                  la página jurídica tenga las condiciones generales, y hasta
+                  ahora solo estaban las del sitio, que son otra cosa. */}
+              <Parte
+                id="cgv"
+                n={2}
+                titulo="Condiciones Generales de Servicio y de Venta"
+              >
+                <CondicionesGenerales />
+              </Parte>
+
+              <Parte id="condiciones" n={3} titulo="Condiciones de uso del sitio">
                 <Sub>Aceptación</Sub>
                 <P>
                   El uso de este sitio implica la aceptación de estas condiciones.
@@ -220,7 +233,7 @@ export default function JuridicaPage() {
                 </P>
               </Parte>
 
-              <Parte id="privacidad" n={3} titulo="Política de privacidad">
+              <Parte id="privacidad" n={4} titulo="Política de privacidad">
                 <P>
                   Esta política explica qué datos personales tratamos, con qué
                   finalidad y qué derechos tenés sobre ellos. Se redactó siguiendo
@@ -308,7 +321,7 @@ export default function JuridicaPage() {
                 </P>
               </Parte>
 
-              <Parte id="cookies" n={4} titulo="Política de cookies">
+              <Parte id="cookies" n={5} titulo="Política de cookies">
                 <P>
                   Una cookie es un pequeño archivo que un sitio guarda en tu
                   navegador. Este sitio usa la mínima cantidad posible.
