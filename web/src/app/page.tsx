@@ -143,11 +143,26 @@ export default function Home() {
           </>
         }
         bajada="Vos elegís el producto y el proveedor, con el mayorista que ya conocés. Doña Compra paga al contado y vos pagás en hasta 30 días, según las condiciones acordadas."
+        // Las cuatro son del material del cliente y en las cuatro aparece
+        // Doña. El retrato va segundo porque ese es el hueco más alto del
+        // collage: es la foto que sostiene una cara de cerca.
         fotos={[
-          { src: "/assets/hero-1-640.jpg", alt: "Despensa de barrio" },
-          { src: "/assets/hero-2-640.jpg", alt: "Góndola de almacén" },
-          { src: "/assets/hero-3-640.jpg", alt: "Mercadería lista para retirar" },
-          { src: "/assets/hero-4-640.jpg", alt: "Comercio con stock repuesto" },
+          {
+            src: "/assets/portada-pizarra-640.jpg",
+            alt: "Doña Compra en una tienda de ropa, señalando la pizarra de niveles",
+          },
+          {
+            src: "/assets/portada-insignia-640.jpg",
+            alt: "Doña Compra sosteniendo la insignia de Socio de Confianza",
+          },
+          {
+            src: "/assets/portada-ropa-640.jpg",
+            alt: "Doña Compra atendiendo a una clienta en una tienda de ropa y artesanía",
+          },
+          {
+            src: "/assets/portada-comedor-640.jpg",
+            alt: "Doña Compra en un comedor lleno al mediodía",
+          },
         ]}
         acciones={
           <>
