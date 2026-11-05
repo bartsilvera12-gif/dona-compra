@@ -47,7 +47,14 @@
      Este cumple en tarjeta (5.30) y sobre el degradado (4.89). */
   --color-error-ink: #c0392b;
 
-  /* Tipografía */
+  /* Tipografía.
+     Las familias son las de la carta v2.0: Montserrat 600/700 para títulos,
+     Inter 400/500 a 16 px con interlineado 1,5 para el texto corriente.
+
+     La escala que propone la carta (H1 32 px, H2 24 px, H3 20 px) NO se
+     aplica, por decisión del cliente: los títulos del sitio son fluidos y
+     llegan bastante más alto. Es una diferencia deliberada, no un olvido;
+     no la "corrijas" leyendo la hoja. */
   --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
