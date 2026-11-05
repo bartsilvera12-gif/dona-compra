@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
+import { site, waLink } from "@/lib/site";
+import ContactoForm from "@/components/ContactoForm";
 import Galeria from "@/components/Galeria";
 import Revelar from "@/components/Revelar";
 import VideoVertical from "@/components/VideoVertical";
@@ -10,7 +11,7 @@ import {
   PortadaCollage,
   Rotulo,
 } from "@/components/bloques";
-import { btnPrimario, btnSecundario, CTA, Wrap } from "@/components/ui";
+import { btnPrimario, btnSecundario, Wrap } from "@/components/ui";
 
 /**
  * Datos estructurados del video. Sin esto el buscador ve una etiqueta <video>
@@ -386,10 +387,52 @@ export default function Home() {
         </Wrap>
       </section>
 
-      <CTA
-        titulo="Empezá con una visita"
-        texto="Sin compromiso. Conversamos en tu local y te explicamos las condiciones."
-      />
+      {/* Hablemos: el mismo formulario de la página de Contacto, no una
+          copia. Es el componente de allá con su propia acción de servidor y
+          su validación; si cambia, cambia en los dos lados. Reemplaza al
+          bloque de cierre que solo enlazaba a Contacto: pedir el dato en la
+          misma página ahorra un clic y una página de por medio. */}
+      <section id="hablemos" className="scroll-mt-24 bg-navy-dark text-card">
+        <Wrap>
+          <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[minmax(0,34ch)_1fr]">
+            <Revelar>
+              <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-terracotta-soft">
+                <span aria-hidden="true" className="h-px w-8 bg-terracotta-soft" />
+                Hablemos
+              </span>
+              <h2 className="mt-4 max-w-[16ch] text-card">
+                Empezá con una visita.
+              </h2>
+              <p className="mt-4 max-w-[44ch] text-card/75">
+                Sin compromiso. Conversamos en tu local y te explicamos las
+                condiciones. Sujeto a evaluación y a las condiciones
+                comerciales vigentes.
+              </p>
+              <p className="mt-6 text-[14.5px] text-card/70">
+                Si preferís escribir,{" "}
+                <a
+                  href={waLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-terracotta-soft underline underline-offset-2 hover:text-card"
+                >
+                  mandanos un WhatsApp
+                </a>{" "}
+                al {site.phone}. {site.plazo}
+              </p>
+            </Revelar>
+
+            <Revelar retardo={1}>
+              {/* La tarjeta va en marfil: el formulario tiene campos, foco y
+                  mensajes de error, y todo eso está pensado y medido sobre
+                  fondo claro. */}
+              <div className="rounded-[var(--radius-card)] bg-card p-[clamp(18px,3vw,32px)]">
+                <ContactoForm />
+              </div>
+            </Revelar>
+          </div>
+        </Wrap>
+      </section>
     </main>
   );
 }
