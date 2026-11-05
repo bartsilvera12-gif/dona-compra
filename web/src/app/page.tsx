@@ -90,6 +90,12 @@ const PIZARRAS = [
     alt: "Doña Compra con la insignia de Socio de Confianza junto a la tabla de recargos con descuento",
     pie: "La insignia de Socio de Confianza",
   },
+  {
+    src: "/assets/pizarra-descuento.jpg",
+    mini: "/assets/pizarra-descuento-640.jpg",
+    alt: "Pizarra de Pagador Rápido en un local, con el recargo estándar y el recargo con descuento de cada nivel",
+    pie: "Menos de 25 días para pagar",
+  },
 ];
 
 /**

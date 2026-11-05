@@ -34,9 +34,10 @@ const GIRO = [
   "rotate-[0.9deg]",
   "-rotate-[0.7deg]",
   "rotate-[1.5deg]",
+  "-rotate-[1deg]",
 ];
 /* Margen y no translate: el translate se lo lleva el hover. */
-const DESNIVEL = ["lg:mt-0", "lg:mt-8", "lg:mt-2", "lg:mt-10"];
+const DESNIVEL = ["lg:mt-0", "lg:mt-8", "lg:mt-2", "lg:mt-10", "lg:mt-5"];
 
 export default function Galeria({
   fotos,
@@ -103,7 +104,13 @@ export default function Galeria({
   return (
     <>
       {variante === "muro" ? (
-        <ul className="grid list-none grid-cols-2 gap-x-4 gap-y-7 p-0 lg:grid-cols-4">
+        // Una columna por foto en pantalla ancha: con cuatro columnas y cinco
+        // fotos, la quinta queda sola en una fila nueva.
+        <ul
+          className={`grid list-none grid-cols-2 gap-x-4 gap-y-7 p-0 ${
+            fotos.length === 5 ? "lg:grid-cols-5" : "lg:grid-cols-4"
+          }`}
+        >
           {fotos.map((f, i) => (
             <li key={f.src} className={DESNIVEL[i % DESNIVEL.length]}>
               <button

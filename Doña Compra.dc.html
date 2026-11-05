@@ -125,6 +125,7 @@
   .dcx-muro > li:nth-child(2) > button { transform: rotate(0.9deg); }
   .dcx-muro > li:nth-child(3) > button { transform: rotate(-0.7deg); }
   .dcx-muro > li:nth-child(4) > button { transform: rotate(1.5deg); }
+  .dcx-muro > li:nth-child(5) > button { transform: rotate(-1deg); }
   .dcx-muro > li > button:hover { transform: translateY(-6px) rotate(0deg); box-shadow: 0 26px 50px -24px rgba(26,54,93,0.9); }
   .dcx-muro-img { position: relative; display: block; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 9px; background: #E3ECF5; }
   .dcx-muro-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
@@ -133,11 +134,14 @@
   .dcx-muro-lupa { position: absolute; right: 8px; bottom: 8px; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(252,252,252,0.95); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
   .dcx-muro > li > button:hover .dcx-muro-lupa { opacity: 1; }
   .dcx-muro-pie { display: block; padding: 10px 4px 4px; font-size: 13px; line-height: 1.35; color: #4A4A4A; }
+  /* Una columna por foto en pantalla ancha: con cuatro columnas y cinco
+     fotos, la quinta queda sola en una fila nueva. */
   @media (min-width: 1024px) {
-    .dcx-muro { grid-template-columns: repeat(4, 1fr); }
+    .dcx-muro { grid-template-columns: repeat(5, 1fr); }
     .dcx-muro > li:nth-child(2) { margin-top: 32px; }
     .dcx-muro > li:nth-child(3) { margin-top: 8px; }
     .dcx-muro > li:nth-child(4) { margin-top: 40px; }
+    .dcx-muro > li:nth-child(5) { margin-top: 20px; }
   }
   .dcx-fotos { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px,1.2vw,14px); }
   .dcx-fotos > div { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 12px; background: #E3ECF5; animation: dcReveal 0.8s cubic-bezier(0.2,0.7,0.2,1) both; }
@@ -2399,7 +2403,8 @@ const PIZARRAS = [
   { src: 'assets/pizarra-niveles.jpg', mini: 'assets/pizarra-niveles-640.jpg', pie: 'Los siete niveles, con su cupo y su recargo', alt: 'Pizarra con los siete niveles, su cupo de compras y su recargo, de Hierro 18 % a Diamante 12 %' },
   { src: 'assets/pizarra-analisis.jpg', mini: 'assets/pizarra-analisis-640.jpg', pie: 'Cuánto cuesta el análisis de ingreso', alt: 'Pizarra con el precio del análisis de ingreso por nivel, de 50.000 a 200.000 guaraníes' },
   { src: 'assets/pizarra-pagador-rapido.jpg', mini: 'assets/pizarra-pagador-rapido-640.jpg', pie: 'Pagador Rápido: un punto menos de recargo', alt: 'Pizarra con el recargo estándar y el recargo con descuento de Pagador Rápido para cada nivel' },
-  { src: 'assets/pizarra-socio-confianza.jpg', mini: 'assets/pizarra-socio-confianza-640.jpg', pie: 'La insignia de Socio de Confianza', alt: 'Doña Compra con la insignia de Socio de Confianza junto a la tabla de recargos con descuento' }
+  { src: 'assets/pizarra-socio-confianza.jpg', mini: 'assets/pizarra-socio-confianza-640.jpg', pie: 'La insignia de Socio de Confianza', alt: 'Doña Compra con la insignia de Socio de Confianza junto a la tabla de recargos con descuento' },
+  { src: 'assets/pizarra-descuento.jpg', mini: 'assets/pizarra-descuento-640.jpg', pie: 'Menos de 25 días para pagar', alt: 'Pizarra de Pagador Rápido en un local, con el recargo estándar y el recargo con descuento de cada nivel' }
 ];
 
 class Component extends DCLogic {
