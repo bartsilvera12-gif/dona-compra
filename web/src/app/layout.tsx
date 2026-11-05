@@ -4,6 +4,7 @@ import "./globals.css";
 import { site } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BurbujaWhatsApp from "@/components/BurbujaWhatsApp";
 import CookieBanner from "@/components/CookieBanner";
 
 const montserrat = Montserrat({
@@ -96,6 +97,7 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <BurbujaWhatsApp />
         <CookieBanner />
       </body>
     </html>
