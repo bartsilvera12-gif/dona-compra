@@ -57,8 +57,9 @@ export default async function AnunciosPage({ searchParams }: Props) {
         titulo="Lo que pasa en la comunidad."
         bajada={
           <p>
-            Novedades, ofertas de mayoristas socios y publicaciones de
-            comerciantes de la red, en fotos y videos cortos.
+            Novedades de la red, ofertas de los Proveedores Amigos y
+            publicaciones de los comerciantes del Club, en fotos y videos
+            cortos.
           </p>
         }
         fotos={PORTADA}

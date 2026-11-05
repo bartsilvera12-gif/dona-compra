@@ -292,7 +292,10 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(VIDEO_JSONLD) }}
       />
 
-      <section className="bg-card">
+      {/* Salvia: la carta la reserva para las "secciones humanas". Va en
+          un tinte y no a plena saturación porque el verde oscuro sobre
+          salvia pura da 4.3 y WCAG AA pide 4.5. */}
+      <section className="bg-salvia/25">
         <Wrap>
           <Revelar>
             <Rotulo>Cómo funciona</Rotulo>
