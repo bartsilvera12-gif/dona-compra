@@ -61,12 +61,16 @@ gtag('config','${site.gaId}',{anonymize_ip:true});`}
           <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-[clamp(14px,2.5vw,32px)]">
             <div className="min-w-[260px] flex-1">
               <h2 className="mb-1.5 font-heading text-[17px] font-semibold text-card">
-                Tu privacidad
+                Privacidad
               </h2>
+              {/* Registro neutro, ni vos ni usted: este aviso aparece en todas
+                  las páginas, incluida Mayoristas, que va de usted. La hoja
+                  pide redacción neutra y formal para las menciones jurídicas. */}
               <p className="m-0 max-w-[70ch] text-sm text-card/75">
-                Usamos cookies necesarias para que el sitio funcione. Con tu
-                permiso, agregamos cookies de medición para saber qué páginas
-                se visitan más. Podés cambiar tu decisión cuando quieras.
+                Este sitio usa cookies necesarias para funcionar. Las cookies de
+                medición, que sirven para saber qué páginas se visitan más, se
+                agregan solo con autorización previa. La decisión puede
+                cambiarse en cualquier momento.
               </p>
 
               {detalle && (

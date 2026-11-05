@@ -69,7 +69,7 @@ export default function Footer() {
 
         <div>
           <div className="text-[10.5px] uppercase tracking-[0.2em] text-terracotta-soft">
-            Escribinos
+            Contacto directo
           </div>
           <div className="mt-3.5 flex flex-col items-start gap-2.5 text-sm">
             <a

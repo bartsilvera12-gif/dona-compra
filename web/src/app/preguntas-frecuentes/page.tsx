@@ -54,6 +54,7 @@ const GRUPOS: ReadonlyArray<{ id: string; titulo: string; preguntas: ReadonlyArr
     id: "entrada",
     titulo: "Cómo se entra",
     preguntas: [
+      ["Mandar la solicitud ya es entrar?", "No. la admisión la decide la dirección después del Análisis de ingreso: enviar la Solicitud de Entrada abre el trámite, no equivale a ser aceptado."],
       ["Cómo empieza el trámite?", "Con la Solicitud de Entrada, que es gratuita y se hace por WhatsApp. Podés pedir Hierro, Cobre, Bronce, Plata u Oro. A Rubis y Diamante no se entra directo: se llega por ascenso."],
       ["Qué son las tres situaciones de WhatsApp?", "Situaciones comerciales de todos los días, elegidas al azar y enviadas de a una antes de cualquier pago. Respondés con tus palabras, por escrito o con un audio, en español, en guaraní o mezclando. No hay respuesta correcta que adivinar, y tus respuestas por sí solas nunca alcanzan para rechazar una candidatura."],
       ["Cuánto cuesta el Análisis?", "Depende del nivel: Gs. 50.000 en Hierro, 100.000 en Cobre, 150.000 en Bronce y en Plata, y 200.000 en Oro. Para entrar directo a un nivel intermedio se pagan también los de los anteriores, así que entrar directo a Oro suma Gs. 650.000. El total se te informa antes de que te comprometas."],

@@ -14,27 +14,27 @@ import { site, waLink } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Mayoristas",
   description:
-    "Vendé más sin asumir riesgo de cobro: Doña Compra te paga al contado la mercadería de tus clientes comerciantes.",
+    "Venda más sin asumir riesgo de cobro: Doña Compra le paga al contado la mercadería de sus clientes comerciantes.",
 };
 
 const VENTAJAS = [
-  ["Cobrás al contado", "Nosotros pagamos en el momento de la compra. Para vos es una venta de contado, sin cuenta corriente."],
-  ["Sin riesgo de incobrables", "La evaluación del comerciante y el riesgo del pago a 30 días quedan de nuestro lado, no del tuyo."],
+  ["Cobra al contado", "Nosotros pagamos en el momento de la compra. Para usted es una venta de contado, sin cuenta corriente."],
+  ["Sin riesgo de incobrables", "La evaluación del comerciante y el riesgo del pago a 30 días quedan de nuestro lado, no del suyo."],
   ["Tickets más grandes", "El comerciante que no tiene que pagar al contado compra más cantidad y surtido en el mismo pedido."],
-  ["Clientes que vuelven", "El comerciante sigue comprando en tu depósito: nosotros no vendemos mercadería ni competimos con vos."],
-  ["Sin cambiar tu operación", "Seguís facturando y despachando como siempre. No te pedimos sistema nuevo ni integración."],
-  ["Difusión en el Club", "Podés publicar ofertas y novedades para la comunidad de comerciantes que compra con nosotros."],
+  ["Clientes que vuelven", "El comerciante sigue comprando en su depósito: nosotros no vendemos mercadería ni competimos con usted."],
+  ["Sin cambiar su operación", "Sigue facturando y despachando como siempre. No le pedimos sistema nuevo ni integración."],
+  ["Difusión en el Club", "Puede publicar ofertas y novedades para la comunidad de comerciantes que compra con nosotros."],
 ] as const;
 
 const PASOS = [
   {
     titulo: "Nos presentamos",
-    texto: "Coordinamos una reunión, te explicamos el servicio y acordamos cómo operar con tus clientes.",
+    texto: "Coordinamos una reunión, le explicamos el servicio y acordamos cómo operar con sus clientes.",
     foto: { src: "/assets/paso-2.jpg", alt: "Reunión con el mayorista" },
   },
   {
     titulo: "El comerciante arma el pedido",
-    texto: "Tu cliente elige el pedido con vos, como siempre, y nos lo pasa para la compra.",
+    texto: "Su cliente arma el pedido con usted, como siempre, y nos lo pasa para la compra.",
     foto: { src: "/assets/paso-1.jpg", alt: "Armado del pedido" },
   },
   {
@@ -44,13 +44,21 @@ const PASOS = [
   },
 ] as const;
 
+/**
+ * Única página del sitio que trata de usted.
+ *
+ * No es una inconsistencia: la hoja de dirección de comunicación (sección 6)
+ * pide «página dedicada a los mayoristas, de trato formal (usted)». Al
+ * comerciante se le habla de vos; al mayorista, de usted. Lo que la hoja sí
+ * prohíbe es mezclar los dos registros dentro de una misma pieza.
+ */
 export default function MayoristasPage() {
   return (
     <main>
       <PortadaFoto
         rotulo="Para mayoristas"
-        titulo="Vendé más, cobrá al contado, sin riesgo de cobranza."
-        bajada="Si sos mayorista o distribuidor, Doña Compra te paga en el momento la mercadería que tus clientes comerciantes necesitan. El riesgo del pago diferido lo asumimos nosotros."
+        titulo="Venda más, cobre al contado, sin riesgo de cobranza."
+        bajada="Si es mayorista o distribuidor, Doña Compra le paga en el momento la mercadería que sus clientes comerciantes necesitan. El riesgo del pago diferido lo asumimos nosotros."
         foto={{
           src: "/assets/30-dias-pago-1400.jpg",
           alt: "Depósito mayorista preparando un pedido",
@@ -84,7 +92,7 @@ export default function MayoristasPage() {
             />
             <Cifra
               valor="0"
-              texto="Riesgo de incobrables de tu lado. La cobranza es asunto nuestro."
+              texto="Riesgo de incobrables de su lado. La cobranza es asunto nuestro."
               retardo={1}
             />
             <Cifra
@@ -100,9 +108,9 @@ export default function MayoristasPage() {
       <section className="bg-card">
         <Wrap>
           <Revelar>
-            <Rotulo>Por qué te conviene</Rotulo>
+            <Rotulo>Por qué le conviene</Rotulo>
             <h2 className="mt-4 max-w-[22ch]">
-              Tu cliente compra más y vos cobrás igual de rápido.
+              Su cliente compra más y usted cobra igual de rápido.
             </h2>
           </Revelar>
 
@@ -123,7 +131,7 @@ export default function MayoristasPage() {
         <Wrap>
           <Revelar>
             <Rotulo>Cómo trabajamos</Rotulo>
-            <h2 className="mt-4 max-w-[20ch]">Tres pasos y seguís igual.</h2>
+            <h2 className="mt-4 max-w-[20ch]">Tres pasos y sigue operando igual.</h2>
           </Revelar>
 
           <div className="mt-9 grid gap-4 sm:grid-cols-3">
@@ -144,7 +152,7 @@ export default function MayoristasPage() {
       <section className="bg-card">
         <Wrap>
           <FilaAlterna
-            rotulo="No competimos con vos"
+            rotulo="No competimos con usted"
             titulo="Doña Compra no vende mercadería."
             invertida
             foto={{
@@ -154,11 +162,11 @@ export default function MayoristasPage() {
             enlace={{ href: "/el-concepto", texto: "Ver el concepto completo" }}
           >
             <p>
-              No tenemos depósito propio ni catálogo. Compramos en el tuyo lo
-              que tu cliente elige, y se lo revendemos con pago diferido.
+              No tenemos depósito propio ni catálogo. Compramos en el suyo lo
+              que su cliente elige, y se lo revendemos con pago diferido.
             </p>
             <p className="mt-3">
-              Por eso el comerciante sigue siendo tu cliente: la relación
+              Por eso el comerciante sigue siendo su cliente: la relación
               comercial no se muda a ningún lado.
             </p>
           </FilaAlterna>
@@ -172,8 +180,8 @@ export default function MayoristasPage() {
       </section>
 
       <CTA
-        titulo="Sumamos a tu depósito?"
-        texto="Escribinos y coordinamos una reunión para ver cómo encaja con tu forma de vender."
+        titulo="Sumamos su depósito?"
+        texto="Escríbanos y coordinamos una reunión para ver cómo encaja con su forma de vender."
       />
     </main>
   );
