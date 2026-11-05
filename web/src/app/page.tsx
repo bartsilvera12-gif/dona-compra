@@ -92,15 +92,25 @@ const PIZARRAS = [
   },
 ];
 
+/**
+ * Los doce rubros del material comercial, los mismos que lista el sitio
+ * estático. Estaban recortados a ocho y afuera quedaban justo Comedores y
+ * Restaurantes, que son dos de los que el cliente fotografió: la foto del
+ * comedor no llegaba al inicio.
+ */
 const RUBROS = [
   { slug: "ropa", nombre: "Ropa" },
   { slug: "calzado", nombre: "Calzado" },
   { slug: "cosmeticos", nombre: "Cosméticos" },
   { slug: "perfumes", nombre: "Perfumes" },
   { slug: "despensas", nombre: "Despensas" },
+  { slug: "comedores", nombre: "Comedores" },
   { slug: "libreria", nombre: "Librería" },
   { slug: "bijouterie", nombre: "Bijouterie" },
   { slug: "peluquerias", nombre: "Peluquerías" },
+  { slug: "regaleria", nombre: "Regalería" },
+  { slug: "revendedoras", nombre: "Revendedoras" },
+  { slug: "restaurantes", nombre: "Restaurantes" },
 ] as const;
 
 export default function Home() {
