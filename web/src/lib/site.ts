@@ -16,7 +16,7 @@ export const site = {
   url: env("NEXT_PUBLIC_SITE_URL", "https://dona-compra.vercel.app"),
 
   phone: env("NEXT_PUBLIC_PHONE", "0994 876 333"),
-  email: env("NEXT_PUBLIC_EMAIL", "donacompra@gmail.com"),
+  email: env("NEXT_PUBLIC_EMAIL", "donacompra.py@gmail.com"),
   horario:
     "Lunes a viernes de 08:00 a 18:00 · Sábados de 08:00 a 12:00",
   plazo: "Respondemos dentro de las 24 horas hábiles.",
