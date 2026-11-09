@@ -444,8 +444,21 @@ export default function Home() {
 
       {/* Las pizarras del cliente. Van después de los cuatro pasos porque
           responden la pregunta que queda: «bueno, y cuánto me cuesta?». */}
-      <section className="bg-card">
-        <Wrap>
+      <section className="relative overflow-hidden bg-card">
+        {/* El mismo resplandor ocre de la banda del video. Acá abajo del
+            muro de pizarras calienta el marfil, que si no queda plano en una
+            seccion larga. Va difuminado y lejos del texto a proposito: es
+            fondo, no decoracion encima de lo que hay que leer. */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-40 -right-32 h-[460px] w-[460px] rounded-full bg-terracotta/25 blur-[130px]"
+        />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-48 -left-40 h-[420px] w-[420px] rounded-full bg-terracotta/20 blur-[140px]"
+        />
+
+        <Wrap className="relative">
           <Revelar>
             {/* El título y la bajada van en una fila, no en una columna al
                 costado de las fotos: con la galería al lado quedaba media

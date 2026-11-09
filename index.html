@@ -627,8 +627,12 @@
          Condiciones Generales, verificadas una por una contra LEVELS. -->
     <!-- Bandas alternadas con los cuatro colores del logo, como alterna
          la referencia que paso el cliente. -->
-    <section style="background:#F7F5EE">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+    <section style="background:#F7F5EE;position:relative;overflow:hidden">
+      <!-- El mismo resplandor ocre de la banda del video: calienta el marfil,
+           que en una seccion larga queda plano. Lejos del texto a proposito. -->
+      <div aria-hidden="true" style="position:absolute;top:-160px;right:-128px;width:460px;height:460px;border-radius:50%;background:rgba(224,169,56,0.25);filter:blur(130px);pointer-events:none"></div>
+      <div aria-hidden="true" style="position:absolute;bottom:-190px;left:-160px;width:420px;height:420px;border-radius:50%;background:rgba(224,169,56,0.20);filter:blur(140px);pointer-events:none"></div>
+      <div style="position:relative;max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
         <!-- El titulo y la bajada van en una fila, no en una columna al
              costado de las fotos: con la galeria al lado quedaba media pagina
              vacia entre el texto y las imagenes. -->
