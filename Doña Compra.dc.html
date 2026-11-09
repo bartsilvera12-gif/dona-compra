@@ -115,6 +115,16 @@
   .dcx-entra-2 { animation: dcReveal 0.75s cubic-bezier(0.2,0.7,0.2,1) 0.18s both; }
   .dcx-rotulo { display: flex; align-items: center; gap: 12px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #4F5C54; }
   .dcx-rotulo::before { content: ""; width: 32px; height: 1px; background: #E0A938; }
+  /* Portada de tres pantallas. Las tres quedan en el documento y se funden
+     con opacidad: montarlas y desmontarlas dejaria a un lector de pantalla
+     leyendo texto que aparece y desaparece solo. */
+  .dcx-port { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.7s; }
+  .dcx-port.es-visible { position: relative; opacity: 1; pointer-events: auto; }
+  .dcx-port-puntos { position: absolute; left: 0; right: 0; bottom: 20px; z-index: 30; display: flex; justify-content: center; gap: 10px; }
+  .dcx-port-punto { height: 10px; width: 10px; padding: 0; border: 0; border-radius: 999px; background: rgba(247,245,238,0.45); cursor: pointer; transition: width 0.3s, background 0.3s; }
+  .dcx-port-punto.es-actual { width: 32px; background: #E0A938; }
+  @media (min-width: 1024px) { .dcx-port-puntos { bottom: 32px; left: clamp(18px,5vw,72px); right: auto; justify-content: flex-start; } }
+  @media (prefers-reduced-motion: reduce) { .dcx-port { transition: none; } .dcx-port-punto { transition: none; } }
   /* Portada a dos mitades. En telefono la foto va arriba: la cara funciona
      mejor antes que el texto. */
   .dcx-portada2 { position: relative; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr; }
@@ -378,27 +388,56 @@
   <sc-if value="{{ atHome }}" hint-placeholder-val="{{ true }}">
   <div>
 
-    <!-- Portada a dos mitades, como la referencia. La anterior era un
-         collage con el titulo debajo: en una ventana de 500 px no entraba
-         nada mas que las fotos y el mensaje quedaba fuera de la primera
-         pantalla. El mensaje maestro es textual de la hoja (seccion 4). -->
-    <section style="position:relative;overflow:hidden;background:#1B3B2B;color:#F7F5EE">
-      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;opacity:0.06;background-image:radial-gradient(circle,#F7F5EE 1px,transparent 1.2px);background-size:26px 26px"></div>
-      <div class="dcx-portada2">
-        <div class="dcx-portada2-panel">
-          <span style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E0A938"><span aria-hidden="true" style="display:block;height:1px;width:32px;background:#E0A938"></span>Gran Asunci&oacute;n, Paraguay</span>
-          <h1 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(36px,5.6vw,72px);line-height:1.02;letter-spacing:-0.01em;color:#F7F5EE;margin:20px 0 0;max-width:14ch;text-wrap:pretty">Eleg&iacute; tu mercader&iacute;a. <span style="color:#E0A938">Pag&aacute; despu&eacute;s!</span></h1>
-          <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:rgba(247,245,238,0.75);margin:24px 0 0;max-width:48ch">Do&ntilde;a Compra compra mercader&iacute;as y las revende a comercios, con condiciones de pago previamente acordadas. Sujeto a evaluaci&oacute;n y a las condiciones comerciales vigentes.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:36px">
-            <a href="#/el-concepto" data-cta="true" style="display:inline-block;background:#E0A938;color:#1B3B2B">Conoc&eacute; c&oacute;mo funciona</a>
-            <a href="#/contacto" data-cta="true" style="display:inline-block;border:1px solid rgba(247,245,238,0.45);color:#F7F5EE">Pedir una visita</a>
+    <!-- Portada de tres pantallas que rotan, como la referencia: el
+         recorrido contado de a un paso por pantalla. Las tres quedan en el
+         documento y se funden con opacidad; las que no se ven llevan
+         aria-hidden. El giro se detiene al pasar el mouse y no arranca si
+         hay prefers-reduced-motion. -->
+    <section aria-roledescription="carrusel" aria-label="C&oacute;mo funciona Do&ntilde;a Compra" onMouseEnter="{{ portQuieto }}" onMouseLeave="{{ portSigue }}" style="position:relative;overflow:hidden;background:#1B3B2B;color:#F7F5EE">
+      <div aria-hidden="true" style="position:absolute;inset:0;z-index:20;pointer-events:none;opacity:0.06;background-image:radial-gradient(circle,#F7F5EE 1px,transparent 1.2px);background-size:26px 26px"></div>
+        <div class="dcx-port {{ portCls0 }}" aria-hidden="{{ portOculto0 }}">
+          <div class="dcx-portada2">
+            <div class="dcx-portada2-panel">
+              <span style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E0A938"><span aria-hidden="true" style="display:block;height:1px;width:32px;background:#E0A938"></span>Gran Asunci&oacute;n, Paraguay</span>
+              <h1 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(36px,5.6vw,72px);line-height:1.03;letter-spacing:-0.01em;color:#F7F5EE;margin:20px 0 0;max-width:14ch;text-wrap:pretty">Eleg&iacute; tu mercader&iacute;a. <span style="color:#E0A938">Pag&aacute; despu&eacute;s!</span></h1>
+              <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:rgba(247,245,238,0.75);margin:24px 0 0;max-width:48ch">Do&ntilde;a Compra compra mercader&iacute;as y las revende a comercios, con condiciones de pago previamente acordadas. Sujeto a evaluaci&oacute;n y a las condiciones comerciales vigentes.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:36px"><a href="#/el-concepto" data-cta="true" style="display:inline-block;background:#E0A938;color:#1B3B2B">Conoc&eacute; c&oacute;mo funciona</a><a href="#/contacto" data-cta="true" style="display:inline-block;border:1px solid rgba(247,245,238,0.45);color:#F7F5EE">Pedir una visita</a></div>
+            </div>
+            <div class="dcx-portada2-foto">
+              <img src="assets/portada-insignia-640.jpg" alt="Do&ntilde;a Compra sosteniendo la insignia de Socio de Confianza" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block" />
+              <span aria-hidden="true" class="dcx-portada2-velo"></span>
+            </div>
           </div>
         </div>
-        <div class="dcx-portada2-foto">
-          <img src="assets/portada-insignia-640.jpg" alt="Do&ntilde;a Compra sosteniendo la insignia de Socio de Confianza" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block" />
-          <span aria-hidden="true" class="dcx-portada2-velo"></span>
+        <div class="dcx-port {{ portCls1 }}" aria-hidden="{{ portOculto1 }}">
+          <div class="dcx-portada2">
+            <div class="dcx-portada2-panel">
+              <span style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E0A938"><span aria-hidden="true" style="display:block;height:1px;width:32px;background:#E0A938"></span>Gran Asunci&oacute;n, Paraguay</span>
+              <p style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(32px,4.8vw,60px);line-height:1.03;letter-spacing:-0.01em;color:#F7F5EE;margin:20px 0 0;max-width:14ch;text-wrap:pretty">Eleg&iacute;s vos, <span style="color:#E0A938">pagamos nosotros.</span></p>
+              <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:rgba(247,245,238,0.75);margin:24px 0 0;max-width:48ch">El producto y el proveedor los eleg&iacute;s vos, con el mayorista que ya conoc&eacute;s. Do&ntilde;a Compra le paga al contado, como cualquier venta de contado.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:36px"><a href="#/el-concepto" data-cta="true" style="display:inline-block;background:#E0A938;color:#1B3B2B">Conoc&eacute; c&oacute;mo funciona</a><a href="#/contacto" data-cta="true" style="display:inline-block;border:1px solid rgba(247,245,238,0.45);color:#F7F5EE">Pedir una visita</a></div>
+            </div>
+            <div class="dcx-portada2-foto">
+              <img src="assets/portada-ropa-640.jpg" alt="Do&ntilde;a Compra atendiendo a una clienta en una tienda de ropa y artesan&iacute;a" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block" />
+              <span aria-hidden="true" class="dcx-portada2-velo"></span>
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="dcx-port {{ portCls2 }}" aria-hidden="{{ portOculto2 }}">
+          <div class="dcx-portada2">
+            <div class="dcx-portada2-panel">
+              <span style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E0A938"><span aria-hidden="true" style="display:block;height:1px;width:32px;background:#E0A938"></span>Gran Asunci&oacute;n, Paraguay</span>
+              <p style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(32px,4.8vw,60px);line-height:1.03;letter-spacing:-0.01em;color:#F7F5EE;margin:20px 0 0;max-width:14ch;text-wrap:pretty">Retir&aacute;s con tu c&oacute;digo, <span style="color:#E0A938">pag&aacute;s despu&eacute;s.</span></p>
+              <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:rgba(247,245,238,0.75);margin:24px 0 0;max-width:48ch">Un c&oacute;digo &uacute;nico de retiro, de un solo uso. Y hasta 30 d&iacute;as para pagar, contados desde el retiro efectivo en el mayorista.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:36px"><a href="#/el-concepto" data-cta="true" style="display:inline-block;background:#E0A938;color:#1B3B2B">Conoc&eacute; c&oacute;mo funciona</a><a href="#/contacto" data-cta="true" style="display:inline-block;border:1px solid rgba(247,245,238,0.45);color:#F7F5EE">Pedir una visita</a></div>
+            </div>
+            <div class="dcx-portada2-foto">
+              <img src="assets/portada-comedor-640.jpg" alt="Do&ntilde;a Compra en un comedor lleno al mediod&iacute;a" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block" />
+              <span aria-hidden="true" class="dcx-portada2-velo"></span>
+            </div>
+          </div>
+        </div>
+        <div class="dcx-port-puntos"><button type="button" onClick="{{ goPort0 }}" aria-label="Pantalla 1 de 3" class="dcx-port-punto {{ portPunto0 }}"></button><button type="button" onClick="{{ goPort1 }}" aria-label="Pantalla 2 de 3" class="dcx-port-punto {{ portPunto1 }}"></button><button type="button" onClick="{{ goPort2 }}" aria-label="Pantalla 3 de 3" class="dcx-port-punto {{ portPunto2 }}"></button></div>
     </section>
 
     <!-- Banda oscura para el video. Toda la pagina corre sobre el degradado
@@ -2570,6 +2609,7 @@ class Component extends DCLogic {
     cookies: null, cookiesOpen: false, cookiesPrefs: false,
     aCat: 'Todas', aCiudad: 'Todas', aPrecio: 0, aOrden: 'M\u00e1s recientes', aTipo: 'Todos',
     likes: {}, lb: -1,
+    port: 0,
     legal: 'aviso',
     news: '', newsOk: false,
     /* Video de portada: si esta andando y si esta en silencio. */
@@ -2664,6 +2704,14 @@ class Component extends DCLogic {
       }, { threshold: 0.35 });
       io.observe(v);
     };
+    /* Giro de la portada. La pausa no usa estado: si lo usara, cada
+     * entrada y salida del mouse volveria a pintar la pagina entera. */
+    this._portQuieto = false;
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this._portTimer = setInterval(() => {
+        if (!this._portQuieto) this.setState((s) => ({ port: (s.port + 1) % 3 }));
+      }, 7000);
+    }
     this.vObs = new MutationObserver(() => this.wireVideo(document.querySelector('[data-dc-historia]')));
     this.vObs.observe(document.body, { childList: true, subtree: true });
     this.wireVideo(document.querySelector('[data-dc-historia]'));
@@ -3103,6 +3151,20 @@ class Component extends DCLogic {
       pzNext: () => this.movePz(1),
       pzPrev: () => this.movePz(-1),
 
+      portCls0: this.state.port === 0 ? 'es-visible' : '',
+      portCls1: this.state.port === 1 ? 'es-visible' : '',
+      portCls2: this.state.port === 2 ? 'es-visible' : '',
+      portOculto0: this.state.port === 0 ? 'false' : 'true',
+      portOculto1: this.state.port === 1 ? 'false' : 'true',
+      portOculto2: this.state.port === 2 ? 'false' : 'true',
+      portPunto0: this.state.port === 0 ? 'es-actual' : '',
+      portPunto1: this.state.port === 1 ? 'es-actual' : '',
+      portPunto2: this.state.port === 2 ? 'es-actual' : '',
+      goPort0: () => this.setState({ port: 0 }),
+      goPort1: () => this.setState({ port: 1 }),
+      goPort2: () => this.setState({ port: 2 }),
+      portQuieto: () => { this._portQuieto = true; },
+      portSigue: () => { this._portQuieto = false; },
       pickElegis: () => this.setState({ step: 'elegis' }),
       pickCompra: () => this.setState({ step: 'compra' }),
       pickRetiras: () => this.setState({ step: 'retiras' }),

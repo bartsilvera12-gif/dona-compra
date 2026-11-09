@@ -10,13 +10,13 @@ import {
 } from "@/lib/niveles";
 import ContactoForm from "@/components/ContactoForm";
 import Galeria from "@/components/Galeria";
+import PortadaCarrusel from "@/components/PortadaCarrusel";
 import Revelar from "@/components/Revelar";
 import VideoVertical from "@/components/VideoVertical";
 import {
   Curva,
   MosaicoRubros,
   PasoFoto,
-  PortadaPanel,
   Rotulo,
 } from "@/components/bloques";
 import { btnSecundario, Wrap } from "@/components/ui";
@@ -184,25 +184,59 @@ const RUBROS = [
 export default function Home() {
   return (
     <main>
-      {/* Portada a dos mitades, como la referencia. La anterior era un
-          collage con el titulo debajo: en una ventana de 500 px no entraba
-          nada mas que las fotos, y el mensaje quedaba fuera de la primera
-          pantalla. */}
-      <PortadaPanel
+      {/* Portada de tres pantallas que rotan, como la referencia: el
+          recorrido contado de a un paso por pantalla. La primera lleva el
+          mensaje maestro de la hoja y es la unica con <h1>; las otras dos
+          son el mismo titular en otra etiqueta, para no tener tres h1. */}
+      <PortadaCarrusel
         rotulo="Gran Asunción, Paraguay"
-        // El mensaje maestro, tal cual lo fija la hoja de dirección de
-        // comunicación (sección 4). No es una frase a reescribir.
-        titulo={
-          <>
-            Elegí tu mercadería.{" "}
-            <span className="text-terracotta-soft">Pagá después!</span>
-          </>
-        }
-        bajada="Doña Compra compra mercaderías y las revende a comercios, con condiciones de pago previamente acordadas. Sujeto a evaluación y a las condiciones comerciales vigentes."
-        foto={{
-          src: "/assets/portada-insignia-640.jpg",
-          alt: "Doña Compra sosteniendo la insignia de Socio de Confianza",
-        }}
+        pantallas={[
+          {
+            titulo: (
+              <>
+                Elegí tu mercadería.{" "}
+                <span className="text-terracotta-soft">Pagá después!</span>
+              </>
+            ),
+            tituloPlano: "Elegí tu mercadería. Pagá después!",
+            bajada:
+              "Doña Compra compra mercaderías y las revende a comercios, con condiciones de pago previamente acordadas. Sujeto a evaluación y a las condiciones comerciales vigentes.",
+            foto: {
+              src: "/assets/portada-insignia-640.jpg",
+              alt: "Doña Compra sosteniendo la insignia de Socio de Confianza",
+            },
+          },
+          {
+            titulo: (
+              <>
+                Elegís vos,{" "}
+                <span className="text-terracotta-soft">pagamos nosotros.</span>
+              </>
+            ),
+            tituloPlano: "Elegís vos, pagamos nosotros",
+            bajada:
+              "El producto y el proveedor los elegís vos, con el mayorista que ya conocés. Doña Compra le paga al contado, como cualquier venta de contado.",
+            foto: {
+              src: "/assets/portada-ropa-640.jpg",
+              alt: "Doña Compra atendiendo a una clienta en una tienda de ropa y artesanía",
+            },
+          },
+          {
+            titulo: (
+              <>
+                Retirás con tu código,{" "}
+                <span className="text-terracotta-soft">pagás después.</span>
+              </>
+            ),
+            tituloPlano: "Retirás con tu código, pagás después",
+            bajada:
+              "Un código único de retiro, de un solo uso. Y hasta 30 días para pagar, contados desde el retiro efectivo en el mayorista.",
+            foto: {
+              src: "/assets/portada-comedor-640.jpg",
+              alt: "Doña Compra en un comedor lleno al mediodía",
+            },
+          },
+        ]}
         // La llamada principal es «Conocé cómo funciona», no la conversión:
         // la hoja pide que el sitio informe primero y convierta después.
         acciones={
