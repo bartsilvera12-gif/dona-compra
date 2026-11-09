@@ -97,11 +97,17 @@ export function Paso({
   );
 }
 
+/* Botones tipo píldora, grandes. Es el formato de la referencia que pasó el
+   cliente: un botón sólido, redondo y ancho, repetido en toda la página. El
+   radio de 8 px de la carta gráfica queda para tarjetas y campos; acá manda
+   lo que el cliente pidió ver. */
 export const btnPrimario =
-  "inline-block rounded-[var(--radius-button)] bg-navy px-7 py-3.5 text-sm font-medium tracking-[0.04em] text-card hover:bg-navy-deep hover:text-card";
+  "inline-block rounded-full bg-navy px-8 py-4 text-[15px] font-semibold tracking-[0.02em] text-card shadow-[0_10px_24px_-12px_rgba(20,44,32,0.9)] transition-transform hover:bg-navy-deep hover:text-card hover:-translate-y-0.5 motion-reduce:hover:translate-y-0";
 
+/* El secundario en ocre sólido, con texto verde oscuro: el ocre sobre marfil
+   no sirve para letra, pero como fondo de botón con texto oscuro da 5.9. */
 export const btnSecundario =
-  "inline-block rounded-[var(--radius-button)] border border-navy px-7 py-3.5 text-sm font-medium tracking-[0.04em] text-navy";
+  "inline-block rounded-full bg-ocre px-8 py-4 text-[15px] font-semibold tracking-[0.02em] text-navy shadow-[0_10px_24px_-12px_rgba(20,44,32,0.7)] transition-transform hover:bg-ocre-oscuro hover:text-navy hover:-translate-y-0.5 motion-reduce:hover:translate-y-0";
 
 /** Bloque de cierre con las dos llamadas a la acción de siempre. */
 export function CTA({ titulo, texto }: { titulo: string; texto: string }) {

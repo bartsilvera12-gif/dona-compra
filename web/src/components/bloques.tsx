@@ -259,24 +259,37 @@ export function Cifra({
   unidad,
   texto,
   retardo = 0,
+  sobreOcre = false,
 }: {
   valor: string;
   unidad?: string;
   texto: string;
   retardo?: 0 | 1 | 2 | 3 | 4;
+  /**
+   * Sobre una banda ocre el acento ocre desaparece: el filete se funde con el
+   * fondo y la unidad baja a 3.0 de contraste. En ese caso todo pasa a verde
+   * oscuro, que sobre ocre da 5.9.
+   */
+  sobreOcre?: boolean;
 }) {
   return (
     <Revelar retardo={retardo}>
-      <div className="border-l-2 border-terracotta pl-5">
-        <span className="block font-heading text-[clamp(34px,5vw,56px)] font-bold leading-none text-navy">
+      <div
+        className={`border-l-2 pl-5 ${sobreOcre ? "border-navy" : "border-terracotta"}`}
+      >
+        <span className="block font-heading text-[clamp(44px,7vw,80px)] font-bold leading-[0.95] text-navy">
           {valor}
           {unidad && (
-            <span className="ml-1 text-[0.45em] font-semibold text-terracotta-ink">
+            <span
+              className={`ml-1 text-[0.4em] font-semibold ${sobreOcre ? "text-navy" : "text-terracotta-ink"}`}
+            >
               {unidad}
             </span>
           )}
         </span>
-        <span className="mt-3 block max-w-[28ch] text-[14.5px] leading-relaxed text-ink">
+        <span
+          className={`mt-3 block max-w-[28ch] text-[15px] leading-relaxed ${sobreOcre ? "text-navy" : "text-ink"}`}
+        >
           {texto}
         </span>
       </div>

@@ -220,24 +220,30 @@ export default function Home() {
       />
 
       {/* Las cifras del servicio, antes de explicar cómo funciona. */}
-      <section>
+      {/* Las bandas del inicio alternan los cuatro colores del logo, como
+          alterna la referencia. Sobre ocre el texto va en verde oscuro:
+          el marfil sobre ocre da 1.9 y no llega al minimo. */}
+      <section className="bg-ocre text-navy">
         <Wrap>
           <div className="grid gap-[clamp(24px,3vw,40px)] sm:grid-cols-3">
             <Cifra
               valor="30"
               unidad="días"
               texto="Para pagar, desde el retiro efectivo de la mercadería en el mayorista."
+              sobreOcre
             />
             <Cifra
               valor="12–18"
               unidad="%"
               texto="Recargo comercial sobre el costo mayorista. Baja a medida que subís de nivel."
+              sobreOcre
               retardo={1}
             />
             <Cifra
               valor="24"
               unidad="h"
               texto="Es el plazo de visita que indica nuestro material comercial, sujeto a coordinación."
+              sobreOcre
               retardo={2}
             />
           </div>
@@ -377,7 +383,7 @@ export default function Home() {
 
       {/* Las pizarras del cliente. Van después de los cuatro pasos porque
           responden la pregunta que queda: «bueno, y cuánto me cuesta?». */}
-      <section>
+      <section className="bg-card">
         <Wrap>
           <Revelar>
             {/* El título y la bajada van en una fila, no en una columna al
@@ -409,14 +415,17 @@ export default function Home() {
         </Wrap>
       </section>
 
-      <section>
+      <section className="bg-navy text-card">
         <Wrap>
           <Revelar>
-            <Rotulo>Rubros</Rotulo>
-            <h2 className="mt-4 max-w-[22ch]">
+            <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-terracotta-soft">
+              <span aria-hidden="true" className="h-px w-8 bg-terracotta-soft" />
+              Rubros
+            </span>
+            <h2 className="mt-4 max-w-[22ch] text-card">
               Negocios que ya compran con Doña Compra.
             </h2>
-            <p className="mt-4 max-w-[56ch] text-ink">
+            <p className="mt-4 max-w-[56ch] text-card/75">
               Si vendés al público y reponés con un mayorista, probablemente
               encaje con tu negocio.
             </p>
@@ -428,7 +437,10 @@ export default function Home() {
 
           <Revelar>
             <p className="mt-8">
-              <Link href="/comerciante" className="font-medium text-terracotta-ink">
+              <Link
+                href="/comerciante"
+                className="font-medium text-terracotta-soft underline underline-offset-2 hover:text-card"
+              >
                 Ver qué necesitás para empezar →
               </Link>
             </p>
@@ -440,7 +452,7 @@ export default function Home() {
           Estructura tomada de la referencia que pasó el cliente, que pone sus
           servicios en el inicio con una tarjeta cada uno; acá son cinco y no
           tres, y el precio es el del contrato, no una promesa. */}
-      <section className="bg-card">
+      <section className="bg-grad-start">
         <Wrap>
           <Revelar>
             <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
@@ -507,7 +519,7 @@ export default function Home() {
       {/* Cómo se entra: tres pasos, el formato de la referencia. Va justo
           antes del formulario porque es el último que queda por responder
           antes de escribir. */}
-      <section>
+      <section className="bg-salvia/25">
         <Wrap>
           <Revelar>
             <Rotulo>Cómo se entra</Rotulo>

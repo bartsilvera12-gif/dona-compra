@@ -119,6 +119,11 @@
      altura. Una fila perfectamente alineada y recta se lee como un banco de
      imagenes; con un grado de giro parecen fotos pegadas en la pared del
      local, que es de donde salen. Al pasar por encima se enderezan. */
+  /* Botones tipo pildora, grandes: el formato de la referencia. El radio
+     de 8 px de la carta queda para tarjetas y campos. */
+  a[data-cta="true"], .dcx-pildora-cta { border-radius: 999px !important; padding: 16px 32px !important; font-size: 15px !important; font-weight: 600 !important; box-shadow: 0 10px 24px -12px rgba(20,44,32,0.8); transition: transform 0.2s; }
+  a[data-cta="true"]:hover { transform: translateY(-2px); }
+  @media (prefers-reduced-motion: reduce) { a[data-cta="true"] { transition: none; } a[data-cta="true"]:hover { transform: none; } }
   /* Burbuja de WhatsApp, fija abajo a la derecha. */
   .dcx-burbuja { position: fixed; right: clamp(16px,3vw,28px); bottom: clamp(16px,3vw,28px); z-index: 100; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; border: 1px solid rgba(224,169,56,0.7); background: #1B3B2B; color: #F7F5EE; box-shadow: 0 12px 30px -10px rgba(20,44,32,0.7); transition: transform 0.2s, background 0.2s; }
   .dcx-burbuja:hover { transform: scale(1.05); background: #24513A; color: #F7F5EE; }
@@ -135,7 +140,7 @@
   .dcx-muro-img { position: relative; display: block; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 9px; background: #E4EBE4; }
   .dcx-muro-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
   .dcx-muro > li > button:hover .dcx-muro-img img { transform: scale(1.05); }
-  .dcx-muro-num { position: absolute; top: 8px; left: 8px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #E0A938; color: #F7F5EE; font-size: 11px; font-weight: 600; box-shadow: 0 4px 10px -4px rgba(0,0,0,0.6); }
+  .dcx-muro-num { position: absolute; top: 8px; left: 8px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #E0A938; color: #1B3B2B; font-size: 11px; font-weight: 600; box-shadow: 0 4px 10px -4px rgba(0,0,0,0.6); }
   .dcx-muro-lupa { position: absolute; right: 8px; bottom: 8px; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(247,245,238,0.95); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
   .dcx-muro > li > button:hover .dcx-muro-lupa { opacity: 1; }
   .dcx-muro-pie { display: block; padding: 10px 4px 4px; font-size: 13px; line-height: 1.35; color: #2F4237; }
@@ -486,7 +491,9 @@
     <!-- Las pizarras del cliente: el mismo material con el que un asesor
          explica las condiciones en la visita. Las cifras coinciden con las
          Condiciones Generales, verificadas una por una contra LEVELS. -->
-    <section style="background:transparent">
+    <!-- Bandas alternadas con los cuatro colores del logo, como alterna
+         la referencia que paso el cliente. -->
+    <section style="background:#F7F5EE">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
         <!-- El titulo y la bajada van en una fila, no en una columna al
              costado de las fotos: con la galeria al lado quedaba media pagina
@@ -635,10 +642,10 @@
             <div style="position:absolute;inset:0;opacity:0.7;background-image:repeating-linear-gradient(0deg,rgba(27,59,43,0.06) 0 1px,transparent 1px 4px)"></div>
             <span style="position:absolute;left:-2%;bottom:-18%;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(280px,46vw,640px);line-height:0.7;color:rgba(27,59,43,0.06);letter-spacing:-0.04em">0</span>
             <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(22px,4vw,60px);padding-bottom:clamp(26px,3.4vw,48px)" data-compare-text="true">
-              <span style="align-self:flex-start;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#24513A;background:transparent;padding:5px 9px">Fecha de factura · día 0</span>
-              <span style="display:block;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(48px,8.6vw,118px);line-height:0.8;letter-spacing:-0.03em;color:#24513A;margin-top:12px;text-shadow:1px 1px 0 #E0A938,2px 2px 0 #C08C22,3px 3px 0 #BE8820,4px 4px 0 #9E7119,5px 5px 0 #7C5A16,6px 6px 0 #5A3F10,7px 8px 2px rgba(27,59,43,0.4),0 16px 44px rgba(247,245,238,0.9)">HOY</span>
+              <span style="align-self:flex-start;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#E0A938;background:transparent;padding:5px 9px">Fecha de factura · día 0</span>
+              <span style="display:block;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(48px,8.6vw,118px);line-height:0.8;letter-spacing:-0.03em;color:#F7F5EE;margin-top:12px;text-shadow:1px 1px 0 #E0A938,2px 2px 0 #C08C22,3px 3px 0 #BE8820,4px 4px 0 #9E7119,5px 5px 0 #7C5A16,6px 6px 0 #5A3F10,7px 8px 2px rgba(27,59,43,0.4),0 16px 44px rgba(247,245,238,0.9)">HOY</span>
               <span style="display:block;width:64px;height:1px;background:#E0A938;margin:18px 0"></span>
-              <span style="display:block;font-family:Montserrat,sans-serif;font-style:italic;font-weight:300;font-size:clamp(20px,2.7vw,34px);line-height:1.15;color:#24513A;max-width:17ch;text-shadow:0 4px 22px rgba(247,245,238,0.95)">Doña Compra paga hoy al proveedor.</span>
+              <span style="display:block;font-family:Montserrat,sans-serif;font-style:italic;font-weight:300;font-size:clamp(20px,2.7vw,34px);line-height:1.15;color:#F7F5EE;max-width:17ch;text-shadow:0 4px 22px rgba(20,44,32,0.95)">Doña Compra paga hoy al proveedor.</span>
             </div>
           </div>
           <div data-slider-edge="true" style="position:absolute;inset:0;pointer-events:none;background:#E0A938;clip-path:polygon(61% 0%,61.35% 0%,49.35% 100%,49% 100%)"></div>
@@ -733,16 +740,16 @@
       </div>
     </section>
 
-    <section style="background:transparent;border-top:1px solid rgba(27,59,43,0.12)">
+    <section style="background:#E0A938;color:#1B3B2B">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,110px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:clamp(26px,5vw,64px);align-items:center">
         <div>
           <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
             <span style="display:block;width:132px;height:132px;border-radius:50%;overflow:hidden;border:2px solid #E0A938;background:#1B3B2B;flex:none"><img src="assets/dona-compra-logo-400.jpg" alt="Emblema de Doña Compra" style="width:100%;height:100%;object-fit:cover;object-position:50% 42%;transform:scale(1.28)" /></span>
             <span style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:112px;height:112px;border:1.5px solid rgba(224,169,56,0.85);border-radius:50%;transform:rotate(6deg);text-align:center;padding:10px;flex:none">
-              <span style="display:block;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:#4F5C54">Visita</span>
+              <span style="display:block;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:#1B3B2B">Visita</span>
               <span style="display:block;font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;line-height:1.05;color:#1B3B2B;margin:5px 0">En tu negocio</span>
               <span style="display:block;width:24px;height:1px;background:rgba(224,169,56,0.9);margin:0 auto 5px"></span>
-              <span style="display:block;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:#4F5C54">24 horas</span>
+              <span style="display:block;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:#1B3B2B">24 horas</span>
             </span>
           </div>
           <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,4.6vw,58px);line-height:1.05;color:#1B3B2B;margin:26px 0 0;max-width:16ch;text-wrap:balance">Tenés un negocio? Tenemos que conversar.</h2>
@@ -781,7 +788,7 @@
          referencia promete afiliacion "rapidito" y efectivo "al instante";
          aca no se promete ninguna de las dos, porque el analisis se paga y
          la admision la decide la direccion. -->
-    <section style="background:transparent;border-top:1px solid rgba(27,59,43,0.12)">
+    <section style="background:rgba(120,158,130,0.25);border-top:1px solid rgba(27,59,43,0.12)">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
         <span class="dcx-rotulo">C&oacute;mo se entra</span>
         <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,4.4vw,52px);line-height:1.08;color:#1B3B2B;margin:14px 0 0;max-width:18ch;text-wrap:pretty">Tres pasos, sin papeleo largo.</h2>
@@ -870,7 +877,7 @@
   
               <label style="display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:#2F4237;cursor:pointer">
                 <input type="checkbox" required="true" checked="{{ fConsent }}" onChange="{{ setConsent }}" style="margin-top:3px;width:18px;height:18px;accent-color:#E0A938;flex:none" />
-                <span>Acepto que {{ razonSocial }} trate mis datos para responder esta consulta, según la <a href="#/juridica" style="color:#E0A938">política de privacidad</a>. *</span>
+                <span>Acepto que {{ razonSocial }} trate mis datos para responder esta consulta, según la <a href="#/juridica" style="color:#7A5A12">política de privacidad</a>. *</span>
               </label>
   
               <sc-if value="{{ hasErrors }}">
@@ -1560,7 +1567,7 @@
 
             <label style="display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:#2F4237;cursor:pointer">
               <input type="checkbox" required="true" checked="{{ fConsent }}" onChange="{{ setConsent }}" style="margin-top:3px;width:18px;height:18px;accent-color:#E0A938;flex:none" />
-              <span>Acepto que {{ razonSocial }} trate mis datos para responder esta consulta, según la <a href="#/juridica" style="color:#E0A938">política de privacidad</a>. *</span>
+              <span>Acepto que {{ razonSocial }} trate mis datos para responder esta consulta, según la <a href="#/juridica" style="color:#7A5A12">política de privacidad</a>. *</span>
             </label>
 
             <sc-if value="{{ hasErrors }}">
