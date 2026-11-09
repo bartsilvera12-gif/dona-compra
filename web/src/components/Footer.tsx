@@ -33,7 +33,10 @@ const columnas = [
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-dark">
+    // El pie va un tono mas claro que la banda del formulario y con una
+    // linea ocre encima. Antes los dos eran navy-dark: el mismo verde exacto,
+    // sin borde, y el pie parecia la continuacion de la seccion.
+    <footer className="border-t border-ocre/45 bg-navy">
       <div className="mx-auto grid max-w-[1280px] grid-cols-[repeat(auto-fit,minmax(min(200px,100%),1fr))] gap-[clamp(24px,4vw,44px)] px-[clamp(18px,4vw,40px)] pb-6 pt-[clamp(36px,5vw,64px)]">
         <div>
           <span className="font-heading text-[19px] font-bold tracking-[0.02em] text-card">
@@ -86,8 +89,8 @@ export default function Footer() {
             >
               {site.email}
             </a>
-            <span className="text-card/55">{site.zona}</span>
-            <span className="text-card/55">{site.horario}</span>
+            <span className="text-card/65">{site.zona}</span>
+            <span className="text-card/65">{site.horario}</span>
             {site.facebook && (
               <a
                 href={site.facebook}

@@ -784,7 +784,7 @@
          runtime pinta una u otra pagina, nunca las dos a la vez. -->
     <section id="hablemos" style="background:#142C20;color:#F7F5EE">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(28px,4vw,64px)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(28px,4vw,64px);align-items:center">
           <div>
             <span style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E0A938"><span aria-hidden="true" style="display:block;height:1px;width:32px;background:#E0A938"></span>Hablemos</span>
             <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,4.4vw,52px);line-height:1.08;color:#F7F5EE;margin:16px 0 0;max-width:16ch;text-wrap:pretty">Empez&aacute; con una visita.</h2>
@@ -2356,7 +2356,9 @@
 
   </main>
 
-  <footer style="background:#142C20">
+  <!-- Un tono mas claro que la banda del formulario y una linea ocre encima:
+       antes los dos eran el mismo verde exacto y no se veia el borde. -->
+  <footer style="background:#1B3B2B;border-top:1px solid rgba(224,169,56,0.45)">
     <div style="max-width:1280px;margin:0 auto;padding:clamp(36px,5vw,64px) clamp(18px,4vw,40px) 26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:clamp(24px,4vw,44px)">
       <div>
         <div style="display:flex;align-items:center;gap:11px">
@@ -2397,15 +2399,15 @@
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin-top:14px">
           <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="color:rgba(247,245,238,0.78);font-size:14px">WhatsApp {{ phone }}</a>
           <a href="{{ mailto }}" style="color:rgba(247,245,238,0.78);font-size:14px">{{ email }}</a>
-          <span style="color:rgba(247,245,238,0.55);font-size:14px">{{ domicilio }}</span>
-          <span style="color:rgba(247,245,238,0.55);font-size:14px">{{ horario }}</span>
+          <span style="color:rgba(247,245,238,0.65);font-size:14px">{{ domicilio }}</span>
+          <span style="color:rgba(247,245,238,0.65);font-size:14px">{{ horario }}</span>
           <sc-if value="{{ hasFb }}"><a href="{{ fbUrl }}" target="_blank" rel="noopener noreferrer" style="color:rgba(247,245,238,0.78);font-size:14px">Facebook</a></sc-if>
           <sc-if value="{{ hasIg }}"><a href="{{ igUrl }}" target="_blank" rel="noopener noreferrer" style="color:rgba(247,245,238,0.78);font-size:14px">Instagram</a></sc-if>
         </div>
       </div>
     </div>
     <div style="max-width:1280px;margin:0 auto;padding:18px clamp(18px,4vw,40px) 30px;border-top:1px solid rgba(247,245,238,0.1);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center">
-      <span style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;color:rgba(247,245,238,0.45);font-size:12.5px"><span>© 2026 Doña Compra</span><span>Desarrollado por <a href="https://neura.com.py" target="_blank" rel="noopener noreferrer" style="color:rgba(247,245,238,0.8);text-decoration:underline;text-decoration-color:rgba(224,169,56,0.6);text-underline-offset:2px" style-hover="color:#E0A938">Neura</a></span></span>
+      <span style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;color:rgba(247,245,238,0.65);font-size:12.5px"><span>© 2026 Doña Compra</span><span>Desarrollado por <a href="https://neura.com.py" target="_blank" rel="noopener noreferrer" style="color:rgba(247,245,238,0.8);text-decoration:underline;text-decoration-color:rgba(224,169,56,0.6);text-underline-offset:2px" style-hover="color:#E0A938">Neura</a></span></span>
       <span style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
         <a href="#/juridica" style="color:rgba(247,245,238,0.6);font-size:12.5px">Aviso legal y privacidad</a>
         <button type="button" onClick="{{ reopenCookies }}" style="background:none;border:0;color:rgba(247,245,238,0.6);font-size:12.5px;cursor:pointer;padding:0;text-decoration:underline">Preferencias de cookies</button>

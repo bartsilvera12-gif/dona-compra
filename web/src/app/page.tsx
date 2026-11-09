@@ -558,7 +558,7 @@ export default function Home() {
           misma página ahorra un clic y una página de por medio. */}
       <section id="hablemos" className="scroll-mt-24 bg-navy-dark text-card">
         <Wrap>
-          <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[minmax(0,34ch)_1fr]">
+          <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[minmax(0,34ch)_1fr] lg:items-center">
             <Revelar>
               <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-terracotta-soft">
                 <span aria-hidden="true" className="h-px w-8 bg-terracotta-soft" />
