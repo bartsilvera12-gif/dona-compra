@@ -332,7 +332,7 @@ export default function Home() {
                   href="/el-concepto"
                   className="inline-block rounded-[var(--radius-button)] bg-terracotta px-7 py-3.5 text-sm font-medium tracking-[0.04em] text-navy hover:bg-ocre-oscuro hover:text-navy"
                 >
-                  Ver cómo funciona
+                  Conocé cómo funciona
                 </Link>
                 <Link
                   href="/contacto"
@@ -376,11 +376,14 @@ export default function Home() {
           </div>
 
           <Revelar>
-            <p className="mt-8">
+            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link href="#hablemos" className={btnSecundario}>
+                Pedir una visita
+              </Link>
               <Link href="/el-concepto" className="font-medium text-terracotta-ink">
                 Conocer el concepto completo →
               </Link>
-            </p>
+            </div>
           </Revelar>
         </Wrap>
       </section>
@@ -416,6 +419,14 @@ export default function Home() {
               <Galeria fotos={PIZARRAS} variante="muro" />
             </div>
           </Revelar>
+
+          <Revelar>
+            <p className="mt-9">
+              <Link href="#hablemos" className={btnSecundario}>
+                Pedir una visita
+              </Link>
+            </p>
+          </Revelar>
         </Wrap>
       </section>
 
@@ -440,14 +451,14 @@ export default function Home() {
           </div>
 
           <Revelar>
-            <p className="mt-8">
-              <Link
-                href="/comerciante"
-                className="font-medium text-terracotta-soft underline underline-offset-2 hover:text-card"
-              >
+            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link href="#hablemos" className={btnSecundario}>
+                Pedir una visita
+              </Link>
+              <Link href="/comerciante" className="font-medium text-terracotta-soft underline underline-offset-2 hover:text-card">
                 Ver qué necesitás para empezar →
               </Link>
-            </p>
+            </div>
           </Revelar>
         </Wrap>
       </section>
@@ -559,14 +570,17 @@ export default function Home() {
           </div>
 
           <Revelar>
-            <p className="mt-9 text-center">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+              <Link href="#hablemos" className={btnSecundario}>
+                Pedir una visita
+              </Link>
               <Link
                 href="/comerciante"
                 className="font-medium text-terracotta-ink"
               >
                 Ver qué necesitás para empezar →
               </Link>
-            </p>
+            </div>
           </Revelar>
         </Wrap>
       </section>
