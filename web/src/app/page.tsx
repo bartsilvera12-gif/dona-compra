@@ -13,7 +13,6 @@ import Galeria from "@/components/Galeria";
 import Revelar from "@/components/Revelar";
 import VideoVertical from "@/components/VideoVertical";
 import {
-  Cifra,
   Curva,
   MosaicoRubros,
   PasoFoto,
@@ -222,38 +221,6 @@ export default function Home() {
       />
 
       {/* Las cifras del servicio, antes de explicar cómo funciona. */}
-      {/* Las bandas del inicio alternan los cuatro colores del logo, como
-          alterna la referencia. Sobre ocre el texto va en verde oscuro:
-          el marfil sobre ocre da 1.9 y no llega al minimo. */}
-      <section className="bg-ocre text-navy">
-        <Wrap>
-          <div className="grid gap-[clamp(24px,3vw,40px)] sm:grid-cols-3">
-            <Cifra
-              valor="30"
-              unidad="días"
-              texto="Para pagar, desde el retiro efectivo de la mercadería en el mayorista."
-              sobreOcre
-            />
-            <Cifra
-              valor="12–18"
-              unidad="%"
-              texto="Recargo comercial sobre el costo mayorista. Baja a medida que subís de nivel."
-              sobreOcre
-              retardo={1}
-            />
-            <Cifra
-              valor="24"
-              unidad="h"
-              texto="Es el plazo de visita que indica nuestro material comercial, sujeto a coordinación."
-              sobreOcre
-              retardo={2}
-            />
-          </div>
-        </Wrap>
-      </section>
-
-      <Curva de="bg-ocre" a="text-navy-dark" />
-
       {/* El video va acá, entre las cifras y la explicación: después de los
           números y antes del procedimiento, que es donde una cara hace más
           falta.
