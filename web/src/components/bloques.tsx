@@ -253,6 +253,34 @@ export function PasoFoto({
   );
 }
 
+/**
+ * Corte ondulado entre dos bandas.
+ *
+ * Es el recurso de la referencia que pasó el cliente: donde cambia el color
+ * de fondo, el corte no es recto. `de` es la clase de fondo de la banda de
+ * arriba y `a` la clase de TEXTO del color de abajo, porque el trazo se pinta
+ * con `fill-current`.
+ *
+ * aria-hidden y sin texto: es decoración, no aporta nada a quien escucha la
+ * página.
+ */
+export function Curva({ de, a }: { de: string; a: string }) {
+  return (
+    <div aria-hidden="true" className={`${de} leading-[0]`}>
+      <svg
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        className={`block h-[clamp(32px,4.5vw,64px)] w-full ${a}`}
+      >
+        <path
+          d="M0,34 C220,78 420,2 700,26 C960,48 1180,86 1440,42 L1440,80 L0,80 Z"
+          className="fill-current"
+        />
+      </svg>
+    </div>
+  );
+}
+
 /** Cifra grande con su explicación. Para los datos que conviene destacar. */
 export function Cifra({
   valor,

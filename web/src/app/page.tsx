@@ -14,6 +14,7 @@ import Revelar from "@/components/Revelar";
 import VideoVertical from "@/components/VideoVertical";
 import {
   Cifra,
+  Curva,
   MosaicoRubros,
   PasoFoto,
   PortadaCollage,
@@ -88,16 +89,28 @@ const ENTRADA = [
     titulo: "Pedís la Solicitud de Entrada",
     texto:
       "Es gratuita y se hace por WhatsApp. Elegís con qué nivel querés entrar, de Hierro a Oro.",
+    foto: {
+      src: "/assets/portada-ropa-640.jpg",
+      alt: "Doña Compra conversando con una comerciante en su local",
+    },
   },
   {
     titulo: "Hacemos el Análisis de ingreso",
     texto:
       "Un diagnóstico de tu negocio con su informe. Cuesta según el nivel que pidas y no se devuelve si la respuesta es negativa.",
+    foto: {
+      src: "/assets/pizarra-analisis-640.jpg",
+      alt: "Doña Compra junto a la pizarra con el precio del análisis de ingreso",
+    },
   },
   {
     titulo: "La dirección decide",
     texto:
       "Si entrás, ya podés armar tu primer pedido con el mayorista que ya conocés. Mandar la solicitud no equivale a ser aceptado.",
+    foto: {
+      src: "/assets/portada-insignia-640.jpg",
+      alt: "Doña Compra con la insignia de Socio de Confianza",
+    },
   },
 ] as const;
 const ANALISIS_MIN = `Gs. ${gs(Math.min(...NIVELES_DE_ENTRADA.map((n) => n.analisis as number)))}`;
@@ -249,6 +262,8 @@ export default function Home() {
           </div>
         </Wrap>
       </section>
+
+      <Curva de="bg-ocre" a="text-navy-dark" />
 
       {/* El video va acá, entre las cifras y la explicación: después de los
           números y antes del procedimiento, que es donde una cara hace más
@@ -448,6 +463,8 @@ export default function Home() {
         </Wrap>
       </section>
 
+      <Curva de="bg-navy" a="text-grad-start" />
+
       {/* Los cinco servicios, con tarjeta propia y precio a la vista.
           Estructura tomada de la referencia que pasó el cliente, que pone sus
           servicios en el inicio con una tarjeta cada uno; acá son cinco y no
@@ -521,39 +538,39 @@ export default function Home() {
           antes de escribir. */}
       <section className="bg-salvia/25">
         <Wrap>
+          {/* Centrado, como la referencia centra sus bloques de tarjetas. */}
           <Revelar>
-            <Rotulo>Cómo se entra</Rotulo>
-            <h2 className="mt-4 max-w-[18ch]">Tres pasos, sin papeleo largo.</h2>
-            <p className="mt-4 max-w-[54ch] text-ink">
-              El trámite se hace por WhatsApp. El Análisis de ingreso va de{" "}
-              {ANALISIS_MIN} a {ANALISIS_MAX} según el nivel que pidas.
-            </p>
+            <div className="mx-auto max-w-[56ch] text-center">
+              <span className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted">
+                <span aria-hidden="true" className="h-px w-8 bg-terracotta" />
+                Cómo se entra
+                <span aria-hidden="true" className="h-px w-8 bg-terracotta" />
+              </span>
+              <h2 className="mx-auto mt-4 max-w-[18ch]">
+                Tres pasos, sin papeleo largo.
+              </h2>
+              <p className="mt-4 text-ink">
+                El trámite se hace por WhatsApp. El Análisis de ingreso va de{" "}
+                {ANALISIS_MIN} a {ANALISIS_MAX} según el nivel que pidas.
+              </p>
+            </div>
           </Revelar>
 
-          <Revelar retardo={1}>
-            <ol className="mt-9 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-3">
-              {ENTRADA.map((p, i) => (
-                <li
-                  key={p.titulo}
-                  className="rounded-[var(--radius-card)] border border-navy/12 bg-card p-[clamp(18px,2.4vw,28px)]"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="grid h-11 w-11 place-items-center rounded-full bg-navy font-heading text-[18px] font-semibold text-card"
-                  >
-                    {i + 1}
-                  </span>
-                  <h3 className="mt-4 mb-2 text-[clamp(18px,2vw,22px)]">
-                    {p.titulo}
-                  </h3>
-                  <p className="text-ink">{p.texto}</p>
-                </li>
-              ))}
-            </ol>
-          </Revelar>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {ENTRADA.map((p, i) => (
+              <PasoFoto
+                key={p.titulo}
+                n={i + 1}
+                titulo={p.titulo}
+                texto={p.texto}
+                foto={p.foto}
+                retardo={(i + 1) as 1 | 2 | 3}
+              />
+            ))}
+          </div>
 
           <Revelar>
-            <p className="mt-7">
+            <p className="mt-9 text-center">
               <Link
                 href="/comerciante"
                 className="font-medium text-terracotta-ink"
