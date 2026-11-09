@@ -3,6 +3,7 @@ import { site, waLink } from "@/lib/site";
 import {
   DESCRIPCION_SERVICIO,
   NIVELES,
+  NIVELES_DE_ENTRADA,
   NOMBRE_SERVICIO,
   totalServicios,
   type Servicios,
@@ -76,6 +77,31 @@ const PRECIO_SERVICIO = (k: keyof Servicios) => {
 };
 const TOTAL_MIN = `Gs. ${gs(totalServicios(NIVELES[0].servicios))}`;
 const TOTAL_MAX = `Gs. ${gs(totalServicios(NIVELES[NIVELES.length - 1].servicios))}`;
+
+/* Los tres pasos de la entrada, como los describen las FAQ y el artículo 3 de
+   las Condiciones Generales. La referencia que pasó el cliente promete
+   afiliación «rapidito» y efectivo «al instante»; acá no se promete ninguna
+   de las dos cosas, porque el análisis se paga y la admisión la decide la
+   dirección. Decirlo acá evita la decepción de descubrirlo en el paso dos. */
+const ENTRADA = [
+  {
+    titulo: "Pedís la Solicitud de Entrada",
+    texto:
+      "Es gratuita y se hace por WhatsApp. Elegís con qué nivel querés entrar, de Hierro a Oro.",
+  },
+  {
+    titulo: "Hacemos el Análisis de ingreso",
+    texto:
+      "Un diagnóstico de tu negocio con su informe. Cuesta según el nivel que pidas y no se devuelve si la respuesta es negativa.",
+  },
+  {
+    titulo: "La dirección decide",
+    texto:
+      "Si entrás, ya podés armar tu primer pedido con el mayorista que ya conocés. Mandar la solicitud no equivale a ser aceptado.",
+  },
+] as const;
+const ANALISIS_MIN = `Gs. ${gs(Math.min(...NIVELES_DE_ENTRADA.map((n) => n.analisis as number)))}`;
+const ANALISIS_MAX = `Gs. ${gs(Math.max(...NIVELES_DE_ENTRADA.map((n) => n.analisis as number)))}`;
 
 /** Los papelitos que acompañan al video. */
 const LO_QUE_CUENTA = [
@@ -474,6 +500,55 @@ export default function Home() {
                 </p>
               </li>
             </ul>
+          </Revelar>
+        </Wrap>
+      </section>
+
+      {/* Cómo se entra: tres pasos, el formato de la referencia. Va justo
+          antes del formulario porque es el último que queda por responder
+          antes de escribir. */}
+      <section>
+        <Wrap>
+          <Revelar>
+            <Rotulo>Cómo se entra</Rotulo>
+            <h2 className="mt-4 max-w-[18ch]">Tres pasos, sin papeleo largo.</h2>
+            <p className="mt-4 max-w-[54ch] text-ink">
+              El trámite se hace por WhatsApp. El Análisis de ingreso va de{" "}
+              {ANALISIS_MIN} a {ANALISIS_MAX} según el nivel que pidas.
+            </p>
+          </Revelar>
+
+          <Revelar retardo={1}>
+            <ol className="mt-9 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-3">
+              {ENTRADA.map((p, i) => (
+                <li
+                  key={p.titulo}
+                  className="rounded-[var(--radius-card)] border border-navy/12 bg-card p-[clamp(18px,2.4vw,28px)]"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="grid h-11 w-11 place-items-center rounded-full bg-navy font-heading text-[18px] font-semibold text-card"
+                  >
+                    {i + 1}
+                  </span>
+                  <h3 className="mt-4 mb-2 text-[clamp(18px,2vw,22px)]">
+                    {p.titulo}
+                  </h3>
+                  <p className="text-ink">{p.texto}</p>
+                </li>
+              ))}
+            </ol>
+          </Revelar>
+
+          <Revelar>
+            <p className="mt-7">
+              <Link
+                href="/comerciante"
+                className="font-medium text-terracotta-ink"
+              >
+                Ver qué necesitás para empezar →
+              </Link>
+            </p>
           </Revelar>
         </Wrap>
       </section>
