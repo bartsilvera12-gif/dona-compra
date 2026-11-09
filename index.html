@@ -115,6 +115,18 @@
   .dcx-entra-2 { animation: dcReveal 0.75s cubic-bezier(0.2,0.7,0.2,1) 0.18s both; }
   .dcx-rotulo { display: flex; align-items: center; gap: 12px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #4F5C54; }
   .dcx-rotulo::before { content: ""; width: 32px; height: 1px; background: #E0A938; }
+  /* Portada a dos mitades. En telefono la foto va arriba: la cara funciona
+     mejor antes que el texto. */
+  .dcx-portada2 { position: relative; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr; }
+  .dcx-portada2-panel { order: 2; display: flex; flex-direction: column; justify-content: center; padding: clamp(36px,6vw,88px) clamp(18px,5vw,72px); }
+  .dcx-portada2-foto { order: 1; position: relative; min-height: clamp(260px,52vw,420px); overflow: hidden; }
+  .dcx-portada2-velo { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(27,59,43,0.7), transparent 55%); }
+  @media (min-width: 1024px) {
+    .dcx-portada2 { grid-template-columns: 1.05fr 1fr; }
+    .dcx-portada2-panel { order: 1; }
+    .dcx-portada2-foto { order: 2; min-height: 560px; }
+    .dcx-portada2-velo { background: linear-gradient(to right, #1B3B2B, rgba(27,59,43,0.2) 45%, transparent 70%); }
+  }
   /* Muro de pizarras: tarjetas con marco, numeradas, giradas y a distinta
      altura. Una fila perfectamente alineada y recta se lee como un banco de
      imagenes; con un grado de giro parecen fotos pegadas en la pared del
@@ -366,88 +378,25 @@
   <sc-if value="{{ atHome }}" hint-placeholder-val="{{ true }}">
   <div>
 
-    <section style="position:relative;background:transparent;overflow:hidden;padding:clamp(14px,2vw,24px) 0 clamp(60px,9vw,120px)">
-      <div style="position:absolute;inset:0;pointer-events:none;opacity:0.55;background-image:repeating-linear-gradient(0deg,rgba(27,59,43,0.05) 0 1px,transparent 1px 4px),radial-gradient(circle,rgba(224,169,56,0.18) 0.8px,transparent 0.9px);background-size:auto,22px 22px"></div>
-      <div data-desktop-only="true" style="position:absolute;top:0;bottom:0;left:clamp(18px,4vw,40px);width:1px;background:linear-gradient(180deg,transparent,rgba(224,169,56,0.5) 18%,rgba(224,169,56,0.5) 82%,transparent);pointer-events:none"></div>
-      <div style="position:relative;margin-top:0">
-        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,46%),1fr));gap:clamp(10px,1.6vw,20px);align-items:end">
-          <div style="overflow:hidden;border:1px solid rgba(224,169,56,0.55);animation:dcZoom 0.95s cubic-bezier(0.2,0.7,0.2,1) 0.3s both">
-            <div style="position:relative;overflow:hidden;height:clamp(170px,22vw,290px);transition:transform 0.55s cubic-bezier(0.2,0.7,0.2,1)" style-hover="transform:scale(1.06)"><img src="assets/portada-pizarra-640.jpg" alt="Doña Compra en una tienda de ropa, señalando la pizarra de niveles" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%" /></div>
-          </div>
-          <div style="overflow:hidden;border:1px solid rgba(224,169,56,0.55);animation:dcZoom 0.95s cubic-bezier(0.2,0.7,0.2,1) 0.42s both">
-            <div style="position:relative;overflow:hidden;height:clamp(230px,30vw,400px);transition:transform 0.55s cubic-bezier(0.2,0.7,0.2,1)" style-hover="transform:scale(1.06)"><img src="assets/portada-insignia-640.jpg" alt="Doña Compra sosteniendo la insignia de Socio de Confianza" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%" /></div>
-          </div>
-          <div style="overflow:hidden;border:1px solid rgba(224,169,56,0.55);animation:dcZoom 0.95s cubic-bezier(0.2,0.7,0.2,1) 0.54s both">
-            <div style="position:relative;overflow:hidden;height:clamp(150px,19vw,240px);transition:transform 0.55s cubic-bezier(0.2,0.7,0.2,1)" style-hover="transform:scale(1.06)"><img src="assets/portada-ropa-640.jpg" alt="Doña Compra atendiendo a una clienta en una tienda de ropa y artesanía" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 46%" /></div>
-          </div>
-          <div style="overflow:hidden;border:1px solid rgba(224,169,56,0.55);animation:dcZoom 0.95s cubic-bezier(0.2,0.7,0.2,1) 0.66s both">
-            <div style="position:relative;overflow:hidden;height:clamp(200px,26vw,330px);transition:transform 0.55s cubic-bezier(0.2,0.7,0.2,1)" style-hover="transform:scale(1.06)"><img src="assets/portada-comedor-640.jpg" alt="Doña Compra en un comedor lleno al mediodía" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 52%" /></div>
+    <!-- Portada a dos mitades, como la referencia. La anterior era un
+         collage con el titulo debajo: en una ventana de 500 px no entraba
+         nada mas que las fotos y el mensaje quedaba fuera de la primera
+         pantalla. El mensaje maestro es textual de la hoja (seccion 4). -->
+    <section style="position:relative;overflow:hidden;background:#1B3B2B;color:#F7F5EE">
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;opacity:0.06;background-image:radial-gradient(circle,#F7F5EE 1px,transparent 1.2px);background-size:26px 26px"></div>
+      <div class="dcx-portada2">
+        <div class="dcx-portada2-panel">
+          <span style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#E0A938"><span aria-hidden="true" style="display:block;height:1px;width:32px;background:#E0A938"></span>Gran Asunci&oacute;n, Paraguay</span>
+          <h1 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(36px,5.6vw,72px);line-height:1.02;letter-spacing:-0.01em;color:#F7F5EE;margin:20px 0 0;max-width:14ch;text-wrap:pretty">Eleg&iacute; tu mercader&iacute;a. <span style="color:#E0A938">Pag&aacute; despu&eacute;s!</span></h1>
+          <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:rgba(247,245,238,0.75);margin:24px 0 0;max-width:48ch">Do&ntilde;a Compra compra mercader&iacute;as y las revende a comercios, con condiciones de pago previamente acordadas. Sujeto a evaluaci&oacute;n y a las condiciones comerciales vigentes.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:36px">
+            <a href="#/el-concepto" data-cta="true" style="display:inline-block;background:#E0A938;color:#1B3B2B">Conoc&eacute; c&oacute;mo funciona</a>
+            <a href="#/contacto" data-cta="true" style="display:inline-block;border:1px solid rgba(247,245,238,0.45);color:#F7F5EE">Pedir una visita</a>
           </div>
         </div>
-
-        <h2 aria-label="Elegí tu mercadería. Pagá después!" style="position:relative;z-index:3;margin:clamp(-7px,-0.55vw,-1px) auto 0;padding:0 clamp(18px,4vw,40px);max-width:1280px">
-          <svg viewBox="0 0 1400 103" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style="display:block;width:100%;height:auto;overflow:visible">
-            <defs>
-              <clipPath id="dcWipe" clipPathUnits="userSpaceOnUse">
-                <rect x="-40" y="-40" width="1480" height="270" style="transform:scaleX(0);transform-origin:-40px 0;animation:dcWipeIn 0.65s cubic-bezier(0.65,0,0.35,1) 1.05s both"></rect>
-              </clipPath>
-            </defs>
-            <text x="4" y="77" fill="none" stroke="#E0A938" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" style="font-family:Montserrat,sans-serif;font-weight:800;font-size:72px;stroke-dasharray:30000;stroke-dashoffset:30000;animation:dcDraw 1.1s cubic-bezier(0.25,0.6,0.35,1) 0.15s forwards">Elegí tu mercadería. Pagá después!</text>
-            <g clip-path="url(#dcWipe)">
-              <text x="4" y="77" fill="#E0A938" transform="translate(5,6)" style="font-family:Montserrat,sans-serif;font-weight:800;font-size:72px">Elegí tu mercadería. Pagá después!</text>
-              <text x="4" y="77" fill="#1B3B2B" style="font-family:Montserrat,sans-serif;font-weight:800;font-size:72px">Elegí tu mercadería. Pagá después!</text>
-            </g>
-          </svg>
-        </h2>
-
-        <!-- Submensaje explicativo y mencion de prudencia, los dos textuales
-             de la hoja de direccion de comunicacion (seccion 4). La hoja pide
-             que la mencion "sujeto a evaluacion" este en el inicio, y que la
-             llamada principal sea "Conoce como funciona": informar primero,
-             convertir despues. -->
-        <div style="max-width:1280px;margin:clamp(18px,2.4vw,30px) auto 0;padding:0 clamp(18px,4vw,40px)">
-          <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:#2F4237;margin:0;max-width:56ch">Doña Compra compra mercaderías y las revende a comercios, con condiciones de pago previamente acordadas. Sujeto a evaluación y a las condiciones comerciales vigentes.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:22px">
-            <a href="#/el-concepto" style="display:inline-block;background:#1B3B2B;color:#F7F5EE;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Conocé cómo funciona</a>
-            <a href="#/contacto" style="display:inline-block;border:1px solid #1B3B2B;color:#1B3B2B;border-radius:8px;padding:14px 28px;font-size:14px;font-weight:500">Pedir una visita</a>
-          </div>
-        </div>
-      </div>
-
-      <div style="position:relative;margin-top:clamp(30px,4vw,54px);animation:dcBand 0.8s ease 0.95s both">
-        <div style="position:relative;overflow:hidden;background:#F7F5EE;border-top:1px dashed rgba(224,169,56,0.75);border-bottom:1px dashed rgba(224,169,56,0.75);box-shadow:0 14px 34px -26px rgba(47,66,55,0.6);border-radius:12px">
-          <div style="position:absolute;top:0;bottom:0;left:0;width:34%;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(224,169,56,0.18),transparent);animation:dcSweep 1.8s cubic-bezier(0.4,0,0.2,1) 1.5s both"></div>
-          <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,45%),1fr))">
-            <button onClick="{{ pickElegis }}" onMouseEnter="{{ pickElegis }}" style="position:relative;text-align:left;background:none;border:0;border-right:1px dashed rgba(224,169,56,0.5);padding:20px 16px 22px;cursor:pointer">
-              <span style="display:block;font-family:Montserrat,sans-serif;font-size:clamp(17px,2vw,24px);font-weight:600;letter-spacing:0.04em;color:#1B3B2B">ELEGÍS</span>
-              <sc-if value="{{ isElegis }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:16px;bottom:10px;width:26px;height:2px;background:#E0A938"></span></sc-if>
-            </button>
-            <button onClick="{{ pickCompra }}" onMouseEnter="{{ pickCompra }}" style="position:relative;text-align:left;background:none;border:0;border-right:1px dashed rgba(224,169,56,0.5);padding:20px 16px 22px;cursor:pointer">
-              <span style="display:block;font-family:Montserrat,sans-serif;font-size:clamp(17px,2vw,24px);font-weight:600;letter-spacing:0.04em;color:#1B3B2B">DOÑA COMPRA</span>
-              <sc-if value="{{ isCompra }}"><span style="position:absolute;left:16px;bottom:10px;width:26px;height:2px;background:#E0A938"></span></sc-if>
-            </button>
-            <button onClick="{{ pickRetiras }}" onMouseEnter="{{ pickRetiras }}" style="position:relative;text-align:left;background:none;border:0;border-right:1px dashed rgba(224,169,56,0.5);padding:20px 16px 22px;cursor:pointer">
-              <span style="display:block;font-family:Montserrat,sans-serif;font-size:clamp(17px,2vw,24px);font-weight:600;letter-spacing:0.04em;color:#1B3B2B">RETIRÁS</span>
-              <sc-if value="{{ isRetiras }}"><span style="position:absolute;left:16px;bottom:10px;width:26px;height:2px;background:#E0A938"></span></sc-if>
-            </button>
-            <button onClick="{{ pickPagas }}" onMouseEnter="{{ pickPagas }}" style="position:relative;text-align:left;background:none;border:0;padding:20px 16px 22px;cursor:pointer">
-              <span style="display:block;font-family:Montserrat,sans-serif;font-size:clamp(17px,2vw,24px);font-weight:600;letter-spacing:0.04em;color:#1B3B2B">PAGÁS DESPUÉS</span>
-              <sc-if value="{{ isPagas }}"><span style="position:absolute;left:16px;bottom:10px;width:26px;height:2px;background:#E0A938"></span></sc-if>
-            </button>
-          </div>
-        </div>
-        <div style="max-width:1280px;margin:0 auto;padding:18px clamp(18px,4vw,40px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:clamp(18px,3vw,44px);align-items:start">
-          <p style="font-size:clamp(15px,1.7vw,19px);line-height:1.55;color:#1B3B2B;margin:0;max-width:34ch;font-family:Montserrat,sans-serif;font-weight:600">{{ stepText }}</p>
-          <div style="background:#F7F5EE;border:1px solid rgba(27,59,43,0.16);padding:18px 18px 0;border-radius:12px">
-            <div style="display:flex;justify-content:space-between;gap:10px;font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:#4F5C54;padding-bottom:12px;border-bottom:1px dashed rgba(27,59,43,0.25)">
-              <span>Comprobante de ejemplo</span><span>Nivel Hierro</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;gap:10px;padding:11px 0;font-size:13.5px;color:#2F4237"><span>Mercadería elegida por vos</span><span style="font-family:Montserrat,sans-serif;font-size:16px;color:#2F4237">125.000</span></div>
-            <div style="display:flex;justify-content:space-between;gap:10px;padding:11px 0;font-size:13.5px;color:#2F4237;border-top:1px dotted rgba(27,59,43,0.22)"><span>Recargo comercial 18 % · Hierro</span><span style="font-family:Montserrat,sans-serif;font-size:16px;color:#2F4237">22.500</span></div>
-            <div style="display:flex;justify-content:space-between;gap:10px;padding:11px 0;font-size:13.5px;color:#2F4237;border-top:1px dotted rgba(27,59,43,0.22)"><span>Los cinco servicios · Hierro</span><span style="font-family:Montserrat,sans-serif;font-size:16px;color:#2F4237">7.000</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:13px 0;border-top:1px solid rgba(27,59,43,0.3)"><span style="font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:#1B3B2B">Total a pagar</span><span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:27px;color:#1B3B2B">Gs. 154.500</span></div>
-            <div style="height:10px;margin:0 -18px;background-image:radial-gradient(circle at 6px 10px,#F7F5EE 5px,transparent 5.5px);background-size:12px 10px;background-repeat:repeat-x"></div>
-          </div>
+        <div class="dcx-portada2-foto">
+          <img src="assets/portada-insignia-640.jpg" alt="Do&ntilde;a Compra sosteniendo la insignia de Socio de Confianza" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block" />
+          <span aria-hidden="true" class="dcx-portada2-velo"></span>
         </div>
       </div>
     </section>

@@ -23,6 +23,81 @@ export function Rotulo({ children }: { children: React.ReactNode }) {
 }
 
 /**
+ * Portada a dos mitades: panel de color con el mensaje, foto a sangre al lado.
+ *
+ * Es la forma de la referencia que pasó el cliente. La portada anterior era
+ * un collage de cuatro fotos con el título debajo: editorial, correcta, y en
+ * una ventana de 500 px no se veía otra cosa que el collage. Acá el mensaje,
+ * la explicación y el botón entran en la primera pantalla junto a la foto.
+ *
+ * La foto va en el segundo lugar del DOM pero primera en pantalla chica
+ * (`order`), porque en el teléfono la cara funciona mejor arriba.
+ */
+export function PortadaPanel({
+  rotulo,
+  titulo,
+  bajada,
+  acciones,
+  foto,
+}: {
+  rotulo: string;
+  titulo: React.ReactNode;
+  bajada: string;
+  acciones?: React.ReactNode;
+  foto: { src: string; alt: string };
+}) {
+  return (
+    <section className="relative overflow-hidden bg-navy text-card">
+      {/* Trama de puntos: textura sin pedir otra imagen al servidor. */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #f7f5ee 1px, transparent 1.2px)",
+          backgroundSize: "26px 26px",
+        }}
+      />
+      <div className="relative mx-auto grid max-w-[1400px] lg:grid-cols-[1.05fr_1fr]">
+        <div className="order-2 flex flex-col justify-center px-[clamp(18px,5vw,72px)] py-[clamp(36px,6vw,88px)] lg:order-1">
+          <Revelar>
+            <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-terracotta-soft">
+              <span aria-hidden="true" className="h-px w-8 bg-terracotta-soft" />
+              {rotulo}
+            </span>
+            <h1 className="mt-5 max-w-[14ch] text-[clamp(36px,5.6vw,72px)] leading-[1.02] text-card">
+              {titulo}
+            </h1>
+            <p className="mt-6 max-w-[48ch] text-[clamp(16px,1.8vw,19px)] text-card/75">
+              {bajada}
+            </p>
+            {acciones && (
+              <div className="mt-9 flex flex-wrap gap-3">{acciones}</div>
+            )}
+          </Revelar>
+        </div>
+
+        <div className="relative order-1 min-h-[clamp(260px,52vw,420px)] lg:order-2 lg:min-h-[560px]">
+          <Image
+            src={foto.src}
+            alt={foto.alt}
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover object-[50%_30%]"
+          />
+          {/* Degradado hacia el panel: evita el corte duro entre foto y color. */}
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent lg:bg-gradient-to-r lg:from-navy lg:via-navy/20 lg:to-transparent"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/**
  * Portada con collage de fotos.
  *
  * Las cuatro imágenes van a distinta altura, como en el sitio original: una

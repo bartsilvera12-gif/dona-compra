@@ -17,10 +17,10 @@ import {
   Curva,
   MosaicoRubros,
   PasoFoto,
-  PortadaCollage,
+  PortadaPanel,
   Rotulo,
 } from "@/components/bloques";
-import { btnPrimario, btnSecundario, Wrap } from "@/components/ui";
+import { btnSecundario, Wrap } from "@/components/ui";
 
 /**
  * Datos estructurados del video. Sin esto el buscador ve una etiqueta <video>
@@ -185,47 +185,36 @@ const RUBROS = [
 export default function Home() {
   return (
     <main>
-      <PortadaCollage
+      {/* Portada a dos mitades, como la referencia. La anterior era un
+          collage con el titulo debajo: en una ventana de 500 px no entraba
+          nada mas que las fotos, y el mensaje quedaba fuera de la primera
+          pantalla. */}
+      <PortadaPanel
         rotulo="Gran Asunción, Paraguay"
         // El mensaje maestro, tal cual lo fija la hoja de dirección de
         // comunicación (sección 4). No es una frase a reescribir.
         titulo={
           <>
             Elegí tu mercadería.{" "}
-            <span className="text-terracotta-ink">Pagá después!</span>
+            <span className="text-terracotta-soft">Pagá después!</span>
           </>
         }
         bajada="Doña Compra compra mercaderías y las revende a comercios, con condiciones de pago previamente acordadas. Sujeto a evaluación y a las condiciones comerciales vigentes."
-        // Las cuatro son del material del cliente y en las cuatro aparece
-        // Doña Compra. El retrato va segundo porque ese es el hueco más alto del
-        // collage: es la foto que sostiene una cara de cerca.
-        fotos={[
-          {
-            src: "/assets/portada-pizarra-640.jpg",
-            alt: "Doña Compra en una tienda de ropa, señalando la pizarra de niveles",
-          },
-          {
-            src: "/assets/portada-insignia-640.jpg",
-            alt: "Doña Compra sosteniendo la insignia de Socio de Confianza",
-          },
-          {
-            src: "/assets/portada-ropa-640.jpg",
-            alt: "Doña Compra atendiendo a una clienta en una tienda de ropa y artesanía",
-          },
-          {
-            src: "/assets/portada-comedor-640.jpg",
-            alt: "Doña Compra en un comedor lleno al mediodía",
-          },
-        ]}
+        foto={{
+          src: "/assets/portada-insignia-640.jpg",
+          alt: "Doña Compra sosteniendo la insignia de Socio de Confianza",
+        }}
         // La llamada principal es «Conocé cómo funciona», no la conversión:
         // la hoja pide que el sitio informe primero y convierta después.
-        // WhatsApp sigue a un toque, en la barra de arriba.
         acciones={
           <>
-            <Link href="/el-concepto" className={btnPrimario}>
+            <Link href="/el-concepto" className={btnSecundario}>
               Conocé cómo funciona
             </Link>
-            <Link href="/contacto" className={btnSecundario}>
+            <Link
+              href="#hablemos"
+              className="inline-block rounded-full border border-card/45 px-8 py-4 text-[15px] font-semibold tracking-[0.02em] text-card hover:border-card hover:text-card"
+            >
               Pedir una visita
             </Link>
           </>
