@@ -11,11 +11,11 @@ import {
 import ContactoForm from "@/components/ContactoForm";
 import Galeria from "@/components/Galeria";
 import PortadaCarrusel from "@/components/PortadaCarrusel";
+import Testimonios from "@/components/Testimonios";
 import Revelar from "@/components/Revelar";
 import VideoVertical from "@/components/VideoVertical";
 import {
   Curva,
-  MosaicoRubros,
   PasoFoto,
   Rotulo,
 } from "@/components/bloques";
@@ -166,21 +166,6 @@ const PIZARRAS = [
  * Restaurantes, que son dos de los que el cliente fotografió: la foto del
  * comedor no llegaba al inicio.
  */
-const RUBROS = [
-  { slug: "ropa", nombre: "Ropa" },
-  { slug: "calzado", nombre: "Calzado" },
-  { slug: "cosmeticos", nombre: "Cosméticos" },
-  { slug: "perfumes", nombre: "Perfumes" },
-  { slug: "despensas", nombre: "Despensas" },
-  { slug: "comedores", nombre: "Comedores" },
-  { slug: "libreria", nombre: "Librería" },
-  { slug: "bijouterie", nombre: "Bijouterie" },
-  { slug: "peluquerias", nombre: "Peluquerías" },
-  { slug: "regaleria", nombre: "Regalería" },
-  { slug: "revendedoras", nombre: "Revendedoras" },
-  { slug: "restaurantes", nombre: "Restaurantes" },
-] as const;
-
 export default function Home() {
   return (
     <main>
@@ -389,83 +374,6 @@ export default function Home() {
         </Wrap>
       </section>
 
-      {/* Las pizarras del cliente. Van después de los cuatro pasos porque
-          responden la pregunta que queda: «bueno, y cuánto me cuesta?». */}
-      <section className="bg-card">
-        <Wrap>
-          <Revelar>
-            {/* El título y la bajada van en una fila, no en una columna al
-                costado de las fotos: con la galería al lado quedaba media
-                página vacía entre el texto y las imágenes. */}
-            <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
-              <div>
-                <Rotulo>En la pizarra</Rotulo>
-                <h2 className="mt-4 max-w-[16ch]">Las cuentas, a la vista.</h2>
-              </div>
-              <p className="max-w-[42ch] text-ink">
-                Lo mismo que te explica un asesor en la visita, tal cual se lo
-                explica.{" "}
-                <Link
-                  href="/niveles-y-tarifas"
-                  className="font-medium whitespace-nowrap text-terracotta-ink"
-                >
-                  Ver la tabla completa →
-                </Link>
-              </p>
-            </div>
-          </Revelar>
-
-          <Revelar retardo={1}>
-            <div className="mt-10">
-              <Galeria fotos={PIZARRAS} variante="muro" />
-            </div>
-          </Revelar>
-
-          <Revelar>
-            <p className="mt-9">
-              <Link href="#hablemos" className={btnSecundario}>
-                Pedir una visita
-              </Link>
-            </p>
-          </Revelar>
-        </Wrap>
-      </section>
-
-      <section className="bg-navy text-card">
-        <Wrap>
-          <Revelar>
-            <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-terracotta-soft">
-              <span aria-hidden="true" className="h-px w-8 bg-terracotta-soft" />
-              Rubros
-            </span>
-            <h2 className="mt-4 max-w-[22ch] text-card">
-              Negocios que ya compran con Doña Compra.
-            </h2>
-            <p className="mt-4 max-w-[56ch] text-card/75">
-              Si vendés al público y reponés con un mayorista, probablemente
-              encaje con tu negocio.
-            </p>
-          </Revelar>
-
-          <div className="mt-9">
-            <MosaicoRubros rubros={[...RUBROS]} />
-          </div>
-
-          <Revelar>
-            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link href="#hablemos" className={btnSecundario}>
-                Pedir una visita
-              </Link>
-              <Link href="/comerciante" className="font-medium text-terracotta-soft underline underline-offset-2 hover:text-card">
-                Ver qué necesitás para empezar →
-              </Link>
-            </div>
-          </Revelar>
-        </Wrap>
-      </section>
-
-      <Curva de="bg-navy" a="text-grad-start" />
-
       {/* Los cinco servicios, con tarjeta propia y precio a la vista.
           Estructura tomada de la referencia que pasó el cliente, que pone sus
           servicios en el inicio con una tarjeta cada uno; acá son cinco y no
@@ -534,6 +442,48 @@ export default function Home() {
         </Wrap>
       </section>
 
+      {/* Las pizarras del cliente. Van después de los cuatro pasos porque
+          responden la pregunta que queda: «bueno, y cuánto me cuesta?». */}
+      <section className="bg-card">
+        <Wrap>
+          <Revelar>
+            {/* El título y la bajada van en una fila, no en una columna al
+                costado de las fotos: con la galería al lado quedaba media
+                página vacía entre el texto y las imágenes. */}
+            <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
+              <div>
+                <Rotulo>En la pizarra</Rotulo>
+                <h2 className="mt-4 max-w-[16ch]">Las cuentas, a la vista.</h2>
+              </div>
+              <p className="max-w-[42ch] text-ink">
+                Lo mismo que te explica un asesor en la visita, tal cual se lo
+                explica.{" "}
+                <Link
+                  href="/niveles-y-tarifas"
+                  className="font-medium whitespace-nowrap text-terracotta-ink"
+                >
+                  Ver la tabla completa →
+                </Link>
+              </p>
+            </div>
+          </Revelar>
+
+          <Revelar retardo={1}>
+            <div className="mt-10">
+              <Galeria fotos={PIZARRAS} variante="muro" />
+            </div>
+          </Revelar>
+
+          <Revelar>
+            <p className="mt-9">
+              <Link href="#hablemos" className={btnSecundario}>
+                Pedir una visita
+              </Link>
+            </p>
+          </Revelar>
+        </Wrap>
+      </section>
+
       {/* Cómo se entra: tres pasos, el formato de la referencia. Va justo
           antes del formulario porque es el último que queda por responder
           antes de escribir. */}
@@ -585,6 +535,8 @@ export default function Home() {
           </Revelar>
         </Wrap>
       </section>
+
+      <Testimonios />
 
       {/* Hablemos: el mismo formulario de la página de Contacto, no una
           copia. Es el componente de allá con su propia acción de servidor y
