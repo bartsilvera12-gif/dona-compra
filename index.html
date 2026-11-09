@@ -118,23 +118,31 @@
   /* Portada de tres pantallas. Las tres quedan en el documento y se funden
      con opacidad: montarlas y desmontarlas dejaria a un lector de pantalla
      leyendo texto que aparece y desaparece solo. */
-  .dcx-port { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.7s; }
-  .dcx-port.es-visible { position: relative; opacity: 1; pointer-events: auto; }
-  .dcx-port-puntos { position: absolute; left: 0; right: 0; bottom: 20px; z-index: 30; display: flex; justify-content: center; gap: 10px; }
+  .dcx-port { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+  .dcx-port.es-visible { position: relative; opacity: 1; pointer-events: auto; transition: opacity 0.5s 0.2s; }
+  .dcx-port-puntos { position: absolute; left: 0; right: 0; bottom: 20px; z-index: 30; display: flex; justify-content: flex-start; gap: 10px; padding-left: max(clamp(18px,4vw,40px), calc((100vw - 1280px) / 2)); }
   .dcx-port-punto { height: 10px; width: 10px; padding: 0; border: 0; border-radius: 999px; background: rgba(247,245,238,0.45); cursor: pointer; transition: width 0.3s, background 0.3s; }
   .dcx-port-punto.es-actual { width: 32px; background: #E0A938; }
-  @media (min-width: 1024px) { .dcx-port-puntos { bottom: 32px; left: clamp(18px,5vw,72px); right: auto; justify-content: flex-start; } }
+  @media (min-width: 1024px) { .dcx-port-puntos { bottom: 32px; } }
+  /* Flechas, ademas de los puntos. Sobre la foto, que es la mitad con menos texto. */
+  .dcx-port-flechas { position: absolute; left: 0; right: 0; bottom: 18px; z-index: 30; display: flex; justify-content: flex-end; gap: 8px; padding: 0 clamp(18px,4vw,40px); }
+  .dcx-port-flecha { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(247,245,238,0.35); border-radius: 999px; background: rgba(27,59,43,0.55); color: #F7F5EE; cursor: pointer; backdrop-filter: blur(6px); transition: background 0.2s, border-color 0.2s; }
+  .dcx-port-flecha:hover { background: rgba(27,59,43,0.85); border-color: #F7F5EE; }
+  @media (min-width: 1024px) { .dcx-port-flechas { top: 50%; bottom: auto; transform: translateY(-50%); justify-content: space-between; } }
   @media (prefers-reduced-motion: reduce) { .dcx-port { transition: none; } .dcx-port-punto { transition: none; } }
   /* Portada a dos mitades. En telefono la foto va arriba: la cara funciona
      mejor antes que el texto. */
-  .dcx-portada2 { position: relative; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr; }
-  .dcx-portada2-panel { order: 2; display: flex; flex-direction: column; justify-content: center; padding: clamp(36px,6vw,88px) clamp(18px,5vw,72px); }
-  .dcx-portada2-foto { order: 1; position: relative; min-height: clamp(260px,52vw,420px); overflow: hidden; }
+  .dcx-portada2 { position: relative; display: grid; grid-template-columns: 1fr; }
+  .dcx-portada2-panel { order: 2; display: flex; flex-direction: column; justify-content: center; padding: clamp(32px,4.5vw,64px) clamp(18px,4vw,40px) clamp(32px,4.5vw,64px) max(clamp(18px,4vw,40px), calc((100vw - 1280px) / 2)); }
+  .dcx-portada2-foto { order: 1; position: relative; min-height: clamp(240px,46vw,380px); overflow: hidden; }
+  .dcx-portada2-foto img { position: absolute; inset: 0; }
   .dcx-portada2-velo { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(27,59,43,0.7), transparent 55%); }
   @media (min-width: 1024px) {
+    .dcx-carrusel { min-height: 620px; }
+    .dcx-port.es-visible, .dcx-port.es-visible .dcx-portada2 { min-height: 620px; }
     .dcx-portada2 { grid-template-columns: 1.05fr 1fr; }
     .dcx-portada2-panel { order: 1; }
-    .dcx-portada2-foto { order: 2; min-height: 560px; }
+    .dcx-portada2-foto { order: 2; min-height: 0; }
     .dcx-portada2-velo { background: linear-gradient(to right, #1B3B2B, rgba(27,59,43,0.2) 45%, transparent 70%); }
   }
   /* Muro de pizarras: tarjetas con marco, numeradas, giradas y a distinta
@@ -393,7 +401,7 @@
          documento y se funden con opacidad; las que no se ven llevan
          aria-hidden. El giro se detiene al pasar el mouse y no arranca si
          hay prefers-reduced-motion. -->
-    <section aria-roledescription="carrusel" aria-label="C&oacute;mo funciona Do&ntilde;a Compra" onMouseEnter="{{ portQuieto }}" onMouseLeave="{{ portSigue }}" style="position:relative;overflow:hidden;background:#1B3B2B;color:#F7F5EE">
+    <section class="dcx-carrusel" aria-roledescription="carrusel" aria-label="C&oacute;mo funciona Do&ntilde;a Compra" onMouseEnter="{{ portQuieto }}" onMouseLeave="{{ portSigue }}" style="position:relative;overflow:hidden;background:#1B3B2B;color:#F7F5EE">
       <div aria-hidden="true" style="position:absolute;inset:0;z-index:20;pointer-events:none;opacity:0.06;background-image:radial-gradient(circle,#F7F5EE 1px,transparent 1.2px);background-size:26px 26px"></div>
         <div class="dcx-port {{ portCls0 }}" aria-hidden="{{ portOculto0 }}">
           <div class="dcx-portada2">
@@ -437,6 +445,7 @@
             </div>
           </div>
         </div>
+        <div class="dcx-port-flechas"><button type="button" onClick="{{ portPrev }}" aria-label="Pantalla anterior" class="dcx-port-flecha"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4 7 12l8 8"></path></svg></button><button type="button" onClick="{{ portNext }}" aria-label="Pantalla siguiente" class="dcx-port-flecha"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4l8 8-8 8"></path></svg></button></div>
         <div class="dcx-port-puntos"><button type="button" onClick="{{ goPort0 }}" aria-label="Pantalla 1 de 3" class="dcx-port-punto {{ portPunto0 }}"></button><button type="button" onClick="{{ goPort1 }}" aria-label="Pantalla 2 de 3" class="dcx-port-punto {{ portPunto1 }}"></button><button type="button" onClick="{{ goPort2 }}" aria-label="Pantalla 3 de 3" class="dcx-port-punto {{ portPunto2 }}"></button></div>
     </section>
 
@@ -3160,6 +3169,8 @@ class Component extends DCLogic {
       portPunto0: this.state.port === 0 ? 'es-actual' : '',
       portPunto1: this.state.port === 1 ? 'es-actual' : '',
       portPunto2: this.state.port === 2 ? 'es-actual' : '',
+      portPrev: () => this.setState((s) => ({ port: (s.port + 2) % 3 })),
+      portNext: () => this.setState((s) => ({ port: (s.port + 1) % 3 })),
       goPort0: () => this.setState({ port: 0 }),
       goPort1: () => this.setState({ port: 1 }),
       goPort2: () => this.setState({ port: 2 }),

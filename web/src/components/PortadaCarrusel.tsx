@@ -79,7 +79,7 @@ export default function PortadaCarrusel({
       onFocusCapture={() => setQuieto(true)}
       onBlurCapture={() => setQuieto(false)}
       onKeyDown={alPulsar}
-      className="relative overflow-hidden bg-navy text-card"
+      className="relative overflow-hidden bg-navy text-card lg:min-h-[620px]"
     >
       <span
         aria-hidden="true"
@@ -100,14 +100,14 @@ export default function PortadaCarrusel({
             // pasa como atributo booleano.
             inert={!visible}
             aria-hidden={!visible}
-            className={`transition-opacity duration-700 motion-reduce:transition-none ${
+            className={`transition-opacity motion-reduce:transition-none ${
               visible
-                ? "relative z-10 opacity-100"
-                : "pointer-events-none absolute inset-0 opacity-0"
+                ? "relative z-10 opacity-100 duration-500 delay-200 lg:min-h-[620px]"
+                : "pointer-events-none absolute inset-0 opacity-0 duration-200"
             }`}
           >
-            <div className="mx-auto grid max-w-[1400px] lg:grid-cols-[1.05fr_1fr]">
-              <div className="order-2 flex flex-col justify-center px-[clamp(18px,5vw,72px)] py-[clamp(36px,6vw,88px)] lg:order-1">
+            <div className="grid lg:min-h-[620px] lg:grid-cols-[1.05fr_1fr]">
+              <div className="order-2 flex flex-col justify-center py-[clamp(32px,4.5vw,64px)] pr-[clamp(18px,4vw,40px)] pl-[max(clamp(18px,4vw,40px),calc((100vw-1280px)/2))] lg:order-1">
                 <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-terracotta-soft">
                   <span
                     aria-hidden="true"
@@ -132,7 +132,7 @@ export default function PortadaCarrusel({
                 )}
               </div>
 
-              <div className="relative order-1 min-h-[clamp(260px,52vw,420px)] lg:order-2 lg:min-h-[560px]">
+              <div className="relative order-1 min-h-[clamp(240px,46vw,380px)] lg:order-2 lg:min-h-full">
                 <Image
                   src={p.foto.src}
                   alt={p.foto.alt}
@@ -151,8 +151,32 @@ export default function PortadaCarrusel({
         );
       })}
 
+      {/* Flechas. Anteceden a los puntos en el orden del documento porque es
+          el orden en que conviene encontrarlas con el teclado. */}
+      <div className="absolute inset-x-0 bottom-5 z-30 flex justify-end gap-2 pr-[clamp(18px,4vw,40px)] lg:top-1/2 lg:bottom-auto lg:-translate-y-1/2 lg:justify-between lg:px-[clamp(18px,4vw,40px)]">
+        {([-1, 1] as const).map((paso) => (
+          <button
+            key={paso}
+            type="button"
+            onClick={() => ir(actual + paso)}
+            aria-label={paso === -1 ? "Pantalla anterior" : "Pantalla siguiente"}
+            className="grid h-11 w-11 cursor-pointer place-items-center rounded-full border border-card/35 bg-navy/55 text-card backdrop-blur transition-colors hover:border-card hover:bg-navy/85"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+              <path
+                d={paso === -1 ? "M15 4 7 12l8 8" : "M9 4l8 8-8 8"}
+                className="stroke-current"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        ))}
+      </div>
+
       {/* Los puntos, sobre la pantalla visible. */}
-      <div className="absolute inset-x-0 bottom-5 z-30 flex justify-center gap-2.5 lg:bottom-8 lg:left-[clamp(18px,5vw,72px)] lg:justify-start">
+      <div className="absolute inset-x-0 bottom-5 z-30 flex justify-start gap-2.5 pl-[max(clamp(18px,4vw,40px),calc((100vw-1280px)/2))] lg:bottom-8">
         {pantallas.map((p, i) => (
           <button
             key={p.tituloPlano}
