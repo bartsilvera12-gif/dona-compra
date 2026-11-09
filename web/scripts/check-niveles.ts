@@ -1,4 +1,5 @@
-import { NIVELES, totalServicios, calcular, analisisAcumulado, recargoEfectivo } from "../src/lib/niveles.ts";
+import { readFileSync } from "node:fs";
+import { NIVELES, NOMBRE_SERVICIO, totalServicios, calcular, analisisAcumulado, recargoEfectivo, type Servicios } from "../src/lib/niveles.ts";
 
 // Valores tomados a mano de las CGV, noviembre 2026.
 const CGV = {
@@ -77,9 +78,28 @@ ok(ej.recargo === 80_000, `ejemplo del correo: recargo ${ej.recargo} != 80.000`)
 ok(ej.totalServicios === 9_000, `ejemplo del correo: servicios ${ej.totalServicios} != 9.000`);
 ok(ej.total === 589_000, `ejemplo del correo: total ${ej.total} != 589.000`);
 
+/* Tercera fuente: el sitio estatico, donde los precios de los cinco servicios
+ * del inicio van escritos a mano. En la app se calculan desde NIVELES y se
+ * actualizan solos; ahi no. Sin esta comprobacion, un cambio de tarifa dejaria
+ * los dos inicios diciendo cosas distintas y nadie se enteraria. */
+const estatico = readFileSync(new URL("../../index.html", import.meta.url), "utf8");
+const gs = (n: number) => n.toLocaleString("es-PY");
+for (const k of Object.keys(NOMBRE_SERVICIO) as (keyof Servicios)[]) {
+  const v = NIVELES.map((n) => n.servicios[k]);
+  const min = Math.min(...v), max = Math.max(...v);
+  const txt = min === max ? `Gs. ${gs(min)} por pedido` : `Gs. ${gs(min)} a ${gs(max)} por pedido`;
+  ok(estatico.includes(txt), `el sitio estatico no dice "${txt}" para ${NOMBRE_SERVICIO[k]}`);
+}
+const totMin = gs(totalServicios(NIVELES[0].servicios));
+const totMax = gs(totalServicios(NIVELES[NIVELES.length - 1].servicios));
+ok(
+  estatico.includes(`Gs. ${totMin} a Gs. ${totMax} por pedido`),
+  `el sitio estatico no dice el total de servicios ${totMin} a ${totMax}`,
+);
+
 console.log(
   fallos === 0
-    ? "OK — la tabla y el ejemplo del correo coinciden con el sitio"
+    ? "OK — las CGV, el correo y los dos inicios dicen lo mismo"
     : `${fallos} fallas`,
 );
 process.exit(fallos ? 1 : 0);

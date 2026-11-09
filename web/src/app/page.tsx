@@ -1,5 +1,12 @@
 import Link from "next/link";
 import { site, waLink } from "@/lib/site";
+import {
+  DESCRIPCION_SERVICIO,
+  NIVELES,
+  NOMBRE_SERVICIO,
+  totalServicios,
+  type Servicios,
+} from "@/lib/niveles";
 import ContactoForm from "@/components/ContactoForm";
 import Galeria from "@/components/Galeria";
 import Revelar from "@/components/Revelar";
@@ -53,6 +60,22 @@ const PASOS = [
     foto: { src: "/assets/paso-4.jpg", alt: "Pago posterior a la venta" },
   },
 ] as const;
+
+/* Los cinco servicios salen del artículo 6 de las Condiciones Generales, vía
+   niveles.ts. El rango de precio se calcula, no se escribe: si una tarifa
+   cambia en el contrato, cambia acá sola. */
+const CLAVES_SERVICIO = Object.keys(NOMBRE_SERVICIO) as (keyof Servicios)[];
+const gs = (n: number) => n.toLocaleString("es-PY");
+const PRECIO_SERVICIO = (k: keyof Servicios) => {
+  const valores = NIVELES.map((n) => n.servicios[k]);
+  const min = Math.min(...valores);
+  const max = Math.max(...valores);
+  return min === max
+    ? `Gs. ${gs(min)} por pedido`
+    : `Gs. ${gs(min)} a ${gs(max)} por pedido`;
+};
+const TOTAL_MIN = `Gs. ${gs(totalServicios(NIVELES[0].servicios))}`;
+const TOTAL_MAX = `Gs. ${gs(totalServicios(NIVELES[NIVELES.length - 1].servicios))}`;
 
 /** Los papelitos que acompañan al video. */
 const LO_QUE_CUENTA = [
@@ -383,6 +406,74 @@ export default function Home() {
                 Ver qué necesitás para empezar →
               </Link>
             </p>
+          </Revelar>
+        </Wrap>
+      </section>
+
+      {/* Los cinco servicios, con tarjeta propia y precio a la vista.
+          Estructura tomada de la referencia que pasó el cliente, que pone sus
+          servicios en el inicio con una tarjeta cada uno; acá son cinco y no
+          tres, y el precio es el del contrato, no una promesa. */}
+      <section className="bg-card">
+        <Wrap>
+          <Revelar>
+            <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
+              <div>
+                <Rotulo>Lo que incluye cada pedido</Rotulo>
+                <h2 className="mt-4 max-w-[20ch]">
+                  No es solamente comprar mercadería.
+                </h2>
+              </div>
+              <p className="max-w-[40ch] text-ink">
+                Cinco servicios acompañan cada operación. Van en la factura,
+                con tarifa fija según tu nivel.
+              </p>
+            </div>
+          </Revelar>
+
+          <Revelar retardo={1}>
+            <ul className="mt-9 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+              {CLAVES_SERVICIO.map((k, i) => (
+                <li
+                  key={k}
+                  className="flex h-full flex-col rounded-[var(--radius-card)] border border-navy/12 bg-grad-start/50 p-[clamp(18px,2.4vw,26px)]"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mb-3 grid h-9 w-9 place-items-center rounded-full bg-terracotta text-[14px] font-semibold text-navy"
+                  >
+                    {i + 1}
+                  </span>
+                  <h3 className="mb-2 text-[clamp(17px,1.9vw,20px)]">
+                    {NOMBRE_SERVICIO[k]}
+                  </h3>
+                  <p className="text-[15px] text-ink">
+                    {DESCRIPCION_SERVICIO[k]}
+                  </p>
+                  <p className="mt-4 font-mono text-[14px] font-semibold text-terracotta-ink">
+                    {PRECIO_SERVICIO(k)}
+                  </p>
+                </li>
+              ))}
+
+              {/* La sexta celda cierra la fila de tres y lleva la llamada,
+                  para no dejar un hueco vacío al lado de la quinta tarjeta. */}
+              <li className="flex h-full flex-col justify-center rounded-[var(--radius-card)] bg-navy p-[clamp(18px,2.4vw,26px)] text-card">
+                <h3 className="mb-2 text-card">Todo junto, en una factura.</h3>
+                <p className="text-[15px] text-card/75">
+                  El total de los cinco va de {TOTAL_MIN} a {TOTAL_MAX} por
+                  pedido, según el nivel.
+                </p>
+                <p className="mt-5">
+                  <Link
+                    href="/servicios"
+                    className="font-medium text-terracotta-soft underline underline-offset-2 hover:text-card"
+                  >
+                    Ver los cinco en detalle →
+                  </Link>
+                </p>
+              </li>
+            </ul>
           </Revelar>
         </Wrap>
       </section>

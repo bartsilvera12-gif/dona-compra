@@ -7,6 +7,7 @@ import { precioGs } from "@/lib/formato";
 import {
   NIVELES,
   NOMBRE_SERVICIO,
+  DESCRIPCION_SERVICIO as DESCRIPCION,
   totalServicios,
   type Servicios,
 } from "@/lib/niveles";
@@ -21,19 +22,6 @@ export const metadata: Metadata = {
   title: "Servicios",
   description:
     "Los cinco Servicios Doña Compra que se facturan en cada pedido, con su tarifa fija por nivel, y el legajo de buena gestión.",
-};
-
-const DESCRIPCION: Record<keyof Servicios, string> = {
-  seguimiento:
-    "Preparamos el código de recepción único de tu pedido y documentamos el retiro: qué se compró, quién lo retiró y cuándo.",
-  custodia:
-    "Archivamos la factura y los documentos de cada operación, de modo que tu historial de compras quede ordenado y consultable.",
-  proveedores:
-    "Gestiones logísticas, comerciales y administrativas entre vos y los mayoristas con los que trabajamos.",
-  publicidad:
-    "Acciones de publicidad y promoción de la red de comercios, contempladas por el programa comercial.",
-  club:
-    "Gestión del Club Doña Compra, el espacio donde las marcas que nos acompañan generan beneficios para los clientes de los comercios.",
 };
 
 const primero = NIVELES[0];
