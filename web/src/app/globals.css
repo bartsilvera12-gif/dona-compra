@@ -4,8 +4,8 @@
    Design system Doña Compra — carta gráfica v2.0, de la «Hoja de dirección de
    comunicación» de noviembre 2026, sección 5.
 
-   Los cuatro colores de marca son verde oscuro #1B3B2B, ocre #E0A938, salvia
-   #789E82 y marfil #F7F5EE. Todo lo demás de esta lista es un derivado de
+   Los cuatro colores de marca son verde oscuro #163923, ocre #DE9B2B, salvia
+   #709A7D y marfil #F5F2EB. Todo lo demás de esta lista es un derivado de
    esos cuatro para los usos que la carta no nombra —una sombra para el pie,
    un aclarado para el hover, un gris verdoso para el texto corriente—, no un
    color nuevo.
@@ -16,29 +16,29 @@
    --------------------------------------------------------------------------- */
 @theme {
   /* Superficies */
-  --color-card: #f7f5ee; /* marfil: fondo principal y tarjetas */
-  --color-grad-start: #e4ebe4; /* salvia muy claro, para huecos de imagen */
-  --color-grad-mid: #f7f5ee;
-  --color-grad-end: #f7f5ee;
+  --color-card: #f5f2eb; /* marfil: fondo principal y tarjetas */
+  --color-grad-start: #e2ebe5; /* salvia muy claro, para huecos de imagen */
+  --color-grad-mid: #f5f2eb;
+  --color-grad-end: #f5f2eb;
 
   /* Texto e institucional */
-  --color-navy: #1b3b2b; /* verde oscuro: títulos, botones, navegación */
-  --color-navy-dark: #142c20; /* sombra del verde: pie, menú, bandas */
-  --color-navy-deep: #24513a; /* aclarado del verde: hover del dominante */
+  --color-navy: #163923; /* verde oscuro: títulos, botones, navegación */
+  --color-navy-dark: #102919; /* sombra del verde: pie, menú, bandas */
+  --color-navy-deep: #1f5132; /* aclarado del verde: hover del dominante */
   --color-ink: #2f4237; /* texto corriente, verde oscuro desaturado */
-  --color-muted: #4f5c54; /* notas, etiquetas: 6.4 sobre marfil, 5.2 sobre salvia */
-  --color-salvia: #789e82; /* superficies humanas, ilustraciones */
+  --color-muted: #4f5c54; /* notas, etiquetas: 6.3 sobre marfil */
+  --color-salvia: #709a7d; /* superficies humanas, ilustraciones */
 
   /* Acentos */
-  --color-terracotta: #e0a938; /* ocre: filetes, bordes, botón secundario */
+  --color-terracotta: #de9b2b; /* ocre: filetes, bordes, botón secundario */
   /* La carta prohíbe el ocre en letra chica sobre marfil, y tiene razón: da
-     1.8 y WCAG AA pide 4.5. Este es el mismo ocre oscurecido hasta 5.8, para
+     2.1 y WCAG AA pide 4.5. Este es el mismo ocre oscurecido hasta 5.11, para
      que los enlaces y los montos sigan leyéndose como acento y no como texto
      corriente. El ocre de la carta queda para filetes, bordes y botones. */
-  --color-terracotta-ink: #7a5a12;
-  --color-terracotta-soft: #e0a938; /* ocre sobre fondo verde oscuro: 5.9 */
-  --color-ocre: #e0a938;
-  --color-ocre-oscuro: #c08c22; /* hover del botón ocre */
+  --color-terracotta-ink: #875f1a;
+  --color-terracotta-soft: #de9b2b; /* ocre sobre fondo verde oscuro: 5.37 */
+  --color-ocre: #de9b2b;
+  --color-ocre-oscuro: #b88124; /* hover del botón ocre */
 
   /* Estados */
   --color-ok: #10b981;
@@ -180,6 +180,14 @@
 @keyframes dcAcercar {
   from { transform: scale(1.08); }
   to { transform: scale(1); }
+}
+
+/* La cinta de beneficios en celular: la lista va duplicada, asi que correr
+   media pista deja la copia exactamente donde estaba el original. El hueco
+   entre las dos listas entra en la cuenta. */
+@keyframes cinta {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - clamp(26px, 5vw, 64px) / 2)); }
 }
 
 /* Con movimiento reducido no hay animación: el contenido aparece y ya. */

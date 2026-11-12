@@ -28,16 +28,17 @@ export type Pantalla = {
   foto: { src: string; alt: string };
 };
 
-const INTERVALO = 7000;
-
 export default function PortadaCarrusel({
   rotulo,
   pantallas,
   acciones,
+  intervalo = 7000,
 }: {
   rotulo: string;
   pantallas: Pantalla[];
   acciones?: React.ReactNode;
+  /** Milisegundos entre pantalla y pantalla. */
+  intervalo?: number;
 }) {
   const [actual, setActual] = useState(0);
   const [quieto, setQuieto] = useState(false);
@@ -53,10 +54,10 @@ export default function PortadaCarrusel({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = setInterval(
       () => setActual((i) => (i + 1) % pantallas.length),
-      INTERVALO,
+      intervalo,
     );
     return () => clearInterval(t);
-  }, [quieto, pantallas.length]);
+  }, [quieto, pantallas.length, intervalo]);
 
   // Flechas del teclado, solo cuando el foco está dentro de la portada.
   const alPulsar = (ev: React.KeyboardEvent) => {
@@ -86,7 +87,7 @@ export default function PortadaCarrusel({
         className="pointer-events-none absolute inset-0 z-20 opacity-[0.06]"
         style={{
           backgroundImage:
-            "radial-gradient(circle, #f7f5ee 1px, transparent 1.2px)",
+            "radial-gradient(circle, #f5f2eb 1px, transparent 1.2px)",
           backgroundSize: "26px 26px",
         }}
       />
@@ -107,7 +108,7 @@ export default function PortadaCarrusel({
             }`}
           >
             <div className="grid lg:min-h-[620px] lg:grid-cols-[1.05fr_1fr]">
-              <div className="order-2 flex flex-col justify-center py-[clamp(32px,4.5vw,64px)] pr-[clamp(18px,4vw,40px)] pl-[max(clamp(18px,4vw,40px),calc((100vw-1280px)/2))] lg:order-1">
+              <div className="order-2 flex flex-col justify-center pt-[clamp(32px,4.5vw,64px)] pb-[calc(clamp(32px,4.5vw,64px)+56px)] pr-[clamp(18px,4vw,40px)] pl-[max(clamp(18px,4vw,40px),calc((100vw-1280px)/2))] lg:order-1">
                 <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-terracotta-soft">
                   <span
                     aria-hidden="true"
@@ -151,46 +152,59 @@ export default function PortadaCarrusel({
         );
       })}
 
-      {/* Flechas. Anteceden a los puntos en el orden del documento porque es
-          el orden en que conviene encontrarlas con el teclado. */}
-      <div className="absolute inset-x-0 bottom-5 z-30 flex justify-end gap-2 pr-[clamp(18px,4vw,40px)] lg:top-1/2 lg:bottom-auto lg:-translate-y-1/2 lg:justify-between lg:px-[clamp(18px,4vw,40px)]">
-        {([-1, 1] as const).map((paso) => (
-          <button
-            key={paso}
-            type="button"
-            onClick={() => ir(actual + paso)}
-            aria-label={paso === -1 ? "Pantalla anterior" : "Pantalla siguiente"}
-            className="grid h-11 w-11 cursor-pointer place-items-center rounded-full border border-card/35 bg-navy/55 text-card backdrop-blur transition-colors hover:border-card hover:bg-navy/85"
-          >
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
-              <path
-                d={paso === -1 ? "M15 4 7 12l8 8" : "M9 4l8 8-8 8"}
-                className="stroke-current"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        ))}
-      </div>
+      {/* Los controles, todos juntos abajo a la izquierda: los puntos y
+          enseguida las flechas.
 
-      {/* Los puntos, sobre la pantalla visible. */}
-      <div className="absolute inset-x-0 bottom-5 z-30 flex justify-start gap-2.5 pl-[max(clamp(18px,4vw,40px),calc((100vw-1280px)/2))] lg:bottom-8">
-        {pantallas.map((p, i) => (
-          <button
-            key={p.tituloPlano}
-            type="button"
-            onClick={() => ir(i)}
-            aria-label={`Pantalla ${i + 1} de ${pantallas.length}: ${p.tituloPlano}`}
-            aria-current={i === actual ? "true" : undefined}
-            className={`h-2.5 cursor-pointer rounded-full transition-all duration-300 motion-reduce:transition-none ${
-              i === actual
-                ? "w-8 bg-ocre"
-                : "w-2.5 bg-card/45 hover:bg-card/75"
-            }`}
-          />
-        ))}
+          La guia los pedia a los costados, a media altura. Probado asi, la
+          flecha izquierda cae encima del titular y la derecha queda debajo de
+          la burbuja de WhatsApp, que es fija y va en esa misma esquina. */}
+      <div className="absolute inset-x-0 bottom-5 z-30 flex flex-wrap items-center gap-x-5 gap-y-3 pl-[max(clamp(18px,4vw,40px),calc((100vw-1280px)/2))] lg:bottom-8">
+        <div className="flex items-center gap-2.5">
+          {pantallas.map((p, i) => (
+            <button
+              key={p.tituloPlano}
+              type="button"
+              onClick={() => ir(i)}
+              aria-label={`Pantalla ${i + 1} de ${pantallas.length}: ${p.tituloPlano}`}
+              aria-current={i === actual ? "true" : undefined}
+              className={`h-2.5 cursor-pointer rounded-full transition-all duration-300 motion-reduce:transition-none ${
+                i === actual
+                  ? "w-8 bg-ocre"
+                  : "w-2.5 bg-card/45 hover:bg-card/75"
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2">
+          {([-1, 1] as const).map((paso) => (
+            <button
+              key={paso}
+              type="button"
+              onClick={() => ir(actual + paso)}
+              aria-label={
+                paso === -1 ? "Pantalla anterior" : "Pantalla siguiente"
+              }
+              className="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-card/35 bg-navy/55 text-card backdrop-blur transition-colors hover:border-card hover:bg-navy/85"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="17"
+                height="17"
+                aria-hidden="true"
+                fill="none"
+              >
+                <path
+                  d={paso === -1 ? "M15 4 7 12l8 8" : "M9 4l8 8-8 8"}
+                  className="stroke-current"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Aviso del cambio para quien no ve la pantalla. */}

@@ -11,14 +11,12 @@ import {
 import ContactoForm from "@/components/ContactoForm";
 import Galeria from "@/components/Galeria";
 import PortadaCarrusel from "@/components/PortadaCarrusel";
+import CintaBeneficios from "@/components/CintaBeneficios";
+import NoSomosBanco from "@/components/NoSomosBanco";
 import Testimonios from "@/components/Testimonios";
 import Revelar from "@/components/Revelar";
 import VideoVertical from "@/components/VideoVertical";
-import {
-  Curva,
-  PasoFoto,
-  Rotulo,
-} from "@/components/bloques";
+import { Curva, PasoFoto, Rotulo } from "@/components/bloques";
 import { btnSecundario, Wrap } from "@/components/ui";
 
 /**
@@ -42,22 +40,29 @@ const VIDEO_JSONLD = {
 const PASOS = [
   {
     titulo: "Elegís vos",
-    texto: "El producto y el proveedor los elegís vos, con el mayorista que ya conocés.",
-    foto: { src: "/assets/paso-1.jpg", alt: "Comerciante eligiendo mercadería" },
+    texto:
+      "El producto y el proveedor los elegís vos, con el mayorista que ya conocés.",
+    foto: {
+      src: "/assets/paso-1.jpg",
+      alt: "Comerciante eligiendo mercadería",
+    },
   },
   {
     titulo: "Doña Compra paga al contado",
-    texto: "Pagamos la mercadería al proveedor en el momento, como cualquier venta de contado.",
+    texto:
+      "Pagamos la mercadería al proveedor en el momento, como cualquier venta de contado.",
     foto: { src: "/assets/paso-2.jpg", alt: "Pago al proveedor" },
   },
   {
     titulo: "Retirás con código",
-    texto: "Un código único de retiro, de un solo uso, con responsable registrado.",
+    texto:
+      "Un código único de retiro, de un solo uso, con responsable registrado.",
     foto: { src: "/assets/paso-3.jpg", alt: "Retiro de la mercadería" },
   },
   {
     titulo: "Pagás después",
-    texto: "Hasta 30 días desde el retiro efectivo en el mayorista, según las condiciones acordadas en la visita.",
+    texto:
+      "Hasta 30 días desde el retiro efectivo en el mayorista, según las condiciones acordadas en la visita.",
     foto: { src: "/assets/paso-4.jpg", alt: "Pago posterior a la venta" },
   },
 ] as const;
@@ -173,71 +178,115 @@ export default function Home() {
           recorrido contado de a un paso por pantalla. La primera lleva el
           mensaje maestro de la hoja y es la unica con <h1>; las otras dos
           son el mismo titular en otra etiqueta, para no tener tres h1. */}
+      {/* Portada de cinco pantallas, con los titulos y las bajadas tal como
+          los escribio el cliente en su guia de diseno. Las cinco fotos son
+          las que mando con esa guia, una por pantalla.
+
+          Solo la primera lleva <h1>: las otras cuatro son el mismo rango
+          visual en otra etiqueta, porque cinco <h1> en una pagina no le
+          dicen nada a nadie. */}
       <PortadaCarrusel
         rotulo="Gran Asunción, Paraguay"
+        intervalo={5000}
         pantallas={[
           {
             titulo: (
               <>
                 Elegí tu mercadería.{" "}
-                <span className="text-terracotta-soft">Pagá después!</span>
+                <span className="text-terracotta-soft">Pagá después.</span>
               </>
             ),
-            tituloPlano: "Elegí tu mercadería. Pagá después!",
-            bajada:
-              "Doña Compra compra mercaderías y las revende a comercios, con condiciones de pago previamente acordadas. Sujeto a evaluación y a las condiciones comerciales vigentes.",
+            tituloPlano: "Elegí tu mercadería. Pagá después.",
+            bajada: "Doña Compra te respalda.",
             foto: {
-              src: "/assets/portada-insignia-640.jpg",
-              alt: "Doña Compra sosteniendo la insignia de Socio de Confianza",
+              src: "/assets/portada-vereda.jpg",
+              alt: "Doña Compra en la vereda, frente a una despensa de barrio",
             },
           },
           {
             titulo: (
               <>
-                Elegís vos,{" "}
-                <span className="text-terracotta-soft">pagamos nosotros.</span>
+                No somos <span className="text-terracotta-soft">un banco.</span>
               </>
             ),
-            tituloPlano: "Elegís vos, pagamos nosotros",
+            tituloPlano: "No somos un banco",
             bajada:
-              "El producto y el proveedor los elegís vos, con el mayorista que ya conocés. Doña Compra le paga al contado, como cualquier venta de contado.",
+              "No te prestamos plata ni tenés que hacer trámites de banco. Compramos la mercadería que vos elegís, te la vendemos con factura legal y vos la pagás cuando ya la vendiste.",
             foto: {
-              src: "/assets/portada-ropa-640.jpg",
-              alt: "Doña Compra atendiendo a una clienta en una tienda de ropa y artesanía",
+              src: "/assets/portada-mostrador.jpg",
+              alt: "Doña Compra con el cuaderno abierto sobre el mostrador",
             },
           },
           {
             titulo: (
               <>
-                Retirás con tu código,{" "}
-                <span className="text-terracotta-soft">pagás después.</span>
+                Tu mayorista de siempre.{" "}
+                <span className="text-terracotta-soft">
+                  Tus precios de siempre.
+                </span>
               </>
             ),
-            tituloPlano: "Retirás con tu código, pagás después",
-            bajada:
-              "Un código único de retiro, de un solo uso. Y hasta 30 días para pagar, contados desde el retiro efectivo en el mayorista.",
+            tituloPlano: "Tu mayorista de siempre. Tus precios de siempre.",
+            bajada: "Vos elegís, Doña compra por vos y retirás con tu código.",
             foto: {
-              src: "/assets/portada-comedor-640.jpg",
-              alt: "Doña Compra en un comedor lleno al mediodía",
+              src: "/assets/portada-mayorista.jpg",
+              alt: "Doña Compra con una canasta en el pasillo de un mayorista",
+            },
+          },
+          {
+            titulo: (
+              <>
+                Cerca tuyo,{" "}
+                <span className="text-terracotta-soft">en cada paso.</span>
+              </>
+            ),
+            tituloPlano: "Cerca tuyo, en cada paso",
+            bajada:
+              "Te visitamos, te aconsejamos y te acompañamos en tu negocio.",
+            foto: {
+              src: "/assets/portada-acompana.jpg",
+              alt: "Doña Compra conversando con una comerciante en su tienda de ropa",
+            },
+          },
+          {
+            titulo: (
+              <>
+                Ueno cerró.{" "}
+                <span className="text-terracotta-soft">Tu negocio no.</span>
+              </>
+            ),
+            tituloPlano: "Ueno cerró. Tu negocio no.",
+            bajada:
+              "Seguí reponiendo en tu mayorista de siempre, con Doña Compra.",
+            foto: {
+              src: "/assets/portada-repone.jpg",
+              alt: "Doña Compra reponiendo mercadería en la góndola de un comercio",
             },
           },
         ]}
-        // La llamada principal es «Conocé cómo funciona», no la conversión:
-        // la hoja pide que el sitio informe primero y convierta después.
         acciones={
           <>
-            <Link href="/el-concepto" className={btnSecundario}>
-              Conocé cómo funciona
+            <Link href="#hablemos" className={btnSecundario}>
+              Agendá tu reunión
             </Link>
-            <Link
-              href="#hablemos"
+            <a
+              href={waLink()}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block rounded-full border border-card/45 px-8 py-4 text-[15px] font-semibold tracking-[0.02em] text-card hover:border-card hover:text-card"
             >
-              Pedir una visita
-            </Link>
+              Escribile a Doña
+            </a>
           </>
         }
       />
+
+      {/* La cinta del flyer, pegada a la portada. */}
+      <CintaBeneficios />
+
+      {/* La primera pregunta que trae todo el mundo es si esto es un
+          préstamo. Se contesta acá, antes de explicar nada más. */}
+      <NoSomosBanco />
 
       {/* Las cifras del servicio, antes de explicar cómo funciona. */}
       {/* El video va acá, entre las cifras y la explicación: después de los
@@ -257,7 +306,7 @@ export default function Home() {
           className="pointer-events-none absolute inset-0 opacity-[0.07]"
           style={{
             backgroundImage:
-              "radial-gradient(circle, #f7f5ee 1px, transparent 1.2px)",
+              "radial-gradient(circle, #f5f2eb 1px, transparent 1.2px)",
             backgroundSize: "24px 24px",
           }}
         />
@@ -282,7 +331,10 @@ export default function Home() {
 
             <Revelar retardo={1}>
               <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-terracotta-soft">
-                <span aria-hidden="true" className="h-px w-8 bg-terracotta-soft" />
+                <span
+                  aria-hidden="true"
+                  className="h-px w-8 bg-terracotta-soft"
+                />
                 En diez segundos
               </span>
               <h2 className="mt-4 mb-4 max-w-[16ch] text-card">
@@ -290,8 +342,8 @@ export default function Home() {
                 <span className="text-terracotta-soft">cuente ella.</span>
               </h2>
               <p className="max-w-[48ch] text-[clamp(16px,1.8vw,18.5px)] text-card/75">
-                Arranca solo, en silencio y con los subtítulos a la vista.
-                Tocá <span className="whitespace-nowrap">«Con sonido»</span> si
+                Arranca solo, en silencio y con los subtítulos a la vista. Tocá{" "}
+                <span className="whitespace-nowrap">«Con sonido»</span> si
                 querés escucharla.
               </p>
 
@@ -302,7 +354,11 @@ export default function Home() {
                   <li
                     key={t}
                     className={`flex items-center gap-2.5 rounded-[10px] bg-card px-3.5 py-2.5 text-[14px] text-navy shadow-[0_12px_26px_-16px_rgba(0,0,0,0.9)] ${
-                      ["-rotate-[1.6deg]", "rotate-[1.2deg]", "-rotate-[0.8deg]"][i]
+                      [
+                        "-rotate-[1.6deg]",
+                        "rotate-[1.2deg]",
+                        "-rotate-[0.8deg]",
+                      ][i]
                     }`}
                   >
                     <span className="grid h-5 w-5 flex-none place-items-center rounded-full bg-terracotta text-[11px] font-semibold text-navy">
@@ -366,7 +422,10 @@ export default function Home() {
               <Link href="#hablemos" className={btnSecundario}>
                 Pedir una visita
               </Link>
-              <Link href="/el-concepto" className="font-medium text-terracotta-ink">
+              <Link
+                href="/el-concepto"
+                className="font-medium text-terracotta-ink"
+              >
                 Conocer el concepto completo →
               </Link>
             </div>
@@ -389,8 +448,8 @@ export default function Home() {
                 </h2>
               </div>
               <p className="max-w-[40ch] text-ink">
-                Cinco servicios acompañan cada operación. Van en la factura,
-                con tarifa fija según tu nivel.
+                Cinco servicios acompañan cada operación. Van en la factura, con
+                tarifa fija según tu nivel.
               </p>
             </div>
           </Revelar>
@@ -561,7 +620,10 @@ export default function Home() {
           <div className="grid gap-[clamp(28px,4vw,64px)] lg:grid-cols-[minmax(0,34ch)_1fr] lg:items-center">
             <Revelar>
               <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-terracotta-soft">
-                <span aria-hidden="true" className="h-px w-8 bg-terracotta-soft" />
+                <span
+                  aria-hidden="true"
+                  className="h-px w-8 bg-terracotta-soft"
+                />
                 Hablemos
               </span>
               <h2 className="mt-4 max-w-[16ch] text-card">
@@ -569,8 +631,8 @@ export default function Home() {
               </h2>
               <p className="mt-4 max-w-[44ch] text-card/75">
                 Sin compromiso. Conversamos en tu local y te explicamos las
-                condiciones. Sujeto a evaluación y a las condiciones
-                comerciales vigentes.
+                condiciones. Sujeto a evaluación y a las condiciones comerciales
+                vigentes.
               </p>
               <p className="mt-6 text-[14.5px] text-card/70">
                 Si preferís escribir,{" "}
