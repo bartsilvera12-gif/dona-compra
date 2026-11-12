@@ -16,7 +16,8 @@
     "admin:crear": "node --env-file=.env.local scripts/crear-admin.mjs",
     "check:imagenes": "node scripts/check-imagenes.ts",
     "check:supabase": "node --env-file=.env.local scripts/check-supabase.mjs",
-    "check:niveles": "node --experimental-strip-types scripts/check-niveles.ts"
+    "check:niveles": "node --experimental-strip-types scripts/check-niveles.ts",
+    "estatico:guia": "node --experimental-strip-types scripts/guia-estatica.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",

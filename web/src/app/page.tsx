@@ -11,7 +11,12 @@ import {
 import ContactoForm from "@/components/ContactoForm";
 import Galeria from "@/components/Galeria";
 import PortadaCarrusel from "@/components/PortadaCarrusel";
+import Acompanamiento from "@/components/Acompanamiento";
+import AsiDeSimple from "@/components/AsiDeSimple";
 import CintaBeneficios from "@/components/CintaBeneficios";
+import DonaTeCuida from "@/components/DonaTeCuida";
+import Requisitos from "@/components/Requisitos";
+import Rubros from "@/components/Rubros";
 import NoSomosBanco from "@/components/NoSomosBanco";
 import Testimonios from "@/components/Testimonios";
 import Revelar from "@/components/Revelar";
@@ -394,44 +399,25 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(VIDEO_JSONLD) }}
       />
 
-      {/* Salvia: la carta la reserva para las "secciones humanas". Va en
-          un tinte y no a plena saturación porque el verde oscuro sobre
-          salvia pura da 4.3 y WCAG AA pide 4.5. */}
-      <section className="bg-salvia/25">
-        <Wrap>
-          <Revelar>
-            <Rotulo>Cómo funciona</Rotulo>
-            <h2 className="mt-4 max-w-[20ch]">Cuatro pasos, sin vueltas.</h2>
-          </Revelar>
+      {/* Los cinco pasos de la guía. Reemplazan a los cuatro que había:
+          son los mismos salvo que la guía separa «Doña compra por vos» de
+          «retirá con tu código», que efectivamente son dos momentos. */}
+      <AsiDeSimple />
 
-          <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {PASOS.map((p, i) => (
-              <PasoFoto
-                key={p.titulo}
-                n={i + 1}
-                titulo={p.titulo}
-                texto={p.texto}
-                foto={p.foto}
-                retardo={(i + 1) as 1 | 2 | 3 | 4}
-              />
-            ))}
-          </div>
+      {/* Acompañamiento: la foto a sangre y los cuatro ítems. */}
+      <Acompanamiento />
 
-          <Revelar>
-            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link href="#hablemos" className={btnSecundario}>
-                Pedir una visita
-              </Link>
-              <Link
-                href="/el-concepto"
-                className="font-medium text-terracotta-ink"
-              >
-                Conocer el concepto completo →
-              </Link>
-            </div>
-          </Revelar>
-        </Wrap>
-      </section>
+      {/* Para quién es: los doce rubros, con la frase que aparece al
+          pasar por encima o al tocarlos. */}
+      <Rubros />
+
+      {/* Las tres cosas que hacen falta para empezar. Reemplazan a «Cómo
+          se entra»: el detalle del trámite —la Solicitud de Entrada y el
+          Análisis de ingreso— sigue completo en /comerciante. */}
+      <Requisitos />
+
+      {/* La franja de seguridad, con el número oficial a la vista. */}
+      <DonaTeCuida />
 
       {/* Los cinco servicios, con tarjeta propia y precio a la vista.
           Estructura tomada de la referencia que pasó el cliente, que pone sus
@@ -552,58 +538,6 @@ export default function Home() {
                 Pedir una visita
               </Link>
             </p>
-          </Revelar>
-        </Wrap>
-      </section>
-
-      {/* Cómo se entra: tres pasos, el formato de la referencia. Va justo
-          antes del formulario porque es el último que queda por responder
-          antes de escribir. */}
-      <section className="bg-salvia/25">
-        <Wrap>
-          {/* Centrado, como la referencia centra sus bloques de tarjetas. */}
-          <Revelar>
-            <div className="mx-auto max-w-[56ch] text-center">
-              <span className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted">
-                <span aria-hidden="true" className="h-px w-8 bg-terracotta" />
-                Cómo se entra
-                <span aria-hidden="true" className="h-px w-8 bg-terracotta" />
-              </span>
-              <h2 className="mx-auto mt-4 max-w-[18ch]">
-                Tres pasos, sin papeleo largo.
-              </h2>
-              <p className="mt-4 text-ink">
-                El trámite se hace por WhatsApp. El Análisis de ingreso va de{" "}
-                {ANALISIS_MIN} a {ANALISIS_MAX} según el nivel que pidas.
-              </p>
-            </div>
-          </Revelar>
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {ENTRADA.map((p, i) => (
-              <PasoFoto
-                key={p.titulo}
-                n={i + 1}
-                titulo={p.titulo}
-                texto={p.texto}
-                foto={p.foto}
-                retardo={(i + 1) as 1 | 2 | 3}
-              />
-            ))}
-          </div>
-
-          <Revelar>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-              <Link href="#hablemos" className={btnSecundario}>
-                Pedir una visita
-              </Link>
-              <Link
-                href="/comerciante"
-                className="font-medium text-terracotta-ink"
-              >
-                Ver qué necesitás para empezar →
-              </Link>
-            </div>
           </Revelar>
         </Wrap>
       </section>
