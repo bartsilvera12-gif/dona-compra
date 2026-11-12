@@ -39,7 +39,10 @@ export type NombreIcono =
   | "revendedora"
   | "despensa"
   | "comedor"
-  | "restaurante";
+  | "restaurante"
+  | "banco"
+  | "alias"
+  | "billetera";
 
 const TRAZOS: Record<NombreIcono, React.ReactNode> = {
   // Cómo funciona
@@ -234,6 +237,27 @@ const TRAZOS: Record<NombreIcono, React.ReactNode> = {
       <circle cx="12" cy="13" r="6.5" />
       <path d="M12 9.5a3.5 3.5 0 0 0 0 7" />
       <path d="M3.5 3v5M21 3v5M19 3v18" />
+    </>
+  ),
+  // Medios de pago
+  banco: (
+    <>
+      <path d="M3 10h18L12 4 3 10Z" />
+      <path d="M5.5 10v8M9.5 10v8M14.5 10v8M18.5 10v8" />
+      <path d="M3 21h18" />
+    </>
+  ),
+  alias: (
+    <>
+      <path d="M12 21a9 9 0 1 1 9-9v1.2a2.3 2.3 0 0 1-4.6 0V12" />
+      <circle cx="12" cy="12" r="3.4" />
+    </>
+  ),
+  billetera: (
+    <>
+      <path d="M3 7.5h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7.5Z" />
+      <path d="M3 7.5 15.5 4v3.5" />
+      <circle cx="16.5" cy="13.5" r="1.2" />
     </>
   ),
   restaurante: (

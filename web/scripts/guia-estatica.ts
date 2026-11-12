@@ -21,6 +21,12 @@ import {
   ACOMPANA_TITULO,
   CUIDA,
   CUIDA_TITULO,
+  FAQ,
+  FAQ_TITULO,
+  PAGOS,
+  PAGOS_BAJADA,
+  PAGOS_PIE,
+  PAGOS_TITULO,
   PASOS,
   PASOS_BAJADA,
   PASOS_TITULO,
@@ -170,7 +176,7 @@ function asiDeSimple(): string {
       `</div></li>`,
   ).join("");
   return (
-    `    <section style="background:${SALVIA25};position:relative;overflow:hidden">${CR}` +
+    `    <section id="como-funciona" style="background:${SALVIA25};position:relative;overflow:hidden;scroll-margin-top:96px">${CR}` +
     `      <div style="${WRAP}">${CR}` +
     `        ${encabezado("Cómo funciona", PASOS_TITULO, PASOS_BAJADA)}${CR}` +
     `        <div class="dcx-pasos-caja">${CR}` +
@@ -193,7 +199,7 @@ function acompanamiento(): string {
       `</li>`,
   ).join("");
   return (
-    `    <section style="background:${MARFIL};overflow:hidden">${CR}` +
+    `    <section id="acompanamiento" style="background:${MARFIL};overflow:hidden;scroll-margin-top:96px">${CR}` +
     `      <div class="dcx-acompana">${CR}` +
     `        <div class="dcx-acompana-foto"><img src="assets/portada-acompana.jpg" alt="Do&ntilde;a Compra conversando con una comerciante en el mostrador de su tienda" loading="lazy" decoding="async" /></div>${CR}` +
     `        <div class="dcx-acompana-texto">${CR}` +
@@ -248,7 +254,7 @@ function requisitos(): string {
       `</div></li>`,
   ).join("");
   return (
-    `    <section style="background:${MARFIL}">${CR}` +
+    `    <section id="requisitos" style="background:${MARFIL};scroll-margin-top:96px">${CR}` +
     `      <div style="${WRAP}">${CR}` +
     `        ${encabezado("Requisitos", REQUISITOS_TITULO, REQUISITOS_BAJADA)}${CR}` +
     `        <ul class="dcx-reqs">${tarjetas}</ul>${CR}` +
@@ -273,6 +279,57 @@ function donaTeCuida(telefono: string): string {
     `<h2 style="${H2};font-size:clamp(20px,2.6vw,28px);margin:0">${esc(CUIDA_TITULO)}</h2>` +
     `<p style="margin:0;font-size:15px;color:${MUTED}">Nuestro &uacute;nico n&uacute;mero es el ${telefono}.</p></div>${CR}` +
     `        <ul class="dcx-cuida">${items}</ul>${CR}` +
+    `      </div>${CR}` +
+    `    </section>${CR}`
+  );
+}
+
+function pagos(): string {
+  const items = PAGOS.map(
+    (p) =>
+      `<li class="dcx-pago">` +
+      `<span class="dcx-pago-ico">${svg(p.icono, 23)}</span>` +
+      `<span class="dcx-pago-nombre">${esc(p.nombre)}</span>` +
+      `<span class="dcx-pago-detalle">${esc(p.detalle)}</span>` +
+      `</li>`,
+  ).join("");
+  return (
+    `    <section style="background:${MARFIL}">${CR}` +
+    `      <div style="${WRAP}">${CR}` +
+    `        ${encabezado("Cómo pagás", PAGOS_TITULO, PAGOS_BAJADA)}${CR}` +
+    `        <ul class="dcx-pagos">${items}</ul>${CR}` +
+    `        <p style="margin:32px 0 0;text-align:center;font-size:15px;color:${MUTED}">${esc(PAGOS_PIE)}</p>${CR}` +
+    `      </div>${CR}` +
+    `    </section>${CR}`
+  );
+}
+
+const MAS =
+  '<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" ' +
+  'stroke="currentColor" stroke-width="2.6" stroke-linecap="round">' +
+  '<path d="M12 5v14M5 12h14"></path></svg>';
+
+function preguntas(): string {
+  const items = FAQ.map(
+    (f) =>
+      `<li><details class="dcx-faq">` +
+      `<summary class="dcx-faq-p">${esc(f.pregunta)}` +
+      `<span aria-hidden="true" class="dcx-faq-mas">${MAS}</span></summary>` +
+      `<div class="dcx-faq-r"><p>${esc(f.respuesta)}</p></div>` +
+      `</details></li>`,
+  ).join("");
+  return (
+    `    <section id="preguntas" style="background:${MARFIL};scroll-margin-top:96px">${CR}` +
+    `      <div style="${WRAP}">${CR}` +
+    `        <div class="dcx-faq-caja">${CR}` +
+    `          <div class="dcx-faq-intro">` +
+    `<span class="dcx-rotulo">Dudas</span>` +
+    `<h2 style="${H2};margin:16px 0 0;max-width:14ch">${esc(FAQ_TITULO)}</h2>` +
+    `<p style="font-size:16px;line-height:1.6;color:${INK};margin:16px 0 0;max-width:36ch">Si te queda alguna, ` +
+    `<a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" style="color:${OCRE_INK};font-weight:500;text-decoration:underline;text-underline-offset:4px">escribile a Do&ntilde;a</a>.</p>` +
+    `</div>${CR}` +
+    `          <ul class="dcx-faqs">${items}</ul>${CR}` +
+    `        </div>${CR}` +
     `      </div>${CR}` +
     `    </section>${CR}`
   );
@@ -361,6 +418,40 @@ const CSS = [
   "  .dcx-cuida-ico { display: grid; place-items: center; width: 48px; height: 48px;" +
     ` border-radius: 50%; background: ${MARFIL}; color: ${VERDE}; }`,
   `  .dcx-cuida-txt { font-size: 14.5px; line-height: 1.35; font-weight: 500; color: ${VERDE}; }`,
+  "",
+  "  /* Medios de pago. */",
+  "  .dcx-pagos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;" +
+    " margin: 40px 0 0; padding: 0; list-style: none; }",
+  "  @media (min-width: 1024px) { .dcx-pagos { grid-template-columns: repeat(4, 1fr); } }",
+  "  .dcx-pago { display: flex; flex-direction: column; align-items: center; gap: 12px;" +
+    " text-align: center; border: 1px solid rgba(22,57,35,0.12); background: " + GRAD +
+    "; border-radius: 12px; padding: clamp(18px,2.4vw,26px) 16px; }",
+  "  .dcx-pago-ico { display: grid; place-items: center; width: 48px; height: 48px;" +
+    " border-radius: 50%; background: " + MARFIL + "; color: " + VERDE + "; }",
+  "  .dcx-pago-nombre { font-family: Montserrat, sans-serif; font-size: 15.5px;" +
+    " font-weight: 600; color: " + VERDE + "; }",
+  "  .dcx-pago-detalle { font-size: 13.5px; line-height: 1.35; color: " + MUTED + "; }",
+  "",
+  "  /* Preguntas frecuentes. */",
+  "  .dcx-faq-caja { display: grid; gap: clamp(24px,4vw,64px); }",
+  "  @media (min-width: 1024px) { .dcx-faq-caja { grid-template-columns: minmax(0,32ch) 1fr; }" +
+    " .dcx-faq-intro { position: sticky; top: 112px; align-self: start; } }",
+  "  .dcx-faqs { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }",
+  "  .dcx-faq { border: 1px solid rgba(22,57,35,0.12); border-radius: 12px;" +
+    " background: rgba(226,235,229,0.6); }",
+  "  .dcx-faq[open] { background: " + GRAD + "; }",
+  "  .dcx-faq-p { display: flex; align-items: flex-start; gap: 16px; cursor: pointer;" +
+    " list-style: none; padding: clamp(14px,2vw,20px); font-family: Montserrat, sans-serif;" +
+    " font-size: clamp(15.5px,1.8vw,17.5px); font-weight: 600; color: " + VERDE + "; }",
+  "  .dcx-faq-p::-webkit-details-marker { display: none; }",
+  "  .dcx-faq-mas { display: grid; place-items: center; flex: none; width: 24px; height: 24px;" +
+    " margin: 4px 0 0 auto; border-radius: 50%; background: " + OCRE + "; color: " + VERDE + ";" +
+    " transition: transform 0.3s; }",
+  "  .dcx-faq[open] .dcx-faq-mas { transform: rotate(45deg); }",
+  "  .dcx-faq-r { padding: 0 clamp(14px,2vw,20px) clamp(14px,2vw,20px); }",
+  "  .dcx-faq-r p { margin: 0; max-width: 62ch; font-size: 15.5px; line-height: 1.6;" +
+    " color: " + INK + "; }",
+  "  @media (prefers-reduced-motion: reduce) { .dcx-faq-mas { transition: none; } }",
 ].join(CR);
 
 /* --- montaje ------------------------------------------------------------ */
@@ -386,6 +477,16 @@ const bloque =
   donaTeCuida(telefono) +
   CIERRA;
 
+const ABRE2 = "    <!-- GUIA2:INICIO -->" + CR;
+const CIERRA2 = "    <!-- GUIA2:FIN -->" + CR;
+
+const bloque2 =
+  ABRE2 +
+  "    <!-- Generado por scripts/guia-estatica.ts. No editar a mano. -->" + CR +
+  pagos() +
+  preguntas() +
+  CIERRA2;
+
 if (html.includes(ABRE)) {
   const i = html.indexOf(ABRE);
   const j = html.indexOf(CIERRA, i) + CIERRA.length;
@@ -397,6 +498,15 @@ if (html.includes(ABRE)) {
   const k = html.indexOf(ancla);
   if (k === -1) throw new Error("no encuentro dónde pegar el bloque");
   html = html.slice(0, k) + bloque + html.slice(k);
+}
+
+if (!html.includes(ABRE2)) {
+  throw new Error("falta el hueco GUIA2 en index.html");
+}
+{
+  const i = html.indexOf(ABRE2);
+  const j = html.indexOf(CIERRA2, i) + CIERRA2.length;
+  html = html.slice(0, i) + bloque2 + html.slice(j);
 }
 
 const MARCA_CSS = "  /* Los cinco pasos. */";
@@ -416,6 +526,6 @@ writeFileSync(new URL(GEMELO, import.meta.url), html, "utf8");
 
 console.log(
   `OK — ${PASOS.length} pasos, ${ACOMPANA.length} ítems de acompañamiento, ` +
-    `${RUBROS.length} rubros, ${REQUISITOS.length} requisitos y ${CUIDA.length} señales, ` +
+    `${RUBROS.length} rubros, ${REQUISITOS.length} requisitos, ${CUIDA.length} señales, ${PAGOS.length} medios de pago y ${FAQ.length} preguntas, ` +
     `con ${Object.keys(ICONOS).length} íconos leídos de Iconos.tsx`,
 );

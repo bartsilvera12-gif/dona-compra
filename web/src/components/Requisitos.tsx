@@ -43,7 +43,7 @@ function Tilde() {
 
 export default function Requisitos() {
   return (
-    <section className="bg-card">
+    <section id="requisitos" className="scroll-mt-24 bg-card">
       <Wrap>
         <Revelar>
           <div className="mx-auto max-w-[52ch] text-center">

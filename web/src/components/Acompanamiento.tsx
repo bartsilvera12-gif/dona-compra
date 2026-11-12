@@ -23,7 +23,7 @@ import { btnPrimario, Wrap } from "@/components/ui";
 
 export default function Acompanamiento() {
   return (
-    <section className="overflow-hidden bg-card">
+    <section id="acompanamiento" className="scroll-mt-24 overflow-hidden bg-card">
       <div className="mx-auto grid max-w-[1280px] items-center gap-[clamp(28px,4vw,72px)] px-[clamp(18px,4vw,40px)] py-[clamp(44px,7vw,96px)] lg:grid-cols-[1fr_minmax(0,46ch)] lg:px-0 lg:pl-[max(clamp(18px,4vw,40px),calc((100vw-1280px)/2))]">
         <Revelar className="lg:-ml-[max(clamp(18px,4vw,40px),calc((100vw-1280px)/2))]">
           <div className="relative aspect-[5/4] overflow-hidden rounded-[var(--radius-card)] bg-grad-start lg:aspect-[4/3] lg:rounded-l-none">

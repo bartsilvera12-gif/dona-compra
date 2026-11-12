@@ -24,7 +24,7 @@ import { btnSecundario, Wrap } from "@/components/ui";
 
 export default function AsiDeSimple() {
   return (
-    <section className="relative overflow-hidden bg-salvia/25">
+    <section id="como-funciona" className="relative scroll-mt-24 overflow-hidden bg-salvia/25">
       <Wrap>
         <Revelar>
           <div className="mx-auto max-w-[52ch] text-center">

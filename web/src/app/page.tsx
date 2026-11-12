@@ -14,6 +14,8 @@ import PortadaCarrusel from "@/components/PortadaCarrusel";
 import Acompanamiento from "@/components/Acompanamiento";
 import AsiDeSimple from "@/components/AsiDeSimple";
 import CintaBeneficios from "@/components/CintaBeneficios";
+import Pagos from "@/components/Pagos";
+import Preguntas from "@/components/Preguntas";
 import DonaTeCuida from "@/components/DonaTeCuida";
 import Requisitos from "@/components/Requisitos";
 import Rubros from "@/components/Rubros";
@@ -541,6 +543,12 @@ export default function Home() {
           </Revelar>
         </Wrap>
       </section>
+
+      {/* Cómo pagás, y después las dudas: las dos preguntas que quedan
+          cuando ya se entendió el servicio y se vio el precio. */}
+      <Pagos />
+
+      <Preguntas />
 
       <Testimonios />
 

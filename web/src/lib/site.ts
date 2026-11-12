@@ -17,14 +17,19 @@ export const site = {
 
   phone: env("NEXT_PUBLIC_PHONE", "0994 876 333"),
   email: env("NEXT_PUBLIC_EMAIL", "donacompra.py@gmail.com"),
-  horario:
-    "Lunes a viernes de 08:00 a 18:00 · Sábados de 08:00 a 12:00",
+  horario: "Lunes a viernes de 08:00 a 18:00 · Sábados de 08:00 a 12:00",
   plazo: "Respondemos dentro de las 24 horas hábiles.",
   zona: "Gran Asunción, Paraguay",
 
-  // Vacíos hasta que nos pasen las direcciones: los botones no se muestran.
-  facebook: env("NEXT_PUBLIC_FACEBOOK"),
-  instagram: env("NEXT_PUBLIC_INSTAGRAM"),
+  // Las pasó el cliente en la guía de diseño de noviembre de 2026.
+  facebook: env(
+    "NEXT_PUBLIC_FACEBOOK",
+    "https://www.facebook.com/profile.php?id=61595837348991",
+  ),
+  instagram: env(
+    "NEXT_PUBLIC_INSTAGRAM",
+    "https://www.instagram.com/donacompra.py/",
+  ),
 
   // Datos registrales, para la página jurídica. Salen del artículo 1 de las
   // Condiciones Generales de Servicio y de Venta de noviembre 2026.
@@ -70,9 +75,30 @@ export const nav = [
   { href: "/mayoristas", label: "Mayoristas" },
   { href: "/club", label: "El Club" },
   { href: "/anuncios", label: "Anuncios" },
-  { href: "/preguntas-frecuentes", label: "Preguntas frecuentes", corto: "FAQ" },
+  {
+    href: "/preguntas-frecuentes",
+    label: "Preguntas frecuentes",
+    corto: "FAQ",
+  },
   { href: "/juridica", label: "Jurídica" },
   { href: "/contacto", label: "Contacto" },
+] as const;
+
+/**
+ * El menú corto de la guía de diseño del cliente: cinco entradas y nada más.
+ *
+ * Tres apuntan a secciones del inicio y van con «/#» para que funcionen
+ * también desde las otras páginas. Es un menú deliberadamente corto —esa es
+ * la idea de la guía: menos opciones y una sola acción clara—, así que todo
+ * lo que no está acá sigue estando en el menú del teléfono, en el pie y en
+ * el sitemap, que es donde se busca una página concreta.
+ */
+export const navGuia = [
+  { href: "/#como-funciona", label: "Cómo funciona" },
+  { href: "/#acompanamiento", label: "Acompañamiento" },
+  { href: "/#requisitos", label: "Requisitos" },
+  { href: "/mayoristas", label: "Mayoristas" },
+  { href: "/#preguntas", label: "Preguntas" },
 ] as const;
 
 /**

@@ -187,3 +187,91 @@ export const CUIDA: { icono: NombreIcono; texto: string }[] = [
   { icono: "factura", texto: "Factura verificable en la DNIT" },
   { icono: "candado", texto: "Nunca te pedimos claves" },
 ];
+
+/* --- Cómo pagás --------------------------------------------------------- */
+
+export const PAGOS_TITULO = "Pagás como te quede cómodo";
+export const PAGOS_BAJADA =
+  "Pagás tu factura desde donde te quede cómodo, antes de los 30 días.";
+
+/**
+ * Los cuatro medios de pago.
+ *
+ * La guía pide los logos oficiales de Tigo Money y de Mango. No están acá
+ * porque no tenemos su autorización escrita, que es la misma regla que la
+ * hoja de dirección de comunicación fija para los logos de aliados. Van con
+ * el nombre compuesto y un ícono nuestro hasta que lleguen.
+ */
+export const PAGOS: { icono: NombreIcono; nombre: string; detalle: string }[] =
+  [
+    {
+      icono: "banco",
+      nombre: "Transferencia bancaria",
+      detalle: "Desde tu banco, a la cuenta de la factura.",
+    },
+    {
+      icono: "alias",
+      nombre: "Alias",
+      detalle: "El alias te llega con la factura.",
+    },
+    {
+      icono: "billetera",
+      nombre: "Tigo Money",
+      detalle: "Desde tu billetera.",
+    },
+    {
+      icono: "billetera",
+      nombre: "Mango",
+      detalle: "Desde tu billetera.",
+    },
+  ];
+
+export const PAGOS_PIE =
+  "Los datos para pagar te llegan junto con tu factura, por WhatsApp.";
+
+/* --- Preguntas frecuentes ----------------------------------------------- */
+
+export const FAQ_TITULO = "Preguntas frecuentes";
+
+export const FAQ: { pregunta: string; respuesta: string }[] = [
+  {
+    pregunta: "¿Doña Compra es un banco o una financiera?",
+    respuesta:
+      "No. No prestamos plata. Compramos la mercadería que vos elegís en tu mayorista y te la vendemos con factura legal. Vos la pagás después, cuando ya la vendiste.",
+  },
+  {
+    pregunta: "¿Tengo que cambiar de mayorista?",
+    respuesta:
+      "No. Seguís comprando donde siempre, a los precios de siempre. Doña Compra hace el trámite con tu mayorista.",
+  },
+  {
+    pregunta: "¿Cuándo pago?",
+    respuesta:
+      "Tenés hasta 30 días para pagar tu factura. Si querés, podés pagar antes.",
+  },
+  {
+    pregunta: "¿Cuánto cuesta?",
+    respuesta:
+      "Te lo explicamos en la reunión y te lo confirmamos antes de cada pedido. Sabés exactamente cuánto vas a pagar antes de retirar tu mercadería. Sin sorpresas.",
+  },
+  {
+    pregunta: "¿Cómo pago?",
+    respuesta:
+      "Por transferencia bancaria, alias, Tigo Money o Mango. Los datos te llegan con tu factura por WhatsApp.",
+  },
+  {
+    pregunta: "¿Cómo retiro mi mercadería?",
+    respuesta:
+      "Te llega por WhatsApp un código que es solo para vos. Vas a tu mayorista con ese código y tu cédula, y retirás.",
+  },
+  {
+    pregunta: "¿Qué necesito para empezar?",
+    respuesta:
+      "Un comercio funcionando en Gran Asunción, tu cédula y una reunión con Doña. Te visitamos y en pocos días te confirmamos.",
+  },
+  {
+    pregunta: "¿Cómo empiezo?",
+    respuesta:
+      "Agendá una reunión desde esta página o escribile a Doña por WhatsApp.",
+  },
+];

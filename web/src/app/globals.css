@@ -70,8 +70,12 @@
    fondo oscuro salian azul sobre azul. Dentro de la capa base, las utilidades
    vuelven a mandar. */
 @layer base {
+  /* Sin desplazamiento suave: el menu corto apunta a secciones que estan
+     hasta cuatro mil pixeles mas abajo, y recorrerlas con animacion es un
+     borron largo. Ademas el navegador no anima en una pestana que no esta
+     pintando, con lo cual el enlace parece no hacer nada. Un ancla salta. */
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
   body {

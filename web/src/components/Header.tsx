@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { nav, navDetalle, site, waLink } from "@/lib/site";
+import { nav, navDetalle, navGuia, site, waLink } from "@/lib/site";
 
 export default function Header() {
   const pathname = usePathname();
@@ -65,32 +65,44 @@ export default function Header() {
             </span>
           </Link>
 
+          {/* El menú corto de la guía. Lo que no está acá sigue en el menú
+              del teléfono, en el pie y en el sitemap. */}
           <nav
             aria-label="Navegación principal"
-            className="mx-auto hidden items-center gap-0.5 min-[1150px]:flex"
+            className="mx-auto hidden items-center gap-1 min-[1000px]:flex"
           >
-            {nav.map((item) => (
+            {navGuia.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 aria-current={activo(item.href) ? "page" : undefined}
-                className={`relative whitespace-nowrap px-2.5 py-1.5 text-[13.5px] hover:text-terracotta-ink ${
+                className={`relative whitespace-nowrap px-3 py-1.5 text-[14px] hover:text-terracotta-ink ${
                   activo(item.href) ? "text-navy" : "text-ink"
                 }`}
               >
-                {"corto" in item ? item.corto : item.label}
+                {item.label}
                 {activo(item.href) && (
-                  <span className="absolute inset-x-2.5 -bottom-px block h-[1.5px] bg-terracotta" />
+                  <span className="absolute inset-x-3 -bottom-px block h-[1.5px] bg-terracotta" />
                 )}
               </Link>
             ))}
           </nav>
 
+          {/* La guía pide este botón a la derecha, relleno y al WhatsApp. */}
+          <a
+            href={waLink("Hola Doña, quiero agendar una reunión.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-auto hidden rounded-full bg-ocre px-5 py-2.5 text-[13.5px] font-semibold whitespace-nowrap text-navy hover:bg-ocre-oscuro sm:inline-block"
+          >
+            Agendá tu reunión
+          </a>
+
           <button
             type="button"
             onClick={() => setAbierto(true)}
             aria-expanded={abierto}
-            className="ml-auto cursor-pointer rounded-[var(--radius-button)] border border-navy/30 px-4 py-2.5 text-xs uppercase tracking-[0.16em] text-navy min-[1150px]:hidden"
+            className="ml-auto cursor-pointer rounded-[var(--radius-button)] border border-navy/30 px-4 py-2.5 text-xs uppercase tracking-[0.16em] text-navy sm:ml-3 min-[1000px]:hidden"
           >
             Menú
           </button>

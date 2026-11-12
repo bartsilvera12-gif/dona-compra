@@ -43,8 +43,13 @@ export default function Footer() {
             DOÑA COMPRA
           </span>
           <p className="mt-4 max-w-[36ch] text-[13.5px] leading-relaxed text-card/60">
-            Compra de mercadería para comerciantes, sujeta a evaluación previa
-            y visita. Factura legal con el RUC de Doña Compra.
+            Compra de mercadería para comerciantes, sujeta a evaluación previa y
+            visita.
+          </p>
+          {/* Los datos registrales: la guía los pide en el pie, y es donde
+              los busca quien quiere verificar con quién está tratando. */}
+          <p className="mt-3 max-w-[36ch] text-[13.5px] leading-relaxed text-card/65">
+            {site.razonSocial} · RUC {site.ruc}
           </p>
         </div>
 
@@ -131,7 +136,10 @@ export default function Footer() {
           </span>
         </span>
         <span className="flex flex-wrap items-center gap-4">
-          <Link href="/juridica" className="text-[12.5px] text-card/60 hover:text-terracotta-soft">
+          <Link
+            href="/juridica"
+            className="text-[12.5px] text-card/60 hover:text-terracotta-soft"
+          >
             Aviso legal y privacidad
           </Link>
           <CookiePrefsButton />
