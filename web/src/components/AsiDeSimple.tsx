@@ -42,8 +42,9 @@ export default function AsiDeSimple() {
         </Revelar>
 
         <div className="relative mt-12">
-          {/* El hilo que une los pasos, por el centro de los discos: a 32px
-              del borde de la caja, que es el hueco que deja la lista arriba.
+          {/* El hilo que une los pasos, por el centro de los discos: a 28px
+              del borde de la caja, que es el hueco que cada <li> reserva
+              arriba para su disco.
 
               Entra con la misma animación que las tarjetas. Si no, mientras
               ellas bajan sus 22px el hilo ya está en su sitio, y durante medio
@@ -52,7 +53,7 @@ export default function AsiDeSimple() {
               después todavía están transparentes. */}
           <Revelar
             retardo={1}
-            className="pointer-events-none absolute top-8 right-[10%] left-[10%] hidden lg:block"
+            className="pointer-events-none absolute top-7 right-[10%] left-[10%] hidden lg:block"
           >
             <span
               aria-hidden="true"
@@ -60,19 +61,25 @@ export default function AsiDeSimple() {
             />
           </Revelar>
 
-          <ol className="relative m-0 flex snap-x snap-mandatory list-none gap-4 overflow-x-auto p-0 pt-8 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-5 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
+          <ol className="relative m-0 flex snap-x snap-mandatory list-none gap-4 overflow-x-auto p-0 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-5 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
             {PASOS.map((p, i) => (
+              /* El hueco del disco lo reserva el propio <li> con `pt-7`, y el
+                 disco va posicionado contra la tarjeta. Asi el disco sobresale
+                 de la tarjeta —que es el efecto buscado— pero nunca sale del
+                 <li>, y entonces da igual si alguna caja de arriba recorta:
+                 no hay nada que recortar. Antes salia con un `translate`, y
+                 cualquier contenedor con overflow lo cortaba por la mitad. */
               <Revelar
                 as="li"
                 key={p.titulo}
                 retardo={((i % 5) + 1) as 1 | 2 | 3 | 4 | 5}
-                className="w-[78vw] max-w-[300px] flex-none snap-start sm:w-[46vw] lg:w-auto lg:max-w-none"
+                className="flex w-[78vw] max-w-[300px] flex-none snap-start pt-7 sm:w-[46vw] lg:w-auto lg:max-w-none"
               >
-                <div className="flex h-full flex-col items-center rounded-[var(--radius-card)] border border-navy/10 bg-card px-5 pt-0 pb-6 text-center">
-                  <span className="grid h-14 w-14 -translate-y-7 place-items-center rounded-full bg-navy font-heading text-[20px] font-bold text-card">
+                <div className="relative flex w-full flex-col items-center rounded-[var(--radius-card)] border border-navy/10 bg-card px-5 pt-10 pb-6 text-center">
+                  <span className="absolute -top-7 left-1/2 grid h-14 w-14 -translate-x-1/2 place-items-center rounded-full bg-navy font-heading text-[20px] font-bold text-card">
                     {i + 1}
                   </span>
-                  <span className="-mt-3 text-terracotta-ink">
+                  <span className="text-terracotta-ink">
                     <Icono nombre={p.icono} tam={30} />
                   </span>
                   <h3 className="mt-4 text-[clamp(16px,1.8vw,18px)] text-navy">

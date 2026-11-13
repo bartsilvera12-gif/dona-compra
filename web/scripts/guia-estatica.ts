@@ -170,7 +170,7 @@ function asiDeSimple(): string {
     (p, i) =>
       `<li style="display:flex"><div class="dcx-paso">` +
       `<span class="dcx-paso-num">${i + 1}</span>` +
-      `<span style="margin-top:-12px;color:${OCRE_INK}">${svg(p.icono, 30)}</span>` +
+      `<span style="color:${OCRE_INK}">${svg(p.icono, 30)}</span>` +
       `<h3 style="${H3};font-size:clamp(16px,1.8vw,18px);margin:16px 0 0">${esc(p.titulo)}</h3>` +
       `<p style="font-size:14.5px;line-height:1.6;color:${MUTED};margin:8px 0 0">${esc(p.texto)}</p>` +
       `</div></li>`,
@@ -340,22 +340,24 @@ function preguntas(): string {
 const CSS = [
   "  /* Los cinco pasos. */",
   "  .dcx-pasos-caja { position: relative; margin-top: 48px; }",
-  "  .dcx-pasos { display: flex; gap: 16px; margin: 0; padding: 32px 0 8px; list-style: none;" +
+  "  .dcx-pasos { display: flex; gap: 16px; margin: 0; padding: 0 0 8px; list-style: none;" +
     " overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }",
   "  .dcx-pasos::-webkit-scrollbar { display: none; }",
-  "  .dcx-pasos > li { flex: none; width: 78vw; max-width: 300px; scroll-snap-align: start; }",
-  "  .dcx-paso { display: flex; flex-direction: column; align-items: center; width: 100%;" +
-    ` text-align: center; border: 1px solid rgba(22,57,35,0.1); background: ${MARFIL};` +
-    " border-radius: 12px; padding: 0 20px 24px; }",
-  "  .dcx-paso-num { display: grid; place-items: center; width: 56px; height: 56px;" +
-    ` transform: translateY(-28px); border-radius: 50%; background: ${VERDE};` +
+  "  .dcx-pasos > li { display: flex; flex: none; width: 78vw; max-width: 300px;" +
+    " padding-top: 28px; scroll-snap-align: start; }",
+  "  .dcx-paso { position: relative; display: flex; flex-direction: column; align-items: center;" +
+    ` width: 100%; text-align: center; border: 1px solid rgba(22,57,35,0.1); background: ${MARFIL};` +
+    " border-radius: 12px; padding: 40px 20px 24px; }",
+  "  .dcx-paso-num { position: absolute; top: -28px; left: 50%; transform: translateX(-50%);" +
+    " display: grid; place-items: center; width: 56px; height: 56px;" +
+    ` border-radius: 50%; background: ${VERDE};` +
     ` font-family: Montserrat, sans-serif; font-size: 20px; font-weight: 700; color: ${MARFIL}; }`,
   "  .dcx-pasos-hilo { display: none; }",
   "  @media (min-width: 640px) { .dcx-pasos > li { width: 46vw; } }",
   "  @media (min-width: 1024px) {",
   "    .dcx-pasos { display: grid; grid-template-columns: repeat(5, 1fr); overflow: visible; }",
   "    .dcx-pasos > li { width: auto; max-width: none; }",
-  "    .dcx-pasos-hilo { display: block; position: absolute; top: 32px; left: 10%; right: 10%;" +
+  "    .dcx-pasos-hilo { display: block; position: absolute; top: 28px; left: 10%; right: 10%;" +
     " border-top: 2px dashed rgba(22,57,35,0.15); pointer-events: none; }",
   "  }",
   "",
