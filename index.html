@@ -343,13 +343,11 @@
   .dcx-grande > div:last-child { padding: clamp(18px,2.4vw,26px); align-self: center; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
   /* Menu corto de la guia. */
-  .dcx-nav { display: none; align-items: center; gap: 4px; margin: 0 auto; }
+  .dcx-nav { display: flex; align-items: center; gap: 4px; margin: 0 auto; }
   .dcx-nav-link { position: relative; white-space: nowrap; padding: 6px 12px; font-size: 14px; color: #2F4237; text-decoration: none; }
   .dcx-nav-link:hover { color: #875F1A; }
-  .dcx-nav-cta { display: none; margin-left: auto; border-radius: 999px; background: #DE9B2B; color: #163923; padding: 10px 20px; font-size: 13.5px; font-weight: 600; white-space: nowrap; text-decoration: none; }
+  .dcx-nav-cta { display: inline-block; margin-left: auto; border-radius: 999px; background: #DE9B2B; color: #163923; padding: 10px 20px; font-size: 13.5px; font-weight: 600; white-space: nowrap; text-decoration: none; }
   .dcx-nav-cta:hover { background: #B88124; color: #163923; }
-  @media (min-width: 640px) { .dcx-nav-cta { display: inline-block; } }
-  @media (min-width: 1000px) { .dcx-nav { display: flex; } }
 
   /* Los cinco pasos. */
   .dcx-pasos-caja { position: relative; margin-top: 48px; }
@@ -454,18 +452,9 @@
         </span>
       </a>
 
-      <nav data-desktop-only="true" aria-label="Navegación principal" style="display:flex;align-items:center;gap:2px;margin:0 auto">
-        <a href="#/" data-nav-link="true" style="position:relative;padding:7px 10px;font-size:13.5px;color:#2F4237" style-hover="color:#DE9B2B">Inicio<sc-if value="{{ atHome }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:10px;right:10px;bottom:-1px;height:1.5px;background:#DE9B2B"></span></sc-if></a>
-        <a href="#/el-concepto" data-nav-link="true" style="position:relative;padding:7px 10px;font-size:13.5px;color:#2F4237" style-hover="color:#DE9B2B">El Concepto<sc-if value="{{ atConcepto }}"><span style="position:absolute;left:10px;right:10px;bottom:-1px;height:1.5px;background:#DE9B2B"></span></sc-if></a>
-        <a href="#/comerciante" data-nav-link="true" style="position:relative;padding:7px 10px;font-size:13.5px;color:#2F4237" style-hover="color:#DE9B2B">Comerciantes<sc-if value="{{ atComerciante }}"><span style="position:absolute;left:10px;right:10px;bottom:-1px;height:1.5px;background:#DE9B2B"></span></sc-if></a>
-        <a href="#/mayoristas" data-nav-link="true" style="position:relative;padding:7px 10px;font-size:13.5px;color:#2F4237" style-hover="color:#DE9B2B">Mayoristas<sc-if value="{{ atMayoristas }}"><span style="position:absolute;left:10px;right:10px;bottom:-1px;height:1.5px;background:#DE9B2B"></span></sc-if></a>
-        <a href="#/club" data-nav-link="true" style="position:relative;padding:7px 10px;font-size:13.5px;color:#2F4237" style-hover="color:#DE9B2B">El Club<sc-if value="{{ atClub }}"><span style="position:absolute;left:10px;right:10px;bottom:-1px;height:1.5px;background:#DE9B2B"></span></sc-if></a>
-        <a href="#/anuncios" data-nav-link="true" style="position:relative;padding:7px 10px;font-size:13.5px;color:#2F4237" style-hover="color:#DE9B2B">Anuncios<sc-if value="{{ atAnuncios }}"><span style="position:absolute;left:10px;right:10px;bottom:-1px;height:1.5px;background:#DE9B2B"></span></sc-if></a>
-        <a href="#/preguntas-frecuentes" data-nav-link="true" style="position:relative;padding:7px 10px;font-size:13.5px;color:#2F4237" style-hover="color:#DE9B2B">FAQ<sc-if value="{{ atFaq }}"><span style="position:absolute;left:10px;right:10px;bottom:-1px;height:1.5px;background:#DE9B2B"></span></sc-if></a>
-        <a href="#/juridica" data-nav-link="true" style="position:relative;padding:7px 10px;font-size:13.5px;color:#2F4237" style-hover="color:#DE9B2B">Jurídica<sc-if value="{{ atJuridica }}"><span style="position:absolute;left:10px;right:10px;bottom:-1px;height:1.5px;background:#DE9B2B"></span></sc-if></a>
-      </nav>
+      <nav data-desktop-only="true" aria-label="Navegaci&oacute;n principal" class="dcx-nav"><a href="#/#como-funciona" class="dcx-nav-link">C&oacute;mo funciona</a><a href="#/#acompanamiento" class="dcx-nav-link">Acompa&ntilde;amiento</a><a href="#/#requisitos" class="dcx-nav-link">Requisitos</a><a href="#/mayoristas" class="dcx-nav-link">Mayoristas</a><a href="#/#preguntas" class="dcx-nav-link">Preguntas</a></nav><a data-desktop-only="true" href="{{ waLink }}" target="_blank" rel="noopener noreferrer" class="dcx-nav-cta">Agend&aacute; tu reuni&oacute;n</a>
 
-      <a data-desktop-only="true" href="#/contacto" style="display:flex;align-items:center;gap:9px;background:#163923;color:#F5F2EB;padding:12px 22px;font-size:13.5px;letter-spacing:0.06em;text-transform:uppercase;flex:none" style-hover="background:#DE9B2B;color:#102919">Hablemos</a>
+      
 
       <button data-mobile-only="true" onClick="{{ openMenu }}" aria-label="Abrir menú" style="margin-left:auto;align-items:center;gap:10px;background:none;border:1px solid rgba(22,57,35,0.3);padding:11px 16px;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#163923;cursor:pointer;border-radius:8px">Menú</button>
     </div>
@@ -2420,7 +2409,12 @@
       </div>
       <div>
         <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#DE9B2B">El sitio</div>
-        <nav aria-label="Navegaci&oacute;n principal" class="dcx-nav"><a href="#/#como-funciona" class="dcx-nav-link">C&oacute;mo funciona</a><a href="#/#acompanamiento" class="dcx-nav-link">Acompa&ntilde;amiento</a><a href="#/#requisitos" class="dcx-nav-link">Requisitos</a><a href="#/mayoristas" class="dcx-nav-link">Mayoristas</a><a href="#/#preguntas" class="dcx-nav-link">Preguntas</a></nav><a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" class="dcx-nav-cta">Agend&aacute; tu reuni&oacute;n</a>
+        <nav aria-label="Navegaci&oacute;n principal" style="display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin-top:14px">
+          <a href="#/" style="color:rgba(245,242,235,0.78);font-size:14px">Inicio</a>
+          <a href="#/el-concepto" style="color:rgba(245,242,235,0.78);font-size:14px">El Concepto</a>
+          <a href="#/comerciante" style="color:rgba(245,242,235,0.78);font-size:14px">Comerciantes</a>
+          <a href="#/mayoristas" style="color:rgba(245,242,235,0.78);font-size:14px">Mayoristas</a>
+        </nav>
       </div>
       <div>
         <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#DE9B2B">Más</div>
