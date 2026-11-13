@@ -15,6 +15,16 @@ RedirectMatch 404 \.dc\.html$
 RedirectMatch 404 ^/(vercel\.json|package(-lock)?\.json|README\.md)$
 RedirectMatch 404 /\.(git|claude|env)
 
+# --- Un solo dominio ------------------------------------------------------
+# www y sin www devolvian los dos la misma pagina con codigo 200. Para un
+# buscador eso son dos sitios con el mismo contenido, y reparte entre los dos
+# lo que deberia ir a uno. Se queda el que uso el cliente: sin www.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^(.*)$ https://xn--doacompra-m6a.com/$1 [L,R=301]
+</IfModule>
+
 # --- Cache ----------------------------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- El sitio es una sola pagina con ruteo por hash, asi que para un buscador
+     hay una sola direccion: la raiz. Las secciones viven detras del # y no
+     son URLs propias.
+     El dominio va en punycode (xn--doacompra-m6a.com = donacompra.com con
+     enie) porque los sitemaps tienen que ser ASCII. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dona-compra.vercel.app/</loc>
+    <loc>https://xn--doacompra-m6a.com/</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

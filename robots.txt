@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dona-compra.vercel.app/sitemap.xml
+Sitemap: https://xn--doacompra-m6a.com/sitemap.xml
