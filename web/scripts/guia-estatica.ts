@@ -353,9 +353,9 @@ const CSS = [
   "  .dcx-pasos-hilo { display: none; }",
   "  @media (min-width: 640px) { .dcx-pasos > li { width: 46vw; } }",
   "  @media (min-width: 1024px) {",
-  "    .dcx-pasos { display: grid; grid-template-columns: repeat(5, 1fr); overflow: visible; padding-top: 0; }",
+  "    .dcx-pasos { display: grid; grid-template-columns: repeat(5, 1fr); overflow: visible; }",
   "    .dcx-pasos > li { width: auto; max-width: none; }",
-  "    .dcx-pasos-hilo { display: block; position: absolute; top: 28px; left: 10%; right: 10%;" +
+  "    .dcx-pasos-hilo { display: block; position: absolute; top: 32px; left: 10%; right: 10%;" +
     " border-top: 2px dashed rgba(22,57,35,0.15); pointer-events: none; }",
   "  }",
   "",

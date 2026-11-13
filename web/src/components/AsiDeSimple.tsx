@@ -24,7 +24,10 @@ import { btnSecundario, Wrap } from "@/components/ui";
 
 export default function AsiDeSimple() {
   return (
-    <section id="como-funciona" className="relative scroll-mt-24 overflow-hidden bg-salvia/25">
+    <section
+      id="como-funciona"
+      className="relative scroll-mt-24 overflow-hidden bg-salvia/25"
+    >
       <Wrap>
         <Revelar>
           <div className="mx-auto max-w-[52ch] text-center">
@@ -39,13 +42,25 @@ export default function AsiDeSimple() {
         </Revelar>
 
         <div className="relative mt-12">
-          {/* El hilo que une los pasos, a la altura de los discos. */}
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute top-7 right-[10%] left-[10%] hidden border-t-2 border-dashed border-navy/15 lg:block"
-          />
+          {/* El hilo que une los pasos, por el centro de los discos: a 32px
+              del borde de la caja, que es el hueco que deja la lista arriba.
 
-          <ol className="relative m-0 flex snap-x snap-mandatory list-none gap-4 overflow-x-auto p-0 pt-8 pb-2 lg:pt-0 [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-5 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
+              Entra con la misma animación que las tarjetas. Si no, mientras
+              ellas bajan sus 22px el hilo ya está en su sitio, y durante medio
+              segundo la línea cruza los discos por abajo y parece que los
+              corta. Con el retardo de la primera alcanza: las que entran
+              después todavía están transparentes. */}
+          <Revelar
+            retardo={1}
+            className="pointer-events-none absolute top-8 right-[10%] left-[10%] hidden lg:block"
+          >
+            <span
+              aria-hidden="true"
+              className="block border-t-2 border-dashed border-navy/15"
+            />
+          </Revelar>
+
+          <ol className="relative m-0 flex snap-x snap-mandatory list-none gap-4 overflow-x-auto p-0 pt-8 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-5 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
             {PASOS.map((p, i) => (
               <Revelar
                 as="li"
