@@ -22,8 +22,8 @@ const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 const TH =
-  "border-bottom:1px solid rgba(27,59,43,0.2);padding:10px 12px 10px 0;font-weight:500;color:#1B3B2B";
-const TD = "border-bottom:1px solid rgba(27,59,43,0.1);padding:10px 12px 10px 0";
+  "border-bottom:1px solid rgba(22,57,35,0.2);padding:10px 12px 10px 0;font-weight:500;color:#163923";
+const TD = "border-bottom:1px solid rgba(22,57,35,0.1);padding:10px 12px 10px 0";
 
 function tabla(
   cabeceras: string[],
@@ -43,7 +43,7 @@ function tabla(
         f
           .map((celda, i) =>
             i === 0
-              ? `<td style="${TD};text-align:left;font-weight:500;color:#1B3B2B">${esc(celda)}</td>`
+              ? `<td style="${TD};text-align:left;font-weight:500;color:#163923">${esc(celda)}</td>`
               : `<td style="${TD};text-align:right;font-variant-numeric:tabular-nums;color:#2F4237">${esc(celda)}</td>`,
           )
           .join("") +
@@ -91,7 +91,7 @@ function grilla(cual: string): string {
 
 const P = "margin:10px 0 0;font-size:15.5px;line-height:1.65;color:#2F4237";
 const H3 =
-  "font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(17px,2vw,20px);line-height:1.25;color:#1B3B2B;margin:32px 0 8px";
+  "font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(17px,2vw,20px);line-height:1.25;color:#163923;margin:32px 0 8px";
 
 let html =
   `<p style="margin:16px 0 0;font-size:14.5px;line-height:1.6;color:#4F5C54">Versión ${esc(CGV_VERSION)}. ` +

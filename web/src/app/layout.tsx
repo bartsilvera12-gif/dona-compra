@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export const viewport = { themeColor: "#1B3B2B" };
+export const viewport = { themeColor: "#163923" };
 
 /** Datos estructurados para los buscadores. */
 function JsonLd() {

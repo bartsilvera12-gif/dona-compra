@@ -102,12 +102,12 @@ export function Paso({
    radio de 8 px de la carta gráfica queda para tarjetas y campos; acá manda
    lo que el cliente pidió ver. */
 export const btnPrimario =
-  "inline-block rounded-full bg-navy px-8 py-4 text-[15px] font-semibold tracking-[0.02em] text-card shadow-[0_10px_24px_-12px_rgba(20,44,32,0.9)] transition-transform hover:bg-navy-deep hover:text-card hover:-translate-y-0.5 motion-reduce:hover:translate-y-0";
+  "inline-block rounded-full bg-navy px-8 py-4 text-[15px] font-semibold tracking-[0.02em] text-card shadow-[0_10px_24px_-12px_rgba(16,41,25,0.9)] transition-transform hover:bg-navy-deep hover:text-card hover:-translate-y-0.5 motion-reduce:hover:translate-y-0";
 
 /* El secundario en ocre sólido, con texto verde oscuro: el ocre sobre marfil
    no sirve para letra, pero como fondo de botón con texto oscuro da 5.9. */
 export const btnSecundario =
-  "inline-block rounded-full bg-ocre px-8 py-4 text-[15px] font-semibold tracking-[0.02em] text-navy shadow-[0_10px_24px_-12px_rgba(20,44,32,0.7)] transition-transform hover:bg-ocre-oscuro hover:text-navy hover:-translate-y-0.5 motion-reduce:hover:translate-y-0";
+  "inline-block rounded-full bg-ocre px-8 py-4 text-[15px] font-semibold tracking-[0.02em] text-navy shadow-[0_10px_24px_-12px_rgba(16,41,25,0.7)] transition-transform hover:bg-ocre-oscuro hover:text-navy hover:-translate-y-0.5 motion-reduce:hover:translate-y-0";
 
 /** Bloque de cierre con las dos llamadas a la acción de siempre. */
 export function CTA({ titulo, texto }: { titulo: string; texto: string }) {
