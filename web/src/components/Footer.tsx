@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Redes from "@/components/Redes";
 import { site, waLink } from "@/lib/site";
 import CookiePrefsButton from "./CookiePrefsButton";
 
@@ -96,26 +97,9 @@ export default function Footer() {
             </a>
             <span className="text-card/65">{site.zona}</span>
             <span className="text-card/65">{site.horario}</span>
-            {site.facebook && (
-              <a
-                href={site.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-card/78 hover:text-terracotta-soft"
-              >
-                Facebook
-              </a>
-            )}
-            {site.instagram && (
-              <a
-                href={site.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-card/78 hover:text-terracotta-soft"
-              >
-                Instagram
-              </a>
-            )}
+            {/* Las redes van en íconos, debajo de los datos de contacto: es
+                donde se las busca y así se ven de un vistazo. */}
+            <Redes className="mt-1.5" />
           </div>
         </div>
       </div>
