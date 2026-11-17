@@ -109,6 +109,28 @@
     atJuridica: "Aviso legal",
   };
 
+  /**
+   * La dirección de cada página, para poder abrirla.
+   *
+   * El sitio es un solo archivo con rutas por almohadilla; esto es el mismo
+   * mapa que tiene adentro, al revés: del nombre que ve una persona a la
+   * dirección que entiende el sitio.
+   */
+  var RUTAS = {
+    "Inicio": "",
+    "El concepto": "/el-concepto",
+    "Para comerciantes": "/comerciante",
+    "Para mayoristas": "/mayoristas",
+    "El Club": "/club",
+    "Anuncios": "/anuncios",
+    "Niveles y tarifas": "/niveles-y-tarifas",
+    "Servicios": "/servicios",
+    "Nosotros": "/nosotros",
+    "Contacto": "/contacto",
+    "Preguntas frecuentes": "/preguntas-frecuentes",
+    "Aviso legal": "/juridica",
+  };
+
   /** En qué página vive un nodo. Fuera de <main> es común a todas. */
   function paginaDe(nodo) {
     var el = nodo.nodeType === 3 ? nodo.parentElement : nodo;
@@ -313,7 +335,12 @@
       if (!v) continue;
       if (c.tipo === "texto") {
         if (typeof v.texto === "string" && v.texto !== c.valor) {
-          c.nodo.nodeValue = v.texto;
+          // Se respetan los espacios de los costados. En "<h1>Elegí tu
+          // mercadería. <span>Pagá después.</span></h1>" ese espacio de más
+          // es lo único que separa las dos partes: sin él quedaría
+          // "mercadería.Pagá".
+          var crudo = c.nodo.nodeValue;
+          c.nodo.nodeValue = /^\s*/.exec(crudo)[0] + v.texto + /\s*$/.exec(crudo)[0];
           n++;
         }
       } else if (c.tipo === "imagen") {
@@ -333,6 +360,7 @@
   window.DC_CONTENIDO = {
     recorrer: recorrer,
     aplicar: aplicar,
+    rutas: RUTAS,
     huella: huella,
     limpio: limpio,
   };

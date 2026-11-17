@@ -46,6 +46,10 @@
   var BUCKET = "donacompraweb";
 
   var CLAVE = "dc.datos.v2";
+  // El panel abre el sitio dentro suyo para mostrar como va quedando. En ese
+  // caso los datos no salen de la base: salen de lo que el panel tiene en
+  // pantalla, con los cambios todavia sin guardar.
+  var CLAVE_VISTA = "dc.vista.previa";
   var FRESCO = 5 * 60 * 1000; // 5 minutos
   var ESPERA_MAX = 1200; // ms que el sitio acepta esperar al panel
 
@@ -186,8 +190,33 @@
       });
   }
 
-  /** Las dos consultas salen juntas y a la vez que el resto de la carga. */
-  var pedido = Promise.all([
+  /** ¿Esto es la vista previa del panel? */
+  function esVistaPrevia() {
+    return location.search.indexOf("dcvista=1") !== -1;
+  }
+
+  /**
+   * Los datos que el panel dejó para la vista previa.
+   *
+   * Van por sessionStorage y no por el caché de siempre a propósito: lo que
+   * se está escribiendo todavía no se guardó, y si tocara el caché, el sitio
+   * de verdad le mostraría a esa persona textos que nadie aprobó.
+   */
+  function datosDeVista() {
+    try {
+      return JSON.parse(sessionStorage.getItem(CLAVE_VISTA) || "null");
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /**
+   * Las dos consultas salen juntas y a la vez que el resto de la carga.
+   *
+   * En la vista previa no se piden: los datos ya están puestos por el panel, y
+   * pedirlos sería traer de la base justamente lo que se está por cambiar.
+   */
+  var pedido = esVistaPrevia() ? Promise.resolve(null) : Promise.all([
     traer("configuracion?select=*&limit=1"),
     traer("contenido?select=clave,valor"),
   ]).then(function (r) {
@@ -207,6 +236,19 @@
   }
 
   function listo() {
+    // Dentro del panel no se pide nada a la base ni se toca el caché.
+    if (esVistaPrevia()) {
+      // El cartel de cookies es fijo y tapa media vista. Se esconde solo acá
+      // adentro: en el sitio de verdad sigue apareciendo igual, y la decisión
+      // de la persona que entra no se toca.
+      var e = document.createElement("style");
+      e.textContent = '[aria-label="Preferencias de cookies"]{display:none!important}';
+      document.head.appendChild(e);
+      aplicarTodo(datosDeVista());
+      arrancarRuntime();
+      return;
+    }
+
     var cache = leerCache();
     var fresco = cache && Date.now() - cache.en < FRESCO;
 

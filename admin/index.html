@@ -185,7 +185,10 @@
   /* --- Buscador y selector de pagina ---------------------------------------- */
   .barra-contenido { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
   .barra-contenido select, .barra-contenido input { width: auto; }
-  .barra-contenido select { min-width: 210px; }
+  /* El desplegable de secciones tiene nombres largos y, sin tope, se estira
+     hasta empujar al buscador fuera de la fila. */
+  .barra-contenido select { flex: 0 1 auto; min-width: 170px; max-width: 320px; }
+  .barra-contenido input { flex: 1 1 190px; min-width: 150px; }
 
   .casilla {
     display: flex; align-items: center; gap: 9px; margin: 12px 0 0;
@@ -198,62 +201,26 @@
   /* Menu a la izquierda, la seccion elegida a la derecha. Una pagina del sitio
      tiene hasta veintidos secciones: todas juntas no se leen. */
   .contenido-cols { display: grid; gap: 18px; margin-top: 18px; }
-  @media (min-width: 900px) {
-    .contenido-cols { grid-template-columns: 252px 1fr; align-items: start; }
-    .secciones-lista {
-      position: sticky; top: 86px;
-      max-height: calc(100vh - 110px); overflow-y: auto;
-      padding-right: 4px;
-    }
+  @media (min-width: 1000px) {
+    .contenido-cols { grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr); align-items: start; }
+    .vista { position: sticky; top: 86px; }
   }
 
-  .secciones-lista { display: flex; flex-direction: column; gap: 2px; }
-
-  /* En telefono la columna no entra al lado, y una lista de veintidos
-     secciones arriba dejaria los campos tres pantallas mas abajo. Pasa a ser
-     una fila que se desliza con el dedo, como las pestañas de un cuaderno. */
-  @media (max-width: 899px) {
-    .secciones-lista {
-      flex-direction: row; gap: 6px; overflow-x: auto;
-      padding-bottom: 8px; scroll-snap-type: x proximity;
-      -webkit-overflow-scrolling: touch;
-    }
-    .seccion-link {
-      width: auto; flex: none; scroll-snap-align: start;
-      border: 1px solid var(--linea); background: #fff; padding: 8px 12px;
-    }
-    .seccion-link[aria-current="true"] { border-color: var(--verde); }
-    .seccion-nombre { white-space: nowrap; max-width: 46vw; overflow: hidden; text-overflow: ellipsis; }
+  /* La vista del sitio: el mismo index.html, con lo que se esta escribiendo
+     puesto encima. No es un dibujo parecido, es la pagina. */
+  .vista { display: flex; flex-direction: column; gap: 8px; }
+  .vista-barra { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .vista-rotulo {
+    font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted);
   }
-  .secciones-lista::-webkit-scrollbar { width: 6px; }
-  .secciones-lista::-webkit-scrollbar-thumb { background: var(--linea); border-radius: 3px; }
-
-  .seccion-link {
-    display: flex; align-items: center; gap: 9px; width: 100%;
-    text-align: left; background: transparent; border-radius: var(--radio-chico);
-    padding: 9px 12px; font-weight: 500; font-size: 14px; color: var(--ink);
+  .vista-marco {
+    border: 1px solid var(--linea); border-radius: var(--radio);
+    overflow: hidden; background: var(--grad);
+    height: min(640px, calc(100vh - 160px)); min-height: 380px;
   }
-  .seccion-link:hover { background: var(--grad); }
-  .seccion-link[aria-current="true"] {
-    background: var(--verde);
-    box-shadow: 0 8px 18px -14px rgba(16, 41, 25, 0.9);
-  }
-  .seccion-link[aria-current="true"] .seccion-nombre { color: var(--marfil); }
-  .seccion-link[aria-current="true"] .seccion-cuenta {
-    color: rgba(245, 242, 235, 0.75); background: rgba(245, 242, 235, 0.14);
-  }
-  .seccion-nombre {
-    font-family: Montserrat, sans-serif; font-weight: 600; color: var(--verde);
-    font-size: 13px; flex: 1; line-height: 1.32; letter-spacing: 0;
-  }
-  .seccion-cuenta {
-    font-size: 11px; color: var(--muted); white-space: nowrap;
-    background: var(--grad); border-radius: 999px; padding: 1px 7px;
-  }
-  .seccion-punto {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--ocre); flex: none;
-    box-shadow: 0 0 0 3px rgba(222, 155, 43, 0.2);
-  }
+  .vista-marco iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; }
+  .vista-marco.cargando { opacity: 0.55; transition: opacity 0.15s; }
 
   /* --- Los campos de la seccion ---------------------------------------------- */
   .campos {
@@ -427,6 +394,8 @@
         <div class="barra-contenido">
           <label class="sr" for="pagina">Página</label>
           <select id="pagina"></select>
+          <label class="sr" for="seccion">Sección</label>
+          <select id="seccion"></select>
           <label class="sr" for="buscar">Buscar un texto</label>
           <input type="text" id="buscar" placeholder="Buscar un texto…">
         </div>
@@ -437,10 +406,21 @@
         </label>
 
         <div class="contenido-cols">
-          <nav id="lista-secciones" class="secciones-lista" aria-label="Secciones de la página"></nav>
           <div id="campos" class="campos">
             <p class="intro">Leyendo la página…</p>
           </div>
+
+          <aside class="vista">
+            <div class="vista-barra">
+              <span class="vista-rotulo">El sitio, como va quedando</span>
+              <button type="button" class="b-texto" id="b-refrescar">Actualizar</button>
+            </div>
+            <div class="vista-marco">
+              <!-- Sin loading="lazy": el panel decide cuando recargarla, y con "lazy" el
+                   navegador se la guarda si en ese momento quedo fuera de pantalla. -->
+              <iframe id="vista-sitio" title="Vista del sitio"></iframe>
+            </div>
+          </aside>
         </div>
 
         <div id="aviso-contenido" class="aviso oculto" role="status"></div>

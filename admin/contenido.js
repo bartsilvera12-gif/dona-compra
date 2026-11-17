@@ -24,6 +24,7 @@
   var API = "https://api.neura.com.py";
   var SCHEMA = "donacompraweb";
   var BUCKET = "donacompraweb";
+  var CLAVE_VISTA = "dc.vista.previa";
 
   var $ = function (id) { return document.getElementById(id); };
 
@@ -67,10 +68,10 @@
   }
 
   function marcarEstado() {
-    // El menú se vuelve a dibujar para que aparezca o desaparezca el punto de
-    // "sin guardar". Solo el menú: tocar los campos mientras alguien escribe
-    // le sacaría el cursor de donde está.
-    if ($("lista-secciones").children.length) pintarMenu(agrupar(visibles()));
+    // Se vuelve a armar el desplegable para que aparezca o desaparezca el
+    // punto de "sin guardar". Solo el desplegable: tocar los campos mientras
+    // alguien escribe le sacaría el cursor de donde está.
+    if ($("seccion").options.length) pintarSecciones(agrupar(visibles()));
 
     var n = cuantosCambios();
     var b = $("b-guardar-contenido");
@@ -78,6 +79,10 @@
     $("estado-contenido").textContent =
       n === 0 ? "Sin cambios sin guardar." :
       n === 1 ? "1 cambio sin guardar." : n + " cambios sin guardar.";
+
+    // La vista se pone al día sola, un rato después de la última tecla: con
+    // cada letra seria recargar la pagina entera veinte veces por palabra.
+    refrescarVista();
   }
 
   /* --- Dibujo -------------------------------------------------------------- */
@@ -288,45 +293,25 @@
   }
 
   /**
-   * El menú de secciones.
+   * El selector de secciones.
    *
-   * Una página del sitio tiene hasta veintidós secciones y trescientos campos.
-   * Puestos uno abajo del otro no se encuentra nada: se elige la sección y se
-   * ve esa sola, igual que se mira la página de a pedazos.
+   * Antes era una columna de veintidós renglones al costado. Ocupaba el lugar
+   * donde ahora se ve el sitio, que es lo que de verdad ayuda a saber qué se
+   * está tocando. Un desplegable dice lo mismo y no ocupa nada.
    */
-  function pintarMenu(grupos) {
-    var menu = $("lista-secciones");
-    menu.innerHTML = "";
+  function pintarSecciones(grupos) {
+    var sel = $("seccion");
+    sel.innerHTML = "";
     grupos.orden.forEach(function (nombre) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.className = "seccion-link";
-      if (nombre === seccionActual) b.setAttribute("aria-current", "true");
-
-      var t = document.createElement("span");
-      t.className = "seccion-nombre";
-      t.textContent = nombre;
-
-      var n = document.createElement("span");
-      n.className = "seccion-cuenta";
-      n.textContent = grupos.por[nombre].length;
-
-      b.appendChild(t);
-      b.appendChild(n);
-
-      if (tieneCambios(grupos.por[nombre])) {
-        var p = document.createElement("span");
-        p.className = "seccion-punto";
-        p.title = "Tiene cambios sin guardar";
-        b.appendChild(p);
-      }
-
-      b.addEventListener("click", function () {
-        seccionActual = nombre;
-        pintar();
-      });
-      menu.appendChild(b);
+      var o = document.createElement("option");
+      o.value = nombre;
+      var n = grupos.por[nombre].length;
+      // El punto avisa que ahí hay algo sin guardar, sin tener que entrar.
+      o.textContent = (tieneCambios(grupos.por[nombre]) ? "● " : "") +
+        nombre + " (" + n + ")";
+      sel.appendChild(o);
     });
+    sel.value = seccionActual;
   }
 
   /**
@@ -346,12 +331,11 @@
   function pintar() {
     var lista = visibles();
     var grupos = agrupar(lista);
-    var menu = $("lista-secciones");
     var cont = $("campos");
     cont.innerHTML = "";
 
     if (!grupos.orden.length) {
-      menu.innerHTML = "";
+      $("seccion").innerHTML = "";
       var vacio = document.createElement("p");
       vacio.className = "intro";
       vacio.textContent = ($("buscar").value || "").trim()
@@ -365,7 +349,7 @@
     // página, o el buscador la dejó afuera— se pasa a la primera.
     if (grupos.orden.indexOf(seccionActual) === -1) seccionActual = grupos.orden[0];
 
-    pintarMenu(grupos);
+    pintarSecciones(grupos);
 
     var titulo = document.createElement("h3");
     titulo.className = "campos-titulo";
@@ -404,6 +388,101 @@
     });
     if (vistas.indexOf(paginaActual) === -1) paginaActual = vistas[0];
     sel.value = paginaActual;
+  }
+
+  /* --- La vista del sitio ---------------------------------------------------- */
+
+  /**
+   * Lo que tiene que mostrar la vista: lo guardado, con lo de esta sesión
+   * encima. Es lo mismo que vería cualquiera si se guardara ahora.
+   */
+  function loQueSeVeria() {
+    var filas = [];
+    var puestas = {};
+    for (var k in cambios) {
+      if (!Object.prototype.hasOwnProperty.call(cambios, k)) continue;
+      puestas[k] = 1;
+      if (cambios[k] !== null) filas.push({ clave: k, valor: cambios[k] });
+    }
+    for (var g in guardado) {
+      if (!Object.prototype.hasOwnProperty.call(guardado, g)) continue;
+      if (!puestas[g]) filas.push({ clave: g, valor: guardado[g] });
+    }
+    return { config: api.config ? api.config() : null, contenido: filas };
+  }
+
+  /**
+   * Lleva la vista hasta la sección que se está editando.
+   *
+   * Se busca por el título, que es lo único que existe igual en la plantilla
+   * y en la página ya dibujada. Las portadas son el principio de la página,
+   * así que para esas alcanza con ir arriba.
+   */
+  function llevarA(doc, seccion) {
+    try {
+      if (/^Portada /.test(seccion)) {
+        doc.defaultView.scrollTo(0, 0);
+        return;
+      }
+      var destino = null;
+      if (seccion === "Cinta de beneficios") {
+        destino = doc.querySelector(".dcx-cinta");
+      } else {
+        // El título puede venir cortado con puntos suspensivos.
+        var busca = seccion.replace(/…$/, "").slice(0, 46);
+        var titulos = doc.querySelectorAll("h1, h2");
+        for (var i = 0; i < titulos.length; i++) {
+          if (titulos[i].textContent.replace(/\s+/g, " ").trim().indexOf(busca) === 0) {
+            destino = titulos[i];
+            break;
+          }
+        }
+      }
+      if (destino) {
+        // Un poco más arriba del título: el sitio tiene su propio encabezado
+        // pegado arriba y, sin este margen, tapa justo lo que se vino a ver.
+        var y = destino.getBoundingClientRect().top + doc.defaultView.scrollY - 76;
+        doc.defaultView.scrollTo(0, Math.max(0, y));
+      } else {
+        doc.defaultView.scrollTo(0, 0);
+      }
+    } catch (e) {
+      /* la vista es una ayuda: si no se puede, no pasa nada */
+    }
+  }
+
+  /**
+   * Vuelve a cargar la vista con lo que hay en pantalla.
+   *
+   * Se recarga entera en vez de tocarle el texto por dentro: así lo que se ve
+   * pasa por el mismo camino que el sitio de verdad —el mismo dc-config, el
+   * mismo runtime— y no por una imitación que puede mentir.
+   */
+  var relojVista = null;
+  function refrescarVista(demora) {
+    clearTimeout(relojVista);
+    relojVista = setTimeout(function () {
+      var marco = document.querySelector(".vista-marco");
+      var iframe = $("vista-sitio");
+      if (!iframe) return;
+      try {
+        sessionStorage.setItem(CLAVE_VISTA, JSON.stringify(loQueSeVeria()));
+      } catch (e) {
+        /* sin sessionStorage la vista muestra el sitio tal cual está */
+      }
+      var ruta = window.DC_CONTENIDO.rutas[paginaActual] || "";
+      var seccion = seccionActual;
+      if (marco) marco.classList.add("cargando");
+      iframe.onload = function () {
+        if (marco) marco.classList.remove("cargando");
+        // El runtime dibuja después de cargar; se le da ese momento.
+        setTimeout(function () {
+          try { llevarA(iframe.contentDocument, seccion); } catch (e) {}
+        }, 700);
+      };
+      iframe.src = "../index.html?dcvista=1&t=" + Date.now() +
+        (ruta ? "#/" + ruta.replace(/^\//, "") : "");
+    }, demora === undefined ? 600 : demora);
   }
 
   /* --- Subida de imágenes --------------------------------------------------- */
@@ -528,8 +607,18 @@
 
       $("pagina").addEventListener("change", function () {
         paginaActual = $("pagina").value;
+        seccionActual = null;
         pintar();
+        refrescarVista(0);
       });
+
+      $("seccion").addEventListener("change", function () {
+        seccionActual = $("seccion").value;
+        pintar();
+        refrescarVista(0);
+      });
+
+      $("b-refrescar").addEventListener("click", function () { refrescarVista(0); });
 
       var reloj = null;
       $("buscar").addEventListener("input", function () {
@@ -538,6 +627,8 @@
       });
 
       $("ver-todo").addEventListener("change", pintar);
+
+      refrescarVista(0);
 
       $("form-contenido").addEventListener("submit", function (ev) {
         ev.preventDefault();
