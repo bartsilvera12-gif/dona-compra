@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# El panel no se indexa. La página ya lo pide con una meta, pero un buscador
+# tiene que poder saberlo sin descargarla.
+Disallow: /admin
+
 Sitemap: https://xn--doacompra-m6a.com/sitemap.xml
