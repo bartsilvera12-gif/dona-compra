@@ -194,6 +194,14 @@
         Prefer: "return=representation",
       },
       body: JSON.stringify(cuerpo),
+    }).then(function (r) {
+      // PostgREST contesta 200 con una lista vacia cuando el RLS no deja tocar
+      // ninguna fila. Sin esto el panel diria "Guardado" sin haber guardado
+      // nada, que es la peor forma de fallar: el error pasa a la pagina.
+      if (r.ok && (!r.datos || !r.datos.length)) {
+        return { ok: false, estado: 403, datos: null };
+      }
+      return r;
     });
   }
 
