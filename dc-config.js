@@ -278,7 +278,18 @@
       // adentro: en el sitio de verdad sigue apareciendo igual, y la decisión
       // de la persona que entra no se toca.
       var e = document.createElement("style");
-      e.textContent = '[aria-label="Preferencias de cookies"]{display:none!important}';
+      e.textContent =
+        // El cartel de cookies es fijo y tapa media vista. Se esconde solo acá
+        // adentro: en el sitio de verdad sigue apareciendo igual, y la
+        // decisión de la persona que entra no se toca.
+        '[aria-label="Preferencias de cookies"]{display:none!important}' +
+        // Cada sección entra con una animación que arranca invisible. Como el
+        // panel baja hasta la sección de una, la animación no llega a correr
+        // y la sección se queda en blanco: se ve el fondo y nada más. Acá se
+        // desactiva solo esa, por el nombre que lleva puesto; el carrusel y
+        // la cinta siguen moviéndose como en el sitio.
+        '[style*="dcLift"]{animation:none!important}' +
+        '[style*="dcCurtainY"]{display:none!important}';
       document.head.appendChild(e);
       aplicarTodo(datosDeVista());
       arrancarRuntime();

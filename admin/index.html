@@ -59,6 +59,9 @@
   :focus-visible { outline: 2px solid var(--ocre); outline-offset: 2px; }
 
   .caja { max-width: 1120px; margin: 0 auto; padding: clamp(16px, 3vw, 32px); }
+  /* Contenido necesita todo el ancho: a la derecha va el sitio, y si se lo
+     aprieta no se ve nada de la pagina que se esta editando. */
+  .caja.ancha { max-width: 1560px; }
 
   /* --- Barra de arriba ----------------------------------------------------- */
   header.barra {
@@ -134,8 +137,19 @@
     border-radius: var(--radio); padding: clamp(18px, 3vw, 30px);
     box-shadow: var(--sombra);
   }
-  .tarjeta > h2 { font-size: clamp(19px, 2.2vw, 24px); }
-  .tarjeta > p.intro { margin: 8px 0 0; font-size: 14.5px; color: var(--muted); max-width: 62ch; }
+  .tarjeta > h2, .hoja > h2 { font-size: clamp(19px, 2.2vw, 24px); }
+  .tarjeta > p.intro, .hoja > p.intro {
+    margin: 8px 0 0; font-size: 14.5px; color: var(--muted); max-width: 62ch;
+  }
+
+  /* Una hoja es lo contrario de una tarjeta: no encierra nada. El editor de
+     contenido ya trae sus propias cajas —los campos y la vista del sitio—, y
+     meterlas adentro de otra solo les quitaba aire por los cuatro costados. */
+  .hoja { display: block; }
+
+  /* Las otras dos pantallas no ganan nada con mil quinientos pixeles: son
+     formularios, y un renglon de texto larguisimo se lee peor. */
+  #zona-anuncios .tarjeta, #zona-config .tarjeta { max-width: 1120px; }
 
   .aviso {
     border-radius: var(--radio-chico); padding: 12px 16px; margin-top: 16px;
@@ -154,13 +168,15 @@
   /* La barra de guardar se pega abajo mientras se baja por los campos: con
      trescientos, el boton al final queda a tres pantallas de distancia. */
   .pie-guardar {
-    position: sticky; bottom: 0; z-index: 10;
-    margin: 24px -1px -1px; padding: 14px clamp(14px, 2vw, 18px);
-    border-top: 1px solid var(--linea);
-    border-radius: 0 0 var(--radio) var(--radio);
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    position: sticky; bottom: clamp(10px, 2vw, 18px); z-index: 10;
+    margin: 20px 0 0; padding: 12px 16px;
+    border: 1px solid var(--linea); border-radius: 999px;
+    /* Opaca, no translucida: flota por encima de los campos y, con el fondo
+       a medias, el texto de atras se mezclaba con el del boton. */
+    background: #fff;
+    box-shadow: 0 10px 30px -14px rgba(16, 41, 25, 0.55);
     display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+    width: fit-content; max-width: 100%;
   }
   .pie-guardar .estado { font-size: 13.5px; color: var(--muted); }
 
@@ -250,7 +266,7 @@
      tiene hasta veintidos secciones: todas juntas no se leen. */
   .contenido-cols { display: grid; gap: 18px; margin-top: 18px; }
   @media (min-width: 1000px) {
-    .contenido-cols { grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr); align-items: start; }
+    .contenido-cols { grid-template-columns: minmax(0, 1fr) minmax(380px, 0.95fr); align-items: start; }
     .vista { position: sticky; top: 86px; }
   }
 
@@ -265,7 +281,7 @@
   .vista-marco {
     border: 1px solid var(--linea); border-radius: var(--radio);
     overflow: hidden; background: var(--grad);
-    height: min(640px, calc(100vh - 160px)); min-height: 380px;
+    height: calc(100vh - 180px); min-height: 420px; max-height: 820px;
   }
   .vista-marco iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; }
   .vista-marco.cargando { opacity: 0.55; transition: opacity 0.15s; }
@@ -425,7 +441,7 @@
     </div>
   </header>
 
-  <main class="caja">
+  <main class="caja ancha" id="caja-principal">
     <div class="pestanas" role="tablist">
       <button type="button" role="tab" id="p-contenido" aria-selected="true" aria-controls="zona-contenido">Contenido</button>
       <button type="button" role="tab" id="p-anuncios" aria-selected="false" aria-controls="zona-anuncios">Anuncios</button>
@@ -433,7 +449,7 @@
     </div>
 
     <div id="zona-contenido" role="tabpanel" aria-labelledby="p-contenido">
-      <form class="tarjeta" id="form-contenido">
+      <form id="form-contenido" class="hoja">
         <h2>Contenido de la página</h2>
         <p class="intro">
           Cada texto y cada imagen del sitio, agrupados como están en la
