@@ -32,6 +32,13 @@
   var guardado = {};    // clave -> valor que ya está en la base
   var cambios = {};     // clave -> valor nuevo, o null para volver al original
   var paginaActual = "Inicio";
+  // A cuántos píxeles de ancho se dibuja el sitio en la vista. No es el ancho
+  // del marco: el marco es angosto y, dibujando a ese ancho, el sitio sale a
+  // tamaño real y solo se ve un pedazo gigante. Se dibuja al ancho de una
+  // computadora o de un teléfono, y se achica entero.
+  var ANCHO_COMPU = 1280;
+  var ANCHO_TELE = 390;
+  var anchoVista = ANCHO_COMPU;
   var seccionActual = null;
   var api = null;       // lo que presta panel.js: pedir(), sesion(), avisar()
 
@@ -312,6 +319,7 @@
       sel.appendChild(o);
     });
     sel.value = seccionActual;
+    if (window.DC_SELECTOR) window.DC_SELECTOR.refrescar(sel);
   }
 
   /**
@@ -388,9 +396,45 @@
     });
     if (vistas.indexOf(paginaActual) === -1) paginaActual = vistas[0];
     sel.value = paginaActual;
+    if (window.DC_SELECTOR) window.DC_SELECTOR.refrescar(sel);
   }
 
   /* --- La vista del sitio ---------------------------------------------------- */
+
+  /**
+   * Da al marco el tamaño de una pantalla y lo achica para que entre.
+   *
+   * El iframe se dibuja a `anchoVista` píxeles —ahí el sitio cree que está en
+   * una computadora o en un teléfono y se arma como corresponde— y después se
+   * encoge con una escala. Es la misma página, vista de lejos.
+   */
+  function ajustarVista() {
+    var marco = document.querySelector(".vista-marco");
+    var f = $("vista-sitio");
+    if (!marco || !f) return;
+
+    var ancho = marco.clientWidth;
+    var alto = marco.clientHeight;
+    if (!ancho || !alto) return;
+
+    // En teléfono no se agranda: un teléfono de 390 px estirado a 700 se ve
+    // peor que de verdad.
+    var escala = Math.min(ancho / anchoVista, anchoVista === ANCHO_TELE ? 1 : 10);
+
+    f.style.width = anchoVista + "px";
+    f.style.height = Math.round(alto / escala) + "px";
+    f.style.transform = "scale(" + escala + ")";
+    // Centrado cuando sobra lugar, que es lo que pasa con el teléfono.
+    f.style.marginLeft = Math.max(0, Math.round((ancho - anchoVista * escala) / 2)) + "px";
+  }
+
+  function verComo(cual) {
+    anchoVista = cual === "tele" ? ANCHO_TELE : ANCHO_COMPU;
+    $("v-compu").setAttribute("aria-pressed", cual === "tele" ? "false" : "true");
+    $("v-tele").setAttribute("aria-pressed", cual === "tele" ? "true" : "false");
+    ajustarVista();
+    refrescarVista(0);
+  }
 
   /**
    * Lo que tiene que mostrar la vista: lo guardado, con lo de esta sesión
@@ -484,6 +528,7 @@
           try { llevarA(iframe.contentDocument, seccion); } catch (e) {}
         }, 700);
       };
+      ajustarVista();
       iframe.src = "../index.html?dcvista=1&t=" + Date.now() +
         (ruta ? "#/" + ruta.replace(/^\//, "") : "");
     }, demora === undefined ? 600 : demora);
@@ -604,6 +649,11 @@
   /** panel.js llama acá una vez que la sesión está abierta y es de admin. */
   function arrancar(puente) {
     api = puente;
+    if (window.DC_SELECTOR) {
+      window.DC_SELECTOR.mejorar($("pagina"));
+      window.DC_SELECTOR.mejorar($("seccion"));
+    }
+
     return Promise.all([cargarCampos(), cargarGuardado()]).then(function () {
       pintarPaginas();
       pintar();
@@ -623,6 +673,15 @@
       });
 
       $("b-refrescar").addEventListener("click", function () { refrescarVista(0); });
+      $("v-compu").addEventListener("click", function () { verComo("compu"); });
+      $("v-tele").addEventListener("click", function () { verComo("tele"); });
+
+      // Si cambia el tamaño de la ventana, la escala deja de servir.
+      var relojTam = null;
+      window.addEventListener("resize", function () {
+        clearTimeout(relojTam);
+        relojTam = setTimeout(ajustarVista, 150);
+      });
 
       var reloj = null;
       $("buscar").addEventListener("input", function () {
@@ -632,7 +691,10 @@
 
       $("ver-todo").addEventListener("change", pintar);
 
-      refrescarVista(0);
+      // Desde un teléfono, mostrar la pantalla de una computadora achicada a
+      // la cuarta parte no sirve de nada: se arranca mostrando el teléfono.
+      if (window.innerWidth < 900) verComo("tele");
+      else refrescarVista(0);
 
       $("form-contenido").addEventListener("submit", function (ev) {
         ev.preventDefault();

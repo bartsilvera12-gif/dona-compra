@@ -212,6 +212,54 @@
   }
   .casilla input { width: 17px; height: 17px; accent-color: var(--verde); cursor: pointer; }
 
+  /* --- Desplegables ----------------------------------------------------------- */
+  /* La lista de un <select> la dibuja el sistema operativo, con su azul y su
+     tipografia: no hay CSS que la alcance. Por eso el <select> queda abajo,
+     invisible pero vivo —es el que guarda el valor y avisa los cambios— y
+     arriba va este boton con su lista, que si se puede pintar. */
+  .sel { position: relative; display: inline-block; min-width: 0; }
+  .barra-contenido .sel { flex: 0 1 auto; min-width: 170px; max-width: 320px; }
+  .editor-fila .sel, .editor-fila .sel .sel-nativo { width: 100%; }
+
+  .sel-nativo {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    opacity: 0; cursor: pointer;
+  }
+  .sel-boton {
+    display: flex; align-items: center; gap: 10px; width: 100%;
+    background: var(--papel); color: var(--ink); text-align: left;
+    border: 1px solid var(--linea); border-radius: var(--radio-chico);
+    padding: 11px 13px; font-weight: 400; font-size: 16px;
+  }
+  .sel:hover .sel-boton { border-color: rgba(22, 57, 35, 0.22); }
+  .sel.enfocado .sel-boton, .sel.abierto .sel-boton {
+    border-color: var(--ocre); background: #fff;
+    box-shadow: 0 0 0 3px rgba(222, 155, 43, 0.22);
+  }
+  .sel-valor { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sel-flecha {
+    width: 9px; height: 9px; flex: none; margin-right: 2px;
+    border-right: 1.8px solid var(--verde); border-bottom: 1.8px solid var(--verde);
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform 0.15s;
+  }
+  .sel.abierto .sel-flecha { transform: rotate(-135deg) translate(-3px, -3px); }
+
+  .sel-lista {
+    display: none; position: absolute; z-index: 40; left: 0; right: 0; top: calc(100% + 6px);
+    margin: 0; padding: 6px; list-style: none;
+    max-height: min(340px, 60vh); overflow-y: auto;
+    background: #fff; border: 1px solid var(--linea); border-radius: var(--radio);
+    box-shadow: 0 18px 40px -20px rgba(16, 41, 25, 0.65);
+  }
+  .sel.abierto .sel-lista { display: block; }
+  .sel-opcion {
+    padding: 9px 11px; border-radius: var(--radio-chico); cursor: pointer;
+    font-size: 14.5px; line-height: 1.35;
+  }
+  .sel-opcion:hover { background: var(--grad); }
+  .sel-opcion[aria-selected="true"] { background: var(--verde); color: var(--marfil); }
+
   /* --- Anuncios -------------------------------------------------------------- */
   .anuncios-cabeza {
     display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start;
@@ -264,7 +312,11 @@
   /* --- Menu de secciones ----------------------------------------------------- */
   /* Menu a la izquierda, la seccion elegida a la derecha. Una pagina del sitio
      tiene hasta veintidos secciones: todas juntas no se leen. */
-  .contenido-cols { display: grid; gap: 18px; margin-top: 18px; }
+  /* minmax(0,1fr) y no el "auto" de siempre: adentro hay un marco de 1280 px
+     de ancho que se achica con una escala, y la escala encoge lo que se ve
+     pero no el lugar que ocupa. Sin esto, esa columna se estira a 1280 y
+     arrastra tambien a la de los campos. */
+  .contenido-cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; margin-top: 18px; }
   @media (min-width: 1000px) {
     .contenido-cols { grid-template-columns: minmax(0, 1fr) minmax(380px, 0.95fr); align-items: start; }
     .vista { position: sticky; top: 86px; }
@@ -273,17 +325,34 @@
   /* La vista del sitio: el mismo index.html, con lo que se esta escribiendo
      puesto encima. No es un dibujo parecido, es la pagina. */
   .vista { display: flex; flex-direction: column; gap: 8px; }
-  .vista-barra { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .vista-barra { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; }
+  .vista-barra .b-texto { margin-left: auto; }
+
+  .vista-tamanos { display: inline-flex; gap: 2px; padding: 3px; background: var(--grad); border-radius: 999px; }
+  .vista-tamanos button {
+    background: transparent; color: var(--muted); border-radius: 999px;
+    padding: 4px 12px; font-size: 12.5px; font-weight: 600;
+  }
+  .vista-tamanos button[aria-pressed="true"] {
+    background: #fff; color: var(--verde); box-shadow: 0 1px 3px rgba(16,41,25,0.12);
+  }
   .vista-rotulo {
     font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--muted);
   }
   .vista-marco {
+    width: 100%; max-width: 100%;
     border: 1px solid var(--linea); border-radius: var(--radio);
     overflow: hidden; background: var(--grad);
     height: calc(100vh - 180px); min-height: 420px; max-height: 820px;
   }
-  .vista-marco iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; }
+  /* El marco es angosto, y si el sitio se dibuja a ese ancho sale todo
+     enorme: no se ve la pagina, se ve un pedazo. Se dibuja al ancho de una
+     computadora de verdad y se achica entera, como una maqueta. */
+  .vista-marco iframe {
+    border: 0; display: block; background: #fff;
+    transform-origin: top left;
+  }
   .vista-marco.cargando { opacity: 0.55; transition: opacity 0.15s; }
 
   /* --- Los campos de la seccion ---------------------------------------------- */
@@ -478,6 +547,10 @@
           <aside class="vista">
             <div class="vista-barra">
               <span class="vista-rotulo">El sitio, como va quedando</span>
+              <div class="vista-tamanos" role="group" aria-label="Cómo mirar el sitio">
+                <button type="button" id="v-compu" aria-pressed="true">Computadora</button>
+                <button type="button" id="v-tele" aria-pressed="false">Teléfono</button>
+              </div>
               <button type="button" class="b-texto" id="b-refrescar">Actualizar</button>
             </div>
             <div class="vista-marco">
@@ -657,6 +730,7 @@
 
 <!-- El ?v=, por lo mismo que en el sitio: el servidor venia mandando los
      .js con una semana de cache y hay navegadores con la version vieja. -->
+<script src="./selector.js?v=2"></script>
 <script src="../dc-contenido.js?v=2"></script>
 <script src="./contenido.js?v=2"></script>
 <script src="./anuncios.js?v=2"></script>

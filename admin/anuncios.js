@@ -149,6 +149,13 @@
     else $("a-vista").removeAttribute("src");
     $("a-ayuda-img").textContent = "Hasta 8 MB. Se recorta en forma apaisada.";
     $("b-borrar").classList.toggle("oculto", !a);
+    // Los desplegables propios no se enteran de un cambio de valor hecho
+    // desde el codigo, asi que se les avisa.
+    if (window.DC_SELECTOR) {
+      ["a-categoria", "a-ciudad", "a-tipo"].forEach(function (id) {
+        window.DC_SELECTOR.refrescar($(id));
+      });
+    }
     verVideo();
 
     $("editor-anuncio").classList.remove("oculto");
@@ -291,6 +298,12 @@
       o.value = c; o.textContent = c;
       sel.appendChild(o);
     });
+
+    if (window.DC_SELECTOR) {
+      ["a-categoria", "a-ciudad", "a-tipo"].forEach(function (id) {
+        window.DC_SELECTOR.mejorar($(id));
+      });
+    }
 
     $("b-nuevo").addEventListener("click", function () { abrir(null); });
     $("b-cancelar").addEventListener("click", cerrar);
