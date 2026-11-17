@@ -167,10 +167,16 @@
     archivo.type = "file";
     archivo.accept = "image/jpeg,image/png,image/webp,image/avif";
 
+    var rotuloAlt = document.createElement("span");
+    rotuloAlt.className = "campo-tipo campo-tipo-interno";
+    rotuloAlt.textContent = "Qué se ve en la imagen";
+
     var alt = document.createElement("input");
     alt.type = "text";
     alt.value = vigente.alt || "";
-    alt.placeholder = "Qué se ve en la imagen";
+    alt.placeholder = "Una despensa de barrio, con la dueña en el mostrador";
+    // Lo lee quien no puede ver la foto, y tambien Google.
+    alt.setAttribute("aria-label", "Qué se ve en la imagen");
 
     var nota = document.createElement("span");
     nota.className = "campo-ayuda";
@@ -227,6 +233,7 @@
     });
 
     derecha.appendChild(archivo);
+    derecha.appendChild(rotuloAlt);
     derecha.appendChild(alt);
     derecha.appendChild(nota);
     derecha.appendChild(volver);
