@@ -366,6 +366,11 @@
   .dcx-pasos::-webkit-scrollbar { display: none; }
   .dcx-pasos > li { display: flex; flex: none; width: 78vw; max-width: 300px; padding-top: 28px; scroll-snap-align: start; }
   .dcx-paso { position: relative; display: flex; flex-direction: column; align-items: center; width: 100%; text-align: center; border: 1px solid rgba(22,57,35,0.1); background: #F5F2EB; border-radius: 12px; padding: 40px 20px 24px; }
+  /* El disco numerado sale 28 px por arriba de la tarjeta, y la tarjeta
+     generica recorta lo que se le sale (lo necesita para redondear las fotos
+     que lleva en otras secciones). Los pasos no tienen foto, asi que aca se
+     le saca el recorte; sin esto los numeros se ven cortados al medio. */
+  .dcx-pasos .dcx-paso { overflow: visible; }
   .dcx-paso-num { position: absolute; top: -28px; left: 50%; transform: translateX(-50%); display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #163923; font-family: Montserrat, sans-serif; font-size: 20px; font-weight: 700; color: #F5F2EB; }
   .dcx-pasos-hilo { display: none; }
   @media (min-width: 640px) { .dcx-pasos > li { width: 46vw; } }
