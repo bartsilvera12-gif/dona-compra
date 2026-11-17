@@ -170,9 +170,9 @@ for (const [k, nota] of [
   }
 }
 for (const [k, nota] of [
-  ["NEXT_PUBLIC_FACEBOOK", "el botón de Facebook no se muestra"],
-  ["NEXT_PUBLIC_INSTAGRAM", "el botón de Instagram no se muestra"],
-  ["NEXT_PUBLIC_RUC", "la página jurídica dice «RUC pendiente de carga»"],
+  ["NEXT_PUBLIC_FACEBOOK", "se usa la dirección por defecto de site.ts"],
+  ["NEXT_PUBLIC_INSTAGRAM", "se usa la dirección por defecto de site.ts"],
+  ["NEXT_PUBLIC_RUC", "se usa el RUC por defecto de site.ts"],
   ["NEXT_PUBLIC_GA_ID", "no se carga analítica, ni con consentimiento"],
 ]) {
   if (hay(k)) console.log(ok(k));
