@@ -186,6 +186,12 @@
   .barra-contenido { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
   .barra-contenido select, .barra-contenido input { width: auto; }
   .barra-contenido select { min-width: 210px; }
+
+  .casilla {
+    display: flex; align-items: center; gap: 9px; margin: 12px 0 0;
+    font-size: 13.5px; color: var(--muted); cursor: pointer; width: fit-content;
+  }
+  .casilla input { width: 17px; height: 17px; accent-color: var(--verde); cursor: pointer; }
   .barra-contenido input { flex: 1; min-width: 180px; }
 
   /* --- Menu de secciones ----------------------------------------------------- */
@@ -424,6 +430,11 @@
           <label class="sr" for="buscar">Buscar un texto</label>
           <input type="text" id="buscar" placeholder="Buscar un texto…">
         </div>
+
+        <label class="casilla">
+          <input type="checkbox" id="ver-todo">
+          <span>Mostrar también los textos secundarios</span>
+        </label>
 
         <div class="contenido-cols">
           <nav id="lista-secciones" class="secciones-lista" aria-label="Secciones de la página"></nav>

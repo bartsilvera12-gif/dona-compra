@@ -38,6 +38,23 @@
 (function () {
   "use strict";
 
+  /**
+   * Elementos que son la herramienta y no el contenido.
+   *
+   * El texto de un botón, el de un enlace del menú o el rótulo de un campo de
+   * formulario no son lo que la página dice: son cómo se usa. Ofrecerlos para
+   * editar llena el panel de cosas que nadie va a cambiar nunca y esconde las
+   * que sí, que son los títulos, los párrafos y las fotos.
+   *
+   * Con las imágenes no vale la misma regla: la foto de un rubro está dentro
+   * de un botón porque se puede elegir, y sigue siendo una foto que alguien
+   * va a querer cambiar.
+   */
+  var ARMAZON = { A: 1, BUTTON: 1, LABEL: 1, OPTION: 1, SELECT: 1, INPUT: 1, TEXTAREA: 1 };
+
+  /** Texto que no dice nada por sí solo: números sueltos, flechas, puntos. */
+  var SIN_PALABRAS = /^[\s\d.,:;·•‹›«»\-–—|/()\[\]]+$/;
+
   /** Elementos cuyo interior no es contenido de la página. */
   var FUERA = {
     SCRIPT: 1, STYLE: 1, NOSCRIPT: 1, HELMET: 1, TEMPLATE: 1,
@@ -125,6 +142,20 @@
     return "Otros";
   }
 
+  /**
+   * Lo principal de una sección: su título, su bajada y sus fotos.
+   *
+   * Una sección puede tener veinte textos, y de esos el cliente va a cambiar
+   * dos. Los otros dieciocho —la letra chica de una tabla, el tercer renglón
+   * de una tarjeta— no se tocan nunca, pero ahí están, haciendo que para
+   * cambiar un título haya que pasar por todos. Por eso el panel muestra lo
+   * principal y deja el resto detrás de una casilla.
+   *
+   * Principal es: todo título, toda imagen, y el primer párrafo que viene
+   * después de cada título. Lo demás queda a un clic.
+   */
+  var TITULOS = { H1: 1, H2: 1, H3: 1, H4: 1 };
+
   /** Qué clase de texto es, para que el panel sepa cómo mostrarlo. */
   function etiquetaDe(el, valor) {
     var t = el.tagName;
@@ -167,6 +198,10 @@
 
     function agregar(nodo, tipo, valor, extra) {
       var bloque = bloqueDe(nodo);
+      if (!bloque || bloque.tagName === "HEADER" || bloque.tagName === "FOOTER" ||
+          bloque.tagName === "MAIN") {
+        return null;
+      }
       var pagina = paginaDe(nodo);
       var id = idDe(bloque, pagina);
       // Mismo texto, misma sección, misma clave: el sitio repite textos a
@@ -175,6 +210,14 @@
       // dos cosas distintas. Con una sola clave se cambian las dos juntas, y
       // el panel muestra un campo solo.
       var clave = id + "-" + huella(valor);
+      // En una portada todo es principal: son cuatro cosas y son las que mas
+      // se cambian. Ademas solo la primera usa <h1> para su titulo; las otras
+      // cuatro lo escriben con <p>, asi que la regla de los titulos no las ve.
+      if (bloque && bloque.classList && bloque.classList.contains("dcx-port")) {
+        extra = extra || {};
+        extra.principal = true;
+      }
+
       var campo = {
         clave: clave,
         tipo: tipo,
@@ -190,9 +233,19 @@
       return campo;
     }
 
+    var bajadaPendiente = false; // hubo un titulo y todavia no su parrafo
+
     function caminar(nodo) {
       if (nodo.nodeType === 1) {
         if (FUERA[nodo.tagName]) return;
+        if (nodo.tagName !== "IMG" && ARMAZON[nodo.tagName]) {
+          // Se entra igual, por si adentro hay una imagen.
+          var h = nodo.childNodes;
+          for (var k = 0; k < h.length; k++) {
+            if (h[k].nodeType === 1) caminar(h[k]);
+          }
+          return;
+        }
         if (nodo.tagName === "IMG") {
           var src = nodo.getAttribute("src") || "";
           // Las imágenes escritas dentro del propio atributo (data:) no son
@@ -203,6 +256,7 @@
               nodo: nodo,
               alt: nodo.getAttribute("alt") || "",
               etiqueta: "Imagen",
+              principal: true,
             });
           }
           return;
@@ -213,11 +267,19 @@
         var valor = limpio(nodo.nodeValue);
         // Sin texto, o es una plantilla del runtime: no se toca.
         if (!valor || valor.indexOf("{{") !== -1) return;
+        // Un "1", una flecha o un punto no son contenido editable.
+        if (valor.length < 3 || SIN_PALABRAS.test(valor)) return;
         var el = nodo.parentElement;
         if (!el || FUERA[el.tagName]) return;
+        var esTitulo = !!TITULOS[el.tagName];
+        var esBajada = !esTitulo && el.tagName === "P" && bajadaPendiente;
+        if (esTitulo) bajadaPendiente = true;
+        else if (esBajada) bajadaPendiente = false;
+
         agregar(nodo, "texto", valor, {
           nodo: nodo,
           etiqueta: etiquetaDe(el, valor),
+          principal: esTitulo || esBajada,
         });
         return;
       }

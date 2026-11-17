@@ -130,8 +130,10 @@
     }
 
     caja.addEventListener("input", function () { ajustar(); revisar(); });
-    // Al dibujar, el campo todavia no esta en la pagina y scrollHeight da 0.
-    setTimeout(ajustar, 0);
+    // El alto no se mide acá: el campo todavía no está en la pantalla y la
+    // medida sale cualquier cosa. Lo mide ajustarTodos() cuando ya está todo
+    // dibujado.
+    caja.ajustarAlto = ajustar;
     volver.addEventListener("click", function () {
       caja.value = campo.valor;
       ajustar();
@@ -264,11 +266,16 @@
     return { orden: orden, por: por };
   }
 
-  /** Los campos de esta página que pasan el buscador. */
+  /** Los campos de esta página que pasan el buscador y la casilla. */
   function visibles() {
     var filtro = ($("buscar").value || "").toLowerCase().trim();
+    var todos = $("ver-todo").checked;
     return campos.filter(function (c) {
       if (c.pagina !== paginaActual) return false;
+      // Lo principal de cada sección es su título, su bajada y sus fotos. El
+      // resto está, pero detrás de la casilla: si no, para cambiar un título
+      // hay que pasar por veinte renglones que nadie toca nunca.
+      if (!todos && !c.principal) return false;
       if (!filtro) return true;
       var v = c.tipo === "texto" ? c.valor : c.valor + " " + (c.alt || "");
       return v.toLowerCase().indexOf(filtro) !== -1;
@@ -322,6 +329,20 @@
     });
   }
 
+  /**
+   * Da a cada campo el alto de su texto.
+   *
+   * Se hace después de dibujar y otra vez cuando terminan de cargar las
+   * tipografías: medir antes da alturas disparatadas, porque el campo todavía
+   * no tiene su ancho definitivo y el texto se parte en veinte renglones.
+   */
+  function ajustarTodos() {
+    var cajas = $("campos").querySelectorAll("textarea");
+    for (var i = 0; i < cajas.length; i++) {
+      if (cajas[i].ajustarAlto) cajas[i].ajustarAlto();
+    }
+  }
+
   function pintar() {
     var lista = visibles();
     var grupos = agrupar(lista);
@@ -361,6 +382,11 @@
     dela.forEach(function (c) {
       cont.appendChild(c.tipo === "imagen" ? filaImagen(c) : filaTexto(c));
     });
+
+    requestAnimationFrame(ajustarTodos);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(ajustarTodos);
+    }
   }
 
   function pintarPaginas() {
@@ -371,10 +397,9 @@
     });
     sel.innerHTML = "";
     vistas.forEach(function (p) {
-      var cuantos = campos.filter(function (c) { return c.pagina === p; }).length;
       var o = document.createElement("option");
       o.value = p;
-      o.textContent = p + " (" + cuantos + ")";
+      o.textContent = p;
       sel.appendChild(o);
     });
     if (vistas.indexOf(paginaActual) === -1) paginaActual = vistas[0];
@@ -511,6 +536,8 @@
         clearTimeout(reloj);
         reloj = setTimeout(pintar, 180);
       });
+
+      $("ver-todo").addEventListener("change", pintar);
 
       $("form-contenido").addEventListener("submit", function (ev) {
         ev.preventDefault();
