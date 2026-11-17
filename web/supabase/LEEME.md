@@ -26,8 +26,17 @@ En el **SQL Editor**, en este orden:
 1. `01-schema.sql` — crea el schema `donacompraweb`, las tablas, las políticas
    RLS y le da el rol admin al usuario del paso 1.
 2. `02-storage.sql` — crea el bucket de imágenes y sus políticas.
+3. `03-configuracion.sql` — la fila única con los datos de contacto del sitio.
+4. `04-contenido.sql` — los textos e imágenes que se editan desde el panel.
 
-Los dos son idempotentes: se pueden correr más de una vez.
+Los cuatro son idempotentes: se pueden correr más de una vez.
+
+Después de agregar una tabla, PostgREST sigue con el catálogo viejo en
+memoria y contesta 404 aunque la tabla exista. Se le avisa con:
+
+```sql
+notify pgrst, 'reload schema';
+```
 
 Al final de cada uno hay una consulta de comprobación. En el primero tenés que
 ver cinco tablas, todas con `rls_activo` y `rls_forzado` en true.

@@ -1,33 +1,36 @@
 /**
- * Trae del panel los datos editables del sitio y los deja puestos antes de que
+ * Trae del panel lo que el sitio tiene editable y lo deja puesto antes de que
  * el runtime dibuje nada.
  *
- * Por qué así y no de otra forma
- * ------------------------------
- * El sitio guarda sus datos de contacto como "props" dentro del atributo
- * data-props de la etiqueta <script data-dc-script>. El runtime lee ese
- * atributo una sola vez, al arrancar, y de ahí sale todo: el pie, la página de
- * contacto, la jurídica y —lo que más importa acá— el enlace del botón
- * flotante de WhatsApp, que se arma con el teléfono.
+ * Son dos cosas distintas:
  *
- * Entonces alcanza con cambiar ese atributo ANTES de que el runtime lo lea, y
- * el número nuevo aparece en los diez lugares donde está, sin tocar ninguno.
- * Por eso este archivo también se encarga de cargar support.js: si support.js
- * siguiera en el <head>, arrancaría antes y leería los valores viejos.
+ *   - la configuración: teléfono, correo, dirección, horario y redes. Van a
+ *     las "props" del runtime, dentro del atributo data-props. El runtime lee
+ *     ese atributo una sola vez, al arrancar, y de ahí sale todo: el pie, la
+ *     página de contacto, la jurídica y el enlace del botón flotante de
+ *     WhatsApp. Cambiándolo acá, el número nuevo aparece en los diez lugares
+ *     donde está sin tocar ninguno.
+ *
+ *   - el contenido: los textos y las imágenes de cada sección. Se escriben
+ *     sobre la plantilla, que el runtime también lee una sola vez. Quién es
+ *     cada texto lo decide dc-contenido.js, que es el mismo archivo con el
+ *     que el panel arma su formulario.
+ *
+ * Por eso este archivo carga support.js: si support.js siguiera en el <head>
+ * arrancaría antes y leería los valores viejos.
  *
  * Qué pasa si Supabase no responde
  * --------------------------------
- * El sitio carga igual, con los valores que trae escritos. Esa es la regla:
- * el panel puede estar caído, la red puede fallar, y la página de una empresa
- * tiene que seguir mostrando su teléfono. Por eso hay un tiempo máximo de
- * espera y, pasado ese, se sigue sin esperar más.
+ * El sitio carga igual, con lo que trae escrito. Esa es la regla: el panel
+ * puede estar caído, la red puede fallar, y la página de una empresa tiene
+ * que seguir mostrando su teléfono. Por eso hay un tiempo máximo de espera y,
+ * pasado ese, se sigue sin esperar más.
  *
  * El caché
  * --------
- * La respuesta se guarda en localStorage. En la segunda visita los valores ya
+ * La respuesta queda en localStorage. En la segunda visita los valores ya
  * están y no hay que esperar nada; igual se vuelve a pedir en segundo plano
- * para que la próxima vez esté fresco. Sin el caché, cada visita pagaría el
- * viaje de ida y vuelta.
+ * para que la próxima vez esté fresco.
  */
 (function () {
   "use strict";
@@ -42,11 +45,11 @@
   var SCHEMA = "donacompraweb";
   var BUCKET = "donacompraweb";
 
-  var CLAVE = "dc.config.v1";
+  var CLAVE = "dc.datos.v2";
   var FRESCO = 5 * 60 * 1000; // 5 minutos
   var ESPERA_MAX = 1200; // ms que el sitio acepta esperar al panel
 
-  /** Columna de la tabla -> prop que usa el sitio. */
+  /** Columna de configuracion -> prop que usa el sitio. */
   var MAPA = {
     telefono: "phone",
     correo: "email",
@@ -56,22 +59,30 @@
     facebook: "urlFacebook",
   };
 
-  /** URL pública de una imagen del bucket, a partir de su ruta. */
+  /**
+   * Dirección de una imagen.
+   *
+   * Las que suben desde el panel se guardan como ruta dentro del bucket y
+   * siempre empiezan con "contenido/": el día que cambie el dominio de
+   * Supabase no hay que reescribir ninguna fila. Cualquier otra cosa es una
+   * ruta del propio sitio (assets/, video/) y se deja como está.
+   */
   function urlImagen(ruta) {
     if (!ruta) return null;
-    if (/^https?:/i.test(ruta)) return ruta;
-    return API + "/storage/v1/object/public/" + BUCKET + "/" + ruta;
+    if (ruta.indexOf("contenido/") === 0) {
+      return API + "/storage/v1/object/public/" + BUCKET + "/" + ruta;
+    }
+    return ruta;
   }
 
   /**
-   * Escribe los valores dentro del atributo data-props.
+   * Escribe la configuración dentro del atributo data-props.
    *
    * El atributo es un JSON donde cada prop es un objeto con su `default`. Se
-   * cambia solo ese `default` y se deja el resto intacto: el editor que generó
-   * esto guarda ahí el tipo y la sección, y perderlos rompería el archivo
-   * fuente.
+   * cambia solo ese `default` y se deja el resto intacto: ahí está guardado el
+   * tipo y la sección de cada prop, y perderlos rompería el archivo fuente.
    */
-  function aplicar(cfg) {
+  function aplicarConfig(cfg) {
     if (!cfg) return false;
     var el = document.querySelector("script[data-dc-script]");
     if (!el) return false;
@@ -100,18 +111,26 @@
     }
 
     if (cambio) el.setAttribute("data-props", JSON.stringify(props));
-
-    // La portada no es una prop: es el src de la primera foto del carrusel.
-    var portada = urlImagen(cfg.portada_imagen);
-    if (portada) {
-      var img = document.querySelector(".dcx-port .dcx-portada2-foto img");
-      if (img) {
-        img.setAttribute("src", portada);
-        if (cfg.portada_imagen_alt) img.setAttribute("alt", cfg.portada_imagen_alt);
-      }
-    }
-
     return cambio;
+  }
+
+  /** Escribe los textos e imágenes editados sobre la plantilla. */
+  function aplicarContenido(filas) {
+    if (!filas || !filas.length) return 0;
+    if (!window.DC_CONTENIDO) return 0;
+    var raiz = document.querySelector("x-dc");
+    if (!raiz) return 0;
+
+    var mapa = {};
+    for (var i = 0; i < filas.length; i++) mapa[filas[i].clave] = filas[i].valor;
+
+    try {
+      return window.DC_CONTENIDO.aplicar(raiz, mapa, urlImagen);
+    } catch (e) {
+      // Un contenido raro no puede dejar la página en blanco: se sigue con lo
+      // que el sitio trae escrito.
+      return 0;
+    }
   }
 
   /** Arranca el runtime. Se llama una sola vez, pase lo que pase. */
@@ -119,6 +138,13 @@
   function arrancarRuntime() {
     if (arrancado) return;
     arrancado = true;
+    // Sin esto, el runtime vuelve a pedir el archivo por la red y reemplaza la
+    // plantilla con el texto del archivo, borrando lo que acabamos de
+    // escribir. Ese segundo pedido existe para los casos en que el runtime no
+    // tiene los recursos a mano; __resources es la forma que él mismo tiene
+    // de decir "ya los tengo". Como buscar una dirección en un mapa vacío
+    // siempre falla, todo lo demás sigue cargando por la red igual que antes.
+    if (!window.__resources) window.__resources = {};
     var s = document.createElement("script");
     s.src = "./support.js";
     s.async = false;
@@ -143,60 +169,71 @@
     }
   }
 
-  function pedir() {
-    return fetch(
-      API + "/rest/v1/configuracion?select=*&limit=1",
-      {
-        headers: {
-          apikey: ANON,
-          Authorization: "Bearer " + ANON,
-          "Accept-Profile": SCHEMA,
-        },
-        cache: "no-store",
-      }
-    )
+  function traer(ruta) {
+    return fetch(API + "/rest/v1/" + ruta, {
+      headers: {
+        apikey: ANON,
+        Authorization: "Bearer " + ANON,
+        "Accept-Profile": SCHEMA,
+      },
+      cache: "no-store",
+    })
       .then(function (r) {
         return r.ok ? r.json() : null;
-      })
-      .then(function (filas) {
-        return filas && filas.length ? filas[0] : null;
       })
       .catch(function () {
         return null;
       });
   }
 
-  // El pedido arranca acá, lo antes posible, en paralelo con el resto de la
-  // carga de la página.
-  var pedido = pedir();
+  /** Las dos consultas salen juntas y a la vez que el resto de la carga. */
+  var pedido = Promise.all([
+    traer("configuracion?select=*&limit=1"),
+    traer("contenido?select=clave,valor"),
+  ]).then(function (r) {
+    var cfg = r[0] && r[0].length ? r[0][0] : null;
+    var cont = r[1] || null;
+    // Si las dos fallaron no hay nada que guardar; media respuesta sí sirve.
+    if (!cfg && !cont) return null;
+    return { config: cfg, contenido: cont };
+  });
+
+  function aplicarTodo(datos) {
+    if (!datos) return;
+    aplicarConfig(datos.config);
+    // Queda a la vista cuántos campos se aplicaron: es lo primero que uno
+    // quiere saber cuando un texto del panel no aparece en el sitio.
+    window.__dcAplicados = aplicarContenido(datos.contenido);
+  }
 
   function listo() {
     var cache = leerCache();
     var fresco = cache && Date.now() - cache.en < FRESCO;
 
-    // Con caché fresco no se espera a nadie: se usa y se arranca.
+    // Con caché fresco no se espera a nadie: se usa y se arranca. La consulta
+    // sigue en camino y deja el caché listo para la próxima visita.
     if (fresco) {
-      aplicar(cache.datos);
+      aplicarTodo(cache.datos);
       arrancarRuntime();
-      pedido.then(function (cfg) {
-        if (cfg) guardarCache(cfg);
+      pedido.then(function (datos) {
+        if (datos) guardarCache(datos);
       });
       return;
     }
 
     // Sin caché fresco se espera, pero poco.
     var reloj = setTimeout(function () {
-      if (cache) aplicar(cache.datos);
+      if (cache) aplicarTodo(cache.datos);
       arrancarRuntime();
     }, ESPERA_MAX);
 
-    pedido.then(function (cfg) {
+    pedido.then(function (datos) {
       clearTimeout(reloj);
-      if (cfg) {
-        guardarCache(cfg);
-        aplicar(cfg);
+      if (datos) {
+        guardarCache(datos);
+        aplicarTodo(datos);
       } else if (cache) {
-        aplicar(cache.datos);
+        aplicarTodo(cache.datos);
       }
       arrancarRuntime();
     });

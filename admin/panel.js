@@ -33,7 +33,6 @@
   var $ = function (id) { return document.getElementById(id); };
   var sesion = null;
   var config = null;
-  var portadaNueva = null; // ruta en el bucket, mientras no se guarde
 
   /* --- Utilidades ---------------------------------------------------------- */
 
@@ -42,12 +41,6 @@
     el.className = "aviso " + clase;
   }
   function esconder(el) { el.className = "aviso oculto"; }
-
-  function urlImagen(ruta) {
-    if (!ruta) return null;
-    if (/^https?:/i.test(ruta)) return ruta;
-    return API + "/storage/v1/object/public/" + BUCKET + "/" + ruta;
-  }
 
   /** Mensaje de error entendible. Nunca el crudo de la API, que no dice nada. */
   function explicar(estado, cuerpo) {
@@ -151,24 +144,6 @@
     $("horario").value = config.horario || "";
     $("instagram").value = config.instagram || "";
     $("facebook").value = config.facebook || "";
-    $("portada-alt").value = config.portada_imagen_alt || "";
-    pintarPortada(config.portada_imagen);
-  }
-
-  function pintarPortada(ruta) {
-    var caja = $("vista-portada");
-    var url = urlImagen(ruta);
-    caja.innerHTML = "";
-    if (url) {
-      var img = document.createElement("img");
-      img.src = url;
-      img.alt = "";
-      caja.appendChild(img);
-    } else {
-      var s = document.createElement("span");
-      s.textContent = "Sin imagen propia: el sitio usa la que trae.";
-      caja.appendChild(s);
-    }
   }
 
   function guardar() {
@@ -180,11 +155,7 @@
       horario: $("horario").value.trim(),
       instagram: $("instagram").value.trim(),
       facebook: $("facebook").value.trim(),
-      portada_imagen_alt: $("portada-alt").value.trim() || null,
     };
-    // Solo se manda la portada si cambió en esta sesión: así un guardado normal
-    // no pisa la imagen por accidente.
-    if (portadaNueva !== null) cuerpo.portada_imagen = portadaNueva || null;
 
     return pedir("/rest/v1/configuracion?id=eq.true", {
       method: "PATCH",
@@ -205,31 +176,6 @@
     });
   }
 
-  /* --- Subida de imagen ---------------------------------------------------- */
-
-  function subir(archivo) {
-    // Nombre único: si se reemplaza la portada con el mismo nombre, el caché de
-    // un año que tiene el sitio seguiría mostrando la vieja durante meses.
-    var ext = (archivo.name.split(".").pop() || "jpg").toLowerCase();
-    var nombre = "portada/" + Date.now() + "-" + Math.random().toString(36).slice(2, 8) + "." + ext;
-    return fetch(API + "/storage/v1/object/" + BUCKET + "/" + nombre, {
-      method: "POST",
-      headers: {
-        apikey: ANON,
-        Authorization: "Bearer " + sesion.access_token,
-        "Content-Type": archivo.type || "application/octet-stream",
-        "x-upsert": "false",
-      },
-      body: archivo,
-    }).then(function (r) {
-      return r.ok ? { ok: true, ruta: nombre } : r.text().then(function (t) {
-        return { ok: false, estado: r.status, datos: t };
-      });
-    }).catch(function () {
-      return { ok: false, estado: 0 };
-    });
-  }
-
   /* --- Pantallas ----------------------------------------------------------- */
 
   function mostrarPanel(correo) {
@@ -237,6 +183,40 @@
     $("pantalla-panel").classList.remove("oculto");
     $("quien").textContent = correo || "";
     pintarConfig();
+    arrancarContenido();
+  }
+
+  /**
+   * Arranca el editor de contenido.
+   *
+   * Se le pasa lo que ya está resuelto acá —la sesión, los pedidos con sus
+   * cabeceras, los mensajes de error— en vez de que lo arme de nuevo: así hay
+   * un solo lugar donde se decide cómo se habla con Supabase.
+   */
+  function arrancarContenido() {
+    if (!window.DC_PANEL_CONTENIDO || !window.DC_CONTENIDO) {
+      mostrar($("aviso-contenido"), "No se pudo cargar el editor de contenido.", "error");
+      return;
+    }
+    window.DC_PANEL_CONTENIDO.arrancar({
+      pedir: pedir,
+      explicar: explicar,
+      anon: function () { return ANON; },
+      sesion: function () { return sesion; },
+      avisar: function (texto, clase) { mostrar($("aviso-contenido"), texto, clase); },
+    }).catch(function () {
+      mostrar($("aviso-contenido"),
+        "No se pudo leer la página del sitio para armar la lista de textos.", "error");
+    });
+  }
+
+  /** Las dos pestañas. */
+  function pestana(cual) {
+    var contenido = cual === "contenido";
+    $("p-contenido").setAttribute("aria-selected", contenido ? "true" : "false");
+    $("p-config").setAttribute("aria-selected", contenido ? "false" : "true");
+    $("zona-contenido").hidden = !contenido;
+    $("zona-config").hidden = contenido;
   }
 
   function mostrarAcceso(mensaje) {
@@ -291,35 +271,12 @@
       });
     });
 
+    $("p-contenido").addEventListener("click", function () { pestana("contenido"); });
+    $("p-config").addEventListener("click", function () { pestana("config"); });
+
     $("b-salir").addEventListener("click", function () {
       olvidarSesion();
       location.reload();
-    });
-
-    $("archivo-portada").addEventListener("change", function (ev) {
-      var archivo = ev.target.files && ev.target.files[0];
-      if (!archivo) return;
-      if (archivo.size > 8 * 1024 * 1024) {
-        mostrar($("aviso-config"), "La imagen pasa de 8 MB. Achicala y volvé a probar.", "error");
-        ev.target.value = "";
-        return;
-      }
-      mostrar($("aviso-config"), "Subiendo la imagen…", "nota");
-      subir(archivo).then(function (r) {
-        if (!r.ok) {
-          mostrar($("aviso-config"), "No se pudo subir: " + explicar(r.estado, r.datos), "error");
-          return;
-        }
-        portadaNueva = r.ruta;
-        pintarPortada(r.ruta);
-        mostrar($("aviso-config"), "Imagen subida. Falta guardar para que salga en el sitio.", "nota");
-      });
-    });
-
-    $("b-quitar-portada").addEventListener("click", function () {
-      portadaNueva = "";
-      pintarPortada(null);
-      mostrar($("aviso-config"), "Queda la imagen original. Falta guardar.", "nota");
     });
 
     $("form-config").addEventListener("submit", function (ev) {
@@ -336,8 +293,6 @@
           return;
         }
         config = (r.datos && r.datos[0]) || config;
-        portadaNueva = null;
-        $("archivo-portada").value = "";
         pintarConfig();
         mostrar($("aviso-config"), "Guardado. En el sitio se ve dentro de unos minutos.", "ok");
         $("estado-config").textContent =
