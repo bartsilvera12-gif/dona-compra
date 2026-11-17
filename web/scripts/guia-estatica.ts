@@ -266,7 +266,7 @@ function requisitos(): string {
   );
 }
 
-function donaTeCuida(telefono: string): string {
+function donaTeCuida(): string {
   const items = CUIDA.map(
     (c) =>
       `<li class="dcx-cuida-item"><span class="dcx-cuida-ico">${svg(c.icono, 23)}</span>` +
@@ -277,7 +277,7 @@ function donaTeCuida(telefono: string): string {
     `      <div style="max-width:1280px;margin:0 auto;padding:clamp(32px,4.5vw,56px) clamp(18px,4vw,40px)">${CR}` +
     `        <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:4px 16px;text-align:center">` +
     `<h2 style="${H2};font-size:clamp(20px,2.6vw,28px);margin:0">${esc(CUIDA_TITULO)}</h2>` +
-    `<p style="margin:0;font-size:15px;color:${MUTED}">Nuestro &uacute;nico n&uacute;mero es el ${telefono}.</p></div>${CR}` +
+    `<p style="margin:0;font-size:15px;color:${MUTED}">Nuestro &uacute;nico n&uacute;mero es el {{ phone }}.</p></div>${CR}` +
     `        <ul class="dcx-cuida">${items}</ul>${CR}` +
     `      </div>${CR}` +
     `    </section>${CR}`
@@ -461,9 +461,6 @@ const CSS = [
 const ruta = new URL(INDICE, import.meta.url);
 let html = readFileSync(ruta, "utf8");
 
-const telefono =
-  html.match(/Nuestro &uacute;nico n&uacute;mero es el ([\d ]+)\./)?.[1] ??
-  "0994 876 333";
 
 const ABRE = "    <!-- GUIA:INICIO -->" + CR;
 const CIERRA = "    <!-- GUIA:FIN -->" + CR;
@@ -476,7 +473,7 @@ const bloque =
   acompanamiento() +
   rubros() +
   requisitos() +
-  donaTeCuida(telefono) +
+  donaTeCuida() +
   CIERRA;
 
 const ABRE2 = "    <!-- GUIA2:INICIO -->" + CR;
