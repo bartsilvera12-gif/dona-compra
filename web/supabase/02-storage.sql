@@ -18,6 +18,12 @@
 --    delete from storage.objects where bucket_id = 'donacompraweb';
 --    delete from storage.buckets where id = 'donacompraweb';
 --    drop policy if exists dc_imagenes_select_publico on storage.objects;
+--
+--  OJO con el prefijo: en esta instancia hay otro proyecto, "dobleclick",
+--  que tambien usa dc_ en sus politicas de storage (dc_storage_admin_write
+--  y dc_storage_public_read, limitadas a su propio bucket). No se cruzan
+--  con las de aca, que son dc_imagenes_*, pero un borrado por patron
+--  "dc\_%" se llevaria las de ellos tambien. Borrar por nombre completo.
 --    drop policy if exists dc_imagenes_insert_admin   on storage.objects;
 --    drop policy if exists dc_imagenes_update_admin   on storage.objects;
 --    drop policy if exists dc_imagenes_delete_admin   on storage.objects;
