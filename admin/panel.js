@@ -219,9 +219,12 @@
       explicar: explicar,
       anon: function () { return ANON; },
       sesion: function () { return sesion; },
-      // Para que la vista previa muestre el telefono y las redes de verdad y
-      // no los que vienen escritos en el archivo.
+      // Para que la vista previa muestre el telefono, las redes y los
+      // anuncios de verdad, y no los que vienen escritos en el archivo.
       config: function () { return config; },
+      anuncios: function () {
+        return window.DC_PANEL_ANUNCIOS ? window.DC_PANEL_ANUNCIOS.publicados() : null;
+      },
       avisar: function (texto, clase) { mostrar($("aviso-contenido"), texto, clase); },
     }).catch(function () {
       mostrar($("aviso-contenido"),

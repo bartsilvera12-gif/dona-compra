@@ -373,5 +373,13 @@
     });
   }
 
-  window.DC_PANEL_ANUNCIOS = { arrancar: arrancar };
+  window.DC_PANEL_ANUNCIOS = {
+    arrancar: arrancar,
+    // Para la vista previa del editor de textos: ahi tiene que verse la
+    // pagina de anuncios como la ve cualquiera, no la lista de ejemplo que
+    // trae el archivo.
+    publicados: function () {
+      return anuncios.filter(function (a) { return a.estado === "publicada"; });
+    },
+  };
 })();

@@ -408,7 +408,11 @@
       if (!Object.prototype.hasOwnProperty.call(guardado, g)) continue;
       if (!puestas[g]) filas.push({ clave: g, valor: guardado[g] });
     }
-    return { config: api.config ? api.config() : null, contenido: filas };
+    return {
+      config: api.config ? api.config() : null,
+      contenido: filas,
+      anuncios: api.anuncios ? api.anuncios() : null,
+    };
   }
 
   /**
