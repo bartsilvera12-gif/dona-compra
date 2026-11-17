@@ -40,13 +40,22 @@ RedirectMatch 404 /\.(git|claude|env)
   # La pagina no: es un solo archivo que cambia en cada despliegue, y si se
   # cachea, un cambio tarda dias en verse.
   ExpiresByType text/html                 "access plus 0 seconds"
+  # El JavaScript tampoco. El servidor le pone siete dias por su cuenta, y eso
+  # significa que quien ya visito el sitio se queda una semana con la version
+  # vieja: el panel cambia un texto, la base lo tiene, y esa persona sigue
+  # viendo el de antes porque su navegador no vuelve a pedir el archivo que
+  # sabe leerlo. Son pocos kilobytes y, si no cambio, el servidor contesta
+  # "no cambio" sin mandarlo de nuevo.
+  ExpiresByType application/javascript    "access plus 0 seconds"
+  ExpiresByType text/javascript           "access plus 0 seconds"
+  ExpiresByType text/css                  "access plus 0 seconds"
 </IfModule>
 
 <IfModule mod_headers.c>
   <FilesMatch "\.(jpg|jpeg|png|webp|svg|mp4|woff2)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
-  <FilesMatch "\.(html|xml|txt)$">
+  <FilesMatch "\.(html|xml|txt|js|css|json)$">
     Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
 </IfModule>
