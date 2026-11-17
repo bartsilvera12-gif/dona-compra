@@ -4,8 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>x-dc{display:none!important}</style>
-<script src="./dc-contenido.js"></script>
-<script src="./dc-config.js"></script>
+<!-- El ?v= no es decoracion: hasta hoy el servidor mandaba los .js con
+     siete dias de cache, y un navegador que ya los tiene guardados no
+     vuelve a preguntar por mas que ahora el encabezado diga otra cosa.
+     Cambiando la direccion, quien ya visito el sitio recibe igual la
+     version nueva. De aca en adelante no hace falta tocarlo. -->
+<script src="./dc-contenido.js?v=2"></script>
+<script src="./dc-config.js?v=2"></script>
 </head>
 <body>
 <x-dc>
