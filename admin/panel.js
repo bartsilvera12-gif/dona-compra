@@ -184,6 +184,22 @@
     $("quien").textContent = correo || "";
     pintarConfig();
     arrancarContenido();
+    arrancarAnuncios();
+  }
+
+  /** La pantalla de anuncios, con el mismo puente que el editor de textos. */
+  function arrancarAnuncios() {
+    if (!window.DC_PANEL_ANUNCIOS) {
+      mostrar($("aviso-anuncios"), "No se pudo cargar la pantalla de anuncios.", "error");
+      return;
+    }
+    window.DC_PANEL_ANUNCIOS.arrancar({
+      pedir: pedir,
+      explicar: explicar,
+      anon: function () { return ANON; },
+      sesion: function () { return sesion; },
+      avisar: function (texto, clase) { mostrar($("aviso-anuncios"), texto, clase); },
+    });
   }
 
   /**
@@ -213,13 +229,14 @@
     });
   }
 
-  /** Las dos pestañas. */
+  /** Las tres pestañas. */
+  var PESTANAS = ["contenido", "anuncios", "config"];
   function pestana(cual) {
-    var contenido = cual === "contenido";
-    $("p-contenido").setAttribute("aria-selected", contenido ? "true" : "false");
-    $("p-config").setAttribute("aria-selected", contenido ? "false" : "true");
-    $("zona-contenido").hidden = !contenido;
-    $("zona-config").hidden = contenido;
+    PESTANAS.forEach(function (p) {
+      var elegida = p === cual;
+      $("p-" + p).setAttribute("aria-selected", elegida ? "true" : "false");
+      $("zona-" + p).hidden = !elegida;
+    });
   }
 
   function mostrarAcceso(mensaje) {
@@ -274,8 +291,9 @@
       });
     });
 
-    $("p-contenido").addEventListener("click", function () { pestana("contenido"); });
-    $("p-config").addEventListener("click", function () { pestana("config"); });
+    PESTANAS.forEach(function (p) {
+      $("p-" + p).addEventListener("click", function () { pestana(p); });
+    });
 
     $("b-salir").addEventListener("click", function () {
       olvidarSesion();

@@ -2606,9 +2606,10 @@ const SEO = {
 
 const ASUNTOS = ['Comerciante', 'Mayorista', 'Prensa', 'Otro'];
 
-// Contenido de demostracion de la pagina de Anuncios.
-// Se reemplaza por datos reales cuando exista el back-office.
-const POSTS = [
+// Los anuncios salen del panel de administracion. Lo de abajo es lo que se
+// muestra si la base no contesta: la pagina de anuncios no queda vacia por
+// una falla de red. Los pone dc-config.js antes de que el runtime arranque.
+const POSTS = window.__dcPosts || [
   { id:'p1', tipo:'video', cat:'Ofertas',   ciudad:'Asunci\u00f3n',    precio:150000, fecha:'2026-10-28', autor:'Do\u00f1a Compra (ejemplo)',          titulo:'C\u00f3mo funciona el retiro con c\u00f3digo seguro', texto:'Te mostramos en un minuto c\u00f3mo retir\u00e1s la mercader\u00eda con el c\u00f3digo que te damos.', img:'assets/paso-3.jpg' },
   { id:'p2', tipo:'foto',  cat:'Novedades', ciudad:'Lambar\u00e9',     precio:0,      fecha:'2026-10-26', autor:'Do\u00f1a Compra (ejemplo)',          titulo:'Nueva zona de cobertura: Lambar\u00e9',           texto:'Ya estamos visitando negocios en Lambar\u00e9. Ped\u00ed tu visita desde la p\u00e1gina de contacto.', img:'assets/rubro-despensas.jpg' },
   { id:'p3', tipo:'foto',  cat:'Ofertas',   ciudad:'San Lorenzo', precio:320000, fecha:'2026-10-24', autor:'Proveedor Amigo (ejemplo)',      titulo:'Temporada escolar: curva completa',          texto:'Librer\u00edas: arm\u00e1 tu pedido de temporada y pag\u00e1 despu\u00e9s de vender.', img:'assets/rubro-libreria.jpg' },

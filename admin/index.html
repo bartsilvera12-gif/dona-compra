@@ -195,6 +195,54 @@
     font-size: 13.5px; color: var(--muted); cursor: pointer; width: fit-content;
   }
   .casilla input { width: 17px; height: 17px; accent-color: var(--verde); cursor: pointer; }
+
+  /* --- Anuncios -------------------------------------------------------------- */
+  .anuncios-cabeza {
+    display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start;
+    justify-content: space-between;
+  }
+  .anuncios-cabeza .b-primario { flex: none; }
+
+  .anuncios-lista { display: grid; gap: 10px; margin-top: 20px; }
+  .anuncio {
+    display: grid; grid-template-columns: 76px 1fr auto; gap: 14px;
+    align-items: center; padding: 10px;
+    border: 1px solid var(--linea); border-radius: var(--radio-chico);
+    background: var(--papel);
+  }
+  .anuncio:hover { background: #fff; border-color: rgba(22,57,35,0.22); }
+  .anuncio img {
+    width: 76px; height: 58px; object-fit: cover; border-radius: 8px;
+    background: var(--grad); display: block;
+  }
+  .anuncio-datos { min-width: 0; }
+  .anuncio-titulo {
+    font-family: Montserrat, sans-serif; font-weight: 600; color: var(--verde);
+    font-size: 14.5px; line-height: 1.3;
+  }
+  .anuncio-pie { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .anuncio-oculto {
+    display: inline-block; font-size: 11px; font-weight: 600; color: var(--ocre-ink);
+    background: var(--ocre-piel); border: 1px solid rgba(222,155,43,0.5);
+    border-radius: 999px; padding: 0 8px; margin-left: 6px;
+  }
+  @media (max-width: 560px) {
+    .anuncio { grid-template-columns: 56px 1fr; }
+    .anuncio img { width: 56px; height: 46px; }
+    .anuncio .b-texto { grid-column: 2; justify-self: start; }
+  }
+
+  .editor-anuncio {
+    margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--linea);
+  }
+  .editor-anuncio h3 { font-size: 18px; }
+  .editor-sub { font-family: Montserrat, sans-serif; font-size: 14px; color: var(--verde); margin: 24px 0 0; }
+  .editor-fila { display: grid; gap: 14px; }
+  @media (min-width: 680px) { .editor-fila { grid-template-columns: repeat(3, 1fr); } }
+  .editor-fila label { margin-top: 18px; }
+  @media (min-width: 680px) { .editor-fila label { margin-top: 0; } }
+  .editor-anuncio .campo-imagen { margin-top: 10px; }
+  .b-borrar { color: var(--error); margin-left: auto; }
   .barra-contenido input { flex: 1; min-width: 180px; }
 
   /* --- Menu de secciones ----------------------------------------------------- */
@@ -380,6 +428,7 @@
   <main class="caja">
     <div class="pestanas" role="tablist">
       <button type="button" role="tab" id="p-contenido" aria-selected="true" aria-controls="zona-contenido">Contenido</button>
+      <button type="button" role="tab" id="p-anuncios" aria-selected="false" aria-controls="zona-anuncios">Anuncios</button>
       <button type="button" role="tab" id="p-config" aria-selected="false" aria-controls="zona-config">Configuración</button>
     </div>
 
@@ -430,6 +479,107 @@
           <span class="estado" id="estado-contenido"></span>
         </div>
       </form>
+    </div>
+
+    <div id="zona-anuncios" role="tabpanel" aria-labelledby="p-anuncios" hidden>
+      <div class="tarjeta">
+        <div class="anuncios-cabeza">
+          <div>
+            <h2>Anuncios</h2>
+            <p class="intro">
+              Lo que se publica en la página de Anuncios. Lo que cargues acá
+              aparece en el sitio; lo que borres, desaparece.
+            </p>
+          </div>
+          <button type="button" class="b-primario" id="b-nuevo">Nuevo anuncio</button>
+        </div>
+
+        <div id="aviso-anuncios" class="aviso oculto" role="status"></div>
+
+        <div id="lista-anuncios" class="anuncios-lista">
+          <p class="intro">Buscando los anuncios…</p>
+        </div>
+
+        <form id="editor-anuncio" class="editor-anuncio oculto">
+          <h3 id="editor-titulo">Nuevo anuncio</h3>
+
+          <label>
+            <span class="nombre">Título</span>
+            <input type="text" id="a-titulo" required maxlength="120">
+          </label>
+
+          <label>
+            <span class="nombre">Texto</span>
+            <textarea id="a-texto" required maxlength="600"></textarea>
+          </label>
+
+          <div class="editor-fila">
+            <label>
+              <span class="nombre">Categoría</span>
+              <select id="a-categoria">
+                <option>Ofertas</option>
+                <option>Novedades</option>
+                <option>Comunidad</option>
+              </select>
+            </label>
+            <label>
+              <span class="nombre">Ciudad</span>
+              <select id="a-ciudad"></select>
+            </label>
+            <label>
+              <span class="nombre">Fecha</span>
+              <input type="date" id="a-fecha" required>
+            </label>
+          </div>
+
+          <div class="editor-fila">
+            <label>
+              <span class="nombre">Precio</span>
+              <input type="number" id="a-precio" min="0" step="1000" value="0">
+              <span class="ayuda">En guaraníes. Cero no muestra precio.</span>
+            </label>
+            <label>
+              <span class="nombre">Quién lo publica</span>
+              <input type="text" id="a-autor" maxlength="80">
+            </label>
+            <label>
+              <span class="nombre">Tipo</span>
+              <select id="a-tipo">
+                <option value="foto">Foto</option>
+                <option value="video">Video</option>
+              </select>
+            </label>
+          </div>
+
+          <label id="campo-video" class="oculto">
+            <span class="nombre">Enlace del video</span>
+            <input type="text" id="a-video" placeholder="https://www.youtube.com/watch?v=...">
+            <span class="ayuda">El video no se sube acá: se enlaza.</span>
+          </label>
+
+          <h4 class="editor-sub">Imagen</h4>
+          <div class="campo-imagen">
+            <img class="campo-vista" id="a-vista" alt="">
+            <div>
+              <input type="file" id="a-archivo" accept="image/jpeg,image/png,image/webp,image/avif">
+              <span class="campo-tipo campo-tipo-interno">Qué se ve en la imagen</span>
+              <input type="text" id="a-alt" placeholder="Una despensa de barrio, con la dueña en el mostrador">
+              <span class="campo-ayuda" id="a-ayuda-img">Hasta 8 MB. Se recorta en forma apaisada.</span>
+            </div>
+          </div>
+
+          <label class="casilla">
+            <input type="checkbox" id="a-publicado" checked>
+            <span>Mostrarlo en el sitio</span>
+          </label>
+
+          <div class="pie-acciones">
+            <button type="submit" class="b-primario" id="b-guardar-anuncio">Guardar</button>
+            <button type="button" class="b-texto" id="b-cancelar">Cancelar</button>
+            <button type="button" class="b-texto b-borrar oculto" id="b-borrar">Borrar este anuncio</button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <div id="zona-config" role="tabpanel" aria-labelledby="p-config" hidden>
@@ -493,6 +643,7 @@
      .js con una semana de cache y hay navegadores con la version vieja. -->
 <script src="../dc-contenido.js?v=2"></script>
 <script src="./contenido.js?v=2"></script>
+<script src="./anuncios.js?v=2"></script>
 <script src="./panel.js?v=2"></script>
 </body>
 </html>

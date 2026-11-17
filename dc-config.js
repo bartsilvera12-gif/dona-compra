@@ -118,6 +118,38 @@
     return cambio;
   }
 
+  /**
+   * Deja los anuncios donde el sitio los busca.
+   *
+   * La página de Anuncios se arma con una lista que está escrita en el propio
+   * archivo. Esa lista empieza con `window.__dcPosts || [...]`, así que basta
+   * con poner acá lo que vino de la base: no hay que tocar el código del
+   * sitio ni reescribir nada a mano.
+   *
+   * Si la base no contesta, no se toca: quedan los que trae el archivo. Una
+   * página de anuncios vacía por una falla de red es peor que una con los de
+   * ayer.
+   */
+  function aplicarAnuncios(filas) {
+    if (!filas) return 0;
+    window.__dcPosts = filas.map(function (f) {
+      return {
+        id: f.id,
+        tipo: f.tipo,
+        cat: f.categoria,
+        ciudad: f.ciudad,
+        precio: f.precio,
+        fecha: f.fecha,
+        autor: f.autor,
+        titulo: f.titulo,
+        texto: f.texto,
+        img: urlImagen(f.imagen),
+        video: f.video_url || "",
+      };
+    });
+    return window.__dcPosts.length;
+  }
+
   /** Escribe los textos e imágenes editados sobre la plantilla. */
   function aplicarContenido(filas) {
     if (!filas || !filas.length) return 0;
@@ -219,17 +251,21 @@
   var pedido = esVistaPrevia() ? Promise.resolve(null) : Promise.all([
     traer("configuracion?select=*&limit=1"),
     traer("contenido?select=clave,valor"),
+    traer("publicaciones?select=id,tipo,categoria,ciudad,precio,fecha,autor,titulo,texto,imagen,video_url" +
+          "&estado=eq.publicada&order=fecha.desc"),
   ]).then(function (r) {
     var cfg = r[0] && r[0].length ? r[0][0] : null;
     var cont = r[1] || null;
-    // Si las dos fallaron no hay nada que guardar; media respuesta sí sirve.
-    if (!cfg && !cont) return null;
-    return { config: cfg, contenido: cont };
+    var anun = r[2] || null;
+    // Si las tres fallaron no hay nada que guardar; una sola respuesta sí sirve.
+    if (!cfg && !cont && !anun) return null;
+    return { config: cfg, contenido: cont, anuncios: anun };
   });
 
   function aplicarTodo(datos) {
     if (!datos) return;
     aplicarConfig(datos.config);
+    aplicarAnuncios(datos.anuncios);
     // Queda a la vista cuántos campos se aplicaron: es lo primero que uno
     // quiere saber cuando un texto del panel no aparece en el sitio.
     window.__dcAplicados = aplicarContenido(datos.contenido);
