@@ -15,7 +15,7 @@ export const site = {
   tagline: "Comprá mercadería para tu negocio y pagá después",
   url: env("NEXT_PUBLIC_SITE_URL", "https://dona-compra.vercel.app"),
 
-  phone: env("NEXT_PUBLIC_PHONE", "0994 876 333"),
+  phone: env("NEXT_PUBLIC_PHONE", "0994 300 999"),
   email: env("NEXT_PUBLIC_EMAIL", "donacompra.py@gmail.com"),
   horario: "Lunes a viernes de 08:00 a 18:00 · Sábados de 08:00 a 12:00",
   plazo: "Respondemos dentro de las 24 horas hábiles.",

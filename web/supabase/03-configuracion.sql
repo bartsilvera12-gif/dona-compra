@@ -30,7 +30,7 @@ create table if not exists donacompraweb.configuracion (
   id                boolean primary key default true check (id),
 
   -- Contacto
-  telefono          text not null default '0994 876 333',
+  telefono          text not null default '0994 300 999',
   correo            text not null default 'donacompra.py@gmail.com',
   domicilio         text not null default 'Edificio Diamante 1, Calle Coronel Feliciano Duarte 111, 403 San Lorenzo, Paraguay',
   zona              text not null default 'Gran Asunción, Paraguay',

@@ -76,7 +76,7 @@ Las de contacto y datos públicos, que ya existían:
 
 | Variable | Valor |
 | --- | --- |
-| `NEXT_PUBLIC_PHONE` | `0994 876 333` |
+| `NEXT_PUBLIC_PHONE` | `0994 300 999` |
 | `NEXT_PUBLIC_EMAIL` | correo de contacto |
 | `NEXT_PUBLIC_FACEBOOK` | URL, o vacío para ocultar el botón |
 | `NEXT_PUBLIC_INSTAGRAM` | URL, o vacío para ocultar el botón |
