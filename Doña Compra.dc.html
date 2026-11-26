@@ -495,7 +495,8 @@
         <a href="#/preguntas-frecuentes" onClick="{{ closeMenu }}" style="font-family:Montserrat,sans-serif;font-size:clamp(26px,7vw,40px);font-weight:600;color:#F5F2EB;padding:8px 0;border-bottom:1px solid rgba(245,242,235,0.12)">Preguntas frecuentes</a>
         <a href="#/contacto" onClick="{{ closeMenu }}" style="font-family:Montserrat,sans-serif;font-size:clamp(26px,7vw,40px);font-weight:600;color:#F5F2EB;padding:8px 0;border-bottom:1px solid rgba(245,242,235,0.12)">Contacto</a>
         <a href="#/#como-funciona" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Cómo funciona</a>
-        <a href="#/tu-chequeo" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Tu Chequeo</a>
+        <a href="#/punto-de-partida" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Punto de Partida</a>
+          <a href="#/tu-chequeo" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Tu Chequeo</a>
           <a href="#/niveles-y-tarifas" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Niveles y tarifas</a>
         <a href="#/juridica" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Jurídica</a>
       </nav>
@@ -1210,6 +1211,132 @@
           <a href="assets/condiciones-generales-nov-2026.pdf" download type="application/pdf" style="display:inline-flex;align-items:center;gap:10px;margin-top:24px;background:#163923;color:#F5F2EB;border-radius:999px;padding:16px 26px;font-size:14.5px;font-weight:600;text-decoration:none" style-hover="background:#1F5132"><span aria-hidden="true">&#8595;</span>Descargar las Condiciones Generales (PDF)</a>
           <p style="font-size:13px;color:#4F5C54;margin:8px 0 0">CGSV &middot; noviembre 2026 &middot; 22 p&aacute;ginas &middot; 0,9 MB</p>
         </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ─────────── TU PUNTO DE PARTIDA ─────────── -->
+  <sc-if value="{{ atPartida }}">
+  <div>
+    <section style="background:#163923;color:#F5F2EB;border-radius:12px">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,6vw,96px) clamp(18px,4vw,40px)">
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#DE9B2B">Tu primer paso</span>
+        <h1 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(34px,5.6vw,72px);line-height:1;letter-spacing:-0.02em;color:#F5F2EB;margin:16px 0 0;max-width:16ch">Tu Punto de Partida <span style="color:#DE9B2B">empieza ac&aacute;.</span></h1>
+        <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:rgba(245,242,235,0.8);margin:20px 0 0;max-width:54ch">Es tu primer paso con Do&ntilde;a Compra: gratis, por WhatsApp y a tu ritmo. Te contamos c&oacute;mo trabajamos, te conocemos y, al final, sab&eacute;s exactamente cu&aacute;l es tu pr&oacute;ximo paso.</p>
+        <p style="margin:30px 0 0"><a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" data-cta="true" style="display:inline-block;background:#DE9B2B;color:#163923">Tu Punto de Partida empieza ac&aacute;</a></p>
+      </div>
+    </section>
+
+    <section style="background:transparent">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 12px">Qu&eacute; es tu Punto de Partida</h2>
+        <p style="font-size:16px;line-height:1.65;color:#2F4237;margin:0 0 20px;max-width:62ch">Una bienvenida y una charla para conocernos. Do&ntilde;a Compra te explica todo, vos nos cont&aacute;s sobre tu comercio, y juntos vemos qu&eacute; camino te conviene:</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
+          <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:22px"><p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0"><strong style="color:#163923">Comprar tu mercader&iacute;a</strong> con Do&ntilde;a Compra, en tu mayorista de siempre.</p></div>
+          <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:22px"><p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0"><strong style="color:#163923">Hacer Tu Chequeo</strong>, para ver tu negocio con ojos expertos. <a href="#/tu-chequeo" style="color:#875F1A;text-decoration:underline;text-underline-offset:3px">Conoc&eacute; Tu Chequeo &rarr;</a></p></div>
+        </div>
+
+        <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(20px,2.4vw,26px);color:#163923;margin:40px 0 16px">C&oacute;mo se hace, en 4 pasos</h3>
+        <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:12px">
+          <li style="background:#fff;border:1px solid rgba(22,57,35,0.14);border-radius:12px;padding:20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">01</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 4px">Nos escrib&iacute;s</div><p style="font-size:14.5px;line-height:1.55;color:#2F4237;margin:0">Por WhatsApp. Un &laquo;Hola&raquo; alcanza.</p></li>
+          <li style="background:#fff;border:1px solid rgba(22,57,35,0.14);border-radius:12px;padding:20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">02</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 4px">Mir&aacute;s la bienvenida</div><p style="font-size:14.5px;line-height:1.55;color:#2F4237;margin:0">Do&ntilde;a te cuenta c&oacute;mo funciona, en videos cortos. Unos 6 minutos.</p></li>
+          <li style="background:#fff;border:1px solid rgba(22,57,35,0.14);border-radius:12px;padding:20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">03</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 4px">Respond&eacute;s unas preguntas</div><p style="font-size:14.5px;line-height:1.55;color:#2F4237;margin:0">Sobre vos y tu comercio. Por escrito o por audio, unos 20 a 25 minutos.</p></li>
+          <li style="background:#fff;border:1px solid rgba(22,57,35,0.14);border-radius:12px;padding:20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">04</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 4px">Recib&iacute;s tu resumen</div><p style="font-size:14.5px;line-height:1.55;color:#2F4237;margin:0">Tus respuestas, lo que ten&eacute;s que preparar y tu pr&oacute;ximo paso.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section style="background:#F5F2EB;border-top:1px solid rgba(22,57,35,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">Do&ntilde;a Compra en 5 puntos</h2>
+        <p style="font-size:16px;line-height:1.65;color:#2F4237;margin:0 0 22px;max-width:62ch">Todo lo que necesit&aacute;s saber antes de empezar, claro y por escrito.</p>
+        <nav aria-label="Los cinco puntos" style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 36px">
+          <a href="#/punto-de-partida#cuanto-compro" style="font-size:14px;color:#163923;background:#fff;border:1px solid rgba(22,57,35,0.16);border-radius:999px;padding:8px 14px;text-decoration:none">1 &middot; &iquest;Cu&aacute;nto puedo comprar?</a>
+          <a href="#/punto-de-partida#cuanto-cuesta" style="font-size:14px;color:#163923;background:#fff;border:1px solid rgba(22,57,35,0.16);border-radius:999px;padding:8px 14px;text-decoration:none">2 &middot; &iquest;Cu&aacute;nto me cuesta?</a>
+          <a href="#/punto-de-partida#cuando-pago" style="font-size:14px;color:#163923;background:#fff;border:1px solid rgba(22,57,35,0.16);border-radius:999px;padding:8px 14px;text-decoration:none">3 &middot; &iquest;Cu&aacute;ndo y c&oacute;mo pago?</a>
+          <a href="#/punto-de-partida#como-crezco" style="font-size:14px;color:#163923;background:#fff;border:1px solid rgba(22,57,35,0.16);border-radius:999px;padding:8px 14px;text-decoration:none">4 &middot; &iquest;C&oacute;mo crezco?</a>
+          <a href="#/punto-de-partida#ojos-expertos" style="font-size:14px;color:#163923;background:#fff;border:1px solid rgba(22,57,35,0.16);border-radius:999px;padding:8px 14px;text-decoration:none">5 &middot; Tu negocio, visto con ojos expertos</a>
+        </nav>
+
+        <div id="cuanto-compro" style="scroll-margin-top:90px;border-top:1px solid rgba(22,57,35,0.14);padding-top:26px;margin-top:26px">
+          <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(20px,2.6vw,28px);color:#163923;margin:0 0 10px">1 &middot; &iquest;Cu&aacute;nto puedo comprar?</h3>
+          <ul style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.7;color:#2F4237;max-width:64ch">
+            <li>Cada nivel te abre un cupo: el monto m&aacute;ximo que Do&ntilde;a Compra compra por vos.</li>
+            <li>Arranc&aacute;s en Hierro, con 250.000 Gs, y pod&eacute;s llegar a 10.000.000 Gs en Diamante.</li>
+            <li>Tu cupo es tu l&iacute;mite: nunca se pasa.</li>
+            <li>Para un pedido nuevo, primero cerr&aacute;s los anteriores.</li>
+            <li>Pedido m&iacute;nimo: 50.000 Gs en Hierro y 100.000 Gs a partir de Cobre.</li>
+          </ul>
+          <p style="margin:14px 0 0"><a href="#/niveles-y-tarifas" style="color:#875F1A;font-weight:500;text-decoration:underline;text-underline-offset:3px">Ver los 8 niveles y sus cupos &rarr;</a></p>
+        </div>
+
+        <div id="cuanto-cuesta" style="scroll-margin-top:90px;border-top:1px solid rgba(22,57,35,0.14);padding-top:26px;margin-top:26px">
+          <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(20px,2.6vw,28px);color:#163923;margin:0 0 10px">2 &middot; &iquest;Cu&aacute;nto me cuesta?</h3>
+          <p style="font-size:15.5px;line-height:1.65;color:#2F4237;margin:0 0 14px">Tu factura tiene tres partes:</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:12px">
+            <div style="background:#fff;border:1px solid rgba(22,57,35,0.14);border-radius:12px;padding:18px"><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;margin:0 0 4px">Precio de tu mayorista</div><p style="font-size:14.5px;line-height:1.55;color:#2F4237;margin:0">Lo que cuesta tu mercader&iacute;a.</p></div>
+            <div style="background:#fff;border:1px solid rgba(22,57,35,0.14);border-radius:12px;padding:18px"><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;margin:0 0 4px">Recargo Do&ntilde;a Compra</div><p style="font-size:14.5px;line-height:1.55;color:#2F4237;margin:0">18 % en Hierro y Cobre, y baja nivel a nivel hasta 12 % en Diamante.</p></div>
+            <div style="background:#fff;border:1px solid rgba(22,57,35,0.14);border-radius:12px;padding:18px"><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;margin:0 0 4px">Servicios Do&ntilde;a Compra</div><p style="font-size:14.5px;line-height:1.55;color:#2F4237;margin:0">Un precio fijo por pedido seg&uacute;n tu nivel: de 7.000 Gs en Hierro a 22.500 Gs en Diamante.</p></div>
+          </div>
+          <p style="font-size:15.5px;line-height:1.65;color:#163923;background:#fff;border:1px solid rgba(222,155,43,0.45);border-radius:12px;padding:16px 18px;margin:14px 0 0"><strong>Ejemplo en Hierro:</strong> 100.000 Gs de tu mayorista + 18.000 Gs de recargo + 7.000 Gs de servicios = <strong>125.000 Gs</strong></p>
+          <p style="font-size:15px;line-height:1.6;color:#2F4237;margin:14px 0 0;max-width:64ch">Los 5 Servicios Do&ntilde;a Compra: seguimiento con c&oacute;digo, custodia de tus documentos, Mayoristas Amigos, publicidad de la Red y Club Do&ntilde;a Compra. El precio se confirma siempre antes de cada pedido.</p>
+        </div>
+
+        <div id="cuando-pago" style="scroll-margin-top:90px;border-top:1px solid rgba(22,57,35,0.14);padding-top:26px;margin-top:26px">
+          <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(20px,2.6vw,28px);color:#163923;margin:0 0 10px">3 &middot; &iquest;Cu&aacute;ndo y c&oacute;mo pago?</h3>
+          <ul style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.7;color:#2F4237;max-width:64ch">
+            <li>Retir&aacute;s tu mercader&iacute;a con tu c&oacute;digo de recepci&oacute;n.</li>
+            <li>Pag&aacute;s tu factura como m&aacute;ximo 30 d&iacute;as despu&eacute;s del retiro.</li>
+            <li>Medios de pago: transferencia, alias, Mango o Tigo Money.</li>
+            <li>Pod&eacute;s pagar antes, cuando quieras. Antes, s&iacute;; despu&eacute;s, nunca.</li>
+            <li>Si ves que se complica, avis&aacute; antes. Hablando, siempre encontramos una soluci&oacute;n.</li>
+          </ul>
+        </div>
+
+        <div id="como-crezco" style="scroll-margin-top:90px;border-top:1px solid rgba(22,57,35,0.14);padding-top:26px;margin-top:26px">
+          <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(20px,2.6vw,28px);color:#163923;margin:0 0 10px">4 &middot; &iquest;C&oacute;mo crezco?</h3>
+          <p style="font-size:15.5px;line-height:1.65;color:#2F4237;margin:0 0 12px;max-width:64ch">Pedido a pedido, nivel a nivel. Tu palabra es lo que te hace crecer.</p>
+          <ul style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.7;color:#2F4237;max-width:64ch">
+            <li><strong style="color:#163923">Compr&aacute;s y cumpl&iacute;s:</strong> us&aacute;s tu cupo y pag&aacute;s a tiempo.</li>
+            <li><strong style="color:#163923">Complet&aacute;s tu chequeo:</strong> el an&aacute;lisis que te prepara para el nivel siguiente.</li>
+            <li><strong style="color:#163923">Tu Asesor te visita:</strong> conoce tu avance de cerca.</li>
+            <li><strong style="color:#163923">Sub&iacute;s de nivel:</strong> m&aacute;s cupo y un recargo m&aacute;s bajo.</li>
+            <li><strong style="color:#163923">Pagador R&aacute;pido:</strong> si pag&aacute;s bien antes de la fecha, gan&aacute;s un recargo m&aacute;s bajo.</li>
+          </ul>
+          <p style="font-size:15px;line-height:1.6;color:#2F4237;margin:12px 0 0;max-width:64ch">Si un mes no quer&eacute;s crecer, te qued&aacute;s en tu nivel y segu&iacute;s comprando. El chequeo es opcional para subir.</p>
+        </div>
+
+        <div id="ojos-expertos" style="scroll-margin-top:90px;border-top:1px solid rgba(22,57,35,0.14);padding-top:26px;margin-top:26px">
+          <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(20px,2.6vw,28px);color:#163923;margin:0 0 10px">5 &middot; Tu negocio, visto con ojos expertos</h3>
+          <ul style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.7;color:#2F4237;max-width:64ch">
+            <li>Con Tu Chequeo, profesionales miran tu comercio a 360&deg;: ventas, compras, solidez, rentabilidad, organizaci&oacute;n y m&aacute;s.</li>
+            <li>Recib&iacute;s Tu Mapa: d&oacute;nde est&aacute;s hoy, tus fuerzas, tus puntos a mejorar y el camino para crecer.</li>
+            <li>Y si lo necesit&aacute;s, sum&aacute;s especialistas en derecho, finanzas y marketing.</li>
+          </ul>
+          <p style="margin:14px 0 0"><a href="#/tu-chequeo" style="color:#875F1A;font-weight:500;text-decoration:underline;text-underline-offset:3px">Conoc&eacute; Tu Chequeo &rarr;</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:transparent">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(22px,2.8vw,32px);line-height:1.1;color:#163923;margin:0 0 16px">Ten&eacute; a mano</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px">
+          <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:20px"><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;margin:0 0 4px">Tu c&eacute;dula</div><p style="font-size:14.5px;line-height:1.55;color:#2F4237;margin:0">El n&uacute;mero y una foto.</p></div>
+          <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:20px"><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;margin:0 0 4px">Una prueba de tu actividad, con fecha</div><p style="font-size:14.5px;line-height:1.55;color:#2F4237;margin:0">Una factura de un mayorista, el registro municipal, tu RUC, una publicaci&oacute;n de tu comercio o una foto con fecha.</p></div>
+          <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:20px"><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;margin:0 0 4px">Tu WhatsApp</div><p style="font-size:14.5px;line-height:1.55;color:#2F4237;margin:0">Todo llega por ah&iacute;.</p></div>
+        </div>
+        <p style="font-size:15px;line-height:1.6;color:#2F4237;margin:16px 0 0">&iquest;No ten&eacute;s RUC? Igual pod&eacute;s empezar. Si quer&eacute;s, Do&ntilde;a Compra te acompa&ntilde;a para sacarlo.</p>
+      </div>
+    </section>
+
+    <section style="background:#F5F2EB;border-top:1px solid rgba(22,57,35,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,40px);text-align:center">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">&iquest;Listo para empezar?</h2>
+        <p style="font-size:16px;line-height:1.65;color:#2F4237;margin:0 0 22px">Todo empieza con un mensaje.</p>
+        <p style="margin:0"><a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" data-cta="true" style="display:inline-block;background:#DE9B2B;color:#163923">Tu Punto de Partida empieza ac&aacute;</a></p>
+        <p style="margin:16px 0 0"><a href="assets/condiciones-generales-nov-2026.pdf" download type="application/pdf" style="color:#875F1A;font-size:14.5px;font-weight:500;text-decoration:underline;text-underline-offset:3px">Descarg&aacute; las Condiciones Generales (PDF)</a></p>
       </div>
     </section>
   </div>
@@ -2390,6 +2517,7 @@
         <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#DE9B2B">Detalle</div>
         <nav aria-label="Páginas de detalle" style="display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin-top:14px">
           <a href="#/#como-funciona" style="color:rgba(245,242,235,0.78);font-size:14px">Cómo funciona</a>
+          <a href="#/punto-de-partida" style="color:rgba(245,242,235,0.78);font-size:14px">Punto de Partida</a>
           <a href="#/tu-chequeo" style="color:rgba(245,242,235,0.78);font-size:14px">Tu Chequeo</a>
           <a href="#/niveles-y-tarifas" style="color:rgba(245,242,235,0.78);font-size:14px">Niveles y tarifas</a>
           <a href="#/servicios" style="color:rgba(245,242,235,0.78);font-size:14px">Servicios</a>
@@ -2536,6 +2664,7 @@ const PAGES = {
   // redirige mas abajo las manda a la seccion que corresponde.
   '/como-funciona': 'home',
   '/para-tu-negocio': 'home',
+  '/punto-de-partida': 'partida',
   '/tu-chequeo': 'chequeo',
   '/niveles-y-tarifas': 'niveles',
   '/servicios': 'servicios',
@@ -2545,6 +2674,7 @@ const PAGES = {
 // Titulo y descripcion por pagina: se aplican al <title> y a las meta al navegar.
 const SEO = {
   home: ['Do\u00f1a Compra | Compr\u00e1 mercader\u00eda para tu negocio y pag\u00e1 despu\u00e9s', 'Eleg\u00ed la mercader\u00eda y el proveedor que ya conoc\u00e9s. Do\u00f1a Compra paga al contado y vos pag\u00e1s en hasta 30 d\u00edas. Gran Asunci\u00f3n, Paraguay.'],
+  partida: ['Tu Punto de Partida | Doña Compra', 'Tu primer paso con Doña Compra: gratis, por WhatsApp y a tu ritmo. Te contamos cómo trabajamos y sabés cuál es tu próximo paso.'],
   chequeo: ['Tu Chequeo | Doña Compra', 'El análisis completo de tu comercio, hecho por profesionales. Recibís Tu Mapa: dónde estás hoy y el camino para crecer.'],
   concepto: ['El Concepto | Do\u00f1a Compra', 'Do\u00f1a Compra paga tu mercader\u00eda al contado al proveedor que vos eleg\u00eds, y vos pag\u00e1s en hasta 30 d\u00edas seg\u00fan las condiciones acordadas.'],
   comerciante: ['Comerciantes | Do\u00f1a Compra', 'Compr\u00e1 stock sin frenar la caja de tu negocio. Visita al local, evaluaci\u00f3n y compra con pago a 30 d\u00edas en Gran Asunci\u00f3n.'],
@@ -3140,6 +3270,7 @@ class Component extends DCLogic {
       seoDesc: (SEO[p] || SEO.home)[1],
 
       atHome: p === 'home',
+      atPartida: p === 'partida',
       atChequeo: p === 'chequeo',
       atNiveles: p === 'niveles', atServicios: p === 'servicios',
       atNosotros: p === 'nosotros', atContacto: p === 'contacto', atFaq: p === 'faq',
