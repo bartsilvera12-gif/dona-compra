@@ -362,6 +362,20 @@
   .dcx-nav-cta { display: inline-block; margin-left: auto; border-radius: 999px; background: #DE9B2B; color: #163923; padding: 10px 20px; font-size: 13.5px; font-weight: 600; white-space: nowrap; text-decoration: none; }
   .dcx-nav-cta:hover { background: #B88124; color: #163923; }
 
+  /* Facebook e Instagram: el mismo boton redondo en el encabezado, en el menu
+     del telefono y en el pie. El color lo hereda el svg de currentColor, asi
+     que un solo dibujo sirve sobre fondo claro y sobre fondo verde. */
+  .dcx-soc { display: inline-flex; align-items: center; gap: 8px; }
+  .dcx-soc a { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 999px; border: 1px solid rgba(22,57,35,0.18); color: #2F4237; text-decoration: none; }
+  .dcx-soc a:hover { color: #875F1A; border-color: rgba(222,155,43,0.65); }
+  .dcx-soc-claro a { border-color: rgba(245,242,235,0.25); color: rgba(245,242,235,0.8); }
+  .dcx-soc-claro a:hover { border-color: #DE9B2B; color: #DE9B2B; }
+  header .dcx-soc { margin-left: 12px; }
+  @media (min-width: 1281px) and (max-width: 1460px) {
+    header .dcx-soc { margin-left: 6px; gap: 6px; }
+    header .dcx-soc a { width: 30px; height: 30px; }
+  }
+
   /* Los cinco pasos. */
   .dcx-pasos-caja { position: relative; margin-top: 48px; }
   .dcx-pasos { display: flex; gap: 16px; margin: 0; padding: 0 0 8px; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
@@ -480,7 +494,7 @@
         </span>
       </a>
 
-      <nav data-desktop-only="true" aria-label="Navegaci&oacute;n principal" class="dcx-nav"><a href="#/" class="dcx-nav-link">Inicio</a><a href="#/punto-de-partida" class="dcx-nav-link">Punto de Partida</a><a href="#/tu-chequeo" class="dcx-nav-link">Chequeo</a><a href="#/tu-chequeo#tu-mapa" class="dcx-nav-link">Tu Mapa</a><a href="#/niveles-y-tarifas" class="dcx-nav-link">Niveles de compra</a><a href="#/mayoristas" class="dcx-nav-link">Mayorista Amigo</a><a href="#/contacto" class="dcx-nav-link">Contactos</a></nav><a data-desktop-only="true" href="{{ waLink }}" target="_blank" rel="noopener noreferrer" class="dcx-nav-cta">Tu Punto de Partida empieza ac&aacute;</a>
+      <nav data-desktop-only="true" aria-label="Navegaci&oacute;n principal" class="dcx-nav"><a href="#/" class="dcx-nav-link">Inicio</a><a href="#/punto-de-partida" class="dcx-nav-link">Punto de Partida</a><a href="#/tu-chequeo" class="dcx-nav-link">Chequeo</a><a href="#/tu-chequeo#tu-mapa" class="dcx-nav-link">Tu Mapa</a><a href="#/niveles-y-tarifas" class="dcx-nav-link">Niveles de compra</a><a href="#/mayoristas" class="dcx-nav-link">Mayorista Amigo</a><a href="#/contacto" class="dcx-nav-link">Contactos</a></nav><span class="dcx-soc " data-desktop-only="true"><sc-if value="{{ hasFb }}"><a href="{{ fbUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Do&ntilde;a Compra en Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="currentColor"><path d="M13.6 21v-7.3h2.4l.37-2.86h-2.77V9.01c0-.83.23-1.39 1.41-1.39h1.5V5.06c-.26-.03-1.15-.11-2.19-.11-2.17 0-3.65 1.32-3.65 3.76v2.13H8.26v2.86h2.41V21h2.93Z"></path></svg></a></sc-if><sc-if value="{{ hasIg }}"><a href="{{ igUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Do&ntilde;a Compra en Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.1" cy="6.9" r="1.1" fill="currentColor" stroke="none"></circle></svg></a></sc-if></span><a data-desktop-only="true" href="{{ waLink }}" target="_blank" rel="noopener noreferrer" class="dcx-nav-cta">Tu Punto de Partida empieza ac&aacute;</a>
 
       
 
@@ -514,6 +528,7 @@
       </nav>
       <div style="background:transparent;padding:20px clamp(18px,5vw,34px);display:flex;flex-direction:column;gap:12px">
         <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ closeMenu }}" style="display:block;text-align:center;background:#DE9B2B;color:#163923;border-radius:999px;padding:16px;font-size:15px;font-weight:600">Tu Punto de Partida empieza ac&aacute;</a>
+        <span class="dcx-soc dcx-soc-claro" style="justify-content:center"><sc-if value="{{ hasFb }}"><a href="{{ fbUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Do&ntilde;a Compra en Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="currentColor"><path d="M13.6 21v-7.3h2.4l.37-2.86h-2.77V9.01c0-.83.23-1.39 1.41-1.39h1.5V5.06c-.26-.03-1.15-.11-2.19-.11-2.17 0-3.65 1.32-3.65 3.76v2.13H8.26v2.86h2.41V21h2.93Z"></path></svg></a></sc-if><sc-if value="{{ hasIg }}"><a href="{{ igUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Do&ntilde;a Compra en Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.1" cy="6.9" r="1.1" fill="currentColor" stroke="none"></circle></svg></a></sc-if></span>
       </div>
     </div>
   </sc-if>
@@ -2480,7 +2495,7 @@
         <p style="font-size:14px;line-height:1.7;color:rgba(245,242,235,0.72);margin:0">WhatsApp <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="color:rgba(245,242,235,0.78);font-size:14px;text-decoration:underline;text-underline-offset:3px">{{ phone }}</a></p>
         <p style="font-size:14px;line-height:1.7;color:rgba(245,242,235,0.72);margin:0"><a href="{{ mailto }}" style="color:rgba(245,242,235,0.78);font-size:14px;text-decoration:underline;text-underline-offset:3px;word-break:break-word">{{ email }}</a></p>
         <p style="font-size:14px;line-height:1.7;color:rgba(245,242,235,0.72);margin:0">do&ntilde;acompra.com</p>
-        <p style="font-size:14px;line-height:1.7;color:rgba(245,242,235,0.72);margin:0"><sc-if value="{{ hasFb }}"><a href="{{ fbUrl }}" target="_blank" rel="noopener noreferrer" style="color:rgba(245,242,235,0.78);font-size:14px;text-decoration:underline;text-underline-offset:3px">Facebook</a></sc-if><sc-if value="{{ hasIg }}"><span aria-hidden="true" style="color:rgba(245,242,235,0.4)"> &middot; </span><a href="{{ igUrl }}" target="_blank" rel="noopener noreferrer" style="color:rgba(245,242,235,0.78);font-size:14px;text-decoration:underline;text-underline-offset:3px">Instagram</a></sc-if></p>
+        <p style="margin:10px 0 0"><span class="dcx-soc dcx-soc-claro"><sc-if value="{{ hasFb }}"><a href="{{ fbUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Do&ntilde;a Compra en Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="currentColor"><path d="M13.6 21v-7.3h2.4l.37-2.86h-2.77V9.01c0-.83.23-1.39 1.41-1.39h1.5V5.06c-.26-.03-1.15-.11-2.19-.11-2.17 0-3.65 1.32-3.65 3.76v2.13H8.26v2.86h2.41V21h2.93Z"></path></svg></a></sc-if><sc-if value="{{ hasIg }}"><a href="{{ igUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Do&ntilde;a Compra en Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.1" cy="6.9" r="1.1" fill="currentColor" stroke="none"></circle></svg></a></sc-if></span></p>
       </div>
 
       <div>
