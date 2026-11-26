@@ -503,7 +503,7 @@
         <a href="#/club" onClick="{{ closeMenu }}" style="font-family:Montserrat,sans-serif;font-size:clamp(26px,7vw,40px);font-weight:600;color:#F5F2EB;padding:8px 0;border-bottom:1px solid rgba(245,242,235,0.12)">El Club</a>
         <a href="#/anuncios" onClick="{{ closeMenu }}" style="font-family:Montserrat,sans-serif;font-size:clamp(26px,7vw,40px);font-weight:600;color:#F5F2EB;padding:8px 0;border-bottom:1px solid rgba(245,242,235,0.12)">Anuncios</a>
         <a href="#/preguntas-frecuentes" onClick="{{ closeMenu }}" style="font-family:Montserrat,sans-serif;font-size:clamp(26px,7vw,40px);font-weight:600;color:#F5F2EB;padding:8px 0;border-bottom:1px solid rgba(245,242,235,0.12)">Preguntas frecuentes</a>
-        <a href="#/contacto" onClick="{{ closeMenu }}" style="font-family:Montserrat,sans-serif;font-size:clamp(26px,7vw,40px);font-weight:600;color:#F5F2EB;padding:8px 0;border-bottom:1px solid rgba(245,242,235,0.12)">Contacto</a>
+        <a href="#/contacto" onClick="{{ closeMenu }}" style="font-family:Montserrat,sans-serif;font-size:clamp(26px,7vw,40px);font-weight:600;color:#F5F2EB;padding:8px 0;border-bottom:1px solid rgba(245,242,235,0.12)">Contactos</a>
         <a href="#/#como-funciona" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Cómo funciona</a>
         <a href="#/punto-de-partida" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Punto de Partida</a>
           <a href="#/tu-chequeo" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Tu Chequeo</a>
@@ -845,90 +845,84 @@
             <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:clamp(18px,3vw,32px)">
   
             <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
-            <form onSubmit="{{ submitForm }}" noValidate="true" style="display:grid;gap:18px">
-  
+            <form onSubmit="{{ enviarWa }}" noValidate="true" style="display:grid;gap:18px">
+
               <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:18px">
-                <div>
-                  <label for="c-nombre" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Nombre *</label>
-                  <input id="c-nombre" type="text" autoComplete="given-name" required="true" value="{{ fNombre }}" onInput="{{ setNombre }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-                </div>
-                <div>
-                  <label for="c-apellido" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Apellido *</label>
-                  <input id="c-apellido" type="text" autoComplete="family-name" required="true" value="{{ fApellido }}" onInput="{{ setApellido }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-                </div>
+            <div>
+              <label for="c-nombre-h" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Nombre y apellido *</label>
+              <input id="c-nombre-h" type="text" autoComplete="name" required="true" value="{{ fNombre }}" onInput="{{ setNombre }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+            </div>
+            <div>
+              <label for="c-negocio-h" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Nombre de tu comercio</label>
+              <input id="c-negocio-h" type="text" value="{{ fNegocio }}" onInput="{{ setNegocio }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+            </div>
               </div>
-  
+
               <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:18px">
-                <div>
-                  <label for="c-correo" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Correo *</label>
-                  <input id="c-correo" type="email" autoComplete="email" required="true" value="{{ fCorreo }}" onInput="{{ setCorreo }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-                </div>
-                <div>
-                  <label for="c-tel" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Teléfono *</label>
-                  <input id="c-tel" type="tel" autoComplete="tel" required="true" value="{{ fTel }}" onInput="{{ setTel }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-                </div>
+            <div>
+              <label for="c-tel-h" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">WhatsApp *</label>
+              <input id="c-tel-h" type="tel" autoComplete="tel" required="true" value="{{ fTel }}" onInput="{{ setTel }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+            </div>
+            <div>
+              <label for="c-correo-h" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Correo</label>
+              <input id="c-correo-h" type="email" autoComplete="email" value="{{ fCorreo }}" onInput="{{ setCorreo }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+            </div>
               </div>
-  
+
+            <div>
+              <label for="c-ciudad-h" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Barrio y ciudad</label>
+              <input id="c-ciudad-h" type="text" value="{{ fCiudad }}" onInput="{{ setCiudad }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+            </div>
+
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:18px">
+            <div>
+              <label for="c-soy-h" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Soy *</label>
+              <select id="c-soy-h" required="true" value="{{ fSoy }}" onChange="{{ setSoy }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px">
+                <option value="">Eleg&iacute; una opci&oacute;n</option>
+                <sc-for list="{{ soyOpciones }}" as="a" hint-placeholder-count="3"><option value="{{ a.v }}">{{ a.v }}</option></sc-for>
+              </select>
+            </div>
+            <div>
+              <label for="c-tema-h" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Tema *</label>
+              <select id="c-tema-h" required="true" value="{{ fAsunto }}" onChange="{{ setAsunto }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px">
+                <option value="">Eleg&iacute; una opci&oacute;n</option>
+                <sc-for list="{{ asuntos }}" as="a" hint-placeholder-count="3"><option value="{{ a.v }}">{{ a.v }}</option></sc-for>
+              </select>
+            </div>
+              </div>
+
               <div>
-                <label for="c-asunto" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Asunto *</label>
-                <select id="c-asunto" required="true" value="{{ fAsunto }}" onChange="{{ setAsunto }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px">
-                  <option value="">Elegí una opción</option>
-                  <sc-for list="{{ asuntos }}" as="a" hint-placeholder-count="4"><option value="{{ a.v }}">{{ a.v }}</option></sc-for>
-                </select>
+                <label for="c-mensaje-h" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Tu mensaje *</label>
+                <textarea id="c-mensaje-h" rows="6" required="true" value="{{ fMensaje }}" onInput="{{ setMensaje }}" placeholder="Contanos qu&eacute; vend&eacute;s y en qu&eacute; podemos ayudarte." style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px;resize:vertical;min-height:140px"></textarea>
               </div>
-  
-              <sc-if value="{{ showNegocio }}">
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:18px">
-                <div>
-                  <label for="c-negocio" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Nombre del negocio</label>
-                  <input id="c-negocio" type="text" value="{{ fNegocio }}" onInput="{{ setNegocio }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-                </div>
-                <div>
-                  <label for="c-ciudad" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Ciudad o zona</label>
-                  <input id="c-ciudad" type="text" value="{{ fCiudad }}" onInput="{{ setCiudad }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-                </div>
-              </div>
-              </sc-if>
-  
-              <div>
-                <label for="c-mensaje" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Mensaje *</label>
-                <textarea id="c-mensaje" rows="6" required="true" value="{{ fMensaje }}" onInput="{{ setMensaje }}" placeholder="Contanos en qué podemos ayudarte." style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px;resize:vertical;min-height:140px"></textarea>
-              </div>
-  
-              <div style="display:none" aria-hidden="true">
-                <label for="c-trampa">No completar</label>
-                <input id="c-trampa" type="text" tabIndex="-1" autoComplete="off" value="{{ fTrampa }}" onInput="{{ setTrampa }}" />
-              </div>
-  
-              <div style="max-width:220px">
-                <label for="c-suma" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Verificación: {{ capA }} + {{ capB }} = ? *</label>
-                <input id="c-suma" type="text" inputMode="numeric" autoComplete="off" required="true" value="{{ fSuma }}" onInput="{{ setSuma }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-              </div>
-  
+
               <label style="display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:#2F4237;cursor:pointer">
                 <input type="checkbox" required="true" checked="{{ fConsent }}" onChange="{{ setConsent }}" style="margin-top:3px;width:18px;height:18px;accent-color:#DE9B2B;flex:none" />
-                <span>Acepto que {{ razonSocial }} trate mis datos para responder esta consulta, según la <a href="#/juridica" style="color:#875F1A">política de privacidad</a>. *</span>
+                <span>Acepto que Do&ntilde;a Compra use estos datos para responderme, seg&uacute;n la <a href="#/juridica" style="color:#875F1A">pol&iacute;tica de privacidad</a>. *</span>
               </label>
-  
+
               <sc-if value="{{ hasErrors }}">
                 <p role="alert" style="margin:0;padding:14px 16px;border-radius:12px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.4);font-size:14.5px;line-height:1.5;color:#2F4237">{{ errorText }}</p>
               </sc-if>
-  
+
               <div>
-                <button type="submit" style="display:inline-block;background:#163923;color:#F5F2EB;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;letter-spacing:0.04em;border:0;cursor:pointer">Enviar consulta</button>
-                <p style="font-size:12px;line-height:1.5;color:#4F5C54;margin-top:12px">Los campos con * son obligatorios.</p>
+                <div style="display:flex;gap:10px;flex-wrap:wrap">
+                  <button type="submit" style="display:inline-block;background:#DE9B2B;color:#163923;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:600;letter-spacing:0.04em;border:0;cursor:pointer">Enviar por WhatsApp</button>
+                  <button type="button" onClick="{{ enviarMail }}" style="display:inline-block;background:none;border:1px solid #163923;color:#163923;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;cursor:pointer">Enviar por correo</button>
+                </div>
+                <p style="font-size:12px;line-height:1.5;color:#4F5C54;margin-top:12px">* Campos obligatorios.</p>
               </div>
             </form>
             </sc-if>
-  
+
             <sc-if value="{{ formSent }}">
-              <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px);border-color:rgba(16,185,129,0.45)">
-                <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;line-height:1.2;color:#163923;margin:0 0 8px">Tu mensaje está listo</h3>
-                <p style="font-size:16px;line-height:1.5;color:#2F4237;margin:0;margin-bottom:16px">Abrimos WhatsApp con la consulta ya escrita. Si no se abrió, usá alguna de estas opciones.</p>
+              <div style="background:#F5F2EB;border:1px solid rgba(16,185,129,0.45);border-radius:12px;padding:clamp(16px,2.2vw,24px)">
+                <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;line-height:1.2;color:#163923;margin:0 0 8px">Tu mensaje est&aacute; listo</h3>
+                <p style="font-size:16px;line-height:1.5;color:#2F4237;margin:0;margin-bottom:16px">Abrimos tu consulta ya escrita. Si no se abri&oacute;, us&aacute; alguna de estas opciones.</p>
                 <div style="display:flex;gap:10px;flex-wrap:wrap">
-                  <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#163923;color:#F5F2EB;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;letter-spacing:0.04em;border:0;cursor:pointer">Abrir WhatsApp</a>
+                  <a href="{{ waEnviado }}" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#DE9B2B;color:#163923;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:600;letter-spacing:0.04em">Abrir WhatsApp</a>
                   <a href="{{ mailtoEnviado }}" style="display:inline-block;border:1px solid #163923;color:#163923;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500">Enviar por correo</a>
-                  <button type="button" onClick="{{ resetForm }}" style="background:none;border:0;color:#DE9B2B;font-size:14px;font-weight:500;cursor:pointer;padding:14px 8px">Escribir otra consulta</button>
+                  <button type="button" onClick="{{ resetForm }}" style="background:none;border:0;color:#875F1A;font-size:14px;font-weight:500;cursor:pointer;padding:14px 8px">Escribir otra consulta</button>
                 </div>
               </div>
             </sc-if>
@@ -1417,9 +1411,9 @@
     <section class="dcx-portada">
       <div class="dcx-wrap">
         <div class="dcx-entra">
-          <span class="dcx-rotulo">Contacto</span>
-          <h1>Hablemos de tu negocio.</h1>
-          <p class="dcx-bajada">Escribinos por el formulario, por correo o directamente por WhatsApp. {{ plazo }}</p>
+          <span class="dcx-rotulo">Contactos</span>
+          <h1>Contactanos.</h1>
+          <p class="dcx-bajada">Escribinos o llamanos por WhatsApp, o mandanos tu consulta con el formulario. Te respondemos dentro de las 24 horas h&aacute;biles.</p>
         </div>
         <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" class="dcx-wa dcx-entra-2">
           <img src="assets/paso-1.jpg" alt="" />
@@ -1438,75 +1432,66 @@
 
         <div>
           <span class="dcx-rotulo">Formulario</span>
-          <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#163923;margin:16px 0 12px">Escribinos</h2>
-          <p style="font-size:16px;line-height:1.5;color:#2F4237;margin:0;margin-bottom:32px;max-width:48ch">Completá el formulario y lo preparamos como mensaje para que lo revises antes de enviarlo.</p>
+          <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.2;color:#163923;margin:16px 0 12px">Mandanos tu consulta</h2>
+          <p style="font-size:16px;line-height:1.5;color:#2F4237;margin:0;margin-bottom:32px;max-width:48ch">Complet&aacute; los datos y lo preparamos como mensaje para que lo revises antes de enviarlo.</p>
 
           <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:clamp(18px,3vw,32px)">
 
           <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
-          <form onSubmit="{{ submitForm }}" noValidate="true" style="display:grid;gap:18px">
+          <form onSubmit="{{ enviarWa }}" noValidate="true" style="display:grid;gap:18px">
 
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:18px">
-              <div>
-                <label for="c-nombre" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Nombre *</label>
-                <input id="c-nombre" type="text" autoComplete="given-name" required="true" value="{{ fNombre }}" onInput="{{ setNombre }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-              </div>
-              <div>
-                <label for="c-apellido" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Apellido *</label>
-                <input id="c-apellido" type="text" autoComplete="family-name" required="true" value="{{ fApellido }}" onInput="{{ setApellido }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-              </div>
+          <div>
+            <label for="c-nombre" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Nombre y apellido *</label>
+            <input id="c-nombre" type="text" autoComplete="name" required="true" value="{{ fNombre }}" onInput="{{ setNombre }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+          </div>
+          <div>
+            <label for="c-negocio" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Nombre de tu comercio</label>
+            <input id="c-negocio" type="text" value="{{ fNegocio }}" onInput="{{ setNegocio }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+          </div>
             </div>
 
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:18px">
-              <div>
-                <label for="c-correo" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Correo *</label>
-                <input id="c-correo" type="email" autoComplete="email" required="true" value="{{ fCorreo }}" onInput="{{ setCorreo }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-              </div>
-              <div>
-                <label for="c-tel" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Teléfono *</label>
-                <input id="c-tel" type="tel" autoComplete="tel" required="true" value="{{ fTel }}" onInput="{{ setTel }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-              </div>
+          <div>
+            <label for="c-tel" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">WhatsApp *</label>
+            <input id="c-tel" type="tel" autoComplete="tel" required="true" value="{{ fTel }}" onInput="{{ setTel }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+          </div>
+          <div>
+            <label for="c-correo" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Correo</label>
+            <input id="c-correo" type="email" autoComplete="email" value="{{ fCorreo }}" onInput="{{ setCorreo }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+          </div>
+            </div>
+
+          <div>
+            <label for="c-ciudad" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Barrio y ciudad</label>
+            <input id="c-ciudad" type="text" value="{{ fCiudad }}" onInput="{{ setCiudad }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+          </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:18px">
+          <div>
+            <label for="c-soy" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Soy *</label>
+            <select id="c-soy" required="true" value="{{ fSoy }}" onChange="{{ setSoy }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px">
+              <option value="">Eleg&iacute; una opci&oacute;n</option>
+              <sc-for list="{{ soyOpciones }}" as="a" hint-placeholder-count="3"><option value="{{ a.v }}">{{ a.v }}</option></sc-for>
+            </select>
+          </div>
+          <div>
+            <label for="c-tema" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Tema *</label>
+            <select id="c-tema" required="true" value="{{ fAsunto }}" onChange="{{ setAsunto }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px">
+              <option value="">Eleg&iacute; una opci&oacute;n</option>
+              <sc-for list="{{ asuntos }}" as="a" hint-placeholder-count="3"><option value="{{ a.v }}">{{ a.v }}</option></sc-for>
+            </select>
+          </div>
             </div>
 
             <div>
-              <label for="c-asunto" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Asunto *</label>
-              <select id="c-asunto" required="true" value="{{ fAsunto }}" onChange="{{ setAsunto }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px">
-                <option value="">Elegí una opción</option>
-                <sc-for list="{{ asuntos }}" as="a" hint-placeholder-count="4"><option value="{{ a.v }}">{{ a.v }}</option></sc-for>
-              </select>
-            </div>
-
-            <sc-if value="{{ showNegocio }}">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:18px">
-              <div>
-                <label for="c-negocio" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Nombre del negocio</label>
-                <input id="c-negocio" type="text" value="{{ fNegocio }}" onInput="{{ setNegocio }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-              </div>
-              <div>
-                <label for="c-ciudad" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Ciudad o zona</label>
-                <input id="c-ciudad" type="text" value="{{ fCiudad }}" onInput="{{ setCiudad }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
-              </div>
-            </div>
-            </sc-if>
-
-            <div>
-              <label for="c-mensaje" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Mensaje *</label>
-              <textarea id="c-mensaje" rows="6" required="true" value="{{ fMensaje }}" onInput="{{ setMensaje }}" placeholder="Contanos en qué podemos ayudarte." style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px;resize:vertical;min-height:140px"></textarea>
-            </div>
-
-            <div style="display:none" aria-hidden="true">
-              <label for="c-trampa">No completar</label>
-              <input id="c-trampa" type="text" tabIndex="-1" autoComplete="off" value="{{ fTrampa }}" onInput="{{ setTrampa }}" />
-            </div>
-
-            <div style="max-width:220px">
-              <label for="c-suma" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Verificación: {{ capA }} + {{ capB }} = ? *</label>
-              <input id="c-suma" type="text" inputMode="numeric" autoComplete="off" required="true" value="{{ fSuma }}" onInput="{{ setSuma }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+              <label for="c-mensaje" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Tu mensaje *</label>
+              <textarea id="c-mensaje" rows="6" required="true" value="{{ fMensaje }}" onInput="{{ setMensaje }}" placeholder="Contanos qu&eacute; vend&eacute;s y en qu&eacute; podemos ayudarte." style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px;resize:vertical;min-height:140px"></textarea>
             </div>
 
             <label style="display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:#2F4237;cursor:pointer">
               <input type="checkbox" required="true" checked="{{ fConsent }}" onChange="{{ setConsent }}" style="margin-top:3px;width:18px;height:18px;accent-color:#DE9B2B;flex:none" />
-              <span>Acepto que {{ razonSocial }} trate mis datos para responder esta consulta, según la <a href="#/juridica" style="color:#875F1A">política de privacidad</a>. *</span>
+              <span>Acepto que Do&ntilde;a Compra use estos datos para responderme, seg&uacute;n la <a href="#/juridica" style="color:#875F1A">pol&iacute;tica de privacidad</a>. *</span>
             </label>
 
             <sc-if value="{{ hasErrors }}">
@@ -1514,20 +1499,23 @@
             </sc-if>
 
             <div>
-              <button type="submit" style="display:inline-block;background:#163923;color:#F5F2EB;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;letter-spacing:0.04em;border:0;cursor:pointer">Enviar consulta</button>
-              <p style="font-size:12px;line-height:1.5;color:#4F5C54;margin-top:12px">Los campos con * son obligatorios.</p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button type="submit" style="display:inline-block;background:#DE9B2B;color:#163923;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:600;letter-spacing:0.04em;border:0;cursor:pointer">Enviar por WhatsApp</button>
+                <button type="button" onClick="{{ enviarMail }}" style="display:inline-block;background:none;border:1px solid #163923;color:#163923;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;cursor:pointer">Enviar por correo</button>
+              </div>
+              <p style="font-size:12px;line-height:1.5;color:#4F5C54;margin-top:12px">* Campos obligatorios.</p>
             </div>
           </form>
           </sc-if>
 
           <sc-if value="{{ formSent }}">
-            <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:clamp(16px,2.2vw,24px);border-color:rgba(16,185,129,0.45)">
-              <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;line-height:1.2;color:#163923;margin:0 0 8px">Tu mensaje está listo</h3>
-              <p style="font-size:16px;line-height:1.5;color:#2F4237;margin:0;margin-bottom:16px">Abrimos WhatsApp con la consulta ya escrita. Si no se abrió, usá alguna de estas opciones.</p>
+            <div style="background:#F5F2EB;border:1px solid rgba(16,185,129,0.45);border-radius:12px;padding:clamp(16px,2.2vw,24px)">
+              <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;line-height:1.2;color:#163923;margin:0 0 8px">Tu mensaje est&aacute; listo</h3>
+              <p style="font-size:16px;line-height:1.5;color:#2F4237;margin:0;margin-bottom:16px">Abrimos tu consulta ya escrita. Si no se abri&oacute;, us&aacute; alguna de estas opciones.</p>
               <div style="display:flex;gap:10px;flex-wrap:wrap">
-                <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#163923;color:#F5F2EB;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500;letter-spacing:0.04em;border:0;cursor:pointer">Abrir WhatsApp</a>
+                <a href="{{ waEnviado }}" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#DE9B2B;color:#163923;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:600;letter-spacing:0.04em">Abrir WhatsApp</a>
                 <a href="{{ mailtoEnviado }}" style="display:inline-block;border:1px solid #163923;color:#163923;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:500">Enviar por correo</a>
-                <button type="button" onClick="{{ resetForm }}" style="background:none;border:0;color:#DE9B2B;font-size:14px;font-weight:500;cursor:pointer;padding:14px 8px">Escribir otra consulta</button>
+                <button type="button" onClick="{{ resetForm }}" style="background:none;border:0;color:#875F1A;font-size:14px;font-weight:500;cursor:pointer;padding:14px 8px">Escribir otra consulta</button>
               </div>
             </div>
           </sc-if>
@@ -1535,44 +1523,74 @@
         </div>
 
         <div class="dcx-fijo">
-          <span class="dcx-rotulo">Otros canales</span>
+          <span class="dcx-rotulo">Nuestros datos</span>
           <div style="margin-top:24px">
             <div class="dcx-canal">
-              <span>Correo</span>
-              <a href="{{ mailto }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:19px;color:#163923;word-break:break-all;text-decoration:underline;text-decoration-color:rgba(222,155,43,0.5);text-underline-offset:4px">{{ email }}</a>
+              <span><span aria-hidden="true" style="margin-right:8px">&#x1F7E2;</span>WhatsApp oficial (mensajes y llamadas)</span>
+              <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:19px;color:#163923;word-break:break-word;text-decoration:underline;text-decoration-color:rgba(222,155,43,0.5);text-underline-offset:4px">{{ phone }}</a>
             </div>
 
             <div class="dcx-canal">
-              <span>Horarios</span>
+              <span><span aria-hidden="true" style="margin-right:8px">&#x2709;&#xFE0F;</span>Correo</span>
+              <a href="{{ mailto }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:19px;color:#163923;word-break:break-word;text-decoration:underline;text-decoration-color:rgba(222,155,43,0.5);text-underline-offset:4px">{{ email }}</a>
+            </div>
+
+            <div class="dcx-canal">
+              <span><span aria-hidden="true" style="margin-right:8px">&#x1F310;</span>Web</span>
+              <a href="https://xn--doacompra-m6a.com" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:19px;color:#163923;word-break:break-word;text-decoration:underline;text-decoration-color:rgba(222,155,43,0.5);text-underline-offset:4px">do&ntilde;acompra.com</a>
+            </div>
+
+            <div class="dcx-canal">
+              <span><span aria-hidden="true" style="margin-right:8px">&#x1F4D8;</span>Facebook</span>
+              <a href="{{ fbUrl }}" target="_blank" rel="noopener noreferrer" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:19px;color:#163923;word-break:break-word;text-decoration:underline;text-decoration-color:rgba(222,155,43,0.5);text-underline-offset:4px">Do&ntilde;a Compra</a>
+            </div>
+
+            <div class="dcx-canal">
+              <span><span aria-hidden="true" style="margin-right:8px">&#x1F4F8;</span>Instagram</span>
+              <a href="{{ igUrl }}" target="_blank" rel="noopener noreferrer" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:19px;color:#163923;word-break:break-word;text-decoration:underline;text-decoration-color:rgba(222,155,43,0.5);text-underline-offset:4px">Do&ntilde;a Compra</a>
+            </div>
+
+            <div class="dcx-canal">
+              <span><span aria-hidden="true" style="margin-right:8px">&#x1F558;</span>Horario de atenci&oacute;n</span>
               <p style="font-size:16px;line-height:1.5;color:#2F4237;margin:0">{{ horario }}</p>
               <p style="display:flex;align-items:center;gap:8px;font-size:14.5px;line-height:1.5;margin:8px 0 0;color:#875F1A;font-weight:500"><span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:#10B981"></span>{{ plazo }}</p>
             </div>
 
             <div class="dcx-canal">
-              <span>Seguinos</span>
-            <div style="display:grid;gap:8px">
-              <sc-if value="{{ hasFb }}">
-            <a href="{{ fbUrl }}" target="_blank" rel="noopener noreferrer" class="dcx-red"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.75-1.6 1.5V12h2.8l-.45 2.9h-2.35v7A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a>
-              </sc-if>
-              <sc-if value="{{ hasIg }}">
-            <a href="{{ igUrl }}" target="_blank" rel="noopener noreferrer" class="dcx-red"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.17.4.37 1 .42 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2-.22.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.17-1 .37-2.2.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42-.6-.22-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.07-.9.04-1.4.2-1.7.3-.4.17-.7.37-1 .67-.3.3-.5.6-.67 1-.1.3-.26.8-.3 1.7C3.5 8.5 3.5 8.9 3.5 12s0 3.5.07 4.7c.4.9.2 1.4.3 1.7.17.4.37.7.67 1 .3.3.6.5 1 .67.3.1.8.26 1.7.3 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c.9-.04 1.4-.2 1.7-.3.4-.17.7-.37 1-.67.3-.3.5-.6.67-1 .1-.3.26-.8.3-1.7.07-1.2.07-1.6.07-4.7s0-3.5-.07-4.7c-.04-.9-.2-1.4-.3-1.7a2.7 2.7 0 0 0-.67-1 2.7 2.7 0 0 0-1-.67c-.3-.1-.8-.26-1.7-.3C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-.9a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0z"/></svg><span>Instagram</span></a>
-              </sc-if>
-              <sc-if value="{{ hasSitio }}">
-            <a href="{{ sitioUrl }}" target="_blank" rel="noopener noreferrer" class="dcx-red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg><span>Sitio web</span></a>
-              </sc-if>
-              <sc-if value="{{ sinRedes }}" hint-placeholder-val="{{ true }}">
-                <p style="font-size:12px;line-height:1.5;color:#4F5C54;margin:0">Los enlaces a Facebook e Instagram se activan al cargar las direcciones en la configuración del sitio.</p>
-              </sc-if>
+              <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:inline-block;background:#DE9B2B;color:#163923;border-radius:8px;padding:14px 26px;font-size:14px;font-weight:600;letter-spacing:0.04em">Tu Punto de Partida empieza ac&aacute;</a>
+              <div style="display:flex;align-items:center;gap:16px;margin-top:20px;flex-wrap:wrap">
+                <img src="assets/qr-whatsapp.svg" width="132" height="132" loading="lazy" decoding="async" alt="C&oacute;digo QR que abre el WhatsApp de Do&ntilde;a Compra" style="width:132px;height:132px;display:block;border-radius:8px;border:1px solid rgba(22,57,35,0.12);background:#F5F2EB" />
+                <p style="font-size:14.5px;line-height:1.5;color:#2F4237;margin:0;max-width:20ch">Escane&aacute; para escribirnos por WhatsApp</p>
+              </div>
+              <p style="font-size:12px;line-height:1.5;color:#4F5C54;margin:16px 0 0">Do&ntilde;a Compra &middot; RUC {{ ruc }}</p>
             </div>
-            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="dcx-canal">
-              <span>Dudas frecuentes?</span>
-              <a href="#/preguntas-frecuentes" style="display:flex;align-items:center;justify-content:space-between;gap:16px;border-radius:12px;background:rgba(222,155,43,0.08);padding:16px 20px;color:#163923">
-                <span><span style="display:block;font-family:Montserrat,sans-serif;font-weight:600">Puede que ya tenga respuesta</span><span style="display:block;font-size:14px;color:#2F4237">Ver preguntas frecuentes</span></span>
-                <span class="dcx-flecha" aria-hidden="true" style="font-size:20px">&rarr;</span>
-              </a>
-            </div>
+    <section style="border-top:1px solid rgba(22,57,35,0.12)">
+      <div class="dcx-wrap">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(26px,3.6vw,46px);line-height:1.06;color:#163923;margin:0 0 26px">As&iacute; cuidamos cada compra</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:14px">
+          <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:0 0 6px">Un &uacute;nico n&uacute;mero oficial</div>
+            <p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0">Todos nuestros mensajes y llamadas salen del {{ phone }}. Si te escriben de otro n&uacute;mero, no somos nosotros.</p>
+          </div>
+
+          <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:0 0 6px">C&oacute;digo de recepci&oacute;n, solo para vos</div>
+            <p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0">Cada retiro lleva un c&oacute;digo que te mandamos a vos. Sin ese c&oacute;digo, el mayorista no entrega.</p>
+          </div>
+
+          <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:0 0 6px">Factura legal electr&oacute;nica</div>
+            <p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0">La factura sale a tu nombre y la pod&eacute;s verificar en la DNIT.</p>
+          </div>
+
+          <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:0 0 6px">Todo queda por escrito</div>
+            <p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0">Las condiciones, los plazos y los montos est&aacute;n escritos antes de cada compra.</p>
           </div>
         </div>
       </div>
@@ -2188,7 +2206,7 @@
           <p style="font-size:16px;line-height:1.5;color:#2F4237;margin:0 0 12px;max-width:74ch">{{ razonSocial }}, con domicilio en {{ domicilio }}. Contacto: <a href="{{ mailto }}" style="color:#DE9B2B">{{ email }}</a>.</p>
           <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.2;color:#163923;margin:24px 0 8px">Qué datos recogemos</h3>
           <ul style="margin:0 0 12px;padding-left:20px;font-size:16px;line-height:1.7;color:#2F4237;max-width:74ch">
-            <li><strong>Formulario de contacto:</strong> nombre, apellido, correo, teléfono, asunto y el mensaje que escribas. Si elegís comerciante o mayorista, también el nombre del negocio y la ciudad.</li>
+            <li><strong>Formulario de contacto:</strong> nombre y apellido, WhatsApp, el mensaje que escribas y, si los completás, el nombre de tu comercio, el correo y el barrio y la ciudad.</li>
             <li><strong>Boletín:</strong> tu dirección de correo.</li>
             <li><strong>Navegación:</strong> datos de uso anónimos, únicamente si aceptás las cookies de medición.</li>
           </ul>
@@ -2355,7 +2373,7 @@
           <a href="#/club" style="color:rgba(245,242,235,0.78);font-size:14px">El Club Doña Compra</a>
           <a href="#/anuncios" style="color:rgba(245,242,235,0.78);font-size:14px">Anuncios</a>
           <a href="#/preguntas-frecuentes" style="color:rgba(245,242,235,0.78);font-size:14px">Preguntas frecuentes</a>
-          <a href="#/contacto" style="color:rgba(245,242,235,0.78);font-size:14px">Contacto</a>
+          <a href="#/contacto" style="color:rgba(245,242,235,0.78);font-size:14px">Contactos</a>
         </nav>
       </div>
       <div>
@@ -2434,7 +2452,7 @@
   </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;phone&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;0994 300 999&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contacto&quot;}, &quot;waMessage&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Hola, Doña Compra. Tengo un negocio y me gustaría conocer cómo puedo comprar mercadería con ustedes.&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contacto&quot;}, &quot;email&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;donacompra.py@gmail.com&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contacto&quot;}, &quot;horario&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Lunes a viernes de 08:00 a 18:00 · Sábados de 08:00 a 12:00&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contacto&quot;}, &quot;plazo&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Respondemos dentro de las 24 horas hábiles.&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contacto&quot;}, &quot;urlFacebook&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://www.facebook.com/profile.php?id=61595837348991&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Redes&quot;}, &quot;urlInstagram&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://www.instagram.com/donacompra.py/&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Redes&quot;}, &quot;urlSitio&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Redes&quot;}, &quot;gaId&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Analítica&quot;}, &quot;razonSocial&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Doña Compra&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Jurídica&quot;}, &quot;ruc&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;9405073-2&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Jurídica&quot;}, &quot;domicilio&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Edificio Diamante 1, Calle Coronel Feliciano Duarte 111, 403 San Lorenzo, Paraguay&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Jurídica&quot;}, &quot;representante&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Antonio Ferreira&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Jurídica&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;phone&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;0994 300 999&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contacto&quot;}, &quot;waMessage&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Hola, Doña Compra. Tengo un negocio y me gustaría conocer cómo puedo comprar mercadería con ustedes.&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contacto&quot;}, &quot;email&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;donacompra.py@gmail.com&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contacto&quot;}, &quot;horario&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Lunes a viernes de 08:00 a 18:00 · Sábados de 08:00 a 12:30&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contacto&quot;}, &quot;plazo&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Respondemos dentro de las 24 horas hábiles.&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Contacto&quot;}, &quot;urlFacebook&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://www.facebook.com/profile.php?id=61595837348991&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Redes&quot;}, &quot;urlInstagram&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://www.instagram.com/donacompra.py/&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Redes&quot;}, &quot;urlSitio&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Redes&quot;}, &quot;gaId&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Analítica&quot;}, &quot;razonSocial&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Doña Compra&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Jurídica&quot;}, &quot;ruc&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;9405073-2&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Jurídica&quot;}, &quot;domicilio&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Edificio Diamante 1, Calle Coronel Feliciano Duarte 111, 403 San Lorenzo, Paraguay&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Jurídica&quot;}, &quot;representante&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Antonio Ferreira&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Jurídica&quot;}}">
 // Condiciones Generales de Servicio y de Venta, noviembre 2026.
 // Articulo 3 (Analisis de ingreso), articulo 4 (cupos y pedido minimo) y
 // articulo 6 (recargo por nivel y los cinco Servicios Dona Compra).
@@ -2534,7 +2552,8 @@ const SEO = {
   nosotros: ['Nosotros | Do\u00f1a Compra', 'Qui\u00e9nes somos y por qu\u00e9 existe Do\u00f1a Compra en Gran Asunci\u00f3n, Paraguay.']
 };
 
-const ASUNTOS = ['Comerciante', 'Mayorista', 'Prensa', 'Otro'];
+const ASUNTOS = ['Quiero empezar mi Punto de Partida', 'Quiero Tu Chequeo', 'Niveles y precios', 'Quiero ser Mayorista Amigo', 'Otra consulta'];
+const SOY = ['Comerciante', 'Mayorista', 'Otro'];
 
 // Los anuncios salen del panel de administracion. Lo de abajo es lo que se
 // muestra si la base no contesta: la pagina de anuncios no queda vacia por
@@ -2573,7 +2592,7 @@ class Component extends DCLogic {
     jStep: 0, jProg: 0,
     level: 0, rubro: 0, calc: '125.000', rapido: false,
     slider: 55,
-    form: { nombre: '', apellido: '', correo: '', tel: '', asunto: '', mensaje: '', negocio: '', ciudad: '', consent: false, trampa: '', suma: '' },
+    form: { nombre: '', negocio: '', tel: '', correo: '', ciudad: '', soy: '', asunto: '', mensaje: '', consent: false },
     errors: '', sent: false,
     cookies: null, cookiesOpen: false, cookiesPrefs: false,
     aCat: 'Todas', aCiudad: 'Todas', aPrecio: 0, aOrden: 'M\u00e1s recientes', aTipo: 'Todos',
@@ -2996,48 +3015,48 @@ class Component extends DCLogic {
     };
   }
 
-  submit(e) {
-    e.preventDefault();
+  // Arma el texto de la consulta y lo abre por WhatsApp o por correo.
+  // No hay servidor: el formulario no envia nada por su cuenta, solo
+  // prepara el mensaje para que la persona lo revise antes de mandarlo.
+  submit(e, via) {
+    if (e && e.preventDefault) e.preventDefault();
     const f = this.state.form;
     const miss = [];
-    if (!f.nombre.trim()) miss.push('tu nombre');
-    if (!f.apellido.trim()) miss.push('tu apellido');
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(f.correo.trim())) miss.push('un correo v\u00e1lido');
+    if (!f.nombre.trim()) miss.push('tu nombre y apellido');
     const digits = f.tel.replace(/\D/g, '');
-    if (digits.length < 9 || digits.length > 12) miss.push('un tel\u00e9fono v\u00e1lido (9 a 12 d\u00edgitos)');
-    if (!f.asunto) miss.push('el asunto');
+    if (digits.length < 9 || digits.length > 12) miss.push('tu WhatsApp (9 a 12 dígitos)');
+    if (!f.soy) miss.push('qué sos');
+    if (!f.asunto) miss.push('el tema');
     if (!f.mensaje.trim()) miss.push('el mensaje');
-    if (!f.consent) miss.push('la aceptaci\u00f3n del tratamiento de datos');
-
-    // Antispam: honeypot invisible + desafio aritmetico.
-    if (f.trampa) { this.setState({ errors: 'No pudimos procesar el env\u00edo. Escribinos directamente por WhatsApp.' }); return; }
-    const esperado = this.captcha.a + this.captcha.b;
-    if (parseInt(String(f.suma).replace(/\D/g, ''), 10) !== esperado) miss.push('el resultado de la suma de verificaci\u00f3n');
-
+    if (!f.consent) miss.push('la aceptación del tratamiento de datos');
+    const correo = f.correo.trim();
+    if (correo && !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(correo)) miss.push('un correo válido');
+    if (via === 'mail' && !correo) miss.push('tu correo, para escribirte de vuelta');
     if (miss.length) { this.setState({ errors: 'Falta completar: ' + miss.join(', ') + '.' }); return; }
 
     const lines = [
-      'Hola, Do\u00f1a Compra. Escribo desde el sitio web.',
+      'Hola, Doña Compra. Escribo desde el sitio web.',
       '',
-      'Nombre: ' + f.nombre + ' ' + f.apellido,
-      'Correo: ' + f.correo,
-      'Tel\u00e9fono: ' + f.tel,
-      'Asunto: ' + f.asunto,
-      f.negocio ? 'Negocio: ' + f.negocio : null,
-      f.ciudad ? 'Ciudad o zona: ' + f.ciudad : null,
+      'Nombre: ' + f.nombre,
+      f.negocio ? 'Comercio: ' + f.negocio : null,
+      'WhatsApp: ' + f.tel,
+      correo ? 'Correo: ' + correo : null,
+      f.ciudad ? 'Barrio y ciudad: ' + f.ciudad : null,
+      'Soy: ' + f.soy,
+      'Tema: ' + f.asunto,
       '',
       'Mensaje:',
       f.mensaje
     ].filter((x) => x !== null);
 
-    const texto = lines.join('\n');
+    const texto = lines.join(String.fromCharCode(10));
     this._mailto = 'mailto:' + (this.props.email || 'donacompra.py@gmail.com')
-      + '?subject=' + encodeURIComponent('[Sitio web] ' + f.asunto + ' \u2014 ' + f.nombre + ' ' + f.apellido)
+      + '?subject=' + encodeURIComponent('[Sitio web] ' + f.asunto + ' — ' + f.nombre)
       + '&body=' + encodeURIComponent(texto);
+    this._wa = 'https://wa.me/' + this.waNumber() + '?text=' + encodeURIComponent(texto);
 
-    const url = 'https://wa.me/' + this.waNumber() + '?text=' + encodeURIComponent(texto);
-    window.open(url, '_blank', 'noopener');
-    this.track('form_submit', { asunto: f.asunto });
+    window.open(via === 'mail' ? this._mailto : this._wa, via === 'mail' ? '_self' : '_blank', 'noopener');
+    this.track('form_submit', { asunto: f.asunto, via: via === 'mail' ? 'correo' : 'whatsapp' });
     this.setState({ sent: true, errors: '' });
   }
 
@@ -3236,29 +3255,27 @@ class Component extends DCLogic {
 
       // ---------------- Contacto ----------------
       fNombre: this.state.form.nombre, setNombre: this.setField('nombre'),
-      fApellido: this.state.form.apellido, setApellido: this.setField('apellido'),
-      fCorreo: this.state.form.correo, setCorreo: this.setField('correo'),
+      fNegocio: this.state.form.negocio, setNegocio: this.setField('negocio'),
       fTel: this.state.form.tel, setTel: this.setField('tel'),
+      fCorreo: this.state.form.correo, setCorreo: this.setField('correo'),
+      fCiudad: this.state.form.ciudad, setCiudad: this.setField('ciudad'),
+      fSoy: this.state.form.soy, setSoy: this.setField('soy'),
       fAsunto: this.state.form.asunto, setAsunto: this.setField('asunto'),
       fMensaje: this.state.form.mensaje, setMensaje: this.setField('mensaje'),
-      fNegocio: this.state.form.negocio, setNegocio: this.setField('negocio'),
-      fCiudad: this.state.form.ciudad, setCiudad: this.setField('ciudad'),
       fConsent: this.state.form.consent, setConsent: this.setField('consent'),
-      fTrampa: this.state.form.trampa, setTrampa: this.setField('trampa'),
-      fSuma: this.state.form.suma, setSuma: this.setField('suma'),
-      capA: this.captcha.a, capB: this.captcha.b,
       asuntos: ASUNTOS.map((a) => ({ v: a })),
-      // El negocio y la ciudad solo tienen sentido para comerciantes y mayoristas.
-      showNegocio: this.state.form.asunto === 'Comerciante' || this.state.form.asunto === 'Mayorista',
+      soyOpciones: SOY.map((a) => ({ v: a })),
       hasErrors: !!this.state.errors, errorText: this.state.errors,
       formSent: this.state.sent, formOpen: !this.state.sent,
-      submitForm: (e) => this.submit(e),
+      enviarWa: (e) => this.submit(e, 'wa'),
+      enviarMail: (e) => this.submit(e, 'mail'),
       resetForm: () => this.setState({ sent: false }),
       mailtoEnviado: this._mailto || ('mailto:' + email),
+      waEnviado: this._wa || ('https://wa.me/' + this.waNumber() + '?text=' + encodeURIComponent(msg)),
 
       email: email,
       mailto: 'mailto:' + email,
-      horario: this.props.horario || 'Lunes a viernes de 08:00 a 18:00',
+      horario: this.props.horario || 'Lunes a viernes de 08:00 a 18:00 · Sábados de 08:00 a 12:30',
       plazo: this.props.plazo || 'Respondemos dentro de las 24 horas h\u00e1biles.',
       hasFb: !!fb, fbUrl: fb || '#/contacto',
       hasIg: !!ig, igUrl: ig || '#/contacto',
