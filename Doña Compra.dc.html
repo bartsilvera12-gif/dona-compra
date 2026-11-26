@@ -495,7 +495,8 @@
         <a href="#/preguntas-frecuentes" onClick="{{ closeMenu }}" style="font-family:Montserrat,sans-serif;font-size:clamp(26px,7vw,40px);font-weight:600;color:#F5F2EB;padding:8px 0;border-bottom:1px solid rgba(245,242,235,0.12)">Preguntas frecuentes</a>
         <a href="#/contacto" onClick="{{ closeMenu }}" style="font-family:Montserrat,sans-serif;font-size:clamp(26px,7vw,40px);font-weight:600;color:#F5F2EB;padding:8px 0;border-bottom:1px solid rgba(245,242,235,0.12)">Contacto</a>
         <a href="#/#como-funciona" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Cómo funciona</a>
-        <a href="#/niveles-y-tarifas" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Niveles y tarifas</a>
+        <a href="#/tu-chequeo" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Tu Chequeo</a>
+          <a href="#/niveles-y-tarifas" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Niveles y tarifas</a>
         <a href="#/juridica" onClick="{{ closeMenu }}" style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,242,235,0.65);padding:10px 0 0">Jurídica</a>
       </nav>
       <div style="background:transparent;padding:20px clamp(18px,5vw,34px);display:flex;flex-direction:column;gap:12px">
@@ -1209,6 +1210,90 @@
           <a href="assets/condiciones-generales-nov-2026.pdf" download type="application/pdf" style="display:inline-flex;align-items:center;gap:10px;margin-top:24px;background:#163923;color:#F5F2EB;border-radius:999px;padding:16px 26px;font-size:14.5px;font-weight:600;text-decoration:none" style-hover="background:#1F5132"><span aria-hidden="true">&#8595;</span>Descargar las Condiciones Generales (PDF)</a>
           <p style="font-size:13px;color:#4F5C54;margin:8px 0 0">CGSV &middot; noviembre 2026 &middot; 22 p&aacute;ginas &middot; 0,9 MB</p>
         </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ─────────── TU CHEQUEO ─────────── -->
+  <sc-if value="{{ atChequeo }}">
+  <div>
+    <section style="background:#F5F2EB;border-bottom:1px solid rgba(22,57,35,0.12);border-radius:12px">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,90px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(26px,4vw,64px);align-items:center">
+        <div>
+          <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#4F5C54">Chequeo</span>
+          <h1 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(34px,5.6vw,72px);line-height:1;letter-spacing:-0.02em;color:#163923;margin:16px 0 0;max-width:14ch">Cerca tuyo, <span style="color:#875F1A">en cada paso.</span></h1>
+          <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:#2F4237;margin:20px 0 0;max-width:48ch">Tu Chequeo es un an&aacute;lisis completo de tu comercio, hecho por profesionales, para ayudarte a mejorar tu negocio. Como un chequeo m&eacute;dico, pero para tu comercio.</p>
+          <p style="margin:28px 0 0"><a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" data-cta="true" style="display:inline-block;background:#DE9B2B;color:#163923">Tu Punto de Partida empieza ac&aacute;</a></p>
+        </div>
+        <div style="display:flex;justify-content:center">
+          <img src="assets/chequeo-brujula.webp" width="1122" height="1402" loading="eager" decoding="async" alt="La br&uacute;jula de tu negocio: una br&uacute;jula dorada sobre un mapa con las paradas Ventas, Costos, Proveedores y Crecimiento, que llevan hasta el comercio." style="width:min(100%,420px);height:auto;display:block;border-radius:12px" />
+        </div>
+      </div>
+    </section>
+
+    <section style="background:transparent">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">Tu comercio, visto a 360&deg;</h2>
+        <p style="font-size:16px;line-height:1.65;color:#2F4237;margin:0 0 26px;max-width:62ch">Miramos tu negocio desde todos sus &aacute;ngulos. Cada chequeo lleva el nombre del nivel que abre, y se compra solo si el anterior ya est&aacute; aprobado.</p>
+        <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:12px">
+          <li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:18px 20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">01 &middot; Hierro</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 2px">B&aacute;sico</div><p style="font-size:14.5px;line-height:1.5;color:#2F4237;margin:0">Lo esencial de tu comercio.</p></li>
+          <li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:18px 20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">02 &middot; Cobre</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 2px">Evoluci&oacute;n</div><p style="font-size:14.5px;line-height:1.5;color:#2F4237;margin:0">Tus ventas: c&oacute;mo y cu&aacute;nto vend&eacute;s.</p></li>
+          <li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:18px 20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">03 &middot; Bronce</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 2px">Profesional</div><p style="font-size:14.5px;line-height:1.5;color:#2F4237;margin:0">Tus compras: c&oacute;mo y a qui&eacute;n compr&aacute;s.</p></li>
+          <li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:18px 20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">04 &middot; Plata</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 2px">Consolidaci&oacute;n</div><p style="font-size:14.5px;line-height:1.5;color:#2F4237;margin:0">Tu solidez: la base firme de tu negocio.</p></li>
+          <li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:18px 20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">05 &middot; Oro</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 2px">Rentabilidad</div><p style="font-size:14.5px;line-height:1.5;color:#2F4237;margin:0">Lo que de verdad te queda.</p></li>
+          <li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:18px 20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">06 &middot; Amatista</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 2px">Organizaci&oacute;n</div><p style="font-size:14.5px;line-height:1.5;color:#2F4237;margin:0">C&oacute;mo funciona tu negocio.</p></li>
+          <li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:18px 20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">07 &middot; Rub&iacute;</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 2px">Desarrollo</div><p style="font-size:14.5px;line-height:1.5;color:#2F4237;margin:0">C&oacute;mo hac&eacute;s crecer tu negocio.</p></li>
+          <li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:18px 20px"><span style="font-family:ui-monospace,monospace;font-size:11px;color:#875F1A">08 &middot; Diamante</span><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#163923;margin:4px 0 2px">Proyecto</div><p style="font-size:14.5px;line-height:1.5;color:#2F4237;margin:0">Tu proyecto, presentado ante un jurado.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section style="background:#163923;color:#F5F2EB">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#F5F2EB;margin:0 0 10px">Tu negocio, visto con ojos expertos</h2>
+        <p style="font-size:16px;line-height:1.65;color:rgba(245,242,235,0.78);margin:0 0 28px;max-width:62ch">Con Tu Chequeo recib&iacute;s Tu Mapa: el informe que te muestra c&oacute;mo est&aacute; tu comercio y hacia d&oacute;nde puede crecer.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px">
+          <div style="background:rgba(245,242,235,0.07);border:1px solid rgba(222,155,43,0.35);border-radius:12px;padding:22px"><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#DE9B2B;margin:0 0 6px">D&oacute;nde est&aacute;s hoy</div><p style="font-size:15px;line-height:1.6;color:rgba(245,242,235,0.8);margin:0">C&oacute;mo est&aacute; tu comercio, medido con datos reales de tu propio negocio.</p></div>
+          <div style="background:rgba(245,242,235,0.07);border:1px solid rgba(222,155,43,0.35);border-radius:12px;padding:22px"><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#DE9B2B;margin:0 0 6px">Tus caminos para crecer</div><p style="font-size:15px;line-height:1.6;color:rgba(245,242,235,0.8);margin:0">Tus fuerzas, tus puntos a mejorar y los pr&oacute;ximos pasos, a tu medida.</p></div>
+          <div style="background:rgba(245,242,235,0.07);border:1px solid rgba(222,155,43,0.35);border-radius:12px;padding:22px"><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#DE9B2B;margin:0 0 6px">Tu seguimiento</div><p style="font-size:15px;line-height:1.6;color:rgba(245,242,235,0.8);margin:0">Tu asesor sigue tus progresos con vos. En cada chequeo vemos juntos lo que avanzaste.</p></div>
+        </div>
+        <p style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(18px,2.4vw,24px);color:#F5F2EB;margin:28px 0 0">Tu Mapa es tuyo, cualquiera sea el resultado.</p>
+      </div>
+    </section>
+
+    <section style="background:transparent">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(26px,4vw,56px)">
+        <div>
+          <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(22px,2.8vw,32px);line-height:1.1;color:#163923;margin:0 0 10px">Profesionales a tu lado</h2>
+          <p style="font-size:16px;line-height:1.65;color:#2F4237;margin:0;max-width:52ch">Tu Asesor Do&ntilde;a Compra te acompa&ntilde;a en todo el proceso. Y seg&uacute;n lo que necesite tu comercio, sumamos especialistas en derecho, finanzas y marketing.</p>
+        </div>
+        <div>
+          <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(22px,2.8vw,32px);line-height:1.1;color:#163923;margin:0 0 10px">C&oacute;mo se hace</h2>
+          <ol style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.7;color:#2F4237">
+            <li><strong style="color:#163923">Lo ped&iacute;s:</strong> desde tu Punto de Partida, y eleg&iacute;s el d&iacute;a de tu cita.</li>
+            <li style="margin-top:8px"><strong style="color:#163923">Te prepar&aacute;s:</strong> tu asesor te manda la lista de lo que ten&eacute;s que tener listo.</li>
+            <li style="margin-top:8px"><strong style="color:#163923">Te visitamos:</strong> tu asesor viene a tu comercio.</li>
+            <li style="margin-top:8px"><strong style="color:#163923">Recib&iacute;s Tu Mapa:</strong> analizamos con calma y te lo entregamos.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F5F2EB;border-top:1px solid rgba(22,57,35,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(22px,2.8vw,32px);line-height:1.1;color:#163923;margin:0 0 14px">Para todo comerciante que quiere crecer</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
+          <div style="background:#fff;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:22px"><p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0"><strong style="color:#163923">Si ya compr&aacute;s con Do&ntilde;a Compra:</strong> Tu Chequeo te ayuda a subir de nivel.</p></div>
+          <div style="background:#fff;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:22px"><p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0"><strong style="color:#163923">Si no compr&aacute;s mercader&iacute;a:</strong> tambi&eacute;n pod&eacute;s pedirlo, solo para mejorar tu negocio.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:transparent;border-top:1px solid rgba(22,57,35,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px);text-align:center">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 20px">&iquest;Quer&eacute;s ver tu negocio con ojos expertos?</h2>
+        <p style="margin:0"><a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" data-cta="true" style="display:inline-block;background:#DE9B2B;color:#163923">Tu Punto de Partida empieza ac&aacute;</a></p>
       </div>
     </section>
   </div>
@@ -2305,6 +2390,7 @@
         <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#DE9B2B">Detalle</div>
         <nav aria-label="Páginas de detalle" style="display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin-top:14px">
           <a href="#/#como-funciona" style="color:rgba(245,242,235,0.78);font-size:14px">Cómo funciona</a>
+          <a href="#/tu-chequeo" style="color:rgba(245,242,235,0.78);font-size:14px">Tu Chequeo</a>
           <a href="#/niveles-y-tarifas" style="color:rgba(245,242,235,0.78);font-size:14px">Niveles y tarifas</a>
           <a href="#/servicios" style="color:rgba(245,242,235,0.78);font-size:14px">Servicios</a>
           <a href="#/nosotros" style="color:rgba(245,242,235,0.78);font-size:14px">Nosotros</a>
@@ -2450,6 +2536,7 @@ const PAGES = {
   // redirige mas abajo las manda a la seccion que corresponde.
   '/como-funciona': 'home',
   '/para-tu-negocio': 'home',
+  '/tu-chequeo': 'chequeo',
   '/niveles-y-tarifas': 'niveles',
   '/servicios': 'servicios',
   '/nosotros': 'nosotros'
@@ -2458,6 +2545,7 @@ const PAGES = {
 // Titulo y descripcion por pagina: se aplican al <title> y a las meta al navegar.
 const SEO = {
   home: ['Do\u00f1a Compra | Compr\u00e1 mercader\u00eda para tu negocio y pag\u00e1 despu\u00e9s', 'Eleg\u00ed la mercader\u00eda y el proveedor que ya conoc\u00e9s. Do\u00f1a Compra paga al contado y vos pag\u00e1s en hasta 30 d\u00edas. Gran Asunci\u00f3n, Paraguay.'],
+  chequeo: ['Tu Chequeo | Doña Compra', 'El análisis completo de tu comercio, hecho por profesionales. Recibís Tu Mapa: dónde estás hoy y el camino para crecer.'],
   concepto: ['El Concepto | Do\u00f1a Compra', 'Do\u00f1a Compra paga tu mercader\u00eda al contado al proveedor que vos eleg\u00eds, y vos pag\u00e1s en hasta 30 d\u00edas seg\u00fan las condiciones acordadas.'],
   comerciante: ['Comerciantes | Do\u00f1a Compra', 'Compr\u00e1 stock sin frenar la caja de tu negocio. Visita al local, evaluaci\u00f3n y compra con pago a 30 d\u00edas en Gran Asunci\u00f3n.'],
   mayoristas: ['Mayoristas | Do\u00f1a Compra', 'Venda m\u00e1s sin asumir riesgo de cobro: Do\u00f1a Compra le paga al contado la mercader\u00eda de sus clientes comerciantes.'],
@@ -3052,6 +3140,7 @@ class Component extends DCLogic {
       seoDesc: (SEO[p] || SEO.home)[1],
 
       atHome: p === 'home',
+      atChequeo: p === 'chequeo',
       atNiveles: p === 'niveles', atServicios: p === 'servicios',
       atNosotros: p === 'nosotros', atContacto: p === 'contacto', atFaq: p === 'faq',
       atConcepto: p === 'concepto', atComerciante: p === 'comerciante',
