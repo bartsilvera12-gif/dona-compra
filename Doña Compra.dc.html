@@ -67,9 +67,17 @@
   h1, h2, h3, h4 { font-family: Montserrat, sans-serif; color: #163923; line-height: 1.2; }
   :focus-visible { outline: 2px solid #DE9B2B; outline-offset: 2px; }
   [data-mobile-only] { display: none !important; }
-  @media (max-width: 1150px) {
+  /* El menu paso de cinco entradas a siete, y con el boton largo ya no entra
+     en una pantalla de 1150: se cambia el corte a 1280 y, entre 1280 y 1420,
+     el menu se aprieta un poco para que todo quepa en una linea. */
+  @media (max-width: 1280px) {
     [data-mobile-only] { display: flex !important; }
     [data-desktop-only] { display: none !important; }
+  }
+  @media (min-width: 1281px) and (max-width: 1460px) {
+    header .dcx-nav { gap: 0; }
+    header .dcx-nav .dcx-nav-link { padding: 6px 6px; font-size: 12.5px; }
+    header .dcx-nav-cta { padding: 9px 14px; font-size: 12.5px; }
   }
   [data-nav-link] { white-space: nowrap; }
   [data-cta] { white-space: nowrap; }
