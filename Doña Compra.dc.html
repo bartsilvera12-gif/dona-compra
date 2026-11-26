@@ -455,6 +455,14 @@
   .dcx-faq-r { padding: 0 clamp(14px,2vw,20px) clamp(14px,2vw,20px); }
   .dcx-faq-r p { margin: 0; max-width: 62ch; font-size: 15.5px; line-height: 1.6; color: #2F4237; }
   @media (prefers-reduced-motion: reduce) { .dcx-faq-mas { transition: none; } }
+  /* Niveles de compra: tabla en pantallas grandes, una tarjeta por nivel en
+     el celular. Los dos bloques no llevan display en linea, asi que estas
+     reglas pueden cambiarlo. */
+  .dcx-niv-tarjetas { display: none; }
+  @media (max-width: 760px) {
+    .dcx-niv-tabla { display: none; }
+    .dcx-niv-tarjetas { display: grid; }
+  }
 </style>
 </helmet>
 
@@ -937,101 +945,227 @@
   <!-- ─────────── NIVELES Y TARIFAS ─────────── -->
   <sc-if value="{{ atNiveles }}">
   <div>
-    <section style="background:#F5F2EB;border-bottom:1px solid rgba(22,57,35,0.12);border-radius:12px">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,88px) clamp(18px,4vw,40px)">
-        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#4F5C54">Cuentas claras</span>
-        <h1 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(36px,6.4vw,94px);line-height:0.95;letter-spacing:-0.02em;color:#163923;margin:16px 0 0;max-width:14ch">Sabés lo que pagás. Desde el principio.</h1>
-        <p style="font-size:clamp(16px,1.8vw,20px);line-height:1.55;color:#2F4237;margin:22px 0 0;max-width:48ch">Conocé el recargo comercial de cada nivel, los cinco servicios y las condiciones de tus compras.</p>
+    <section style="background:#F5F2EB;border-bottom:1px solid rgba(22,57,35,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#875F1A">Niveles de compra</span>
+        <h1 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(36px,6.4vw,88px);line-height:0.98;letter-spacing:-0.02em;color:#163923;margin:16px 0 0;max-width:14ch">Tu palabra te hace crecer.</h1>
+        <p style="font-size:clamp(16px,1.8vw,20px);line-height:1.55;color:#2F4237;margin:22px 0 0;max-width:52ch">En Do&ntilde;a Compra hay ocho niveles, de Hierro a Diamante. Cada nivel te abre un cupo de compra, y cuanto m&aacute;s sub&iacute;s, m&aacute;s baja tu recargo.</p>
+        <div style="margin-top:30px">
+          <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:inline-block;background:#DE9B2B;color:#163923;border-radius:8px;padding:16px 30px;font-size:15px;font-weight:600;letter-spacing:0.02em">Tu Punto de Partida empieza ac&aacute;</a>
+        </div>
+        <a href="#/punto-de-partida#cinco-puntos" style="display:inline-block;margin-top:14px;font-size:15px;color:#875F1A;text-decoration:underline;text-underline-offset:4px">&iquest;Primera vez? Mir&aacute; Do&ntilde;a Compra en 5 puntos &rarr;</a>
       </div>
     </section>
 
     <section style="background:transparent">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,84px) clamp(18px,4vw,40px)">
-        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 24px">Cómo se forma el precio</h2>
-        <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:10px">
-          <div style="flex:1 1 200px;background:#F5F2EB;border:1px solid rgba(22,57,35,0.18);padding:22px;border-radius:12px">
-            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#4F5C54">Precio de compra</div>
-            <p style="font-size:14.5px;line-height:1.6;color:#2F4237;margin:10px 0 0">Lo que cuesta la mercadería en tu proveedor.</p>
-          </div>
-          <div style="display:flex;align-items:center;font-family:Montserrat,sans-serif;font-size:30px;color:#DE9B2B">+</div>
-          <div style="flex:1 1 200px;background:#F5F2EB;border:1px solid rgba(22,57,35,0.18);padding:22px;border-radius:12px">
-            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#4F5C54">Recargo comercial 18 %–12 %</div>
-            <p style="font-size:14.5px;line-height:1.6;color:#2F4237;margin:10px 0 0">El recargo de la reventa, según tu nivel. No es un interés ni una tasa mensual.</p>
-          </div>
-          <div style="display:flex;align-items:center;font-family:Montserrat,sans-serif;font-size:30px;color:#DE9B2B">+</div>
-          <div style="flex:1 1 200px;background:#F5F2EB;border:1px solid rgba(22,57,35,0.18);padding:22px;border-radius:12px">
-            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#4F5C54">Servicios fijos del nivel</div>
-            <p style="font-size:14.5px;line-height:1.6;color:#2F4237;margin:10px 0 0">Montos fijos por pedido, según tu nivel.</p>
-          </div>
-          <div style="display:flex;align-items:center;font-family:Montserrat,sans-serif;font-size:30px;color:#DE9B2B">=</div>
-          <div style="flex:1 1 200px;background:#163923;padding:22px">
-            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#DE9B2B">Total de tu factura</div>
-            <p style="font-size:14.5px;line-height:1.6;color:rgba(245,242,235,0.82);margin:10px 0 0">Con su fecha de vencimiento, hasta 30 días.</p>
-          </div>
-        </div>
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">Tu cupo, tu l&iacute;mite</h2>
+        <p style="font-size:16px;line-height:1.65;color:#2F4237;margin:0;max-width:62ch">Tu cupo es el monto m&aacute;ximo que Do&ntilde;a Compra compra por vos al mismo tiempo. Nunca se pasa: para hacer un pedido nuevo, primero cerr&aacute;s los anteriores.</p>
       </div>
     </section>
 
-    
+    <section style="background:#F5F2EB;border-top:1px solid rgba(22,57,35,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">Los ocho niveles</h2>
+        <figure style="margin:24px 0 0">
+          <img src="assets/niveles-ocho-cupos.webp" width="2000" height="667" loading="lazy" decoding="async" alt="Los ocho niveles de Do&ntilde;a Compra, de menor a mayor, con el cupo de compra de cada uno" style="width:100%;height:auto;display:block;border-radius:12px" />
+        </figure>
+        <div class="dcx-niv-tabla" style="margin-top:28px;overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;min-width:640px">
+            <thead><tr><th style="text-align:left;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#4F5C54;font-weight:500;padding:0 14px 12px 0">Nivel</th><th style="text-align:left;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#4F5C54;font-weight:500;padding:0 14px 12px 0">Cupo de compra</th><th style="text-align:left;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#4F5C54;font-weight:500;padding:0 14px 12px 0">Recargo</th><th style="text-align:left;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#4F5C54;font-weight:500;padding:0 14px 12px 0">Servicios por pedido</th><th style="text-align:left;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#4F5C54;font-weight:500;padding:0 14px 12px 0">C&oacute;mo se entra</th></tr></thead>
+            <tbody><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Hierro</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">250.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">18 %</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">7.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Directo</td></tr><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Cobre</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">500.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">18 %</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">8.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Directo o subiendo</td></tr><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Bronce</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">1.000.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">17 %</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">9.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Directo o subiendo</td></tr><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Plata</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">2.000.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">16 %</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">11.500 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Directo o subiendo</td></tr><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Oro</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">4.000.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">15 %</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">14.500 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Solo subiendo</td></tr><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Amatista</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">6.000.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">14 %</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">16.500 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Solo subiendo</td></tr><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Rub&iacute;</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">8.000.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">13 %</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">19.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Solo subiendo</td></tr><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Diamante</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">10.000.000 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">12 %</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">22.500 Gs</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Solo subiendo</td></tr></tbody>
+          </table>
+        </div>
+        <div class="dcx-niv-tarjetas" style="grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px;margin-top:28px">
+          <div style="background:transparent;border:1px solid rgba(22,57,35,0.18);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#163923;margin:0 0 10px">Hierro</div>
+            <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;line-height:1.5;color:#2F4237">
+              <dt style="color:#4F5C54">Cupo</dt><dd style="margin:0">250.000 Gs</dd>
+              <dt style="color:#4F5C54">Recargo</dt><dd style="margin:0">18 %</dd>
+              <dt style="color:#4F5C54">Servicios</dt><dd style="margin:0">7.000 Gs</dd>
+              <dt style="color:#4F5C54">C&oacute;mo se entra</dt><dd style="margin:0">Directo</dd>
+            </dl>
+          </div>
+          <div style="background:transparent;border:1px solid rgba(22,57,35,0.18);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#163923;margin:0 0 10px">Cobre</div>
+            <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;line-height:1.5;color:#2F4237">
+              <dt style="color:#4F5C54">Cupo</dt><dd style="margin:0">500.000 Gs</dd>
+              <dt style="color:#4F5C54">Recargo</dt><dd style="margin:0">18 %</dd>
+              <dt style="color:#4F5C54">Servicios</dt><dd style="margin:0">8.000 Gs</dd>
+              <dt style="color:#4F5C54">C&oacute;mo se entra</dt><dd style="margin:0">Directo o subiendo</dd>
+            </dl>
+          </div>
+          <div style="background:transparent;border:1px solid rgba(22,57,35,0.18);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#163923;margin:0 0 10px">Bronce</div>
+            <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;line-height:1.5;color:#2F4237">
+              <dt style="color:#4F5C54">Cupo</dt><dd style="margin:0">1.000.000 Gs</dd>
+              <dt style="color:#4F5C54">Recargo</dt><dd style="margin:0">17 %</dd>
+              <dt style="color:#4F5C54">Servicios</dt><dd style="margin:0">9.000 Gs</dd>
+              <dt style="color:#4F5C54">C&oacute;mo se entra</dt><dd style="margin:0">Directo o subiendo</dd>
+            </dl>
+          </div>
+          <div style="background:transparent;border:1px solid rgba(22,57,35,0.18);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#163923;margin:0 0 10px">Plata</div>
+            <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;line-height:1.5;color:#2F4237">
+              <dt style="color:#4F5C54">Cupo</dt><dd style="margin:0">2.000.000 Gs</dd>
+              <dt style="color:#4F5C54">Recargo</dt><dd style="margin:0">16 %</dd>
+              <dt style="color:#4F5C54">Servicios</dt><dd style="margin:0">11.500 Gs</dd>
+              <dt style="color:#4F5C54">C&oacute;mo se entra</dt><dd style="margin:0">Directo o subiendo</dd>
+            </dl>
+          </div>
+          <div style="background:transparent;border:1px solid rgba(22,57,35,0.18);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#163923;margin:0 0 10px">Oro</div>
+            <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;line-height:1.5;color:#2F4237">
+              <dt style="color:#4F5C54">Cupo</dt><dd style="margin:0">4.000.000 Gs</dd>
+              <dt style="color:#4F5C54">Recargo</dt><dd style="margin:0">15 %</dd>
+              <dt style="color:#4F5C54">Servicios</dt><dd style="margin:0">14.500 Gs</dd>
+              <dt style="color:#4F5C54">C&oacute;mo se entra</dt><dd style="margin:0">Solo subiendo</dd>
+            </dl>
+          </div>
+          <div style="background:transparent;border:1px solid rgba(22,57,35,0.18);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#163923;margin:0 0 10px">Amatista</div>
+            <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;line-height:1.5;color:#2F4237">
+              <dt style="color:#4F5C54">Cupo</dt><dd style="margin:0">6.000.000 Gs</dd>
+              <dt style="color:#4F5C54">Recargo</dt><dd style="margin:0">14 %</dd>
+              <dt style="color:#4F5C54">Servicios</dt><dd style="margin:0">16.500 Gs</dd>
+              <dt style="color:#4F5C54">C&oacute;mo se entra</dt><dd style="margin:0">Solo subiendo</dd>
+            </dl>
+          </div>
+          <div style="background:transparent;border:1px solid rgba(22,57,35,0.18);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#163923;margin:0 0 10px">Rub&iacute;</div>
+            <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;line-height:1.5;color:#2F4237">
+              <dt style="color:#4F5C54">Cupo</dt><dd style="margin:0">8.000.000 Gs</dd>
+              <dt style="color:#4F5C54">Recargo</dt><dd style="margin:0">13 %</dd>
+              <dt style="color:#4F5C54">Servicios</dt><dd style="margin:0">19.000 Gs</dd>
+              <dt style="color:#4F5C54">C&oacute;mo se entra</dt><dd style="margin:0">Solo subiendo</dd>
+            </dl>
+          </div>
+          <div style="background:transparent;border:1px solid rgba(22,57,35,0.18);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#163923;margin:0 0 10px">Diamante</div>
+            <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;line-height:1.5;color:#2F4237">
+              <dt style="color:#4F5C54">Cupo</dt><dd style="margin:0">10.000.000 Gs</dd>
+              <dt style="color:#4F5C54">Recargo</dt><dd style="margin:0">12 %</dd>
+              <dt style="color:#4F5C54">Servicios</dt><dd style="margin:0">22.500 Gs</dd>
+              <dt style="color:#4F5C54">C&oacute;mo se entra</dt><dd style="margin:0">Solo subiendo</dd>
+            </dl>
+          </div>
+        </div>
+        <p style="font-size:13px;color:#4F5C54;margin:18px 0 0">Recargos y tarifas seg&uacute;n las Condiciones Generales vigentes.</p>
+      </div>
+    </section>
 
     <section style="background:transparent;border-top:1px solid rgba(22,57,35,0.12)">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
-        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">Los ocho niveles</h2>
-        <p style="font-size:16px;line-height:1.65;color:#2F4237;margin:0;max-width:62ch">Cada nivel te abre un cupo: el m&aacute;ximo de mercader&iacute;a que Do&ntilde;a Compra compra por vos al mismo tiempo. Cuanto m&aacute;s sub&iacute;s, m&aacute;s baja tu recargo.</p>
-        <figure style="margin:28px 0 0">
-          <img src="assets/niveles-ocho-cupos.webp" width="2000" height="667" loading="lazy" decoding="async" alt="Los ocho niveles de Do&ntilde;a Compra, de menor a mayor, con el cupo de compra de cada uno: Hierro 250.000 Gs, Cobre 500.000 Gs, Bronce 1 mill&oacute;n, Plata 2 millones, Oro 4 millones, Amatista 6 millones, Rub&iacute; 8 millones y Diamante 10 millones. Los cuatro &uacute;ltimos llevan un candado: a esos se llega solo subiendo." style="width:100%;height:auto;display:block;border-radius:12px" />
-        </figure>
-        <ul style="list-style:none;margin:24px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 10px">
-          <li style="font-size:14.5px;color:#2F4237;background:#F5F2EB;border:1px solid rgba(22,57,35,0.14);border-radius:999px;padding:7px 14px"><strong style="color:#163923">Hierro</strong> 250.000 Gs</li>
-          <li style="font-size:14.5px;color:#2F4237;background:#F5F2EB;border:1px solid rgba(22,57,35,0.14);border-radius:999px;padding:7px 14px"><strong style="color:#163923">Cobre</strong> 500.000 Gs</li>
-          <li style="font-size:14.5px;color:#2F4237;background:#F5F2EB;border:1px solid rgba(22,57,35,0.14);border-radius:999px;padding:7px 14px"><strong style="color:#163923">Bronce</strong> 1.000.000 Gs</li>
-          <li style="font-size:14.5px;color:#2F4237;background:#F5F2EB;border:1px solid rgba(22,57,35,0.14);border-radius:999px;padding:7px 14px"><strong style="color:#163923">Plata</strong> 2.000.000 Gs</li>
-          <li style="font-size:14.5px;color:#2F4237;background:#F5F2EB;border:1px solid rgba(22,57,35,0.14);border-radius:999px;padding:7px 14px"><strong style="color:#163923">Oro</strong> 4.000.000 Gs</li>
-          <li style="font-size:14.5px;color:#2F4237;background:#F5F2EB;border:1px solid rgba(22,57,35,0.14);border-radius:999px;padding:7px 14px"><strong style="color:#163923">Amatista</strong> 6.000.000 Gs</li>
-          <li style="font-size:14.5px;color:#2F4237;background:#F5F2EB;border:1px solid rgba(22,57,35,0.14);border-radius:999px;padding:7px 14px"><strong style="color:#163923">Rub&iacute;</strong> 8.000.000 Gs</li>
-          <li style="font-size:14.5px;color:#2F4237;background:#F5F2EB;border:1px solid rgba(22,57,35,0.14);border-radius:999px;padding:7px 14px"><strong style="color:#163923">Diamante</strong> 10.000.000 Gs</li>
-        </ul>
-        <p style="font-size:15px;line-height:1.6;color:#2F4237;margin:18px 0 0;max-width:62ch">Pod&eacute;s entrar directo hasta Plata, con tus chequeos. Desde Oro, solo subiendo, pedido a pedido.</p>
-        <p style="font-size:13px;color:#4F5C54;margin:10px 0 0">Recargos y tarifas seg&uacute;n las Condiciones Generales vigentes.</p>
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">Empez&aacute;s en el nivel de tu comercio</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px;margin-top:22px">
+          <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#163923;margin:0 0 6px">De Hierro a Plata, directo</div>
+            <p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0">Si tu comercio ya es s&oacute;lido, hac&eacute;s los chequeos de tu nivel antes de tu primer pedido, en una sola visita.</p>
+          </div>
+          <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:24px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;color:#163923;margin:0 0 6px">Desde Oro, solo subiendo</div>
+            <p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0">Pedido a pedido, con tu palabra.</p>
+          </div>
+        </div>
+        <a href="#/tu-chequeo" style="display:inline-block;margin-top:14px;font-size:15px;color:#875F1A;text-decoration:underline;text-underline-offset:4px">Conoc&eacute; Tu Chequeo &rarr;</a>
       </div>
     </section>
 
-    <section style="background:#F5F2EB;border-top:1px solid rgba(22,57,35,0.12);border-radius:12px">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:clamp(26px,4vw,60px)">
-        <div>
-          <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,40px);line-height:1.08;color:#163923;margin:0 0 20px">Cómo funcionan los niveles</h2>
-          <div style="display:flex;flex-direction:column">
-            <div style="padding:13px 0;border-top:1px solid rgba(22,57,35,0.16);font-size:15px;line-height:1.6;color:#2F4237">Cada nivel fija un cupo: el máximo de mercadería comprometida a la vez.</div>
-            <div style="padding:13px 0;border-top:1px solid rgba(22,57,35,0.16);font-size:15px;line-height:1.6;color:#2F4237">Podés tener varios pedidos abiertos mientras lo comprometido no pase el cupo.</div>
-            <div style="padding:13px 0;border-top:1px solid rgba(22,57,35,0.16);font-size:15px;line-height:1.6;color:#2F4237">Cambiar de nivel no es automático: superar el acumulado previsto habilita una evaluación.</div>
-            <div style="padding:13px 0;border-top:1px solid rgba(22,57,35,0.16);font-size:15px;line-height:1.6;color:#2F4237">Se asciende de a un nivel por vez, por decisión de Doña Compra.</div>
-            <div style="padding:13px 0;border-top:1px solid rgba(22,57,35,0.16);font-size:15px;line-height:1.6;color:#2F4237">Una operación se factura completa bajo el nivel vigente al confirmarla.</div>
-            <div style="padding:13px 0;border-top:1px solid rgba(22,57,35,0.16);font-size:15px;line-height:1.6;color:#2F4237">El cambio aplica a pedidos posteriores; nunca de forma retroactiva.</div>
-            <div style="padding:13px 0;border-top:1px solid rgba(22,57,35,0.16);font-size:15px;line-height:1.6;color:#2F4237">El cliente puede permanecer en su nivel si así se resuelve.</div>
-            <div style="padding:13px 0;border-top:1px solid rgba(22,57,35,0.16);border-bottom:1px solid rgba(22,57,35,0.16);font-size:15px;line-height:1.6;color:#2F4237">Diamante conserva su nivel mientras la relación comercial continúe normalmente, según las condiciones.</div>
+    <section style="background:#F5F2EB;border-top:1px solid rgba(22,57,35,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">Tu factura, en tres partes</h2>
+        <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin-top:24px">
+          <div style="flex:1 1 200px;background:transparent;border:1px solid rgba(22,57,35,0.18);padding:22px;border-radius:12px">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#4F5C54">Precio de tu mayorista</div>
+            <p style="font-size:14.5px;line-height:1.6;color:#2F4237;margin:10px 0 0">Lo que cuesta tu mercader&iacute;a.</p>
+          </div>
+          <div style="display:flex;align-items:center;font-family:Montserrat,sans-serif;font-size:30px;color:#DE9B2B">+</div>
+          <div style="flex:1 1 200px;background:transparent;border:1px solid rgba(22,57,35,0.18);padding:22px;border-radius:12px">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#4F5C54">Recargo Do&ntilde;a Compra</div>
+            <p style="font-size:14.5px;line-height:1.6;color:#2F4237;margin:10px 0 0">Un porcentaje seg&uacute;n tu nivel.</p>
+          </div>
+          <div style="display:flex;align-items:center;font-family:Montserrat,sans-serif;font-size:30px;color:#DE9B2B">+</div>
+          <div style="flex:1 1 200px;background:transparent;border:1px solid rgba(22,57,35,0.18);padding:22px;border-radius:12px">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#4F5C54">Servicios Do&ntilde;a Compra</div>
+            <p style="font-size:14.5px;line-height:1.6;color:#2F4237;margin:10px 0 0">Un precio fijo por pedido, nunca un porcentaje.</p>
+          </div>
+          <div style="display:flex;align-items:center;font-family:Montserrat,sans-serif;font-size:30px;color:#DE9B2B">=</div>
+          <div style="flex:1 1 200px;background:#163923;padding:22px;border-radius:12px">
+            <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#DE9B2B">Total de tu factura</div>
+            <p style="font-size:14.5px;line-height:1.6;color:rgba(245,242,235,0.82);margin:10px 0 0">Con su fecha de vencimiento, hasta 30 d&iacute;as.</p>
           </div>
         </div>
-        <div>
-          <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,40px);line-height:1.08;color:#163923;margin:0 0 20px">Condiciones de pago</h2>
-          <div style="background:transparent;border:1px solid rgba(22,57,35,0.18);padding:clamp(20px,3vw,28px);display:flex;flex-direction:column;gap:16px;border-radius:12px">
+        <p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:20px 0 0"><strong style="color:#163923">Ejemplo en Hierro:</strong> 100.000 Gs de tu mayorista + 18.000 Gs de recargo + 7.000 Gs de servicios = 125.000 Gs</p>
+
+        <div style="margin-top:34px;background:transparent;border:1px solid rgba(22,57,35,0.18);border-radius:12px;padding:clamp(20px,3vw,32px)">
+          <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;color:#163923;margin:0 0 6px">Calcul&aacute; tu pedido</h3>
+          <p style="font-size:15px;line-height:1.6;color:#2F4237;margin:0 0 20px;max-width:56ch">Eleg&iacute; tu nivel y escrib&iacute; cu&aacute;nto cuesta la mercader&iacute;a en tu mayorista.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px"><button type="button" onClick="{{ lvl0 }}" style="background:{{ lvlBg0 }};border:1px solid {{ lvlBd0 }};color:{{ lvlFg0 }};border-radius:999px;padding:9px 16px;font-size:14px;font-weight:500;cursor:pointer">Hierro</button><button type="button" onClick="{{ lvl1 }}" style="background:{{ lvlBg1 }};border:1px solid {{ lvlBd1 }};color:{{ lvlFg1 }};border-radius:999px;padding:9px 16px;font-size:14px;font-weight:500;cursor:pointer">Cobre</button><button type="button" onClick="{{ lvl2 }}" style="background:{{ lvlBg2 }};border:1px solid {{ lvlBd2 }};color:{{ lvlFg2 }};border-radius:999px;padding:9px 16px;font-size:14px;font-weight:500;cursor:pointer">Bronce</button><button type="button" onClick="{{ lvl3 }}" style="background:{{ lvlBg3 }};border:1px solid {{ lvlBd3 }};color:{{ lvlFg3 }};border-radius:999px;padding:9px 16px;font-size:14px;font-weight:500;cursor:pointer">Plata</button><button type="button" onClick="{{ lvl4 }}" style="background:{{ lvlBg4 }};border:1px solid {{ lvlBd4 }};color:{{ lvlFg4 }};border-radius:999px;padding:9px 16px;font-size:14px;font-weight:500;cursor:pointer">Oro</button><button type="button" onClick="{{ lvl5 }}" style="background:{{ lvlBg5 }};border:1px solid {{ lvlBd5 }};color:{{ lvlFg5 }};border-radius:999px;padding:9px 16px;font-size:14px;font-weight:500;cursor:pointer">Amatista</button><button type="button" onClick="{{ lvl6 }}" style="background:{{ lvlBg6 }};border:1px solid {{ lvlBd6 }};color:{{ lvlFg6 }};border-radius:999px;padding:9px 16px;font-size:14px;font-weight:500;cursor:pointer">Rub&iacute;</button><button type="button" onClick="{{ lvl7 }}" style="background:{{ lvlBg7 }};border:1px solid {{ lvlBd7 }};color:{{ lvlFg7 }};border-radius:999px;padding:9px 16px;font-size:14px;font-weight:500;cursor:pointer">Diamante</button></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:clamp(20px,3vw,36px);margin-top:24px">
             <div>
-              <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#4F5C54">Plazo</div>
-              <p style="font-size:15px;line-height:1.6;color:#2F4237;margin:7px 0 0">Pago máximo a 30 días calendario desde el retiro efectivo en el mayorista, acreditado con el código de recepción. La fecha de vencimiento está indicada en la factura.</p>
+              <label for="calc-monto" style="display:block;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4F5C54;margin-bottom:6px">Costo en tu mayorista (Gs.)</label>
+              <input id="calc-monto" type="text" inputMode="numeric" value="{{ calcInput }}" onInput="{{ onCalcInput }}" style="width:100%;padding:12px 14px;border:1px solid rgba(22,57,35,0.25);border-radius:8px;background:#F5F2EB;color:#2F4237;font-size:16px" />
+              <label style="display:flex;gap:10px;align-items:center;margin-top:14px;font-size:14.5px;color:#2F4237;cursor:pointer">
+                <input type="checkbox" checked="{{ rapidoOn }}" onChange="{{ toggleRapido }}" style="width:18px;height:18px;accent-color:#DE9B2B;flex:none" />
+                <span>Pagador R&aacute;pido (un punto menos de recargo)</span>
+              </label>
+              <p style="font-size:13.5px;line-height:1.55;color:#4F5C54;margin:14px 0 0">Cupo de {{ lvlName }}: Gs. {{ lvlCap }} &middot; Pedido m&iacute;nimo: Gs. {{ lvlMin }}</p>
+              <sc-if value="{{ capWarn }}">
+                <p role="status" style="margin:12px 0 0;padding:12px 14px;border-radius:12px;background:rgba(222,155,43,0.14);font-size:14px;line-height:1.5;color:#2F4237">{{ capWarnText }}</p>
+              </sc-if>
+              <sc-if value="{{ calcWarn }}">
+                <p role="status" style="margin:12px 0 0;padding:12px 14px;border-radius:12px;background:rgba(222,155,43,0.14);font-size:14px;line-height:1.5;color:#2F4237">{{ calcWarnText }}</p>
+              </sc-if>
             </div>
-            <div style="height:1px;background:rgba(22,57,35,0.14)"></div>
             <div>
-              <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#4F5C54">Atrasos</div>
-              <p style="font-size:15px;line-height:1.6;color:#2F4237;margin:7px 0 0">Sin multas ni intereses por atraso. Si hace falta una gestión de cobranza o un pagaré, pueden refacturarse los gastos realmente realizados y comprobados, sin margen adicional.</p>
-            </div>
-            <div style="height:1px;background:rgba(22,57,35,0.14)"></div>
-            <div>
-              <div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#4F5C54">Documentación</div>
-              <p style="font-size:15px;line-height:1.6;color:#2F4237;margin:7px 0 0">El documento contractual oficial son las Condiciones Generales de Servicio y de Venta, que pod&eacute;s descargar ac&aacute; mismo y tambi&eacute;n se comparten durante el proceso de alta.</p>
+              <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;font-size:14.5px;line-height:1.5;color:#2F4237"><span>Mercader&iacute;a</span><span style="white-space:nowrap;color:#163923">{{ cMerc }}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid rgba(22,57,35,0.12);font-size:14.5px;line-height:1.5;color:#2F4237"><span>{{ cRecargoEtq }}</span><span style="white-space:nowrap;color:#163923">{{ cRecargo }}</span></div>
+              <p style="font-size:12.5px;line-height:1.5;color:#4F5C54;margin:2px 0 6px">{{ cRecargoNota }}</p>
+              <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid rgba(22,57,35,0.12);font-size:14.5px;line-height:1.5;color:#2F4237"><span>{{ nSrv0 }}</span><span style="white-space:nowrap;color:#163923">{{ cSrv0 }}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid rgba(22,57,35,0.12);font-size:14.5px;line-height:1.5;color:#2F4237"><span>{{ nSrv1 }}</span><span style="white-space:nowrap;color:#163923">{{ cSrv1 }}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid rgba(22,57,35,0.12);font-size:14.5px;line-height:1.5;color:#2F4237"><span>{{ nSrv2 }}</span><span style="white-space:nowrap;color:#163923">{{ cSrv2 }}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid rgba(22,57,35,0.12);font-size:14.5px;line-height:1.5;color:#2F4237"><span>{{ nSrv3 }}</span><span style="white-space:nowrap;color:#163923">{{ cSrv3 }}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid rgba(22,57,35,0.12);font-size:14.5px;line-height:1.5;color:#2F4237"><span>{{ nSrv4 }}</span><span style="white-space:nowrap;color:#163923">{{ cSrv4 }}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid rgba(22,57,35,0.12);font-size:14.5px;line-height:1.5;color:#2F4237"><span>Servicios Do&ntilde;a Compra</span><span style="white-space:nowrap;color:#163923">{{ cServ }}</span></div>
+              <div style="display:flex;justify-content:space-between;gap:16px;margin-top:14px;padding:16px 18px;border-radius:12px;background:#163923">
+                <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#DE9B2B">Total de tu factura</span>
+                <span style="font-family:Montserrat,sans-serif;font-weight:700;font-size:17px;color:#F5F2EB;white-space:nowrap">{{ cTotal }}</span>
+              </div>
             </div>
           </div>
-          <a href="assets/condiciones-generales-nov-2026.pdf" download type="application/pdf" style="display:inline-flex;align-items:center;gap:10px;margin-top:24px;background:#163923;color:#F5F2EB;border-radius:999px;padding:16px 26px;font-size:14.5px;font-weight:600;text-decoration:none" style-hover="background:#1F5132"><span aria-hidden="true">&#8595;</span>Descargar las Condiciones Generales (PDF)</a>
-          <p style="font-size:13px;color:#4F5C54;margin:8px 0 0">CGSV &middot; noviembre 2026 &middot; 22 p&aacute;ginas &middot; 0,9 MB</p>
         </div>
+        <p style="font-size:15px;line-height:1.6;color:#2F4237;margin:22px 0 0;max-width:68ch"><strong style="color:#163923">Los 5 Servicios Do&ntilde;a Compra:</strong> seguimiento con c&oacute;digo, custodia y trazabilidad de tus documentos, Mayoristas Amigos, publicidad de la Red y Club Do&ntilde;a Compra.</p>
+      </div>
+    </section>
+
+    <section style="background:transparent;border-top:1px solid rgba(22,57,35,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">Pedido a pedido</h2>
+        <ol style="list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:14px"><li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:24px"><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:14px;color:#875F1A;margin:0 0 8px">01</div><p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0">Us&aacute;s tu cupo y cumpl&iacute;s cada pedido a tiempo.</p></li><li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:24px"><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:14px;color:#875F1A;margin:0 0 8px">02</div><p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0">Complet&aacute;s tu chequeo del nivel siguiente.</p></li><li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:24px"><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:14px;color:#875F1A;margin:0 0 8px">03</div><p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0">Tu asesor te visita y conoce tu avance.</p></li><li style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:24px"><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:14px;color:#875F1A;margin:0 0 8px">04</div><p style="font-size:15.5px;line-height:1.6;color:#2F4237;margin:0">Te confirmamos tu subida: m&aacute;s cupo y un recargo m&aacute;s bajo.</p></li></ol>
+        <p style="font-size:16px;line-height:1.65;color:#2F4237;margin:0;max-width:62ch;margin-top:20px">Subir es opcional. Si no quer&eacute;s, te qued&aacute;s en tu nivel y segu&iacute;s comprando hasta tu cupo.</p>
+      </div>
+    </section>
+
+    <section style="background:#F5F2EB;border-top:1px solid rgba(22,57,35,0.12)">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">Las reglas, claras</h2>
+        <div style="margin-top:24px;overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;min-width:520px">
+            <thead><tr><th style="text-align:left;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#4F5C54;font-weight:500;padding:0 14px 12px 0">Regla</th><th style="text-align:left;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#4F5C54;font-weight:500;padding:0 14px 12px 0">Qu&eacute; significa</th></tr></thead>
+            <tbody><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14);white-space:nowrap">30 d&iacute;as como m&aacute;ximo</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Pag&aacute;s tu factura hasta 30 d&iacute;as despu&eacute;s del retiro. Pod&eacute;s pagar antes, cuando quieras.</td></tr><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14);white-space:nowrap">Pedido m&iacute;nimo</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">50.000 Gs en Hierro y 100.000 Gs a partir de Cobre.</td></tr><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14);white-space:nowrap">Pagador R&aacute;pido</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Si pag&aacute;s bien antes de la fecha, gan&aacute;s un recargo m&aacute;s bajo.</td></tr><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14);white-space:nowrap">Padrinos</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">&iquest;Te recomend&oacute; un comerciante de la Red? Decinos su nombre en tu Punto de Partida.</td></tr><tr><td style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14);white-space:nowrap">Si te atras&aacute;s</td><td style="font-size:15.5px;line-height:1.5;color:#2F4237;padding:13px 14px 13px 0;border-top:1px solid rgba(22,57,35,0.14)">Tu cuenta queda en pausa y volv&eacute;s un nivel m&aacute;s abajo. Si ves que se complica, avis&aacute; antes: hablando, siempre encontramos una soluci&oacute;n.</td></tr></tbody>
+          </table>
+        </div>
+        <p style="font-size:15px;line-height:1.6;color:#2F4237;margin:20px 0 0"><strong style="color:#163923">Medios de pago:</strong> transferencia, alias, Mango o Tigo Money.</p>
+      </div>
+    </section>
+
+    <section style="background:#163923">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px);text-align:center">
+        <p style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(26px,4vw,48px);line-height:1.06;color:#F5F2EB;margin:0 auto;max-width:18ch">Palabra dada, palabra cumplida.</p>
+        <div style="margin-top:30px">
+          <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:inline-block;background:#DE9B2B;color:#163923;border-radius:8px;padding:16px 30px;font-size:15px;font-weight:600;letter-spacing:0.02em">Tu Punto de Partida empieza ac&aacute;</a>
+        </div>
+        <p style="margin:16px 0 0"><a href="assets/condiciones-generales-nov-2026.pdf" download type="application/pdf" style="font-size:15px;color:#DE9B2B;text-decoration:underline;text-underline-offset:4px">Descarg&aacute; las Condiciones Generales (PDF)</a></p>
       </div>
     </section>
   </div>
@@ -1070,7 +1204,7 @@
 
     <section style="background:#F5F2EB;border-top:1px solid rgba(22,57,35,0.12)">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,40px)">
-        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">Do&ntilde;a Compra en 5 puntos</h2>
+        <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px;scroll-margin-top:90px" id="cinco-puntos">Do&ntilde;a Compra en 5 puntos</h2>
         <p style="font-size:16px;line-height:1.65;color:#2F4237;margin:0 0 22px;max-width:62ch">Todo lo que necesit&aacute;s saber antes de empezar, claro y por escrito.</p>
         <nav aria-label="Los cinco puntos" style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 36px">
           <a href="#/punto-de-partida#cuanto-compro" style="font-size:14px;color:#163923;background:#fff;border:1px solid rgba(22,57,35,0.16);border-radius:999px;padding:8px 14px;text-decoration:none">1 &middot; &iquest;Cu&aacute;nto puedo comprar?</a>
