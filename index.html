@@ -155,12 +155,6 @@
   @keyframes dcCinta { from { transform: translateX(0); } to { transform: translateX(calc(-50% - clamp(26px,5vw,64px) / 2)); } }
   @media (min-width: 768px) { .dcx-cinta-pista { width: 100%; animation: none; justify-content: center; } .dcx-cinta-lista + [aria-hidden="true"], .dcx-cinta-lista[aria-hidden="true"] { display: none; } }
   @media (prefers-reduced-motion: reduce) { .dcx-cinta-pista { animation: none; } .dcx-cinta { overflow-x: auto; } }
-
-  /* No somos un banco. */
-  .dcx-banco { display: grid; align-items: start; gap: clamp(28px,4vw,64px); }
-  .dcx-banco-tarjetas { display: grid; gap: 16px; }
-  @media (min-width: 640px) { .dcx-banco-tarjetas { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 1024px) { .dcx-banco { grid-template-columns: minmax(0,40ch) 1fr; } }
   @media (prefers-reduced-motion: reduce) { .dcx-port { transition: none; } .dcx-port-punto { transition: none; } }
   /* Portada a dos mitades. En telefono la foto va arriba: la cara funciona
      mejor antes que el texto. */
@@ -664,19 +658,6 @@
               <li style="display:flex;gap:10px;margin-top:8px"><span aria-hidden="true" style="color:#875F1A;font-weight:700">&#10003;</span><span>Tu palabra te hace crecer</span></li>
             </ul>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section style="background:#F5F2EB">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
-        <div class="dcx-banco">
-          <div>
-            <span class="dcx-rotulo">Antes que nada</span>
-            <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,4.4vw,52px);line-height:1.08;color:#163923;margin:16px 0 0;max-width:14ch;text-wrap:pretty">No somos un banco.</h2>
-            <p style="font-size:16px;line-height:1.6;color:#2F4237;margin:20px 0 0;max-width:46ch">Do&ntilde;a Compra no es un banco. No te prestamos plata ni ten&eacute;s que hacer tr&aacute;mites de banco. Compramos la mercader&iacute;a que vos eleg&iacute;s, te la vendemos con factura legal y vos la pag&aacute;s cuando ya la vendiste.</p>
-          </div>
-          <div class="dcx-banco-tarjetas"><div style="border:1px solid rgba(112,154,125,0.5);background:#F5F2EB;border-radius:12px;padding:clamp(18px,2.4vw,26px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(16px,1.9vw,19px);line-height:1.25;color:#163923;margin:0">Lo que somos</h3><ul style="display:grid;gap:10px;margin:16px 0 0;padding:0;list-style:none"><li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.55;color:#2F4237"><span aria-hidden="true" style="flex:none;margin-top:1px;color:#1F5132"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"></path></svg></span>Una compradora de confianza</li><li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.55;color:#2F4237"><span aria-hidden="true" style="flex:none;margin-top:1px;color:#1F5132"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"></path></svg></span>Factura legal electr&oacute;nica a tu nombre</li><li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.55;color:#2F4237"><span aria-hidden="true" style="flex:none;margin-top:1px;color:#1F5132"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"></path></svg></span>Acompa&ntilde;amiento en tu negocio</li></ul></div><div style="border:1px solid rgba(22,57,35,0.12);background:#E2EBE5;border-radius:12px;padding:clamp(18px,2.4vw,26px)"><h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(16px,1.9vw,19px);line-height:1.25;color:#163923;margin:0">Lo que no somos</h3><ul style="display:grid;gap:10px;margin:16px 0 0;padding:0;list-style:none"><li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.55;color:#2F4237"><span aria-hidden="true" style="flex:none;margin-top:1px;color:#4F5C54"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>Un banco</li><li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.55;color:#2F4237"><span aria-hidden="true" style="flex:none;margin-top:1px;color:#4F5C54"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>Una financiera</li><li style="display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.55;color:#2F4237"><span aria-hidden="true" style="flex:none;margin-top:1px;color:#4F5C54"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>Un pr&eacute;stamo de plata</li></ul></div></div>
         </div>
       </div>
     </section>
