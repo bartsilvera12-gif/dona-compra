@@ -137,7 +137,6 @@
 
   function pintarConfig() {
     if (!config) return;
-    $("telefono").value = config.telefono || "";
     $("correo-config").value = config.correo || "";
     $("domicilio").value = config.domicilio || "";
     $("zona").value = config.zona || "";
@@ -148,7 +147,6 @@
 
   function guardar() {
     var cuerpo = {
-      telefono: $("telefono").value.trim(),
       correo: $("correo-config").value.trim(),
       domicilio: $("domicilio").value.trim(),
       zona: $("zona").value.trim(),
@@ -219,7 +217,7 @@
       explicar: explicar,
       anon: function () { return ANON; },
       sesion: function () { return sesion; },
-      // Para que la vista previa muestre el telefono, las redes y los
+      // Para que la vista previa muestre el correo, las redes y los
       // anuncios de verdad, y no los que vienen escritos en el archivo.
       config: function () { return config; },
       anuncios: function () {

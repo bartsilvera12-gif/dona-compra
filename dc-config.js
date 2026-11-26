@@ -54,8 +54,12 @@
   var ESPERA_MAX = 1200; // ms que el sitio acepta esperar al panel
 
   /** Columna de configuracion -> prop que usa el sitio. */
+  // El telefono no esta aca a proposito. Sale del propio archivo del sitio,
+  // porque el numero no es un dato suelto: con el se arma el QR de la pagina
+  // de Contactos (una imagen en assets/), el telefono de los datos
+  // estructurados y todos los enlaces de WhatsApp. Si pudiera cambiarse desde
+  // el panel, el QR y el numero escrito quedarian diciendo cosas distintas.
   var MAPA = {
-    telefono: "phone",
     correo: "email",
     domicilio: "domicilio",
     horario: "horario",
