@@ -29,8 +29,9 @@
 create table if not exists donacompraweb.configuracion (
   id                boolean primary key default true check (id),
 
-  -- Contacto
-  telefono          text not null default '0994 300 999',
+  -- Contacto. El telefono no esta aca: vive en el archivo del sitio, porque
+  -- con el se arma el QR de Contactos y los datos estructurados. Ver
+  -- 05-telefono.sql, que lo saca de las instalaciones que ya existen.
   correo            text not null default 'donacompra.py@gmail.com',
   domicilio         text not null default 'Edificio Diamante 1, Calle Coronel Feliciano Duarte 111, 403 San Lorenzo, Paraguay',
   zona              text not null default 'Gran Asunción, Paraguay',
@@ -54,8 +55,6 @@ comment on table donacompraweb.configuracion is
   'Fila única con los datos editables del sitio: contacto, redes y portada.';
 comment on column donacompraweb.configuracion.id is
   'Siempre true. Es lo que obliga a que exista una sola fila.';
-comment on column donacompraweb.configuracion.telefono is
-  'El número que usa todo el sitio, el botón flotante de WhatsApp incluido.';
 comment on column donacompraweb.configuracion.portada_imagen is
   'Ruta dentro del bucket donacompraweb, no una URL completa.';
 
@@ -142,7 +141,7 @@ create policy dc_configuracion_update_admin on donacompraweb.configuracion
 -- que impide que alguien firme un cambio con el nombre de otro.
 grant select on donacompraweb.configuracion to anon, authenticated;
 grant update (
-  telefono, correo, domicilio, zona, horario,
+  correo, domicilio, zona, horario,
   instagram, facebook, portada_imagen, portada_imagen_alt
 ) on donacompraweb.configuracion to authenticated;
 

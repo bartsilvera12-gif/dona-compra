@@ -28,8 +28,12 @@ En el **SQL Editor**, en este orden:
 2. `02-storage.sql` — crea el bucket de imágenes y sus políticas.
 3. `03-configuracion.sql` — la fila única con los datos de contacto del sitio.
 4. `04-contenido.sql` — los textos e imágenes que se editan desde el panel.
+5. `05-telefono.sql` — saca la columna `telefono` de la configuración: el
+   número vive en el archivo del sitio, porque con él se arma el QR de la
+   página de Contactos. En una instalación nueva no borra nada, porque
+   `03-configuracion.sql` ya no la crea.
 
-Los cuatro son idempotentes: se pueden correr más de una vez.
+Los cinco son idempotentes: se pueden correr más de una vez.
 
 Después de agregar una tabla, PostgREST sigue con el catálogo viejo en
 memoria y contesta 404 aunque la tabla exista. Se le avisa con:
