@@ -6,6 +6,12 @@
  * Es idempotente: reconoce las publicaciones por su slug, así que correrlo
  * dos veces no duplica nada. No toca las publicaciones que no vengan del
  * archivo de ejemplo.
+ *
+ * CUIDADO: estas diez publicaciones son inventadas (precios, ciudades y
+ * autores que no existen). En noviembre de 2026 el cliente pidió retirarlas
+ * del sitio publicado, y se borraron de la base con
+ * web/supabase/06-anuncios-ejemplo.sql. Correr esto contra la base del sitio
+ * en vivo las devuelve. Es para una base de desarrollo, nada más.
  */
 
 import { sql, cerrar } from "./conexion.mjs";

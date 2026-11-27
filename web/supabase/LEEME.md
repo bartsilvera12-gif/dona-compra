@@ -32,8 +32,12 @@ En el **SQL Editor**, en este orden:
    número vive en el archivo del sitio, porque con él se arma el QR de la
    página de Contactos. En una instalación nueva no borra nada, porque
    `03-configuracion.sql` ya no la crea.
+6. `06-anuncios-ejemplo.sql` — borra las diez publicaciones inventadas que
+   mostraba la página de Anuncios. El cliente pidió retirarlas antes de
+   publicar el sitio; mientras no haya publicaciones reales, la página dice
+   que todavía no hay. Ojo: `npm run db:seed` las vuelve a cargar.
 
-Los cinco son idempotentes: se pueden correr más de una vez.
+Los seis son idempotentes: se pueden correr más de una vez.
 
 Después de agregar una tabla, PostgREST sigue con el catálogo viejo en
 memoria y contesta 404 aunque la tabla exista. Se le avisa con:
