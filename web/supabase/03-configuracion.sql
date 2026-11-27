@@ -33,7 +33,7 @@ create table if not exists donacompraweb.configuracion (
   -- con el se arma el QR de Contactos y los datos estructurados. Ver
   -- 05-telefono.sql, que lo saca de las instalaciones que ya existen.
   correo            text not null default 'donacompra.py@gmail.com',
-  domicilio         text not null default 'Edificio Diamante 1, Calle Coronel Feliciano Duarte 111, 403 San Lorenzo, Paraguay',
+  domicilio         text not null default 'Edificio Diamante 1, calle Coronel Feliciano Duarte, Barrio San Miguel, 111403 San Lorenzo, Paraguay',
   zona              text not null default 'Gran Asunción, Paraguay',
   horario           text not null default 'Lunes a viernes de 08:00 a 18:00 · Sábados de 08:00 a 12:00',
 
