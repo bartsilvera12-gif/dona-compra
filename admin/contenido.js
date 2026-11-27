@@ -68,6 +68,12 @@
     if (campo.tipo === "texto") {
       return g && typeof g.texto === "string" ? g.texto : campo.valor;
     }
+    if (campo.tipo === "video") {
+      return {
+        src: (g && g.src) || campo.valor,
+        portada: (g && g.portada) || campo.portada,
+      };
+    }
     return {
       src: (g && g.src) || campo.valor,
       alt: g && typeof g.alt === "string" ? g.alt : campo.alt,
@@ -258,6 +264,119 @@
     return fila;
   }
 
+  function filaVideo(campo) {
+    var vigente = valorVigente(campo);
+    var fila = document.createElement("div");
+    fila.className = "campo campo-imagen";
+
+    var etiqueta = document.createElement("span");
+    etiqueta.className = "campo-tipo";
+    etiqueta.textContent = "Video";
+
+    // Se muestra la portada, no el video: cargar el video entero para una
+    // miniatura seria bajarse varios megas cada vez que se abre la pagina.
+    var vista = document.createElement("img");
+    vista.className = "campo-vista";
+    vista.src = urlImagen(vigente.portada);
+    vista.alt = "";
+    vista.loading = "lazy";
+
+    var derecha = document.createElement("div");
+
+    var rotuloVid = document.createElement("span");
+    rotuloVid.className = "campo-tipo campo-tipo-interno";
+    rotuloVid.textContent = "El video";
+
+    var archivo = document.createElement("input");
+    archivo.type = "file";
+    archivo.accept = "video/mp4";
+
+    var rotuloPort = document.createElement("span");
+    rotuloPort.className = "campo-tipo campo-tipo-interno";
+    rotuloPort.textContent = "La portada (lo que se ve antes de darle play)";
+
+    var portada = document.createElement("input");
+    portada.type = "file";
+    portada.accept = "image/jpeg,image/png,image/webp";
+
+    var nota = document.createElement("span");
+    nota.className = "campo-ayuda";
+    nota.textContent = "El video en mp4, hasta 25 MB. Si pesa mas hay que " +
+      "comprimirlo: un minuto en vertical deberia andar entre 5 y 10 MB. " +
+      "Si cambias el video, cambia tambien la portada.";
+
+    var volver = document.createElement("button");
+    volver.type = "button";
+    volver.className = "b-texto";
+    volver.textContent = "Volver al original";
+    volver.hidden = !guardado[campo.clave];
+
+    function igualAlOriginal(v) {
+      return v.src === campo.valor && v.portada === campo.portada;
+    }
+
+    function estado(nuevo) {
+      var v = {
+        src: (nuevo && nuevo.src) || vigente.src,
+        portada: (nuevo && nuevo.portada) || vigente.portada,
+      };
+      if (igualAlOriginal(v)) {
+        if (guardado[campo.clave]) cambios[campo.clave] = null;
+        else delete cambios[campo.clave];
+      } else {
+        cambios[campo.clave] = { src: v.src, portada: v.portada };
+      }
+      vigente = v;
+      vista.src = urlImagen(v.portada);
+      volver.hidden = igualAlOriginal(v);
+      fila.classList.toggle("tocado", campo.clave in cambios);
+      marcarEstado();
+    }
+
+    function tomar(entrada, tope, que, alSubir) {
+      entrada.addEventListener("change", function () {
+        var f = entrada.files && entrada.files[0];
+        if (!f) return;
+        if (f.size > tope * 1024 * 1024) {
+          api.avisar(que + " pesa mas de " + tope + " MB.", "error");
+          entrada.value = "";
+          return;
+        }
+        nota.textContent = "Subiendo " + que.toLowerCase() + "...";
+        subir(f).then(function (r) {
+          if (!r.ok) {
+            nota.textContent = "No se pudo subir " + que.toLowerCase() + ".";
+            entrada.value = "";
+            return;
+          }
+          nota.textContent = "Listo. Se ve en el sitio cuando guardes.";
+          alSubir(r.ruta);
+        });
+      });
+    }
+
+    tomar(archivo, 25, "El video", function (ruta) { estado({ src: ruta }); });
+    tomar(portada, 8, "La portada", function (ruta) { estado({ portada: ruta }); });
+
+    volver.addEventListener("click", function () {
+      archivo.value = "";
+      portada.value = "";
+      estado({ src: campo.valor, portada: campo.portada });
+    });
+
+    derecha.appendChild(rotuloVid);
+    derecha.appendChild(archivo);
+    derecha.appendChild(rotuloPort);
+    derecha.appendChild(portada);
+    derecha.appendChild(nota);
+    derecha.appendChild(volver);
+
+    fila.appendChild(etiqueta);
+    fila.appendChild(vista);
+    fila.appendChild(derecha);
+    return fila;
+  }
+
   /** Dibuja la página elegida, agrupada por sección. */
   /**
    * Las secciones de la página elegida, en el orden en que están en el sitio.
@@ -289,7 +408,9 @@
       // hay que pasar por veinte renglones que nadie toca nunca.
       if (!todos && !c.principal) return false;
       if (!filtro) return true;
-      var v = c.tipo === "texto" ? c.valor : c.valor + " " + (c.alt || "");
+      var v = c.tipo === "texto" ? c.valor
+        : c.tipo === "video" ? "video " + c.valor
+        : c.valor + " " + (c.alt || "");
       return v.toLowerCase().indexOf(filtro) !== -1;
     });
   }
@@ -372,7 +493,9 @@
     cont.appendChild(pie);
 
     dela.forEach(function (c) {
-      cont.appendChild(c.tipo === "imagen" ? filaImagen(c) : filaTexto(c));
+      cont.appendChild(
+        c.tipo === "imagen" ? filaImagen(c) :
+        c.tipo === "video" ? filaVideo(c) : filaTexto(c));
     });
 
     requestAnimationFrame(ajustarTodos);

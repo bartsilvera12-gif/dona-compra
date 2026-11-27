@@ -13,7 +13,8 @@
  *
  * Qué es un campo
  * ---------------
- * Cada trozo de texto suelto de la página y cada imagen. Trozo de texto suelto
+ * Cada trozo de texto suelto de la página, cada imagen y el video. Trozo de
+ * texto suelto
  * quiere decir nodo de texto, no elemento: el título de la portada tiene una
  * parte en ocre dentro de un <span>, y tomando elementos enteros habría que
  * editar el HTML para no perder ese color. Tomando nodos de texto, el título
@@ -268,6 +269,18 @@
           }
           return;
         }
+        if (nodo.tagName === "VIDEO") {
+          var vsrc = nodo.getAttribute("src") || "";
+          if (vsrc && vsrc.indexOf("{{") === -1 && vsrc.indexOf("data:") !== 0) {
+            agregar(nodo, "video", vsrc, {
+              nodo: nodo,
+              portada: nodo.getAttribute("poster") || "",
+              etiqueta: "Video",
+              principal: true,
+            });
+          }
+          return;
+        }
         if (nodo.tagName === "IMG") {
           var src = nodo.getAttribute("src") || "";
           // Las imágenes escritas dentro del propio atributo (data:) no son
@@ -352,6 +365,17 @@
           n++;
         }
         if (typeof v.alt === "string" && v.alt) c.nodo.setAttribute("alt", v.alt);
+      } else if (c.tipo === "video") {
+        // Igual que con las fotos: solo cambian las direcciones. El tamaño y
+        // la proporción los sigue poniendo el sitio.
+        if (v.src) {
+          c.nodo.setAttribute("src", resolver(v.src));
+          n++;
+        }
+        // La portada es el cuadro que se ve antes de darle play. Si se cambia
+        // el video y no la portada, el reproductor muestra el cuadro viejo y
+        // parece que no se hubiera cambiado nada.
+        if (v.portada) c.nodo.setAttribute("poster", resolver(v.portada));
       }
     }
     return n;

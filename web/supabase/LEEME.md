@@ -36,8 +36,11 @@ En el **SQL Editor**, en este orden:
    mostraba la página de Anuncios. El cliente pidió retirarlas antes de
    publicar el sitio; mientras no haya publicaciones reales, la página dice
    que todavía no hay. Ojo: `npm run db:seed` las vuelve a cargar.
+7. `07-video.sql` — deja que el panel suba el video de Doña: agrega video/mp4
+   a los tipos permitidos del depósito y sube el tope a 25 MB. Sin esto, el
+   campo de video aparece en el panel pero la subida falla.
 
-Los seis son idempotentes: se pueden correr más de una vez.
+Los siete son idempotentes: se pueden correr más de una vez.
 
 Después de agregar una tabla, PostgREST sigue con el catálogo viejo en
 memoria y contesta 404 aunque la tabla exista. Se le avisa con:
