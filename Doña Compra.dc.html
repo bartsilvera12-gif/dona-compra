@@ -188,6 +188,12 @@
   .dcx-burbuja-cara img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; transform: scale(1.3); display: block; }
   .dcx-burbuja-txt { display: none; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; white-space: nowrap; }
   @media (min-width: 640px) { .dcx-burbuja { padding-right: 20px; } .dcx-burbuja-txt { display: flex; } }
+  /* En el telefono la burbuja tapaba texto del costado derecho (se vio en
+     Niveles, sobre «Directo o subiendo»). Se achica donde mas molesta. */
+  @media (max-width: 640px) {
+    .dcx-burbuja { padding: 4px; }
+    .dcx-burbuja-cara { width: 38px; height: 38px; }
+  }
   .dcx-burbuja:hover { transform: scale(1.05); background: #1F5132; color: #F5F2EB; }
   .dcx-burbuja:focus-visible { outline: 2px solid #DE9B2B; outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) { .dcx-burbuja { transition: none; } .dcx-burbuja:hover { transform: none; } }
@@ -259,13 +265,13 @@
     .dcx-nav-lateral a, .dcx-nav-lateral button { border-color: transparent; border-radius: 8px; padding: 10px 12px; }
     .dcx-nav-lateral a:hover, .dcx-nav-lateral button:hover { background: #F5F2EB; border-color: transparent; }
   }
-  .dcx-faq details { border-bottom: 1px solid rgba(22,57,35,0.12); }
-  .dcx-faq summary { list-style: none; cursor: pointer; padding: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: Montserrat, sans-serif; font-weight: 600; font-size: 17px; color: #163923; }
-  .dcx-faq summary::-webkit-details-marker { display: none; }
-  .dcx-faq summary:hover { color: #875F1A; }
-  .dcx-faq summary::after { content: "+"; flex: none; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(22,57,35,0.15); display: flex; align-items: center; justify-content: center; font-size: 18px; color: #875F1A; transition: transform 0.25s ease; }
-  .dcx-faq details[open] summary::after { transform: rotate(45deg); border-color: #DE9B2B; }
-  .dcx-faq p { margin: -4px 0 0; padding: 0 48px 24px 0; font-size: 16px; line-height: 1.6; color: #2F4237; max-width: 64ch; }
+  .dcx-faqt details { border-bottom: 1px solid rgba(22,57,35,0.12); }
+  .dcx-faqt summary { list-style: none; cursor: pointer; padding: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: Montserrat, sans-serif; font-weight: 600; font-size: 17px; color: #163923; }
+  .dcx-faqt summary::-webkit-details-marker { display: none; }
+  .dcx-faqt summary:hover { color: #875F1A; }
+  .dcx-faqt summary::after { content: "+"; flex: none; width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(22,57,35,0.15); display: flex; align-items: center; justify-content: center; font-size: 18px; color: #875F1A; transition: transform 0.25s ease; }
+  .dcx-faqt details[open] summary::after { transform: rotate(45deg); border-color: #DE9B2B; }
+  .dcx-faqt p { margin: -4px 0 0; padding: 0 48px 24px 0; font-size: 16px; line-height: 1.6; color: #2F4237; max-width: 64ch; }
   .dcx-legal h3 { font-weight: 600; font-size: 20px; margin: 28px 0 8px; }
   .dcx-legal p, .dcx-legal ul { font-size: 16px; line-height: 1.6; color: #2F4237; margin: 0 0 12px; max-width: 74ch; }
   .dcx-legal ul { padding-left: 20px; line-height: 1.7; }
@@ -490,6 +496,10 @@
   .dcx-faq-caja { display: grid; gap: clamp(24px,4vw,64px); }
   @media (min-width: 1024px) { .dcx-faq-caja { grid-template-columns: minmax(0,32ch) 1fr; } .dcx-faq-intro { position: sticky; top: 112px; align-self: start; } }
   .dcx-faqs { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  /* Ojo: .dcx-faq es cada pregunta del acordeon del inicio y .dcx-faqt es
+     el contenedor de un tema en la pagina de Preguntas. Estuvieron con el
+     mismo nombre y las reglas del tema le dibujaban al acordeon un segundo
+     «+» y le sacaban el padding lateral. No volver a juntarlas. */
   .dcx-faq { border: 1px solid rgba(22,57,35,0.12); border-radius: 12px; background: rgba(226,235,229,0.6); }
   .dcx-faq[open] { background: #E2EBE5; }
   .dcx-faq-p { display: flex; align-items: flex-start; gap: 16px; cursor: pointer; list-style: none; padding: clamp(14px,2vw,20px); font-family: Montserrat, sans-serif; font-size: clamp(15.5px,1.8vw,17.5px); font-weight: 600; color: #163923; }
@@ -503,6 +513,18 @@
      el celular. Los dos bloques no llevan display en linea, asi que estas
      reglas pueden cambiarlo. */
   .dcx-niv-tarjetas { display: none; }
+
+  /* La ilustracion de los niveles se abre en grande al tocarla. */
+  .dcx-ampliar { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 12px; overflow: hidden; }
+  .dcx-ampliar img { display: block; width: 100%; height: auto; }
+  /* El visor. La ilustracion es muy ancha (2,16 a 1): en un telefono, metida
+     entera en el ancho de la pantalla queda igual de chica que en la pagina y
+     no sirve de nada. Se muestra a su tamano natural y se desliza de costado,
+     que es como se lee de verdad. */
+  .dcx-visor { margin: 0; width: 100%; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
+  .dcx-visor-img { display: block; width: auto; height: auto; min-width: 100%; max-width: none; max-height: 78vh; border-radius: 12px; }
+  .dcx-ampliar-lupa { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(22,57,35,0.82); color: #F5F2EB; }
+  .dcx-ampliar:hover .dcx-ampliar-lupa, .dcx-ampliar:focus-visible .dcx-ampliar-lupa { background: #163923; }
   @media (max-width: 760px) {
     .dcx-niv-tabla { display: none; }
     .dcx-niv-tarjetas { display: grid; }
@@ -644,11 +666,16 @@
 
     <section style="background:#F5F2EB;border-top:1px solid rgba(22,57,35,0.12)">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,40px)">
+        <!-- Las tres iban en un marco cuadrado con object-fit contain. La
+             primera es vertical (1086x1448) y las otras dos casi cuadradas, asi
+             que la primera quedaba 288 de ancho contra 384: se veia mas chica.
+             Sin marco cuadrado las tres miden lo mismo de ancho. Igualar
+             tambien el alto y la resolucion pide rehacer los archivos. -->
         <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(26px,3.6vw,46px);line-height:1.06;color:#163923;margin:0 0 26px">Tus tres pasos</h2>
         <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:18px;align-items:start">
-          <li><img src="assets/pasos/paso-1-vos-elegis.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Paso 1. Vos eleg&iacute;s: los productos y tu mayorista que ya conoc&eacute;s. Una bolsa de Do&ntilde;a Compra junto a un carrito cargado de cajas." style="width:100%;height:auto;aspect-ratio:1;object-fit:contain;display:block" /></li>
-          <li><img src="assets/pasos/paso-2-dona-compra-paga.jpg" width="305" height="318" loading="lazy" decoding="async" alt="Paso 2. Do&ntilde;a Compra paga al contado a tu mayorista. Vos retir&aacute;s tu mercader&iacute;a con tu c&oacute;digo de recepci&oacute;n." style="width:100%;height:auto;aspect-ratio:1;object-fit:contain;display:block" /></li>
-          <li><img src="assets/pasos/paso-3-pagas-en-30-dias.jpg" width="316" height="318" loading="lazy" decoding="async" alt="Paso 3. Pag&aacute;s en 30 d&iacute;as como m&aacute;ximo, desde el retiro, por transferencia, alias, Mango o Tigo Money." style="width:100%;height:auto;aspect-ratio:1;object-fit:contain;display:block" /></li>
+          <li><img src="assets/pasos/paso-1-vos-elegis.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Paso 1. Vos eleg&iacute;s: los productos y tu mayorista que ya conoc&eacute;s. Una bolsa de Do&ntilde;a Compra junto a un carrito cargado de cajas." style="width:100%;height:auto;display:block;border-radius:10px" /></li>
+          <li><img src="assets/pasos/paso-2-dona-compra-paga.jpg" width="305" height="318" loading="lazy" decoding="async" alt="Paso 2. Do&ntilde;a Compra paga al contado a tu mayorista. Vos retir&aacute;s tu mercader&iacute;a con tu c&oacute;digo de recepci&oacute;n." style="width:100%;height:auto;display:block;border-radius:10px" /></li>
+          <li><img src="assets/pasos/paso-3-pagas-en-30-dias.jpg" width="316" height="318" loading="lazy" decoding="async" alt="Paso 3. Pag&aacute;s en 30 d&iacute;as como m&aacute;ximo, desde el retiro, por transferencia, alias, Mango o Tigo Money." style="width:100%;height:auto;display:block;border-radius:10px" /></li>
         </ol>
       </div>
     </section>
@@ -775,7 +802,7 @@
           <span class="dcx-rotulo">Acompa&ntilde;amiento</span>
           <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,4.4vw,52px);line-height:1.08;color:#163923;text-wrap:pretty;margin:16px 0 0;max-width:16ch">Cerca tuyo, en cada paso.</h2>
           <p style="font-size:16px;line-height:1.6;color:#2F4237;margin:16px 0 0;max-width:44ch">Con Do&ntilde;a Compra no est&aacute;s solo. Te acompa&ntilde;amos de verdad.</p>
-          <ul class="dcx-acompana-lista"><li class="dcx-acompana-item"><span class="dcx-acompana-ico"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-9.6A4.4 4.4 0 0 1 12 8a4.4 4.4 0 0 1 7 3.4c0 5-7 9.6-7 9.6Z"></path> <path d="M9.5 4.5 12 2l2.5 2.5"></path></svg></span><span><strong style="display:block;font-size:16px;font-weight:600;color:#163923">Cercan&iacute;a</strong><span style="display:block;margin-top:4px;font-size:14.5px;line-height:1.6;color:#4F5C54">Te visitamos, te conocemos y nos habl&aacute;s por WhatsApp como a una vecina.</span></span></li><li class="dcx-acompana-item"><span class="dcx-acompana-ico"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path> <path d="m16 8 3-3M19 5h-3M19 5v3"></path></svg></span><span><strong style="display:block;font-size:16px;font-weight:600;color:#163923">Consejos para vender m&aacute;s</strong><span style="display:block;margin-top:4px;font-size:14.5px;line-height:1.6;color:#4F5C54">Qu&eacute; reponer en cada temporada y c&oacute;mo hacer crecer tu negocio.</span></span></li><li class="dcx-acompana-item"><span class="dcx-acompana-ico"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 21h12"></path> <path d="M4 8h16M7 8l-3 6h6zM17 8l-3 6h6z"></path></svg></span><span><strong style="display:block;font-size:16px;font-weight:600;color:#163923">Asesor&iacute;a jur&iacute;dica</strong><span style="display:block;margin-top:4px;font-size:14.5px;line-height:1.6;color:#4F5C54">Te orientamos para que tu negocio est&eacute; en regla.</span></span></li><li class="dcx-acompana-item"><span class="dcx-acompana-ico"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 20 6v6c0 5-3.4 8.2-8 9.5-4.6-1.3-8-4.5-8-9.5V6z"></path> <path d="m8.5 12 2.4 2.4L15.5 10"></path></svg></span><span><strong style="display:block;font-size:16px;font-weight:600;color:#163923">Seriedad</strong><span style="display:block;margin-top:4px;font-size:14.5px;line-height:1.6;color:#4F5C54">Factura legal, condiciones claras y todo por escrito.</span></span></li></ul>
+          <ul class="dcx-acompana-lista"><li class="dcx-acompana-item"><span class="dcx-acompana-ico"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-9.6A4.4 4.4 0 0 1 12 8a4.4 4.4 0 0 1 7 3.4c0 5-7 9.6-7 9.6Z"></path> <path d="M9.5 4.5 12 2l2.5 2.5"></path></svg></span><span><strong style="display:block;font-size:16px;font-weight:600;color:#163923">Cercan&iacute;a</strong><span style="display:block;margin-top:4px;font-size:14.5px;line-height:1.6;color:#4F5C54">Te conocemos, te visitamos si hace falta y nos habl&aacute;s por WhatsApp como a una vecina.</span></span></li><li class="dcx-acompana-item"><span class="dcx-acompana-ico"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path> <path d="m16 8 3-3M19 5h-3M19 5v3"></path></svg></span><span><strong style="display:block;font-size:16px;font-weight:600;color:#163923">Consejos para vender m&aacute;s</strong><span style="display:block;margin-top:4px;font-size:14.5px;line-height:1.6;color:#4F5C54">Qu&eacute; reponer en cada temporada y c&oacute;mo hacer crecer tu negocio.</span></span></li><li class="dcx-acompana-item"><span class="dcx-acompana-ico"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 21h12"></path> <path d="M4 8h16M7 8l-3 6h6zM17 8l-3 6h6z"></path></svg></span><span><strong style="display:block;font-size:16px;font-weight:600;color:#163923">Expertos Do&ntilde;a Compra</strong><span style="display:block;margin-top:4px;font-size:14.5px;line-height:1.6;color:#4F5C54">Contadora, juristas y marketing, si los necesit&aacute;s. Es un servicio aparte.</span></span></li><li class="dcx-acompana-item"><span class="dcx-acompana-ico"><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 20 6v6c0 5-3.4 8.2-8 9.5-4.6-1.3-8-4.5-8-9.5V6z"></path> <path d="m8.5 12 2.4 2.4L15.5 10"></path></svg></span><span><strong style="display:block;font-size:16px;font-weight:600;color:#163923">Seriedad</strong><span style="display:block;margin-top:4px;font-size:14.5px;line-height:1.6;color:#4F5C54">Factura legal, condiciones claras y todo por escrito.</span></span></li></ul>
           <p style="margin:26px 0 0"><a href="#/tu-chequeo" style="font-size:15.5px;color:#163923;text-decoration:underline;text-decoration-color:rgba(22,57,35,0.35);text-underline-offset:4px">Conoc&eacute; Tu Chequeo &rarr;</a></p>
           <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px"><a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" data-cta="true" style="display:inline-block;background:#DE9B2B;color:#163923">Tu Punto de Partida empieza ac&aacute;</a></div>
         </div>
@@ -789,18 +816,6 @@
         <ul class="dcx-cuida"><li class="dcx-cuida-item"><span class="dcx-cuida-ico"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z"></path> <path d="M9.5 8.5h5M9.5 12h5"></path></svg></span><span class="dcx-cuida-txt">Factura legal electr&oacute;nica, verificable en la DNIT</span></li><li class="dcx-cuida-item"><span class="dcx-cuida-ico"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14v10H5z"></path> <path d="M8.5 11V7.5a3.5 3.5 0 0 1 7 0V11"></path> <path d="M12 15v2.5"></path></svg></span><span class="dcx-cuida-txt">C&oacute;digo de recepci&oacute;n, solo para vos</span></li><li class="dcx-cuida-item"><span class="dcx-cuida-ico"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h11l3 3v15H5z"></path> <path d="M8.5 8h7M8.5 11.5h7M8.5 15h4"></path></svg></span><span class="dcx-cuida-txt">Todo queda por escrito</span></li><li class="dcx-cuida-item"><span class="dcx-cuida-ico"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2h10v20H7z"></path> <path d="M11 18.5h2"></path> <path d="m9.5 9.5 2 2 4-4"></path></svg></span><span class="dcx-cuida-txt">Un &uacute;nico n&uacute;mero oficial</span></li></ul>
       </div>
     </section>
-
-    <sc-if value="{{ pzOpen }}">
-      <div role="dialog" aria-modal="true" aria-label="Pizarra ampliada" style="position:fixed;inset:0;z-index:120;background:rgba(10,26,18,0.92);display:flex;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px)">
-        <button type="button" onClick="{{ pzClose }}" aria-label="Cerrar" style="position:absolute;top:16px;right:16px;background:none;border:1px solid rgba(245,242,235,0.4);color:#F5F2EB;border-radius:8px;padding:10px 16px;font-size:13px;cursor:pointer;z-index:2">Cerrar</button>
-        <button type="button" onClick="{{ pzPrev }}" aria-label="Anterior" style="position:absolute;left:12px;background:none;border:1px solid rgba(245,242,235,0.4);color:#F5F2EB;border-radius:8px;padding:14px 16px;font-size:16px;cursor:pointer">&#8249;</button>
-        <button type="button" onClick="{{ pzNext }}" aria-label="Siguiente" style="position:absolute;right:12px;background:none;border:1px solid rgba(245,242,235,0.4);color:#F5F2EB;border-radius:8px;padding:14px 16px;font-size:16px;cursor:pointer">&#8250;</button>
-        <figure style="margin:0;max-width:1100px;width:100%">
-          <img data-dc-src="{{ pzFoto.src }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="{{ pzFoto.alt }}" style="width:100%;max-height:78vh;object-fit:contain;border-radius:12px;display:block" />
-          <figcaption style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;font-size:14.5px;color:rgba(245,242,235,0.85)">{{ pzFoto.pie }}<span style="font-size:12px;color:rgba(245,242,235,0.55)">{{ pzPos }}</span></figcaption>
-        </figure>
-      </div>
-    </sc-if>
 
     <section id="preguntas" style="background:#F5F2EB;scroll-margin-top:96px">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
@@ -820,7 +835,7 @@
           <div>
             <span style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#DE9B2B"><span aria-hidden="true" style="display:block;height:1px;width:32px;background:#DE9B2B"></span>Hablemos</span>
             <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,4.4vw,52px);line-height:1.08;color:#F5F2EB;margin:16px 0 0;max-width:16ch;text-wrap:pretty">Contactanos.</h2>
-            <p style="font-size:17px;line-height:1.65;color:rgba(245,242,235,0.75);margin:16px 0 0;max-width:44ch">Contanos sobre tu comercio y agendamos una visita. Conversamos en tu local, sin compromiso, y te explicamos todo.</p>
+            <p style="font-size:17px;line-height:1.65;color:rgba(245,242,235,0.75);margin:16px 0 0;max-width:44ch">Contanos sobre tu comercio y empezamos tu Punto de Partida. Sin compromiso. Si hace falta, te visitamos.</p>
             <div style="margin-top:28px"><a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" style="display:inline-block;background:#DE9B2B;color:#163923;border-radius:8px;padding:16px 30px;font-size:15px;font-weight:600;letter-spacing:0.02em"><span aria-hidden="true" style="margin-right:8px">&#x1F7E2;</span>Tu Punto de Partida por WhatsApp</a></div>
             <p style="font-size:13px;line-height:1.5;color:rgba(245,242,235,0.6);margin:12px 0 0">{{ plazo }}</p>
           </div>
@@ -943,7 +958,11 @@
       <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,96px) clamp(18px,4vw,40px)">
         <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,42px);line-height:1.08;color:#163923;margin:0 0 10px">Los ocho niveles</h2>
         <figure style="margin:24px 0 0">
-          <img src="assets/niveles-ocho-cupos.webp" width="2000" height="667" loading="lazy" decoding="async" alt="Los ocho niveles de Do&ntilde;a Compra, de menor a mayor, con el cupo de compra de cada uno" style="width:100%;height:auto;display:block;border-radius:12px" />
+          <button type="button" onClick="{{ pzAbrir }}" class="dcx-ampliar" aria-label="Ver la ilustraci&oacute;n de los ocho niveles en pantalla completa">
+            <img src="assets/niveles-ocho-cupos.webp?v=2" width="1347" height="624" loading="lazy" decoding="async" alt="Los ocho niveles de Do&ntilde;a Compra, de menor a mayor, con el cupo de compra de cada uno" />
+            <span class="dcx-ampliar-lupa" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.5 4.5M11 8.5v5M8.5 11h5"></path></svg></span>
+          </button>
+          <figcaption style="margin-top:10px;font-size:13.5px;line-height:1.5;color:#4F5C54">Toc&aacute; la imagen para verla en grande.</figcaption>
         </figure>
         <div class="dcx-niv-tabla" style="margin-top:28px;overflow-x:auto">
           <table style="width:100%;border-collapse:collapse;min-width:640px">
@@ -1102,10 +1121,15 @@
               <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid rgba(22,57,35,0.12);font-size:14.5px;line-height:1.5;color:#2F4237"><span>{{ nSrv3 }}</span><span style="white-space:nowrap;color:#163923">{{ cSrv3 }}</span></div>
               <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid rgba(22,57,35,0.12);font-size:14.5px;line-height:1.5;color:#2F4237"><span>{{ nSrv4 }}</span><span style="white-space:nowrap;color:#163923">{{ cSrv4 }}</span></div>
               <div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid rgba(22,57,35,0.12);font-size:14.5px;line-height:1.5;color:#2F4237"><span>Servicios Do&ntilde;a Compra</span><span style="white-space:nowrap;color:#163923">{{ cServ }}</span></div>
+              <sc-if value="{{ calcOk }}" hint-placeholder-val="{{ true }}">
               <div style="display:flex;justify-content:space-between;gap:16px;margin-top:14px;padding:16px 18px;border-radius:12px;background:#163923">
                 <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#DE9B2B">Total de tu factura</span>
                 <span style="font-family:Montserrat,sans-serif;font-weight:700;font-size:17px;color:#F5F2EB;white-space:nowrap">{{ cTotal }}</span>
               </div>
+              </sc-if>
+              <sc-if value="{{ calcNo }}">
+                <p role="status" style="display:flex;align-items:flex-start;gap:10px;margin:14px 0 0;padding:16px 18px;border-radius:12px;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.45);font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;line-height:1.45;color:#A32C1E"><span aria-hidden="true" style="flex:none;font-size:17px;line-height:1.3">&#9888;</span><span>{{ calcNoText }}</span></p>
+              </sc-if>
             </div>
           </div>
         </div>
@@ -1249,8 +1273,11 @@
       </div>
     </section>
 
+    <!-- «Tene a mano» cierra los cinco puntos de arriba, no empieza un tema
+         nuevo: el aire de arriba va reducido para que no parezca que falta
+         algo entre las dos (punto 2.3 de las correcciones). -->
     <section style="background:transparent">
-      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,40px)">
+      <div style="max-width:1280px;margin:0 auto;padding:4px clamp(18px,4vw,40px) clamp(44px,7vw,90px)">
         <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(22px,2.8vw,32px);line-height:1.1;color:#163923;margin:0 0 16px">Ten&eacute; a mano</h2>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px">
           <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;padding:20px"><div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#163923;margin:0 0 4px">Tu c&eacute;dula</div><p style="font-size:14.5px;line-height:1.55;color:#2F4237;margin:0">El n&uacute;mero y una foto.</p></div>
@@ -1279,7 +1306,7 @@
       <div style="max-width:1280px;margin:0 auto;padding:clamp(40px,6vw,90px) clamp(18px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(26px,4vw,64px);align-items:center">
         <div>
           <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#4F5C54">Chequeo</span>
-          <h1 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(34px,5.6vw,72px);line-height:1;letter-spacing:-0.02em;color:#163923;margin:16px 0 0;max-width:14ch">Cerca tuyo, <span style="color:#875F1A">en cada paso.</span></h1>
+          <h1 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(34px,5.6vw,72px);line-height:1;letter-spacing:-0.02em;color:#163923;margin:16px 0 0;max-width:16ch">Tu negocio, <span style="color:#875F1A">visto con ojos expertos.</span></h1>
           <p style="font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:#2F4237;margin:20px 0 0;max-width:48ch">Tu Chequeo es un an&aacute;lisis completo de tu comercio, hecho por profesionales, para ayudarte a mejorar tu negocio. Como un chequeo m&eacute;dico, pero para tu comercio.</p>
           <p style="margin:28px 0 0"><a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" data-cta="true" style="display:inline-block;background:#DE9B2B;color:#163923">Tu Punto de Partida empieza ac&aacute;</a></p>
         </div>
@@ -1330,7 +1357,7 @@
           <ol style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.7;color:#2F4237">
             <li><strong style="color:#163923">Lo ped&iacute;s:</strong> desde tu Punto de Partida, y eleg&iacute;s el d&iacute;a de tu cita.</li>
             <li style="margin-top:8px"><strong style="color:#163923">Te prepar&aacute;s:</strong> tu asesor te manda la lista de lo que ten&eacute;s que tener listo.</li>
-            <li style="margin-top:8px"><strong style="color:#163923">Te visitamos:</strong> tu asesor viene a tu comercio.</li>
+            <li style="margin-top:8px"><strong style="color:#163923">Te visitamos (opcional en Hierro):</strong> tu asesor viene a tu comercio. En Hierro el chequeo se hace a distancia, desde la oficina, y la visita solo se hace si la oficina lo decide.</li>
             <li style="margin-top:8px"><strong style="color:#163923">Recib&iacute;s Tu Mapa:</strong> analizamos con calma y te lo entregamos.</li>
           </ol>
         </div>
@@ -1715,7 +1742,7 @@
         <div class="dcx-collage">
           <div class="dcx-foto"><img src="assets/hero-1-640.jpg" alt="Despensa de barrio con las góndolas surtidas" loading="lazy" /></div>
           <div class="dcx-foto"><img src="assets/hero-2-640.jpg" alt="Comerciante reponiendo una góndola" loading="lazy" /></div>
-          <div class="dcx-foto"><img src="assets/hero-4-640.jpg" alt="Pasillo de un comercio con stock repuesto" loading="lazy" /></div>
+          <div class="dcx-foto"><img src="assets/local-despensa-640.jpg" alt="Despensa de barrio en Gran Asunci&oacute;n, con la bandera paraguaya y la due&ntilde;a en el mostrador" loading="lazy" /></div>
           <div class="dcx-foto"><img src="assets/hero-3-640.jpg" alt="Caja con mercadería lista para retirar" loading="lazy" /></div>
         </div>
         <h1 class="dcx-sobre dcx-entra" style="font-weight:700;font-size:clamp(34px,5.4vw,64px);letter-spacing:-0.01em">Doña Compra paga hoy. <span class="dcx-acento">Vos pagás después.</span></h1>
@@ -1885,7 +1912,7 @@
           <p style="margin:30px 0 0"><a href="{{ waLinkMayorista }}" target="_blank" rel="noopener noreferrer" data-cta="true" style="display:inline-block;background:#DE9B2B;color:#163923">Quiero ser Mayorista Amigo</a></p>
         </div>
         <div style="display:flex;justify-content:center">
-          <img src="assets/hero-4-640.jpg" alt="Mostrador de un mayorista en Gran Asunci&oacute;n" loading="eager" decoding="async" style="width:100%;max-width:460px;height:auto;border-radius:12px;display:block" />
+          <img src="assets/portada-mayorista.jpg" alt="Do&ntilde;a Compra con una canasta en el pasillo de un dep&oacute;sito mayorista" loading="eager" decoding="async" style="width:100%;max-width:460px;height:auto;border-radius:12px;display:block" />
         </div>
       </div>
     </section>
@@ -2018,7 +2045,7 @@
       <div class="dcx-wrap">
         <span class="dcx-rotulo">Nada se publica solo</span>
         <h2 class="dcx-h2">Vos decidís qué se muestra.</h2>
-        <p style="max-width:62ch;margin-bottom:28px">La insignia, el autoadhesivo con QR y la aparición en la web del Club son tres autorizaciones separadas. Ninguna viene marcada de antemano, ninguna se activa por firmar la Solicitud y todas se pueden retirar.</p>
+        <p style="max-width:62ch;margin-bottom:28px">La insignia, el autoadhesivo con QR y la aparición en la web del Club son tres autorizaciones separadas. Ninguna viene marcada de antemano, ninguna se activa por hacer tu Punto de Partida y todas se pueden retirar.</p>
         <div class="dcx-ventajas">
           <div class="dcx-tarjeta"><h3>La insignia</h3><p>El distintivo de Pagador Rápido vigente, que acredita que pagás en fecha. Se reevalúa cada tanto y se pierde apenas hay un atraso.</p></div>
           <div class="dcx-tarjeta"><h3>El autoadhesivo con QR</h3><p>Un sello para la vidriera, con un enlace de verificación. El QR muestra que la insignia está vigente, nada más: ni deudas, ni montos, ni notas.</p></div>
@@ -2370,7 +2397,7 @@
         </div>
         <div class="dcx-fotos">
           <div><img src="assets/rubro-libreria.jpg" alt="Librería con útiles escolares" /></div>
-          <div><img src="assets/hero-4-640.jpg" alt="Pasillo de un supermercado con góndolas llenas" /></div>
+          <div><img src="assets/local-ropa-640.jpg" alt="Tienda de ropa de barrio, con la mercadería en exhibición" /></div>
           <div><img src="assets/rubro-calzado.jpg" alt="Calzado en exhibición" /></div>
         </div>
       </div>
@@ -2382,8 +2409,8 @@
           <span class="dcx-rotulo" style="margin-bottom:16px">Temas</span>
           <ul style="list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:14px;color:#2F4237">
             <li style="display:flex;align-items:center;gap:12px"><span style="font-family:ui-monospace,monospace;font-size:12px;color:#875F1A">01</span>Cómo funciona<span style="margin-left:auto;font-size:12px;color:#4F5C54">5</span></li>
-            <li style="display:flex;align-items:center;gap:12px"><span style="font-family:ui-monospace,monospace;font-size:12px;color:#875F1A">02</span>Pagos y precio<span style="margin-left:auto;font-size:12px;color:#4F5C54">5</span></li>
-            <li style="display:flex;align-items:center;gap:12px"><span style="font-family:ui-monospace,monospace;font-size:12px;color:#875F1A">03</span>Niveles y montos<span style="margin-left:auto;font-size:12px;color:#4F5C54">4</span></li>
+            <li style="display:flex;align-items:center;gap:12px"><span style="font-family:ui-monospace,monospace;font-size:12px;color:#875F1A">02</span>Pagos y precio<span style="margin-left:auto;font-size:12px;color:#4F5C54">6</span></li>
+            <li style="display:flex;align-items:center;gap:12px"><span style="font-family:ui-monospace,monospace;font-size:12px;color:#875F1A">03</span>Niveles y montos<span style="margin-left:auto;font-size:12px;color:#4F5C54">9</span></li>
             <li style="display:flex;align-items:center;gap:12px"><span style="font-family:ui-monospace,monospace;font-size:12px;color:#875F1A">04</span>Historial y visitas<span style="margin-left:auto;font-size:12px;color:#4F5C54">2</span></li>
           </ul>
           <div style="margin-top:28px;background:#163923;border-radius:12px;padding:24px">
@@ -2394,7 +2421,7 @@
         </div>
 
         <div style="display:grid;gap:clamp(40px,5vw,64px)">
-          <div class="dcx-faq">
+          <div class="dcx-faqt">
             <span class="dcx-rotulo">Tema 01</span>
             <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);color:#163923;margin:12px 0 20px">Cómo funciona</h2>
             <div style="border-top:1px solid rgba(22,57,35,0.12)">
@@ -2406,35 +2433,35 @@
             </div>
           </div>
 
-          <div class="dcx-faq">
+          <div class="dcx-faqt">
             <span class="dcx-rotulo">Tema 02</span>
             <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);color:#163923;margin:12px 0 20px">Pagos y precio</h2>
             <div style="border-top:1px solid rgba(22,57,35,0.12)">
               <details><summary>Cuándo tengo que pagar?</summary><p>A más tardar 30 días calendario desde el retiro efectivo de la mercadería en el mayorista, acreditado con el código de recepción. No cuentan desde la fecha de la factura ni desde la compra al mayorista.</p></details>
               <details><summary>Qué incluye el precio?</summary><p>El costo de la mercadería en el mayorista, el recargo comercial de tu nivel y la tarifa fija de los cinco Servicios Doña Compra.</p></details>
               <details><summary>Cuáles son los cinco Servicios Doña Compra?</summary><p>Seguimiento de Compras con Código, Custodia y Trazabilidad Documental, Gestión de Mayoristas Amigos, Publicidad y Promoción de la Red, y Gestión del Club Doña Compra. Tienen tarifa fija por pedido: entre Gs. 7.000 en Hierro y Gs. 22.500 en Diamante.</p></details>
-              <details><summary>Cobran multas por atraso?</summary><p>No aplicamos multas ni intereses por atraso. Lo que sí ocurre es que, al día siguiente del vencimiento, quedan suspendidas las compras nuevas hasta regularizar; el desbloqueo lo revisa la dirección caso por caso.</p></details>
+              <details><summary>Cobran multas por atraso?</summary><p>No aplicamos multas ni intereses por atraso, pero no hay tolerancia. Al día siguiente del vencimiento la cobranza es inmediata y tu cuenta queda congelada: no se compra hasta regularizar. Además bajás un nivel cada 15 días de atraso, o cada 7 si ya te habías atrasado antes, y sin nivel para perder quedás fuera de la Red.</p></details>
               <details><summary>Qué pasa si dejo de hacer pedidos?</summary><p>Después de tres meses calendario sin ningún pedido válido termina el estatus de miembro, con aviso 30 y 7 días antes. Volver a entrar sigue otra vez el procedimiento de entrada.</p></details>
               <details><summary>Qué sucede si hace falta una gestión de cobranza?</summary><p>Si se requiere una gestión de cobranza o un pagaré, pueden refacturarse los gastos realmente realizados y comprobados, sin recargo adicional.</p></details>
             </div>
           </div>
 
-          <div class="dcx-faq">
+          <div class="dcx-faqt">
             <span class="dcx-rotulo">Tema 03</span>
             <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);color:#163923;margin:12px 0 20px">Niveles y montos</h2>
             <div style="border-top:1px solid rgba(22,57,35,0.12)">
-              <details><summary>Cómo funcionan los niveles?</summary><p>Cada nivel tiene un cupo: el máximo de mercadería que se puede comprar para vos al mismo tiempo. Podés tener varios pedidos abiertos mientras la suma de lo comprometido y todavía impago no pase ese cupo.</p></details>
+              <details><summary>Cómo funcionan los niveles?</summary><p>Cada nivel tiene un cupo: el máximo de mercadería que se puede comprar para vos al mismo tiempo. Podés tener varios pedidos abiertos mientras la suma de lo comprometido y todavía impago no pase ese cupo. El cupo no se pasa nunca, sin excepción.</p></details>
               <details><summary>El recargo comercial cambia según mi nivel?</summary><p>Sí. Va del 18 % en Hierro al 12 % en Diamante, y se aplica sobre el costo mayorista, no sobre el precio al que después vendés.</p></details>
-              <details><summary>Qué es el estatus Pagador Rápido?</summary><p>Un reconocimiento para quien paga antes de tiempo. Se obtiene con al menos 6 pedidos pagados por completo y un plazo promedio de pago menor a 25 días desde el retiro. Da un punto porcentual menos de recargo sobre la mercadería: en Bronce, por ejemplo, pasás del 16 % al 15 %. No alcanza a los cinco servicios y no es retroactivo.</p></details>
+              <details><summary>Qué es el estatus Pagador Rápido?</summary><p>Un reconocimiento para quien paga antes de tiempo. Se obtiene con al menos 6 pedidos pagados por completo y un plazo promedio de pago menor a 25 días desde el retiro. Da un punto porcentual menos de recargo sobre la mercadería: en Bronce, por ejemplo, pasás del 17 % al 16 %. No alcanza a los cinco servicios y no es retroactivo.</p></details>
               <details><summary>Mandar la solicitud ya es entrar?</summary><p>No. la admisión la decide la dirección después del Análisis de ingreso: enviar la Solicitud de Entrada abre el trámite, no equivale a ser aceptado.</p></details><details><summary>Cuánto cuesta el Análisis de ingreso?</summary><p>Gs. 50.000 el Chequeo B&aacute;sico-Hierro, 150.000 el de Cobre, 200.000 el de Bronce y 250.000 el de Plata. Para entrar directo a un nivel se pagan tambi&eacute;n los chequeos de los anteriores, as&iacute; que entrar directo a Plata suma Gs. 650.000. Desde Oro no se entra directo: se llega subiendo, un nivel por vez. El total se te informa antes de que te comprometas, y no se devuelve si la decisión es negativa.</p></details>
               <details><summary>Subo de nivel automáticamente?</summary><p>No. Hay que superar el acumulado de compras previsto para tu nivel, y además tener los pedidos cancelados en plazo, presentar una solicitud, hacer un nuevo Análisis y recibir la decisión de la dirección. El ascenso es de a un nivel, sin saltarse ninguno.</p></details>
               <details><summary>Y si un pedido me hace pasar el acumulado?</summary><p>Ese pedido se factura entero con el nivel que tenías al confirmarlo. El nivel nuevo, si la dirección lo aprueba, rige para los pedidos siguientes.</p></details>
               <details><summary>Un pago parcial me libera cupo?</summary><p>No. El cupo se libera recién cuando el pedido queda cancelado por completo.</p></details>
-              <details><summary>Existen montos mínimos de pedido?</summary><p>Sí: Gs. 100.000 en nivel Hierro y Gs. 150.000 desde nivel Cobre, expresados en costo mayorista.</p></details>
+              <details><summary>Existen montos mínimos de pedido?</summary><p>Sí: Gs. 50.000 en nivel Hierro y Gs. 100.000 desde nivel Cobre, expresados en costo mayorista.</p></details>
             </div>
           </div>
 
-          <div class="dcx-faq">
+          <div class="dcx-faqt">
             <span class="dcx-rotulo">Tema 04</span>
             <h2 style="font-family:Montserrat,sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);color:#163923;margin:12px 0 20px">Historial y visitas</h2>
             <div style="border-top:1px solid rgba(22,57,35,0.12)">
@@ -2505,6 +2532,21 @@
        El z-index 100 la deja por debajo del aviso de cookies (110), que
        ocupa el borde de abajo. -->
   <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" aria-label="{{ waAria }}" class="dcx-burbuja"><span class="dcx-burbuja-cara"><img src="assets/dona-compra-logo-400.jpg" alt="" width="44" height="44" loading="lazy" decoding="async" /></span><span class="dcx-burbuja-txt">Escribile a Do&ntilde;a<svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true" fill="#DE9B2B"><path d="M16.04 3.2c-7.1 0-12.87 5.77-12.87 12.87 0 2.27.6 4.49 1.73 6.45L3.1 29.2l6.85-1.79a12.82 12.82 0 0 0 6.09 1.55h.01c7.1 0 12.87-5.77 12.87-12.87S23.14 3.2 16.04 3.2Zm0 23.56h-.01a10.7 10.7 0 0 1-5.45-1.49l-.39-.23-4.06 1.06 1.08-3.96-.25-.41a10.66 10.66 0 0 1-1.63-5.66c0-5.9 4.8-10.7 10.71-10.7 2.86 0 5.55 1.12 7.57 3.14a10.63 10.63 0 0 1 3.13 7.57c0 5.9-4.8 10.68-10.7 10.68Zm5.87-8c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.26-.19.22-.37.24-.69.08-.32-.16-1.36-.5-2.58-1.6a9.7 9.7 0 0 1-1.79-2.23c-.19-.32-.02-.5.14-.66.15-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55l-.62-.01c-.21 0-.56.08-.86.4-.29.32-1.12 1.1-1.12 2.68s1.15 3.1 1.31 3.32c.16.21 2.26 3.45 5.48 4.84.77.33 1.36.53 1.82.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.13-.29-.21-.61-.37Z"></path></svg></span></a>
+
+  <!-- El visor a pantalla completa. Vive aca arriba, fuera de la pagina de
+       inicio, porque lo abre la ilustracion de los niveles y antes solo se
+       pintaba en el inicio: desde Niveles el boton no hacia nada. -->
+  <sc-if value="{{ pzOpen }}">
+    <div role="dialog" aria-modal="true" aria-label="Pizarra ampliada" style="position:fixed;inset:0;z-index:120;background:rgba(10,26,18,0.92);display:flex;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px)">
+      <button type="button" onClick="{{ pzClose }}" aria-label="Cerrar" style="position:absolute;top:16px;right:16px;background:none;border:1px solid rgba(245,242,235,0.4);color:#F5F2EB;border-radius:8px;padding:10px 16px;font-size:13px;cursor:pointer;z-index:2">Cerrar</button>
+      <sc-if value="{{ pzVarias }}"><button type="button" onClick="{{ pzPrev }}" aria-label="Anterior" style="position:absolute;left:12px;background:none;border:1px solid rgba(245,242,235,0.4);color:#F5F2EB;border-radius:8px;padding:14px 16px;font-size:16px;cursor:pointer">&#8249;</button></sc-if>
+      <sc-if value="{{ pzVarias }}"><button type="button" onClick="{{ pzNext }}" aria-label="Siguiente" style="position:absolute;right:12px;background:none;border:1px solid rgba(245,242,235,0.4);color:#F5F2EB;border-radius:8px;padding:14px 16px;font-size:16px;cursor:pointer">&#8250;</button></sc-if>
+      <figure class="dcx-visor">
+        <img data-dc-src="{{ pzFoto.src }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="{{ pzFoto.alt }}" class="dcx-visor-img" />
+        <figcaption style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;font-size:14.5px;color:rgba(245,242,235,0.85)">{{ pzFoto.pie }}<sc-if value="{{ pzVarias }}"><span style="font-size:12px;color:rgba(245,242,235,0.55)">{{ pzPos }}</span></sc-if></figcaption>
+      </figure>
+    </div>
+  </sc-if>
 
   <sc-if value="{{ cookiesOpen }}">
     <div role="dialog" aria-modal="false" aria-label="Preferencias de cookies" style="position:fixed;left:0;right:0;bottom:0;z-index:110;background:#102919;border-top:2px solid #DE9B2B;padding:clamp(16px,2.5vw,24px) clamp(18px,4vw,40px)">
@@ -2675,7 +2717,14 @@ const ORDENES = ['M\u00e1s recientes', 'M\u00e1s antiguos', 'Menor precio', 'May
 // socios con clave: eso no existe.
 
 /* Las pizarras del cliente, en el orden en que las muestra un asesor. */
+// Lo que muestra el visor a pantalla completa. Era una galeria de pizarras
+// del inicio; esa seccion se saco en noviembre de 2026 y las pizarras tenian
+// cifras viejas (siete niveles, recargos que ya no son). Queda la ilustracion
+// de los ocho niveles, que es la que se quiere ver de cerca en el telefono.
 const PIZARRAS = [
+  { src: 'assets/niveles-ocho-cupos.webp?v=2', mini: 'assets/niveles-ocho-cupos.webp?v=2', pie: 'Los ocho niveles, con el cupo de compra de cada uno', alt: 'Los ocho niveles de Do\u00f1a Compra, de menor a mayor, con el cupo de compra de cada uno' },
+];
+const PIZARRAS_VIEJAS = [
   { src: 'assets/pizarra-niveles.jpg', mini: 'assets/pizarra-niveles-640.jpg', pie: 'Los siete niveles, con su cupo y su recargo', alt: 'Pizarra con los siete niveles, su cupo de compras y su recargo, de Hierro 18 % a Diamante 12 %' },
   { src: 'assets/pizarra-analisis.jpg', mini: 'assets/pizarra-analisis-640.jpg', pie: 'Cuánto cuesta el análisis de ingreso', alt: 'Pizarra con el precio del análisis de ingreso por nivel, de 50.000 a 200.000 guaraníes' },
   { src: 'assets/pizarra-pagador-rapido.jpg', mini: 'assets/pizarra-pagador-rapido-640.jpg', pie: 'Pagador Rápido: un punto menos de recargo', alt: 'Pizarra con el recargo estándar y el recargo con descuento de Pagador Rápido para cada nivel' },
@@ -3275,7 +3324,9 @@ class Component extends DCLogic {
 
       // Las pizarras y su ampliacion.
       pizarras: PIZARRAS.map((p, i) => ({ ...p, n: i + 1, onOpen: () => this.setState({ pz: i }) })),
+      pzAbrir: () => this.setState({ pz: 0 }),
       pzOpen: this.state.pz >= 0,
+      pzVarias: PIZARRAS.length > 1,
       pzFoto: PIZARRAS[Math.max(0, this.state.pz)],
       pzPos: (this.state.pz + 1) + ' de ' + PIZARRAS.length,
       pzClose: () => this.setState({ pz: -1 }),
@@ -3332,6 +3383,14 @@ class Component extends DCLogic {
       nSrv3: SERVICIOS[3], nSrv4: SERVICIOS[4],
       cServ: 'Gs. ' + this.gs(serv),
       cTotal: 'Gs. ' + this.gs(total),
+      // Si el monto no se puede pedir, el total no se muestra: una cifra
+      // en pantalla se lee igual, aunque al lado diga que no corresponde.
+      calcOk: !overCap && !belowMin,
+      calcNo: overCap || belowMin,
+      calcNoText: overCap
+        ? 'No es posible: supera tu cupo de Gs. ' + this.gs(L.cap) + '.'
+        : 'No es posible: el pedido m\u00ednimo en ' + L.name + ' es Gs. '
+          + this.gs(L.min) + '.',
       rapidoOn: this.state.rapido,
       toggleRapido: (e) => this.setState({ rapido: !!e.target.checked }),
       capWarn: overCap,
