@@ -666,16 +666,17 @@
 
     <section style="background:#F5F2EB;border-top:1px solid rgba(22,57,35,0.12)">
       <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,90px) clamp(18px,4vw,40px)">
-        <!-- Las tres iban en un marco cuadrado con object-fit contain. La
-             primera es vertical (1086x1448) y las otras dos casi cuadradas, asi
-             que la primera quedaba 288 de ancho contra 384: se veia mas chica.
-             Sin marco cuadrado las tres miden lo mismo de ancho. Igualar
-             tambien el alto y la resolucion pide rehacer los archivos. -->
+        <!-- Las tres van en el mismo marco, de 3 por 4. La primera es
+             vertical (1086x1448) y las otras dos casi cuadradas: en un marco
+             cuadrado la primera quedaba 288 de ancho contra 384 y se veia mas
+             chica. Con un marco 3x4 las tres llenan el ancho y miden igual; a
+             las dos cuadradas les queda una franja arriba y abajo, del mismo
+             crema que traen adentro (#FDF2E4), asi que no se nota. -->
         <h2 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(26px,3.6vw,46px);line-height:1.06;color:#163923;margin:0 0 26px">Tus tres pasos</h2>
         <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:18px;align-items:start">
-          <li><img src="assets/pasos/paso-1-vos-elegis.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Paso 1. Vos eleg&iacute;s: los productos y tu mayorista que ya conoc&eacute;s. Una bolsa de Do&ntilde;a Compra junto a un carrito cargado de cajas." style="width:100%;height:auto;display:block;border-radius:10px" /></li>
-          <li><img src="assets/pasos/paso-2-dona-compra-paga.jpg" width="305" height="318" loading="lazy" decoding="async" alt="Paso 2. Do&ntilde;a Compra paga al contado a tu mayorista. Vos retir&aacute;s tu mercader&iacute;a con tu c&oacute;digo de recepci&oacute;n." style="width:100%;height:auto;display:block;border-radius:10px" /></li>
-          <li><img src="assets/pasos/paso-3-pagas-en-30-dias.jpg" width="316" height="318" loading="lazy" decoding="async" alt="Paso 3. Pag&aacute;s en 30 d&iacute;as como m&aacute;ximo, desde el retiro, por transferencia, alias, Mango o Tigo Money." style="width:100%;height:auto;display:block;border-radius:10px" /></li>
+          <li><img src="assets/pasos/paso-1-vos-elegis.webp" width="1086" height="1448" loading="lazy" decoding="async" alt="Paso 1. Vos eleg&iacute;s: los productos y tu mayorista que ya conoc&eacute;s. Una bolsa de Do&ntilde;a Compra junto a un carrito cargado de cajas." style="width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;background:#FDF2E4;display:block;border-radius:10px" /></li>
+          <li><img src="assets/pasos/paso-2-dona-compra-paga.jpg" width="305" height="318" loading="lazy" decoding="async" alt="Paso 2. Do&ntilde;a Compra paga al contado a tu mayorista. Vos retir&aacute;s tu mercader&iacute;a con tu c&oacute;digo de recepci&oacute;n." style="width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;background:#FDF2E4;display:block;border-radius:10px" /></li>
+          <li><img src="assets/pasos/paso-3-pagas-en-30-dias.jpg" width="316" height="318" loading="lazy" decoding="async" alt="Paso 3. Pag&aacute;s en 30 d&iacute;as como m&aacute;ximo, desde el retiro, por transferencia, alias, Mango o Tigo Money." style="width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;background:#FDF2E4;display:block;border-radius:10px" /></li>
         </ol>
       </div>
     </section>
@@ -743,7 +744,7 @@
             <div class="dcx-resumen-foto"><img src="assets/portada-insignia-640.jpg" width="640" height="800" loading="lazy" decoding="async" alt="Do&ntilde;a Compra mostrando la insignia &laquo;Socio de Confianza&raquo;" /></div>
             <div class="dcx-resumen-cuerpo">
               <h3>El Club</h3>
-              <p>El espacio de las marcas que caminan con nosotros, y el reconocimiento de los comerciantes que pagan en fecha.</p>
+              <p>El espacio de las marcas que nos acompañan y tu lugar en la Red. El acceso viene con la Gestión del Club, desde el nivel Plata.</p>
               <p class="dcx-resumen-pie"><a href="#/club" class="dcx-vermas">Ver m&aacute;s</a></p>
             </div>
           </div></li>
@@ -1446,7 +1447,7 @@
             <div style="background:#F5F2EB;padding:24px;border-radius:12px">
               <div style="font-family:ui-monospace,monospace;font-size:12px;color:#875F1A">Hasta Gs. 2.000 según el nivel</div>
               <h3 style="font-family:Montserrat,sans-serif;font-style:italic;font-weight:600;font-size:21px;color:#163923;margin:8px 0 0">Gestión del Club Doña Compra</h3>
-              <p style="font-size:14.5px;line-height:1.6;color:#2F4237;margin:10px 0 0">Gestión del Club, el espacio donde las marcas que nos acompañan generan beneficios para los clientes de los comercios.</p>
+              <p style="font-size:14.5px;line-height:1.6;color:#2F4237;margin:10px 0 0">Gestión del Club, el espacio donde las marcas que nos acompañan generan beneficios para los clientes de los comercios. Desde el nivel Plata incluye el acceso al Club.</p>
             </div>
           </div>
           <p style="font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;color:#4F5C54;margin:14px 0 0;max-width:70ch">Puede haber además servicios complementarios puntuales —logística excepcional, acompañamiento técnico, acciones publicitarias a medida o capacitaciones—, que siempre llevan cotización previa por escrito y se facturan aparte.</p>
@@ -2005,7 +2006,7 @@
         <div class="dcx-entra">
           <span class="dcx-rotulo">El Club Doña Compra</span>
           <h1>El Club Doña Compra</h1>
-          <p class="dcx-bajada">El espacio de las marcas que caminan con nosotros, y el reconocimiento de los comerciantes que pagan en fecha. La gestión del Club es uno de los cinco Servicios Doña Compra: no tiene cuota aparte.</p>
+          <p class="dcx-bajada">El espacio de las marcas que caminan con nosotros, y el lugar de los comercios de la Red. El acceso forma parte de la Gestión del Club, uno de los cinco Servicios Doña Compra, desde el nivel Plata.</p>
           <div class="dcx-acciones"><a href="#/contacto" class="dcx-btn">Quiero acompañar</a></div>
         </div>
         <div class="dcx-foto"><img src="assets/rubro-cosmeticos.jpg" alt="Estantes de un comercio de cosmética con la mercadería repuesta" /></div>
@@ -2033,9 +2034,10 @@
           <div style="max-width:460px">
             <span class="dcx-rotulo">Y para el comerciante</span>
             <h2 class="dcx-h2">Qué significa el Club de este lado.</h2>
-            <p>El Club tiene dos caras. Por un lado trae hacia tus clientes los beneficios de las marcas que nos acompañan. Por el otro reconoce a los comerciantes que pagan en fecha.</p>
-            <p style="margin-top:12px">Ese reconocimiento es el estatus Pagador Rápido: se obtiene con al menos 6 pedidos pagados por completo y un promedio de pago menor a 25 días desde el retiro. Baja un punto tu recargo y abre el acceso al Club, para vos y para tus clientes.</p>
-            <p style="margin-top:12px"><a href="#/niveles-y-tarifas" style="color:#875F1A;font-weight:500">Ver el estatus Pagador Rápido →</a></p>
+            <p>El Club tiene dos caras. Por un lado, trae a tus clientes los beneficios de las marcas que nos acompañan. Por el otro, te da un lugar en la Red: publicás tus ofertas en Anuncios y recibís las novedades de los Mayoristas Amigos.</p>
+            <p style="margin-top:12px">El acceso al Club forma parte de la Gestión del Club, uno de los cinco Servicios Doña Compra, desde el nivel Plata. Los Padrinos acceden también, para ellos y sus clientes.</p>
+            <p style="margin-top:12px">La insignia, el autoadhesivo con QR y la ficha en la web del Club son opcionales: vos decidís qué se muestra.</p>
+            <p style="margin-top:12px"><a href="#/niveles-y-tarifas" style="color:#875F1A;font-weight:500">Ver los niveles y los servicios →</a></p>
           </div>
         </div>
       </div>
@@ -2138,8 +2140,8 @@
 
         <sc-if value="{{ enEspera }}">
           <div style="background:#F5F2EB;border:1px solid rgba(22,57,35,0.12);border-radius:12px;text-align:center;padding:56px 24px">
-            <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(20px,2.6vw,26px);line-height:1.2;color:#163923;margin:0 0 10px">Todav&iacute;a no hay publicaciones</h3>
-            <p style="font-size:16px;line-height:1.55;color:#2F4237;margin:0 auto;max-width:52ch">Ac&aacute; van a aparecer las novedades de la red, las ofertas de los Mayoristas Amigos y lo que publiquen los comercios del Club. Volv&eacute; en unos d&iacute;as.</p>
+            <h3 style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(20px,2.6vw,26px);line-height:1.2;color:#163923;margin:0 0 10px">Pr&oacute;ximamente</h3>
+            <p style="font-size:16px;line-height:1.55;color:#2F4237;margin:0 auto;max-width:52ch">Ac&aacute; van a aparecer las novedades de la red, las ofertas de los Mayoristas Amigos y lo que publiquen los comercios del Club.</p>
             <p style="margin:24px 0 0"><a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" onClick="{{ onWa }}" data-cta="true" style="display:inline-block;background:#DE9B2B;color:#163923">Tu Punto de Partida empieza ac&aacute;</a></p>
           </div>
         </sc-if>
@@ -2688,7 +2690,7 @@ const SEO = {
   concepto: ['El Concepto | Do\u00f1a Compra', 'Do\u00f1a Compra paga tu mercader\u00eda al contado al proveedor que vos eleg\u00eds, y vos pag\u00e1s en hasta 30 d\u00edas seg\u00fan las condiciones acordadas.'],
   comerciante: ['Comerciantes | Do\u00f1a Compra', 'Compr\u00e1 stock sin frenar la caja de tu negocio. Visita al local, evaluaci\u00f3n y compra con pago a 30 d\u00edas en Gran Asunci\u00f3n.'],
   mayoristas: ['Mayoristas | Do\u00f1a Compra', 'Venda m\u00e1s sin asumir riesgo de cobro: Do\u00f1a Compra le paga al contado la mercader\u00eda de sus clientes comerciantes.'],
-  club: ['El Club Do\u00f1a Compra | El espacio de las marcas', 'El espacio publicitario de las marcas que acompa\u00f1an a Do\u00f1a Compra, y el reconocimiento de los comerciantes que pagan en fecha.'],
+  club: ['El Club Do\u00f1a Compra | El espacio de las marcas', 'El espacio publicitario de las marcas que acompa\u00f1an a Do\u00f1a Compra, y el lugar de los comercios de la Red.'],
   anuncios: ['Anuncios | Do\u00f1a Compra', 'Novedades de la red, ofertas de los Mayoristas Amigos y publicaciones de los comerciantes del Club.'],
   juridica: ['Informaci\u00f3n jur\u00eddica | Do\u00f1a Compra', 'Aviso legal, condiciones generales de uso, pol\u00edtica de privacidad y pol\u00edtica de cookies de Do\u00f1a Compra.'],
   contacto: ['Contacto | Do\u00f1a Compra', 'Escribinos por formulario, correo o WhatsApp. Respondemos dentro de las 24 horas h\u00e1biles.'],
@@ -2712,9 +2714,11 @@ const CATS = ['Todas', 'Ofertas', 'Novedades', 'Comunidad'];
 const CIUDADES = ['Todas', 'Asunci\u00f3n', 'Lambar\u00e9', 'San Lorenzo', 'Fernando de la Mora', 'Capiat\u00e1', 'Luque'];
 const ORDENES = ['M\u00e1s recientes', 'M\u00e1s antiguos', 'Menor precio', 'Mayor precio'];
 
-// El Club es el espacio de las marcas que acompanan a Dona Compra, y a la vez
-// el reconocimiento de los comerciantes que pagan en fecha. No es un area de
-// socios con clave: eso no existe.
+// El Club es el espacio de las marcas que acompanan a Dona Compra y el lugar
+// de los comercios de la Red. El acceso viene con la Gestion del Club (uno de
+// los cinco Servicios) desde el nivel Plata, y con el estatus Padrino; el
+// Pagador Rapido baja un punto el recargo y nada mas (CGSV art. 6 y 7). No es
+// un area de socios con clave: eso no existe.
 
 /* Las pizarras del cliente, en el orden en que las muestra un asesor. */
 // Lo que muestra el visor a pantalla completa. Era una galeria de pizarras
