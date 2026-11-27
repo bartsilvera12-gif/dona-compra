@@ -40,13 +40,16 @@ export const DEMO: Demo[] = [
   {
     ...base,
     id: "00000000-0000-0000-0000-000000000002",
+    // El slug se queda como estaba aunque el texto hable de San Lorenzo: es
+    // la clave con la que esta cargada la fila en la base y con la que la
+    // busca 06-anuncios-ejemplo.sql. No se ve en ningun lado del sitio.
     slug: "nueva-zona-lambare",
-    titulo: "Nueva zona de cobertura: Lambaré",
+    titulo: "Nueva zona de cobertura: San Lorenzo",
     texto:
-      "Ya estamos visitando negocios en Lambaré. Pedí tu visita desde la página de contacto y coordinamos según disponibilidad.",
+      "Ya estamos visitando negocios en San Lorenzo. Pedí tu visita desde la página de contacto y coordinamos según disponibilidad.",
     tipo: "foto",
     categoria: "Novedades",
-    ciudad: "Lambaré",
+    ciudad: "San Lorenzo",
     precio: 0,
     autor: "Doña Compra (ejemplo)",
     imagen: "/assets/rubro-despensas.jpg",

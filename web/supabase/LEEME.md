@@ -39,8 +39,11 @@ En el **SQL Editor**, en este orden:
 7. `07-video.sql` — deja que el panel suba el video de Doña: agrega video/mp4
    a los tipos permitidos del depósito y sube el tope a 25 MB. Sin esto, el
    campo de video aparece en el panel pero la subida falla.
+8. `08-anuncio-san-lorenzo.sql` — cambia Lambaré por San Lorenzo en el anuncio
+   «Nueva zona de cobertura», que el cliente pidió corregir. Lo mismo se puede
+   hacer desde el panel. Ojo que ese anuncio es uno de los que borra el 06.
 
-Los siete son idempotentes: se pueden correr más de una vez.
+Los ocho son idempotentes: se pueden correr más de una vez.
 
 Después de agregar una tabla, PostgREST sigue con el catálogo viejo en
 memoria y contesta 404 aunque la tabla exista. Se le avisa con:
