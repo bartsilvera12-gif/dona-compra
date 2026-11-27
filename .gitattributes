@@ -1,0 +1,36 @@
+# Esta maquina tiene core.autocrlf=true, asi que git le cambia los saltos de
+# linea a todo lo que cree que es texto. Con un .html da igual. Con un PDF, un
+# .docx, una foto o el video, no: le cambia bytes adentro y el archivo queda
+# roto. Git lo adivina por el contenido y a veces se equivoca —al agregar el
+# instructivo en PDF avisó que iba a convertirlo—, asi que aca se le dice.
+#
+# -text = no toques los saltos de linea de estos archivos, nunca.
+
+*.pdf   -text
+*.docx  -text
+*.doc   -text
+*.xlsx  -text
+*.zip   -text
+
+*.jpg   -text
+*.jpeg  -text
+*.png   -text
+*.gif   -text
+*.webp  -text
+*.avif  -text
+*.ico   -text
+
+*.mp4   -text
+*.webm  -text
+*.mov   -text
+*.mp3   -text
+
+*.woff  -text
+*.woff2 -text
+*.ttf   -text
+*.otf   -text
+
+# El sitio se escribe con saltos de Windows y asi se sube al servidor. Se deja
+# anotado para que no dependa de la configuracion de cada maquina.
+index.html        text eol=crlf
+"Doña Compra.dc.html" text eol=crlf
