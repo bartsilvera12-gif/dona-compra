@@ -13,7 +13,29 @@
  *     que no haya dos juegos de íconos.
  *
  *   node --experimental-strip-types scripts/guia-estatica.ts
+ *
+ * ──────────────────────────────────────────────────────────────────────────
+ * JUBILADO el 27 de noviembre de 2026. NO CORRER.
+ *
+ * Este script reescribía index.html entre los marcadores GUIA:INICIO/FIN y
+ * GUIA2:INICIO/FIN, y además pisaba todo el <style> desde «Los cinco pasos.»
+ * hasta el cierre. Desde las correcciones de noviembre el inicio se rehizo a
+ * mano: «Empezar es fácil», «Sea Mayorista Amigo» y los rubros ya no existen,
+ * «Así de simple» quedó en versión compacta y lejos de «Cerca tuyo», y el
+ * <style> tiene reglas escritas después (los niveles, los íconos de Facebook
+ * e Instagram, el resumen de las pestañas). Correrlo hoy devolvería las
+ * secciones borradas y borraría ese CSS: por eso se quitaron los marcadores
+ * y por eso el script se detiene antes de tocar nada.
+ *
+ * Si alguna vez se quiere volver a generar la guía, hay que rehacer este
+ * archivo contra el inicio nuevo; no alcanza con sacar este corte.
+ * ──────────────────────────────────────────────────────────────────────────
  */
+throw new Error(
+  "guia-estatica.ts está jubilado: pisaría el inicio y el CSS escritos a " +
+    "mano desde noviembre de 2026. Ver el comentario de arriba.",
+);
+
 import { readFileSync, writeFileSync } from "node:fs";
 import {
   ACOMPANA,
